@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+  
+    <FontFamily x:Key="FontAwesome">pack://application:,,,/Fonts/#fontawesome</FontFamily>
+        
+    
+    
+    <system:Double x:Key="FontSizeRegular">20</system:Double>
+    <system:Double x:Key="FontSizeSmall">14</system:Double>
+    <system:Double x:Key="FontSizeLarg">30</system:Double>
+
+    <system:String x:Key="TrashIcon">&#xf014;</system:String>
+    <system:String x:Key="EditIcon">&#xf044;</system:String>
+    <system:String x:Key="PlusIcon">&#xf196;</system:String>
+    <system:String x:Key="PlusUSerIcon">&#xf234;</system:String>
+    <system:String x:Key="SquareCheckIcon">&#xf046;</system:String>
+
+    
+    
+</ResourceDictionary>

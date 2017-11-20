@@ -1,0 +1,59 @@
+﻿<Window x:Class="TishreenUniversity.ParallelPro.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
+        xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
+        mc:Ignorable="d"
+        Title="النافذة الرئيسية" >
+    <Grid Background="{StaticResource DarkBlueBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!--Tilte-->
+            <Viewbox HorizontalAlignment="Left">
+                <controls:MainTitle/>
+            </Viewbox>
+            <Border Grid.Column="1">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="20"   Color="Black"/>
+                </Border.Effect>
+                <!--Tishreen Logo-->
+                <Image Grid.Column="1" Source="/Images/tishreenLogoSemiTransparent.png" HorizontalAlignment="Right" Margin="10"/>
+            </Border>
+        </Grid>
+        <!--Split border-->
+        <Border
+            Grid.Row="1"
+            BorderThickness="0 2 0 0"
+            Height="6">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0.0 , 0.0" EndPoint="1.0, 0.0" >
+                    <GradientStop Color="{StaticResource DarkBlue}" Offset="0.0"/>
+                    <GradientStop Color="White" Offset="0.5"/>
+                    <GradientStop Color="{StaticResource DarkBlue}" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.0, 1.0" EndPoint="0.0, 0.0" >
+                    <GradientStop Color="{StaticResource DarkBlue}" Offset="0.0"/>
+                    <GradientStop Color="White" Offset="3.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+
+        </Border>
+
+        <controls:MainWindowButtons VerticalAlignment="Bottom" Grid.Row="2"/>
+    </Grid>
+</Window>

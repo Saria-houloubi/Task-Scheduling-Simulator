@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TishreenUniversity.ParallelPro", "TishreenUniversity.ParallelPro\TishreenUniversity.ParallelPro.csproj", "{8AAC75EA-2A29-41A4-B3BB-2A964B747BE7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{4061EE1B-4A6B-4A0B-965D-66A61F3BFF0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +20,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8AAC75EA-2A29-41A4-B3BB-2A964B747BE7} = {4061EE1B-4A6B-4A0B-965D-66A61F3BFF0E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E35740F6-ACE5-4751-BB59-6AD5F8ED187C}
