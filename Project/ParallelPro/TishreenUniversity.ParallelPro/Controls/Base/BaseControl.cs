@@ -165,6 +165,7 @@ namespace TishreenUniversity.ParallelPro
             //If the element has got no animations then do nothing
             if (AnimateInAnimationType == AnimationTypes.None)
             {
+                this.Visibility = Visibility.Visible;
                 return;
             }
             //Choose the right aniamtion type for the element

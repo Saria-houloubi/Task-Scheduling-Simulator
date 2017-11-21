@@ -25,7 +25,7 @@ namespace TishreenUniversity.ParallelPro
             var storyBorad = new Storyboard();
 
             //Adds a fade in animation
-            storyBorad.AddSlideInFromLeft(element.Width, secounds);
+            storyBorad.AddSlideInFromLeft(element.ActualWidth, secounds);
 
             //Start the aniamtion
             storyBorad.Begin(element);
@@ -38,7 +38,7 @@ namespace TishreenUniversity.ParallelPro
         }
 
         /// <summary>
-        /// Slides out a <see cref="FrameworkElement"/> in to the user
+        /// Slides out a <see cref="FrameworkElement"/>
         /// </summary>
         /// <param name="element">The element that we want to animate</param>
         /// <param name="secounds">The duration of the animation that will take action</param>
@@ -49,7 +49,7 @@ namespace TishreenUniversity.ParallelPro
             var storyBorad = new Storyboard();
 
             //Adds a fade in animation
-            storyBorad.AddSlideOutToLeft(element.Width, secounds, KeepMargin: false);
+            storyBorad.AddSlideOutToLeft(element.ActualWidth, secounds, KeepMargin: false);
 
             //Start the aniamtion
             storyBorad.Begin(element);

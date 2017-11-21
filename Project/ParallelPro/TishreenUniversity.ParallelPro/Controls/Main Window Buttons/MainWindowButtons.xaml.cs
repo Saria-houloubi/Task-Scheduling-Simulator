@@ -22,7 +22,11 @@ namespace TishreenUniversity.ParallelPro.Controls
     {
         public MainWindowButtons()
         {
+
             InitializeComponent();
+
+            AnimateInAnimationType = AnimationTypes.FadeIn;
+
         }
     }
 }

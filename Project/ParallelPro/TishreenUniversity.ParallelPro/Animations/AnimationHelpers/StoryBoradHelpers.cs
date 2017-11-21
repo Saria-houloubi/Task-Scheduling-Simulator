@@ -28,7 +28,7 @@ namespace TishreenUniversity.ParallelPro
             var slideAnimation = new ThicknessAnimation
             {
                 Duration = new Duration(TimeSpan.FromSeconds(secounds)),
-                From = new Thickness(0, 0, -offSet, 0),
+                From = new Thickness(-offSet, 0, 0, 0),
                 To = new Thickness(0),
                 DecelerationRatio = decelerationRatio
             };
@@ -54,7 +54,7 @@ namespace TishreenUniversity.ParallelPro
             var slideAnimation = new ThicknessAnimation
             {
                 From = new Thickness(0),
-                To = new Thickness(KeepMargin?offset:0, 0, -offset, 0),
+                To = new Thickness(-offset, 0, KeepMargin ? offset : 0, 0),
                 Duration = new Duration(TimeSpan.FromSeconds(secounds)),
                 DecelerationRatio = decelerationRatio
             };
