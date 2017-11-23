@@ -4,14 +4,13 @@
 
 
     <Style TargetType="{x:Type Button}" x:Key="MainWindowButtons">
-
         <Setter Property="Background" Value="Gray"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate>
+                <ControlTemplate TargetType="{x:Type Button}">
                     <Border
                         x:Name="border"
                         Margin="10"
@@ -19,7 +18,7 @@
                         Height="{TemplateBinding Height}"
                         BorderThickness="2"
                         Background="{TemplateBinding Background}">
-                        <Border.Effect>
+                       <Border.Effect>
                             <DropShadowEffect Color="Black" BlurRadius="1" Opacity="0.4"/>
                         </Border.Effect>
                         <TextBlock
@@ -32,6 +31,7 @@
                             Text="{TemplateBinding Tag}"/>
                     </Border>
                     <ControlTemplate.Triggers>
+                       
                         <EventTrigger RoutedEvent="MouseEnter">
                             <BeginStoryboard>
                                 <Storyboard>
@@ -54,7 +54,126 @@
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="1"/>
+                            <Setter Property="Background"  Value="{StaticResource BackgroundBlueBrush}"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!--Side Button for showing/closeing menus-->
+    <Style TargetType="{x:Type Button}" x:Key="SideMenuButton">
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Margin" Value="0 5 -15 5 "/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="10" x:Name="border" Opacity="0.3" Background="{TemplateBinding Background}">
+                        <Grid>
+                            <TextBlock
+                                x:Name="closeArrow"
+                                Style="{StaticResource IconsText}"
+                                Text="&#xf060;"
+                                />
+                            <TextBlock
+                                x:Name="openArrow"
+                                Style="{StaticResource IconsText}"
+                                Text="&#xf061;"
+                                    Visibility="Hidden"
+                                />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                            To="0.5"
+                                            Duration="00:00:0.3"
+                                            Storyboard.TargetName="border"
+                                            Storyboard.TargetProperty="Opacity"
+                                            />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                            To="0.3"
+                                            Duration="00:00:0.3"
+                                            Storyboard.TargetName="border"
+                                            Storyboard.TargetProperty="Opacity"
+                                            />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="1"/>
+                            <Setter Property="Background"  Value="{StaticResource BackgroundBlueBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type Button}" x:Key="BaseIconButton">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+                            Opacity="0.3" 
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{StaticResource DarkBlueBrush}"
+                            CornerRadius="5"
+                            BorderThickness="2">
+                        <TextBlock Text="{TemplateBinding Tag}"
+                                   
+                                   Padding="5"
+                                   Style="{StaticResource IconsText}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                            To="0.5"
+                                            Duration="00:00:0.3"
+                                            Storyboard.TargetName="border"
+                                            Storyboard.TargetProperty="Opacity"
+                                            />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                            To="0.3"
+                                            Duration="00:00:0.3"
+                                            Storyboard.TargetName="border"
+                                            Storyboard.TargetProperty="Opacity"
+                                            />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="1"/>
+                            <Setter Property="Background"  Value="{StaticResource BackgroundBlueBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
