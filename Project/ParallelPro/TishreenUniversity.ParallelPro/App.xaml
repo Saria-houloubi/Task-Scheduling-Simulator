@@ -11,7 +11,9 @@
                 <!--Order is important-->
                 <ResourceDictionary Source="/Styles/Fonts.xaml"/>
                 <ResourceDictionary Source="/Styles/Colores.xaml"/>
+                <ResourceDictionary Source="/Styles/Textblocks.xaml"/>
                 <ResourceDictionary Source="/Styles/Textboxes.xaml"/>
+                <ResourceDictionary Source="/Styles/Comboboxes.xaml"/>
                 <ResourceDictionary Source="/Styles/Buttons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

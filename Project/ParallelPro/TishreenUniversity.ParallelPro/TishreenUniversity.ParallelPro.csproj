@@ -34,8 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -54,6 +56,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\CustomeItems\InstructionItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CustomeLists\InstructionListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Main Window Buttons\InstructionMenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Main Window Buttons\MainWindowButtons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -70,7 +84,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\Comboboxes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Scrolls.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Textblocks.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -90,6 +116,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controls\Base\BaseControl.cs" />
+    <Compile Include="Controls\CustomeItems\InstructionItem.xaml.cs">
+      <DependentUpon>InstructionItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomeLists\InstructionListControl.xaml.cs">
+      <DependentUpon>InstructionListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Main Window Buttons\InstructionMenuControl.xaml.cs">
+      <DependentUpon>InstructionMenuControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Main Window Buttons\MainWindowButtons.xaml.cs">
       <DependentUpon>MainWindowButtons.xaml</DependentUpon>
     </Compile>
@@ -132,5 +167,6 @@
     <Resource Include="Images\tishreenLogoFullTransparent.png" />
     <Resource Include="Images\TishreenLogoSemiTransparent.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -63,64 +63,23 @@
                 <ColumnDefinition Width="auto"/>
                 <!--instuctions-->
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-          
-            
-            <Button Focusable="False" Width="20" HorizontalAlignment="Right" Background="Transparent" BorderBrush="Black" Margin="0 5 -15 5 " Click="Button_Click">
-                <Button.Template>
-                    <ControlTemplate>
-                        <Border CornerRadius="0 10 10 0" x:Name="border" Opacity="0.3" Background="WhiteSmoke">
-                            <Grid>
-                                <TextBlock
-                                x:Name="closeArrow"
-                                VerticalAlignment="Center" HorizontalAlignment="Center"
-                                FontSize="{StaticResource FontSizeRegular}"
-                                FontFamily="{StaticResource FontAwesome}"
-                                Text="&#xf060;"
-                                Foreground="Gray"/>
-                                <TextBlock
-                                x:Name="openArrow"
-                                VerticalAlignment="Center" HorizontalAlignment="Center"
-                                FontSize="{StaticResource FontSizeRegular}"
-                                FontFamily="{StaticResource FontAwesome}"
-                                Text="&#xf061;"
-                                    Visibility="Hidden"
-                                Foreground="Gray"/>
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <EventTrigger RoutedEvent="MouseEnter">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation
-                                            To="0.5"
-                                            Duration="00:00:0.3"
-                                            Storyboard.TargetName="border"
-                                            Storyboard.TargetProperty="Opacity"
-                                            />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                            <EventTrigger RoutedEvent="MouseLeave">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation
-                                            To="0.3"
-                                            Duration="00:00:0.3"
-                                            Storyboard.TargetName="border"
-                                            Storyboard.TargetProperty="Opacity"
-                                            />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
 
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
+
+            <Button Click="Button_Click" Style="{StaticResource SideMenuButton}"/>
 
             <!--Algorithims-->
             <controls:MainWindowButtons  x:Name="SideAlgo" VerticalAlignment="Top" />
+
+
+            <!--Instructions-->
+            <controls:InstructionMenuControl Grid.Column="1" Margin="20 0"/>
+
+            <Button Grid.Column="2" Margin="-20 0 0 0" Click="Button_Click" Style="{StaticResource SideMenuButton}"/>
+
+
+
 
         </Grid>
         
