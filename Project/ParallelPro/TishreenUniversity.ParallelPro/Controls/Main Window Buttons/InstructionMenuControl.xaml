@@ -58,7 +58,7 @@
                 BorderBrush="White"
                 Background="Black">
 
-            <controls:InstructionListControl DataContext="{x:Static desgin:InstructionsListDesgin.Instance }"/>
+            <controls:InstructionListControl DataContext="{x:Static desgin:InstructionListDesign.Instance }"/>
         </Border>
     </Grid>
 </local:BaseUserControl>

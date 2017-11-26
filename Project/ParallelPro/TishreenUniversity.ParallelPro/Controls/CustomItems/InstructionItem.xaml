@@ -95,5 +95,5 @@
         </Style>
     </UserControl.Resources>
 
-    <ContentControl Margin="5" d:DataContext="{x:Static desgin:InstructionItemDesgin.Instance}" Style="{StaticResource ContentStyle}" />
+    <ContentControl Margin="5" d:DataContext="{x:Static desgin:InstructionItemDesign.Instance}" Style="{StaticResource ContentStyle}" />
 </local:BaseUserControl>

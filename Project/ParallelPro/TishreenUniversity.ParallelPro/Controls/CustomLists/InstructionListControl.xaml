@@ -8,7 +8,7 @@
              xmlns:desgin="clr-namespace:ParallelPro.Core.ViewModels.Desgin;assembly=ParallelPro.Core"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid d:DataContext="{x:Static desgin:InstructionsListDesgin.Instance}" >
+    <Grid d:DataContext="{x:Static desgin:InstructionListDesign.Instance}" >
         <ScrollViewer
             HorizontalScrollBarVisibility="Auto"
             VerticalScrollBarVisibility="Auto">
