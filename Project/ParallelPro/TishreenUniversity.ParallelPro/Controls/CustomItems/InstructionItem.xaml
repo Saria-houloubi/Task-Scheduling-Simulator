@@ -45,9 +45,15 @@
                         <Border x:Name="border" 
                                 CornerRadius="5"
                                 Opacity="0.9"
-                                BorderBrush="White"
-                                BorderThickness="0 0 0 1"
+                                BorderThickness="0 0 0 0.5"
                                 Background="Transparent">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="Transparent" Offset="0"/>
+                                    <GradientStop Color="White" Offset="0.5"/>
+                                    <GradientStop Color="Transparent" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
                             <Border Padding="10">
                                 <Grid >
 

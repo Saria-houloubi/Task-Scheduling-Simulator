@@ -129,6 +129,8 @@
     <Style TargetType="{x:Type Button}" x:Key="BaseIconButton">
         <Setter Property="Background" Value="White"/>
         <Setter Property="Focusable" Value="False"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -139,7 +141,8 @@
                             CornerRadius="5"
                             BorderThickness="2">
                         <TextBlock Text="{TemplateBinding Tag}"
-                                   
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                    Padding="5"
                                    Style="{StaticResource IconsText}"/>
                     </Border>

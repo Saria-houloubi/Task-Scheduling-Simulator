@@ -41,18 +41,11 @@
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0.0 , 0.0" EndPoint="1.0, 0.0" >
                     <GradientStop Color="{StaticResource DarkBlue}" Offset="0.0"/>
-                    <GradientStop Color="White" Offset="0.5"/>
+                    <GradientStop Color="White" Offset="0.2"/>
+                    <GradientStop Color="White" Offset="0.8"/>
                     <GradientStop Color="{StaticResource DarkBlue}" Offset="1.0"/>
                 </LinearGradientBrush>
             </Border.BorderBrush>
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0.0, 1.0" EndPoint="0.0, 0.0" >
-                    <GradientStop Color="{StaticResource DarkBlue}" Offset="0.0"/>
-                    <GradientStop Color="White" Offset="3.0"/>
-                </LinearGradientBrush>
-            </Border.Background>
-
-
         </Border>
 
         
