@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
         xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
-        mc:Ignorable="d"
+        mc:Ignorable="d" WindowState="Maximized"
         Title="النافذة الرئيسية" >
     <Grid Background="{StaticResource DarkBlueBrush}">
         <Grid.RowDefinitions>

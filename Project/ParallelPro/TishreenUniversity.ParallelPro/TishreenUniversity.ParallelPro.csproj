@@ -35,6 +35,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -56,11 +59,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Controls\CustomeItems\InstructionItem.xaml">
+    <Page Include="Controls\CustomItems\InstructionItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\CustomeLists\InstructionListControl.xaml">
+    <Page Include="Controls\CustomLists\InstructionListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -116,10 +119,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controls\Base\BaseControl.cs" />
-    <Compile Include="Controls\CustomeItems\InstructionItem.xaml.cs">
+    <Compile Include="Controls\CustomItems\InstructionItem.xaml.cs">
       <DependentUpon>InstructionItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CustomeLists\InstructionListControl.xaml.cs">
+    <Compile Include="Controls\CustomLists\InstructionListControl.xaml.cs">
       <DependentUpon>InstructionListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Main Window Buttons\InstructionMenuControl.xaml.cs">
@@ -155,6 +158,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Fonts\fontawesome-webfont.ttf" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -167,6 +171,11 @@
     <Resource Include="Images\tishreenLogoFullTransparent.png" />
     <Resource Include="Images\TishreenLogoSemiTransparent.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ParallelPro.Core\ParallelPro.Core.csproj">
+      <Project>{ae4e55ba-dc8f-41e4-9c43-912916b78b19}</Project>
+      <Name>ParallelPro.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

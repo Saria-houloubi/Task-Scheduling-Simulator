@@ -11,7 +11,8 @@
     </Style>
 
     <Style TargetType="{x:Type TextBlock}" x:Key="InstructionItemText" BasedOn="{StaticResource HeaderText}">
-        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeLarg}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
 
     <Style TargetType="{x:Type TextBlock}" x:Key="IconsText">

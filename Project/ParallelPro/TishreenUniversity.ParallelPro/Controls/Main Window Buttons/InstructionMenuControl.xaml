@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
+             xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
+             xmlns:desgin="clr-namespace:ParallelPro.Core.ViewModels.Desgin;assembly=ParallelPro.Core"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -55,7 +57,8 @@
                 BorderThickness="2"
                 BorderBrush="White"
                 Background="Black">
-            
+
+            <controls:InstructionListControl DataContext="{x:Static desgin:InstructionsListDesgin.Instance }"/>
         </Border>
     </Grid>
 </local:BaseUserControl>
