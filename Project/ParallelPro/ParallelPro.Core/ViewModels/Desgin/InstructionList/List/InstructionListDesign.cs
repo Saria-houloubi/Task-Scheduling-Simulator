@@ -1,11 +1,11 @@
-﻿using ParallelPro.Core.Models;
+﻿using Tishreen.ParallelPro.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParallelPro.Core.ViewModels.Desgin
+namespace Tishreen.ParallelPro.Core.ViewModels.Desgin
 {
     /// <summary>
     /// A desgin time data class
