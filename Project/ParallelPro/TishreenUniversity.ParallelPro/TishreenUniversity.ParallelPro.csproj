@@ -41,15 +41,12 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -92,6 +89,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Menus.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -172,9 +173,9 @@
     <Resource Include="Images\TishreenLogoSemiTransparent.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ParallelPro.Core\ParallelPro.Core.csproj">
+    <ProjectReference Include="..\ParallelPro.Core\Tishreen.ParallelPro.Core.csproj">
       <Project>{ae4e55ba-dc8f-41e4-9c43-912916b78b19}</Project>
-      <Name>ParallelPro.Core</Name>
+      <Name>Tishreen.ParallelPro.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{4061EE1B-4A6B-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ParallelPro.Core", "ParallelPro.Core", "{91A4DC51-CA9F-44EA-9965-10A3F2333F36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParallelPro.Core", "ParallelPro.Core\ParallelPro.Core.csproj", "{AE4E55BA-DC8F-41E4-9C43-912916B78B19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tishreen.ParallelPro.Core", "ParallelPro.Core\Tishreen.ParallelPro.Core.csproj", "{AE4E55BA-DC8F-41E4-9C43-912916B78B19}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{5E40DABF-AC50-4D6C-9DEC-4A42DC866A46}"
 EndProject

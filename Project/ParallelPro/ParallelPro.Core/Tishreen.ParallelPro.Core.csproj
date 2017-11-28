@@ -11,6 +11,7 @@
     <AssemblyName>ParallelPro.Core</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,7 +35,6 @@
       <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,10 +48,9 @@
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\Desgin\InstructionList\Item\InstructionItemDesign.cs" />
     <Compile Include="ViewModels\Desgin\InstructionList\List\InstructionListDesign.cs" />
+    <Compile Include="ViewModels\InstructionMenu\ScoreBoradingInstructionMenuViewModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\InstructionMenu\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="E:\Work\Sam Electronics\Simple Accounter Project\Source Code V2.0\SimpleAccounterProject\GeneralHelpers\GeneralHelpers.csproj">
       <Project>{8950c3d4-0afa-4309-ad8a-4997f4a6d272}</Project>

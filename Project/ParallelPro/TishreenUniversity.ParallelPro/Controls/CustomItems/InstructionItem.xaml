@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
-             xmlns:desgin="clr-namespace:ParallelPro.Core.ViewModels.Desgin;assembly=ParallelPro.Core"
+             xmlns:desgin="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Desgin;assembly=ParallelPro.Core"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="300">
 
@@ -13,24 +13,45 @@
             <!--Ability to add the age by one or subtractet by one-->
             <Setter Property="ContextMenu">
                 <Setter.Value>
-                    <ContextMenu>
+                    <ContextMenu DataContext="{DynamicResource Data}"   x:Name="Menu">
                         <!--Edit-->
-                        <MenuItem Header="Edit" >
+                        <MenuItem 
+                                Foreground="Black" 
+                                  >
+                            <MenuItem.Header>
+                                <TextBlock
+                                    Text="Edit"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Stretch"
+                                    Foreground="Black"/>
+                            </MenuItem.Header>
                             <MenuItem.Icon>
                                 <TextBlock
+                                    Foreground="Black"
                                     Text="&#xf044;"
+                                    Background="Transparent"
                                     HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
+                                    VerticalAlignment="Stretch"
                                     FontFamily="{StaticResource FontAwesome}"/>
                             </MenuItem.Icon>
                         </MenuItem>
                         <!--Delete-->
-                        <MenuItem Header="Delete" >
+                        <MenuItem   
+                            Command="{Binding DeleteItemCommand}"
+                                  >
+                            <MenuItem.Header>
+                                <TextBlock
+                                    Text="Delete"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Stretch"
+                                    Foreground="Black"/>
+                            </MenuItem.Header>
                             <MenuItem.Icon>
                                 <TextBlock
+                                    Foreground="Black"
                                     Text="&#xf014;"
                                     HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
+                                    VerticalAlignment="Stretch"
                                     FontFamily="{StaticResource FontAwesome}"/>
                             </MenuItem.Icon>
                         </MenuItem>

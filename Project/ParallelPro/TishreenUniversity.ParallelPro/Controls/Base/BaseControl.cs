@@ -1,18 +1,14 @@
 ﻿using System.Windows;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-
+using Tishreen.ParallelPro.Core;
 namespace TishreenUniversity.ParallelPro
 {
-    public class BaseViewModel { }
-
     /// <summary>
     /// A base class for all the custom user controls and windows with animations
     /// </summary>
     public class BaseUserControl : UserControl
     {
-
-
         #region Dependency Property
         /// <summary>
         /// A property for slide in/out from left
@@ -218,6 +214,8 @@ namespace TishreenUniversity.ParallelPro
 
                 //Set the data context
                 this.DataContext = mViewModel;
+                this.Resources["Data"] = this.DataContext;
+
             }
         }
 

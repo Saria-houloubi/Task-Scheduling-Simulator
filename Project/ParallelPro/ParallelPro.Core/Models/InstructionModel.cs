@@ -1,5 +1,5 @@
 ﻿
-namespace ParallelPro.Core.Models
+namespace Tishreen.ParallelPro.Core.Models
 {
     /// <summary>
     /// A model for all the instruction
