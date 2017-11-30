@@ -177,6 +177,10 @@
       <Project>{ae4e55ba-dc8f-41e4-9c43-912916b78b19}</Project>
       <Name>Tishreen.ParallelPro.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ThishreenUniversity.ParallelPro.Enums\ThishreenUniversity.ParallelPro.Enums.csproj">
+      <Project>{8b39dc27-b702-48e2-91dc-d2a88500c9ba}</Project>
+      <Name>ThishreenUniversity.ParallelPro.Enums</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

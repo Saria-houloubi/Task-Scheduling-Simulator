@@ -20,16 +20,17 @@
                                   >
                             <MenuItem.Header>
                                 <TextBlock
+                                   Style="{StaticResource MenuTextBlocks}"
                                     Text="Edit"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Stretch"
-                                    Foreground="Black"/>
+                                    />
                             </MenuItem.Header>
                             <MenuItem.Icon>
                                 <TextBlock
+                                   Style="{StaticResource MenuTextBlocks}"
                                     Foreground="Black"
                                     Text="&#xf044;"
-                                    Background="Transparent"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Stretch"
                                     FontFamily="{StaticResource FontAwesome}"/>
@@ -41,14 +42,15 @@
                                   >
                             <MenuItem.Header>
                                 <TextBlock
+                                   Style="{StaticResource MenuTextBlocks}"
                                     Text="Delete"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Stretch"
-                                    Foreground="Black"/>
+                                    />
                             </MenuItem.Header>
                             <MenuItem.Icon>
                                 <TextBlock
-                                    Foreground="Black"
+                                   Style="{StaticResource MenuTextBlocks}"
                                     Text="&#xf014;"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Stretch"
@@ -90,9 +92,9 @@
                                         <Run Text="{Binding ID}"/><Run Text="-"/>
                                     </TextBlock>
                                     <TextBlock Text="{Binding Name}" Style="{StaticResource InstructionItemText}" Grid.Column="1"/>
-                                    <TextBlock Text="{Binding TargetRegistry}" Style="{StaticResource InstructionItemText}" Grid.Column="2"/>
-                                    <TextBlock Text="{Binding SourceRegistry01}" Style="{StaticResource InstructionItemText}" Grid.Column="3"/>
-                                    <TextBlock Text="{Binding SourceRegistry02}" Style="{StaticResource InstructionItemText}" Grid.Column="4"/>
+                                    <TextBlock Text="{Binding TargetRegistery}" Style="{StaticResource InstructionItemText}" Grid.Column="2"/>
+                                    <TextBlock Text="{Binding SourceRegistery01}" Style="{StaticResource InstructionItemText}" Grid.Column="3"/>
+                                    <TextBlock Text="{Binding SourceRegistery02}" Style="{StaticResource InstructionItemText}" Grid.Column="4"/>
                                 </Grid>
                             </Border>
                         </Border>
