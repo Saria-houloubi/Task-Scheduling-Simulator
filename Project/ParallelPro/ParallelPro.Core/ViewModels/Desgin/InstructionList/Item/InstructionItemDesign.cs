@@ -31,15 +31,15 @@ namespace Tishreen.ParallelPro.Core.ViewModels.Desgin
         /// <summary>
         /// The target registry to store the value in
         /// </summary>
-        public string TargetRegistry { get; set; }
+        public string TargetRegistery { get; set; }
         /// <summary>
         /// The first source registry or value to get from
         /// </summary>
-        public string SourceRegistry01 { get; set; }
+        public string SourceRegistery01 { get; set; }
         /// <summary>
         /// The second source registry or value to get from
         /// </summary>
-        public string SourceRegistry02 { get; set; }
+        public string SourceRegistery02 { get; set; }
         #endregion
 
         #region Constructer
@@ -50,9 +50,9 @@ namespace Tishreen.ParallelPro.Core.ViewModels.Desgin
         {
             this.ID = 1;
             this.Name = "ADD";
-            this.TargetRegistry = "F7";
-            this.SourceRegistry01 = "F1";
-            this.SourceRegistry02 = "F0";
+            this.TargetRegistery = "F7";
+            this.SourceRegistery01 = "F1";
+            this.SourceRegistery02 = "F0";
         }
 
         #endregion

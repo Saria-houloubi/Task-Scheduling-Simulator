@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{5E40
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneralHelpers", "E:\Work\Sam Electronics\Simple Accounter Project\Source Code V2.0\SimpleAccounterProject\GeneralHelpers\GeneralHelpers.csproj", "{8950C3D4-0AFA-4309-AD8A-4997F4A6D272}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThishreenUniversity.ParallelPro.Enums", "ThishreenUniversity.ParallelPro.Enums", "{C389ADD9-E633-4493-BD5B-1BCDD04ECF87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThishreenUniversity.ParallelPro.Enums", "ThishreenUniversity.ParallelPro.Enums\ThishreenUniversity.ParallelPro.Enums.csproj", "{8B39DC27-B702-48E2-91DC-D2A88500C9BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,10 @@ Global
 		{8950C3D4-0AFA-4309-AD8A-4997F4A6D272}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8950C3D4-0AFA-4309-AD8A-4997F4A6D272}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8950C3D4-0AFA-4309-AD8A-4997F4A6D272}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B39DC27-B702-48E2-91DC-D2A88500C9BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B39DC27-B702-48E2-91DC-D2A88500C9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B39DC27-B702-48E2-91DC-D2A88500C9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B39DC27-B702-48E2-91DC-D2A88500C9BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +49,7 @@ Global
 		{8AAC75EA-2A29-41A4-B3BB-2A964B747BE7} = {4061EE1B-4A6B-4A0B-965D-66A61F3BFF0E}
 		{AE4E55BA-DC8F-41E4-9C43-912916B78B19} = {91A4DC51-CA9F-44EA-9965-10A3F2333F36}
 		{8950C3D4-0AFA-4309-AD8A-4997F4A6D272} = {5E40DABF-AC50-4D6C-9DEC-4A42DC866A46}
+		{8B39DC27-B702-48E2-91DC-D2A88500C9BA} = {C389ADD9-E633-4493-BD5B-1BCDD04ECF87}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E35740F6-ACE5-4751-BB59-6AD5F8ED187C}
