@@ -39,7 +39,6 @@
                                     <Setter Property="IsTabStop" Value="False"/>
                                     <Setter Property="Focusable" Value="False"/>
                                     <Setter Property="ClickMode" Value="Press"/>
-    
 
                                         <Setter Property="Template">
                                         <Setter.Value>
@@ -65,6 +64,7 @@
                                                     <Trigger Property="IsMouseOver" Value="True">
                                                         <Setter Property="Fill" TargetName="Arrow" Value="Black"/>
                                                     </Trigger>
+                                              
                                                     <MultiDataTrigger>
                                                         <MultiDataTrigger.Conditions>
                                                             <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
@@ -123,6 +123,9 @@
                                                         <Setter Property="Background" TargetName="splitBorder" Value="Transparent"/>
                                                         <Setter Property="BorderBrush" TargetName="splitBorder" Value="Transparent"/>
                                                     </MultiDataTrigger>
+                                                    <Trigger Property="IsEnabled" Value="False">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
                                         </Setter.Value>

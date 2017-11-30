@@ -29,4 +29,11 @@
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
     </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="MenuTextBlocks">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
+    </Style>
+
 </ResourceDictionary>
