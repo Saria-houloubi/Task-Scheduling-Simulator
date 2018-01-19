@@ -85,21 +85,11 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// Holds all the target registries that the user can use
         /// </summary>
-        private Collection<string> _targetRegistries;
-        public Collection<string> TargetRegistries
-        {
-            get { return _targetRegistries; }
-            set { SetProperty(ref _targetRegistries, value); }
-        }
+        public ObservableCollection<string> TargetRegistries { get; set; }
         /// <summary>
         /// Holds all the source registries that the user can use
         /// </summary>
-        private Collection<string> _sourceRegisteries;
-        public Collection<string> SourceRegisteries
-        {
-            get { return _sourceRegisteries; }
-            set { SetProperty(ref _sourceRegisteries, value); }
-        }
+        public ObservableCollection<string> SourceRegisteries { get; set; }
         /// <summary>
         /// The list of instructions that the user adds
         /// </summary>
@@ -116,7 +106,7 @@ namespace Tishreen.ParallelPro.Core
         /// A flag represents if the user can choose another source for the instruction
         /// like in SD/LD only one source
         /// </summary>
-        private bool _canChooseSource02;
+        private bool _canChooseSource02 = true;
         public bool CanChooseSource02
         {
             get { return _canChooseSource02; }
@@ -157,41 +147,42 @@ namespace Tishreen.ParallelPro.Core
         /// <param name="function">The function that we want to restrict some registery or memory access</param>
         private void FillTargetAndSourceRegisteries(string function = null)
         {
-            TargetRegistries = new Collection<string>();
-            SourceRegisteries = new Collection<string>();
+            TargetRegistries.Clear();
+            SourceRegisteries.Clear() ;
 
             var RegisteryAndMemoryList = Enum.GetValues(typeof(RegisteriesAndMemory));
 
             foreach (var item in RegisteryAndMemoryList)
             {
+                var stringValue = Enum.GetName(typeof(RegisteriesAndMemory), item);
                 if (function == FunctionsTypes.LD.ToString())
                 {
                     //If it is a memory spot add it to target
-                    if ((int)item == 1)
-                        TargetRegistries.Add(item.ToString());
+                    if ((int)item < 31)
+                        TargetRegistries.Add(stringValue);
                     else
-                        SourceRegisteries.Add(item.ToString());
+                        SourceRegisteries.Add(stringValue);
                 }
                 else if (function == FunctionsTypes.SD.ToString())
                 {
                     //If it is a registery add it to target
-                    if ((int)item == 0)
-                        TargetRegistries.Add(item.ToString());
+                    if ((int)item >= 31)
+                        TargetRegistries.Add(stringValue);
                     else
-                        SourceRegisteries.Add(item.ToString());
-                }
+                        SourceRegisteries.Add(stringValue);
+                } 
                 else
                 {
-                    TargetRegistries.Add(item.ToString());
-                    SourceRegisteries.Add(item.ToString());
+                    TargetRegistries.Add(stringValue);
+                    SourceRegisteries.Add(stringValue);
                 }
-
-                //Disable source02 if the function is either load or store
-                if (function == FunctionsTypes.LD.ToString() || function == FunctionsTypes.SD.ToString())
-                    CanChooseSource02 = false;
-                else
-                    CanChooseSource02 = true;
             }
+            //Disable source02 if the function is either load or store
+            if (function == FunctionsTypes.LD.ToString() || function == FunctionsTypes.SD.ToString())
+                CanChooseSource02 = false;
+            else
+                CanChooseSource02 = true;
+
         }
         #endregion
 
@@ -206,6 +197,9 @@ namespace Tishreen.ParallelPro.Core
 
             //Create the list
             Instructions = new ObservableCollection<InstructionModel>();
+            TargetRegistries = new ObservableCollection<string>();
+            SourceRegisteries = new ObservableCollection<string>();
+
         }
 
         /// <summary>
@@ -217,10 +211,9 @@ namespace Tishreen.ParallelPro.Core
             //Create Commands
             AddInstructionCommand = new DelegateCommand(() =>
             {
-                Instructions.Add(new InstructionModel(counter++, SelectedFunction, SelectedTargetRegistery.ToUpper(), SelectedSourceRegistery01.ToUpper(), SelectedSourceRegistery02.ToUpper()));
+                Instructions.Add(new InstructionModel(counter++, SelectedFunction, SelectedTargetRegistery, SelectedSourceRegistery01, SelectedSourceRegistery02));
                 EmptyProperties();
-            }, () => { return SelectedFunction != null && !string.IsNullOrWhiteSpace(SelectedTargetRegistery); }).ObservesProperty(() => SelectedFunction)
-                                                                                                                                                                                                         .ObservesProperty(() => SelectedTargetRegistery);
+            }, () => { return SelectedFunction != null && !string.IsNullOrWhiteSpace(SelectedTargetRegistery); }).ObservesProperty(() => SelectedFunction).ObservesProperty(() => SelectedTargetRegistery);
             DeleteItemCommand = new DelegateCommand(() =>
             {
                 ReOrderAfterDelete(SelectedInstruction.ID);

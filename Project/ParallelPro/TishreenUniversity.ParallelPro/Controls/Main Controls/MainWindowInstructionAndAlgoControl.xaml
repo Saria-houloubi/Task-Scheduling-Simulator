@@ -1,0 +1,36 @@
+﻿<local:BaseUserControl x:Class="TishreenUniversity.ParallelPro.Controls.MainWindowInstructionAndAlgoControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
+             xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
+             mc:Ignorable="d" 
+             >
+
+
+    <!--Main Content-->
+    <Grid Grid.Row="2">
+        <Grid.ColumnDefinitions>
+            <!--Algorithims Menu-->
+            <ColumnDefinition Width="auto"/>
+            <!--instuctions-->
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Button Click="Button_Click" Style="{StaticResource SideMenuButton}"/>
+
+        <!--Algorithims-->
+        <controls:MainWindowButtons  x:Name="SideAlgo" VerticalAlignment="Top" />
+
+
+        <!--Instructions-->
+        <controls:InstructionMenuControl Grid.Column="1" Margin="20 0"/>
+
+        <Button Grid.Column="2" Margin="-20 0 0 0" Click="Button_Click" Style="{StaticResource SideMenuButton}"/>
+
+    </Grid>
+
+</local:BaseUserControl>

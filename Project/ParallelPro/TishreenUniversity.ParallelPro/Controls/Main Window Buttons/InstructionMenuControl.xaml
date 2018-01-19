@@ -44,11 +44,11 @@
             <ComboBox Grid.Row="1" ItemsSource="{Binding Functions}" SelectedItem="{Binding SelectedFunction}"/>
 
             <!--Target Registery-->
-            <ComboBox Grid.Column="1" Grid.Row="1" SelectedItem="{Binding TargetRegistery}" ItemsSource="{Binding TargetRegistries}"/>
+            <ComboBox Grid.Column="1" Grid.Row="1" SelectedItem="{Binding SelectedTargetRegistery}" ItemsSource="{Binding TargetRegistries, Mode=TwoWay,NotifyOnSourceUpdated=True}"/>
             <!--Source 1 Registery-->
-            <ComboBox Grid.Column="2" Grid.Row="1" SelectedItem="{Binding SourceRegistery01}" ItemsSource="{Binding SourceRegisteries}"/>
+            <ComboBox Grid.Column="2" Grid.Row="1" SelectedItem="{Binding   SelectedSourceRegistery01}" ItemsSource="{Binding SourceRegisteries, Mode=TwoWay}"/>
             <!--Source 2 Registery-->
-            <ComboBox Grid.Column="3" Grid.Row="1" SelectedItem="{Binding SourceRegistery02}" ItemsSource="{Binding SourceRegisteries}" IsEnabled="{Binding CanChooseSource02}"/>
+            <ComboBox Grid.Column="3" Grid.Row="1" SelectedItem="{Binding SelectedSourceRegistery02}" ItemsSource="{Binding SourceRegisteries , Mode=TwoWay}" IsEnabled="{Binding CanChooseSource02}"/>
         </Grid>
 
         <!--Code Viewer-->

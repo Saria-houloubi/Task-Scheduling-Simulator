@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
@@ -61,6 +64,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\CustomLists\InstructionListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Login\HostUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Main Controls\MainWindowInstructionAndAlgoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,12 +130,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AttachedProperties\Base\BaseAtttachProperty.cs" />
+    <Compile Include="AttachedProperties\ButtonAttachedProperty.cs" />
+    <Compile Include="AttachedProperties\FramworkElementAnimationAttachedProperties.cs" />
+    <Compile Include="AttachedProperties\PasswordAttachedProperty.cs" />
     <Compile Include="Controls\Base\BaseControl.cs" />
     <Compile Include="Controls\CustomItems\InstructionItem.xaml.cs">
       <DependentUpon>InstructionItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CustomLists\InstructionListControl.xaml.cs">
       <DependentUpon>InstructionListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Login\HostUserControl.xaml.cs">
+      <DependentUpon>HostUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Main Controls\MainWindowInstructionAndAlgoControl.xaml.cs">
+      <DependentUpon>MainWindowInstructionAndAlgoControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Main Window Buttons\InstructionMenuControl.xaml.cs">
       <DependentUpon>InstructionMenuControl.xaml</DependentUpon>
@@ -135,6 +156,9 @@
     <Compile Include="Controls\Titles\MainTitle.xaml.cs">
       <DependentUpon>MainTitle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IValueConverters\ApplicationPageValueConverter.cs" />
+    <Compile Include="IValueConverters\Base\BaseValueConverters.cs" />
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

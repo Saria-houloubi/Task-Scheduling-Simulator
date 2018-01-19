@@ -34,6 +34,11 @@ namespace TishreenUniversity.ParallelPro
         /// <summary>
         /// Sildes out from bottom
         /// </summary>
-        SlideOutFromBottom = 5
+        SlideOutFromBottom = 5,
+       
+        /// <summary>
+        /// Fades an element out
+        /// </summary>
+        FadeOut = 6,
     }
 }

@@ -45,7 +45,7 @@ namespace Tishreen.ParallelPro.Core.Models
         /// <param name="targetRegistry">The target registry to store the value in</param>
         /// <param name="sourceRegistry01">The first source registry to get the value from</param>
         /// <param name="SourceRegistery02">The second source registry to get the value from</param>
-        public InstructionModel(int id,string name,string targetRegistry,string sourceRegistry01,string SourceRegistery02)
+        public InstructionModel(int id,string name,string targetRegistry,string sourceRegistry01,string SourceRegistery02 = null)
         {
             this.ID = id;
             this.Name = name;

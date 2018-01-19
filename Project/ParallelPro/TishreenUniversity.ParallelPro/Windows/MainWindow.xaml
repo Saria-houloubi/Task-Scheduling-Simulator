@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
         xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
+        xmlns:converters="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
         mc:Ignorable="d" WindowState="Maximized"
         Title="النافذة الرئيسية" >
     <Grid Background="{StaticResource DarkBlueBrush}">
@@ -48,34 +49,7 @@
             </Border.BorderBrush>
         </Border>
 
-        
-        <!--Main Content-->
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <!--Algorithims Menu-->
-                <ColumnDefinition Width="auto"/>
-                <!--instuctions-->
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-
-
-            <Button Click="Button_Click" Style="{StaticResource SideMenuButton}"/>
-
-            <!--Algorithims-->
-            <controls:MainWindowButtons  x:Name="SideAlgo" VerticalAlignment="Top" />
-
-
-            <!--Instructions-->
-            <controls:InstructionMenuControl Grid.Column="1" Margin="20 0"/>
-
-            <Button Grid.Column="2" Margin="-20 0 0 0" Click="Button_Click" Style="{StaticResource SideMenuButton}"/>
-
-
-
-
-        </Grid>
-        
+        <local:HostUserControl Content="{Binding Source={x:Static local:ViewModelLocator.Instance},Path= ApplicationViewModel.CurrentPage, Converter={converters:ApplicationPageValueConverter}}" Grid.Row="2"/>
 
     </Grid>
 </Window>

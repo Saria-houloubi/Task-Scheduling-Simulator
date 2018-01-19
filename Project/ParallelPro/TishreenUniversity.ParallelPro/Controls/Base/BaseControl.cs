@@ -116,16 +116,24 @@ namespace TishreenUniversity.ParallelPro
         #endregion
 
         #region Public Properties
-
+        
         /// <summary>
         /// The type of the aniamte in for the controls
         /// </summary>
         public AnimationTypes AnimateInAnimationType { get; set; } = AnimationTypes.FadeIn;
-
+        /// <summary>
+        /// The type of the aniamte in for the controls
+        /// </summary>
+        public AnimationTypes AnimateOutAnimationType { get; set; } = AnimationTypes.FadeOut;
         /// <summary>
         /// The duration that the aniamtion will take finish
         /// </summary>
         public float Secounds { get; set; } = 0.8f;
+        /// <summary>
+        /// A flage indicates if the control should animate out
+        /// we use it because of the moving of the user control contents
+        /// </summary>
+        public bool ShouldAnimateOut { get; set; }
         #endregion
 
         #region Constructer
@@ -143,38 +151,62 @@ namespace TishreenUniversity.ParallelPro
             Loaded += BaseControl_LoadedAsync;
         }
         /// <summary>
-        /// Calls the animation in method
+        /// The method that will fire when the page is fully loaded
         /// </summary>
-        /// <param name="sender">The element that was loaded</param>
+        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void BaseControl_LoadedAsync(object sender, System.Windows.RoutedEventArgs e)
+        private async void BaseControl_LoadedAsync(object sender, RoutedEventArgs e)
         {
-            await AnimateIn();
+            //If the control should animate out.
+            if (ShouldAnimateOut)
+                //Animates out the control
+                await AnimateOutAsync();
+            //Otherwise..
+            else
+                //Animate in the control
+                await AnimateInAsync();
         }
-
         /// <summary>
-        /// Choses the right animation for the control
+        /// The slide and fade in animation for the page
         /// </summary>
         /// <returns></returns>
-        private async Task AnimateIn()
+        private async Task AnimateInAsync()
         {
-            //If the element has got no animations then do nothing
+            //If the user control dose not have any animations just end
             if (AnimateInAnimationType == AnimationTypes.None)
-            {
-                this.Visibility = Visibility.Visible;
                 return;
-            }
-            //Choose the right aniamtion type for the element
+
             switch (AnimateInAnimationType)
             {
-                case AnimationTypes.FadeIn:
-                    await this.FadeInAsync(Secounds);
-                    break;
                 case AnimationTypes.SlideInFromLeft:
-                    await this.SlideInFromLeftAsync(Secounds);
+                    //Start the animation
+                    await this.SlideInFromLeftAsync(this.Secounds);
                     break;
+                case AnimationTypes.FadeIn:
+                    //Start the animation
+                    await this.FadeInAsync(this.Secounds);
+                    break;
+                default:
+                    return;
             }
 
+        }
+        /// <summary>
+        /// Animate the page out
+        /// </summary>
+        /// <returns></returns>
+        public async Task AnimateOutAsync()
+        {
+            if (this.AnimateOutAnimationType == AnimationTypes.None)
+                return;
+
+            switch (this.AnimateOutAnimationType)
+            {
+                case AnimationTypes.SlideOutFromLeft:
+                    // Start the animation 
+                    await this.SlideOutToLeftAsync(this.Secounds);
+                    break;
+            }
         }
         #endregion
     }
