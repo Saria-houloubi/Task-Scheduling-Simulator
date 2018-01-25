@@ -8,48 +8,36 @@
         xmlns:converters="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
         mc:Ignorable="d" WindowState="Maximized"
         Title="النافذة الرئيسية" >
-    <Grid Background="{StaticResource DarkBlueBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
+    <Grid>
+    <!--Setting the background to a looping video-->
+    <Grid.Background>
+        <VisualBrush>
+            <VisualBrush.Visual>
+                <Grid>
+                    <MediaElement  Name="background" >
+                        <MediaElement.Triggers>
+                            <EventTrigger RoutedEvent="MediaElement.Loaded">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
 
-        <!--Title-->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <!--Tilte-->
-            <Viewbox HorizontalAlignment="Left">
-                <controls:MainTitle/>
-            </Viewbox>
-            <Border Grid.Column="1">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="20"   Color="Black"/>
-                </Border.Effect>
-                <!--Tishreen Logo-->
-                <Image Grid.Column="1" Source="/Images/tishreenLogoSemiTransparent.png" HorizontalAlignment="Right" Margin="10"/>
-            </Border>
-        </Grid>
-        
-        <!--Split border-->
-        <Border
-            Grid.Row="1"
-            BorderThickness="0 2 0 0"
-            Height="6">
-            <Border.BorderBrush>
-                <LinearGradientBrush StartPoint="0.0 , 0.0" EndPoint="1.0, 0.0" >
-                    <GradientStop Color="{StaticResource DarkBlue}" Offset="0.0"/>
-                    <GradientStop Color="White" Offset="0.2"/>
-                    <GradientStop Color="White" Offset="0.8"/>
-                    <GradientStop Color="{StaticResource DarkBlue}" Offset="1.0"/>
-                </LinearGradientBrush>
-            </Border.BorderBrush>
-        </Border>
+                                            <!-- The MediaTimeline has a RepeatBehavior="Forever" which makes the media play
+                                                over and over indefinitely.-->
+                                            <MediaTimeline Source="C:\Users\houlo\Desktop\4th year project\Project\ParallelPro\TishreenUniversity.ParallelPro\bin\Debug\Images\BackgroundVideo.wmv" Storyboard.TargetName="background"  
+                                                RepeatBehavior="Forever" />
 
-        <local:HostUserControl Content="{Binding Source={x:Static local:ViewModelLocator.Instance},Path= ApplicationViewModel.CurrentPage, Converter={converters:ApplicationPageValueConverter}}" Grid.Row="2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </MediaElement.Triggers>
+                    </MediaElement>
+                </Grid>
+            </VisualBrush.Visual>
+        </VisualBrush>
+    </Grid.Background>
+
+    <local:HostUserControl Content="{Binding Source={x:Static local:ViewModelLocator.Instance},Path= ApplicationViewModel.CurrentPage, Converter={converters:ApplicationPageValueConverter}}" Grid.Row="2"/>
 
     </Grid>
 </Window>

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Globalization;
 using ThishreenUniversity.ParallelPro.Enums.Instructions;
 using TishreenUniversity.ParallelPro.Controls;
+using TishreenUniversity.ParallelPro.Controls.Login;
 
 namespace TishreenUniversity.ParallelPro.IValueConverters
 {
@@ -18,7 +19,7 @@ namespace TishreenUniversity.ParallelPro.IValueConverters
                 case ApplicationPages.MainWindow:
                     return new MainWindowInstructionAndAlgoControl();
                 case ApplicationPages.LoginPage:
-                    return new BaseUserControl();
+                    return new LoginUserControl();
                 default:
                     Debugger.Break();
                     return null;

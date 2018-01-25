@@ -56,8 +56,9 @@
                         </EventTrigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Opacity" Value="1"/>
-                            <Setter Property="Background"  Value="{StaticResource BackgroundBlueBrush}"/>
+                            <Setter Property="Background" Value="{StaticResource BackgroundBlueBrush}" TargetName="border" />
                         </Trigger>
+                        
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -180,5 +181,14 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" x:Key="RectangleButton">
+        <Setter Property="Background" Value="{StaticResource BackgroundDarkBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="30 10"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
+        <Setter Property="FontWeight" Value="ExtraBold"/>
     </Style>
 </ResourceDictionary>

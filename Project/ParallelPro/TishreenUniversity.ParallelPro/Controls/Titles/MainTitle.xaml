@@ -5,20 +5,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="300">
+             >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock FontWeight="Bold" FontSize="{StaticResource FontSizeLarg}">
-            <Run Foreground="White">C</Run><Run Foreground="Gray">omputer</Run>
-        </TextBlock>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock FontWeight="Bold" Name="topTitle" FontSize="{StaticResource FontSizeLarg}">
+            <Run Foreground="{StaticResource DarkBlueBrush}">C</Run><Run Foreground="White">omputer</Run>
+            </TextBlock>
+            <Border Grid.Column="1" >
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="20"   Color="Black"/>
+                </Border.Effect>
+                <!--Tishreen Logo-->
+                <Image Grid.Column="1" Height="50" Source="/Images/tishreenLogoSemiTransparent.png" Margin="0 -15 0 0" />
+            </Border>
 
+        </Grid>
         <TextBlock FontWeight="Bold" Margin="12 -10 0 0" Grid.Row="1" FontSize="{StaticResource FontSizeLarg}">
-            <Run Foreground="White" FontSize="{StaticResource FontSizeLarg}">A</Run><Run Foreground="Gray">rchitecture</Run> <Run FontSize="{StaticResource FontSizeSmall}" Foreground="White" FontWeight="Medium" FontStyle="Oblique">Task Scheduling</Run>
+            <Run Foreground="{StaticResource DarkBlueBrush}" FontSize="{StaticResource FontSizeLarg}">A</Run><Run Foreground="White">rchitecture</Run> 
         </TextBlock>
-        
+        <TextBlock Grid.Row="2" Margin="24 -5 0 0">
+            <Run FontSize="{StaticResource FontSizeSmall}" Foreground="White" FontWeight="Medium" FontStyle="Oblique">Task Scheduling</Run>
+        </TextBlock>
     </Grid>
 </local:BaseUserControl>

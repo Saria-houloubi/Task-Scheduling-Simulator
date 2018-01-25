@@ -1,4 +1,5 @@
 ﻿using Ninject;
+using ThishreenUniversity.ParallelPro.Enums.Instructions;
 using Tishreen.ParallelPro.Core;
 
 namespace ParallelPro.Core.IoC
@@ -28,7 +29,7 @@ namespace ParallelPro.Core.IoC
         /// </summary>
         private static void BindViewModels()
         {
-            Kernel.Bind<ApplicationViewModel>().ToConstant(new ApplicationViewModel());
+            Kernel.Bind<ApplicationViewModel>().ToConstant(new ApplicationViewModel { CurrentPage = ApplicationPages.LoginPage });
         } 
         #endregion
     }

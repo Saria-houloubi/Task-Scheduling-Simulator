@@ -23,6 +23,7 @@ namespace TishreenUniversity.ParallelPro
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
     }
