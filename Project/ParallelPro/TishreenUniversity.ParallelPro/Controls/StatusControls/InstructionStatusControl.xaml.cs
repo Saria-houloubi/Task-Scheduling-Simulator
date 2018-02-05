@@ -12,24 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ThishreenUniversity.ParallelPro.Enums.Enums;
-using Tishreen.Tishreen.ParallelPro.Core;
 
-namespace TishreenUniversity.ParallelPro.Controls.Login
+namespace TishreenUniversity.ParallelPro.Controls.StatusControls
 {
     /// <summary>
-    /// Interaction logic for LoginUserControl.xaml
+    /// Interaction logic for InstructionStatusControl.xaml
     /// </summary>
-    public partial class LoginUserControl : BaseUserControl
+    public partial class InstructionStatusControl : BaseUserControl
     {
-        public LoginUserControl()
+        public InstructionStatusControl()
         {
             InitializeComponent();
-        }
-
-        private void Login(object sender, RoutedEventArgs e)
-        {
-            LoginViewModel.LoginCheck("admin", "", UserTypes.admin);
         }
     }
 }

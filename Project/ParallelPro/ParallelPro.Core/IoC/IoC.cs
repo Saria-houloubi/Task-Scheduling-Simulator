@@ -1,8 +1,8 @@
 ﻿using Ninject;
 using ThishreenUniversity.ParallelPro.Enums.Instructions;
-using Tishreen.ParallelPro.Core;
+using Tishreen.Tishreen.ParallelPro.Core;
 
-namespace ParallelPro.Core.IoC
+namespace Tishreen.ParallelPro.Core.IoC
 {
     /// <summary>
     /// The IoC class that will work with to get data accross the hole application
@@ -29,7 +29,7 @@ namespace ParallelPro.Core.IoC
         /// </summary>
         private static void BindViewModels()
         {
-            Kernel.Bind<ApplicationViewModel>().ToConstant(new ApplicationViewModel { CurrentPage = ApplicationPages.LoginPage });
+            Kernel.Bind<ApplicationViewModel>().ToConstant(new ApplicationViewModel());
         } 
         #endregion
     }

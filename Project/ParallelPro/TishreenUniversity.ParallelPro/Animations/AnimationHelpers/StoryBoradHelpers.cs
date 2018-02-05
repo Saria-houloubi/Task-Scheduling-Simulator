@@ -10,7 +10,6 @@ namespace TishreenUniversity.ParallelPro
     /// </summary>
     public static class StoryBoradHelpers
     {
-
         #region Slide in/out from left
         
         #region Slide From Left Animation
@@ -55,6 +54,64 @@ namespace TishreenUniversity.ParallelPro
             {
                 From = new Thickness(0),
                 To = new Thickness(-offset, 0, KeepMargin ? offset : 0, 0),
+                Duration = new Duration(TimeSpan.FromSeconds(secounds)),
+                DecelerationRatio = decelerationRatio
+            };
+
+            //Set the target property 
+            Storyboard.SetTargetProperty(slideAnimation, new PropertyPath("Margin"));
+
+            //Add it to the animations
+            storyBoard.Children.Add(slideAnimation);
+        }
+        #endregion
+
+        #endregion
+
+        #region Slide in/out from right
+
+        #region Slide In From Right Animation
+
+
+        /// <summary>
+        /// Add a slide in from right animation 
+        /// </summary>
+        /// <param name="storyBoard">The storyboard to add to</param>
+        /// <param name="width">The width of the element to slid in</param>
+        /// <param name="secounds">The duration of the animation that we want to take action</param>
+        /// <param name="decelerationRatio"> The rate of deceleration </param>
+        public static void AddSlideInFromRight(this Storyboard storyBoard, double offSet, float secounds, float decelerationRatio = 0.3f)
+        {
+            var slideAnimation = new ThicknessAnimation
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(secounds)),
+                From = new Thickness(0, 0, -offSet, 0),
+                To = new Thickness(0),
+                DecelerationRatio = decelerationRatio
+            };
+
+            //Set the target property 
+            Storyboard.SetTargetProperty(slideAnimation, new PropertyPath("Margin"));
+
+            //Add it to the animations
+            storyBoard.Children.Add(slideAnimation);
+        }
+        #endregion
+
+        #region Slide Out From Right
+        /// <summary>
+        /// Add a slide to right animation 
+        /// </summary>
+        /// <param name="storyBoard">The storyboard to add to</param>
+        /// <param name="offset">The width of the element to slid in</param>
+        /// <param name="secounds">The duration of the animation that we want to take action</param>
+        /// <param name="decelerationRatio"> The rate of deceleration </param>
+        public static void AddSlideOutToRight(this Storyboard storyBoard, double offset, float secounds, float decelerationRatio = 0.9f, bool KeepMargin = true)
+        {
+            var slideAnimation = new ThicknessAnimation
+            {
+                From = new Thickness(0),
+                To = new Thickness(KeepMargin ? offset : 0, 0,-offset , 0),
                 Duration = new Duration(TimeSpan.FromSeconds(secounds)),
                 DecelerationRatio = decelerationRatio
             };

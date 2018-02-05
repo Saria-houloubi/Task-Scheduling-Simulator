@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\ApplicationIcons.cs" />
+    <Compile Include="Enums\UserTypes.cs" />
     <Compile Include="Instructions\ApplicationPages.cs" />
     <Compile Include="Instructions\TargetRegisteryAndMemory.cs" />
     <Compile Include="Instructions\FunctionsTypes.cs" />

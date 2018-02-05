@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,47 +13,48 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Tishreen.ParallelPro.Core;
 
 namespace TishreenUniversity.ParallelPro.Controls
 {
     /// <summary>
     /// Interaction logic for MainWindowInstructionAndAlgoControl.xaml
     /// </summary>
-    public partial class MainWindowInstructionAndAlgoControl : BaseUserControl
+    public partial class MainWindowInstructionAndAlgoControl : BaseUserControl<MainAlgorithmsInstructionMenuViewModel>
     {
+        #region Helper Flags
+        /// A flag represnets if the side function clock cycle is open
+        /// </summary>
+        private bool IsSideClockCycleMenuOpen = false;
+
+        #endregion
+
         public MainWindowInstructionAndAlgoControl()
         {
             InitializeComponent();
+            //Slide out the window once it is loaded
+            SideClockCycles.Loaded += SideClockCycles_Loaded;
         }
-        private async void Button_Click(object sender, RoutedEventArgs e)
+
+        private void SideClockCycles_Loaded(object sender, RoutedEventArgs e)
         {
-            //Get the button that sent the event
-            Button button = sender as Button;
+            //Get the menu
+            var sideMenu = (MainWindowFunctionClockCycles)sender;
+            //This will run on the main ui thread
+            sideMenu.SlideOutToRightAsync();
+        }
 
-            //Get the close and open textblocks that holds the arrow shapes
-            TextBlock closeArrow = button.Template.FindName("closeArrow", button) as TextBlock;
-            TextBlock openArrow = button.Template.FindName("openArrow", button) as TextBlock;
-
-            //If the side menu is already open
-            if (openArrow.Visibility == Visibility.Visible)
-            {
-                //Hide the menu
-                await SideAlgo.SlideInFromLeftAsync();
-
-                //Show the open arrow
-                openArrow.Visibility = Visibility.Hidden;
-                closeArrow.Visibility = Visibility.Visible;
-            }
-            //Else if the window is closed
-            else
-            {
-                //Hide the menu
-                await SideAlgo.SlideOutToLeftAsync();
-
-                //Show the open arrow
-                closeArrow.Visibility = Visibility.Hidden;
-                openArrow.Visibility = Visibility.Visible;
-            }
+        private async void ChangeSideMenuState(object sender, RoutedEventArgs e)
+        {
+            //Get the sender
+            Button button = (Button)sender;
+           //then animate the menu to its respacte place
+                if (IsSideClockCycleMenuOpen)
+                    await SideClockCycles.SlideOutToRightAsync();
+                else
+                    await SideClockCycles.SlideInFromRightAsync();
+                //Filp the value using xor gate
+                IsSideClockCycleMenuOpen ^= true;
         }
 
     }

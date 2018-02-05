@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System;
 using System.Collections.ObjectModel;
 using ThishreenUniversity.ParallelPro.Enums.Instructions;
-using System.Linq;
+using Ninject;
+
 namespace Tishreen.ParallelPro.Core
 {
     /// <summary>
-    /// The class that will take care of all scoreboarding instruction menu
+    /// The class that will take care of all algoritms instruction menu
     /// </summary>
-    public class ScoreBoradingInstructionMenuViewModel : BaseViewModel
+    public class MainAlgorithmsInstructionMenuViewModel : BaseViewModel
     {
         #region Private Members
         /// <summary>
@@ -72,6 +73,52 @@ namespace Tishreen.ParallelPro.Core
             get { return _selectedInstruction; }
             set { SetProperty(ref _selectedInstruction, value); }
         }
+
+        /// <summary>
+        /// The amount of clock cycles that an integer opperation will take
+        /// such as SD(Stor) LD(Load)
+        /// Default to 1
+        /// </summary>
+        private int _integerClockCycles = 1;
+        public int IntegerClockCycles
+        {
+            get { return _integerClockCycles; }
+            set { SetProperty(ref _integerClockCycles, value); }
+        }
+        /// <summary>
+        /// The amount of clock cycles that an Add opperation will take
+        /// such as ADD ,SUBD
+        /// Default to 2
+        /// </summary>
+        private int _floatingPointAdd = 2;
+        public int FloatingPointAdd
+        {
+            get { return _floatingPointAdd; }
+            set { SetProperty(ref _floatingPointAdd, value); }
+        }
+        /// <summary>
+        /// The amount of clock cycles that a Multiply opperation will take
+        /// such as MULTD
+        /// Default to 10 
+        /// </summary>
+        private int _floatingPointMultiply = 10;
+        public int FloatinPointMultiply
+        {
+            get { return _floatingPointMultiply; }
+            set { SetProperty(ref _floatingPointMultiply, value); }
+        }
+        /// <summary>
+        /// The amount of clock cycles that a Divide opperation will take
+        /// such as DIVD
+        /// Default to 40 
+        /// </summary>
+        private int _floatingPointDivide = 10;
+        public int FloatinPointDivide
+        {
+            get { return _floatingPointDivide; }
+            set { SetProperty(ref _floatingPointDivide, value); }
+        }
+
         #region Lists And Collections
         /// <summary>
         /// Holds all the function unite that we can do like ADD, SUB ... 
@@ -113,7 +160,6 @@ namespace Tishreen.ParallelPro.Core
             set { SetProperty(ref _canChooseSource02, value); }
         }
         #endregion
-
 
         #endregion
 
@@ -205,7 +251,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// Default constructer
         /// </summary>
-        public ScoreBoradingInstructionMenuViewModel()
+        public MainAlgorithmsInstructionMenuViewModel()
         {
             OnStart();
             //Create Commands

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using Tishreen.ParallelPro.Core;
+
 namespace TishreenUniversity.ParallelPro
 {
     /// <summary>
@@ -205,6 +206,9 @@ namespace TishreenUniversity.ParallelPro
                 case AnimationTypes.SlideOutFromLeft:
                     // Start the animation 
                     await this.SlideOutToLeftAsync(this.Secounds);
+                    break;
+                case AnimationTypes.FadeOut:
+                    await this.FadeOutAsync(this.Secounds);
                     break;
             }
         }

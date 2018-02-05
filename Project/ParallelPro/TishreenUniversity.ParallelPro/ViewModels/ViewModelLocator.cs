@@ -1,13 +1,13 @@
 ﻿using Ninject;
-using ParallelPro.Core.IoC;
 using Tishreen.ParallelPro.Core;
+using Tishreen.ParallelPro.Core.IoC;
 
 namespace TishreenUniversity.ParallelPro
 {
     /// <summary>
     /// For the setup of the current page
     /// </summary>
-    public class ViewModelLocator
+    public class ViewModelLocator : BaseViewModel
     {
         #region SingleTone Properties
 

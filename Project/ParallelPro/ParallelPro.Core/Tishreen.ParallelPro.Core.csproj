@@ -7,8 +7,8 @@
     <ProjectGuid>{AE4E55BA-DC8F-41E4-9C43-912916B78B19}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ParallelPro.Core</RootNamespace>
-    <AssemblyName>ParallelPro.Core</AssemblyName>
+    <RootNamespace>Tishreen.ParallelPro.Core</RootNamespace>
+    <AssemblyName>Tishreen.ParallelPro.Core</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -56,7 +56,8 @@
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\Desgin\InstructionList\Item\InstructionItemDesign.cs" />
     <Compile Include="ViewModels\Desgin\InstructionList\List\InstructionListDesign.cs" />
-    <Compile Include="ViewModels\InstructionMenu\ScoreBoradingInstructionMenuViewModel.cs" />
+    <Compile Include="ViewModels\InstructionMenu\MainAlgorithmsInstructionMenuViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ThishreenUniversity.ParallelPro.Enums\ThishreenUniversity.ParallelPro.Enums.csproj">
@@ -71,6 +72,8 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="IoC\IoC\Kernel\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

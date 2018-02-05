@@ -18,7 +18,11 @@
     <system:String x:Key="PlusIcon">&#xf196;</system:String>
     <system:String x:Key="PlusUSerIcon">&#xf234;</system:String>
     <system:String x:Key="SquareCheckIcon">&#xf046;</system:String>
+    <system:String x:Key="RightArrow">&#xf060;</system:String>
+    <system:String x:Key="LeftArrow">&#xf061;</system:String>
+    <system:String x:Key="Bars">&#xf0c9;</system:String>
+    <system:String x:Key="Clock">&#xf017;</system:String>
 
     
-    
+
 </ResourceDictionary>

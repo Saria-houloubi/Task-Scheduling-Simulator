@@ -2,6 +2,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:TishreenUniversity.ParallelPro">
 
+    <Style TargetType="{x:Type TextBlock}" >
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
+        <Setter Property="Margin" Value="2 10"/>
+    </Style>
+
+
     <Style TargetType="{x:Type TextBlock}" x:Key="HeaderText">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -11,8 +19,10 @@
     </Style>
 
     <Style TargetType="{x:Type TextBlock}" x:Key="InstructionItemText" BasedOn="{StaticResource HeaderText}">
+        <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeLarg}"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="5 0"/>
     </Style>
 
     <Style TargetType="{x:Type TextBlock}" x:Key="IconsText">
@@ -21,15 +31,10 @@
         <Setter Property="FontWeight" Value="ExtraBold"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeLarg}"/>
         <Setter Property="FontFamily" Value="{StaticResource FontAwesome}"/>
-        <Setter Property="Foreground" Value="Gray"/>
-    </Style>
-
-    <Style TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
     </Style>
 
+    
     <Style TargetType="{x:Type TextBlock}" x:Key="MenuTextBlocks">
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontWeight" Value="Regular"/>

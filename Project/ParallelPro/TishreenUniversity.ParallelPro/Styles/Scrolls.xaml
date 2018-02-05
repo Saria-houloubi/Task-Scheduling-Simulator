@@ -19,7 +19,7 @@
                     <Border x:Name="Rectangle"
                             CornerRadius="8"
                             Opacity="0.2"
-                            Background="Gray"
+                            Background="White"
                             BorderThickness="1" 
                            />
 

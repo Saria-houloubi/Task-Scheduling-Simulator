@@ -6,24 +6,11 @@
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="500">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+        <StackPanel >
 
-        <Button Style="{StaticResource MainWindowButtons}" Tag="Scoreboarding" />
-        <Button Grid.Column="1" Style="{StaticResource MainWindowButtons}" Tag="Tomasolu" />
-        <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource MainWindowButtons}" Tag="Loop Unrolling" />
-        <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource MainWindowButtons}" Tag="Scoreboarding" />
-        <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource MainWindowButtons}" Tag="Tomasolu" />
-        <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource MainWindowButtons}" Tag="Loop Unrolling" />
+            <Button Style="{StaticResource MainWindowButtons}" Tag="Scoreboarding" />
+            <Button  Style="{StaticResource MainWindowButtons}" Tag="Tomasolu" />
+            <Button Style="{StaticResource MainWindowButtons}" Tag="Loop Unrolling" />
 
-
-    </Grid>
+        </StackPanel>
 </local:BaseUserControl>

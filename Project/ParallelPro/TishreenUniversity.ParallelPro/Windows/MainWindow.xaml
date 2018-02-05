@@ -36,8 +36,14 @@
             </VisualBrush.Visual>
         </VisualBrush>
     </Grid.Background>
+        <!--Background blure effect black-->
+        <Border  Margin="0 " Background="#CE000000" >
+            <Border.Effect>
+                <BlurEffect Radius="10" KernelType="Gaussian"/>
+            </Border.Effect>
+        </Border>
 
-    <local:HostUserControl Content="{Binding Source={x:Static local:ViewModelLocator.Instance},Path= ApplicationViewModel.CurrentPage, Converter={converters:ApplicationPageValueConverter}}" Grid.Row="2"/>
+        <local:HostUserControl x:Name="Host" CurrentControl="{Binding Source={x:Static local:ViewModelLocator.Instance},Path= ApplicationViewModel.CurrentPage, Converter={converters:ApplicationPageValueConverter}}"  />
 
     </Grid>
 </Window>

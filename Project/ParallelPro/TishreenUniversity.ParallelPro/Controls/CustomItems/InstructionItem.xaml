@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
-             xmlns:desgin="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Desgin;assembly=ParallelPro.Core"
+             xmlns:desgin="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Desgin;assembly=Tishreen.ParallelPro.Core"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="300">
 
@@ -81,14 +81,14 @@
                                 <Grid >
 
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
                                         <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Style="{StaticResource InstructionItemText}" Margin="0 0 20 0" Grid.Column="0">
+                                    <TextBlock Grid.Column="0" Style="{StaticResource InstructionItemText}" Margin="0">
                                         <Run Text="{Binding ID}"/><Run Text="-"/>
                                     </TextBlock>
                                     <TextBlock Text="{Binding Name}" Style="{StaticResource InstructionItemText}" Grid.Column="1"/>
@@ -104,7 +104,7 @@
                                 <!-- With WPF animation you should allways begin a storyboard -->
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation To="#55D3D3D3" Duration="0:0:0.3" Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color"/>
+                                        <ColorAnimation To="White" Duration="0:0:0.3" Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>

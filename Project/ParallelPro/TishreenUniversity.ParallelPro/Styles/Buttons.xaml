@@ -1,19 +1,20 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:TishreenUniversity.ParallelPro">
+                    xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
+                    xmlns:converters="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters">
 
 
     <Style TargetType="{x:Type Button}" x:Key="MainWindowButtons">
-        <Setter Property="Background" Value="Gray"/>
+        <Setter Property="Background" Value="{StaticResource DarkBlueBrush}"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeLarg}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border
                         x:Name="border"
-                        Margin="10"
+                        Margin="5"
                         CornerRadius="20"
                         Height="{TemplateBinding Height}"
                         BorderThickness="2"
@@ -36,7 +37,7 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation
-                                        To="0.7"
+                                        To="1"
                                         Duration="0:0:01"
                                         Storyboard.TargetProperty="Opacity"
                                         Storyboard.TargetName="border"/>
@@ -47,7 +48,7 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation
-                                        To="1"
+                                        To="0.8"
                                         Duration="0:0:01"
                                         Storyboard.TargetProperty="Opacity"
                                         Storyboard.TargetName="border"/>
@@ -68,26 +69,20 @@
 
     <!--Side Button for showing/closeing menus-->
     <Style TargetType="{x:Type Button}" x:Key="SideMenuButton">
-        <Setter Property="Width" Value="20"/>
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="Background" Value="White"/>
-        <Setter Property="Margin" Value="0 5 -15 5 "/>
+        <Setter Property="Background" Value="{StaticResource DarkBlueBrush}"/>
+        <Setter Property="Margin" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border CornerRadius="10" x:Name="border" Opacity="0.3" Background="{TemplateBinding Background}">
+                    <Border CornerRadius="10" x:Name="border" Opacity="0.5" Background="{TemplateBinding Background}">
                         <Grid>
                             <TextBlock
+                                Padding="5 0"
                                 x:Name="closeArrow"
                                 Style="{StaticResource IconsText}"
-                                Text="&#xf060;"
-                                />
-                            <TextBlock
-                                x:Name="openArrow"
-                                Style="{StaticResource IconsText}"
-                                Text="&#xf061;"
-                                    Visibility="Hidden"
+                                Text="{StaticResource Bars}"
                                 />
                         </Grid>
                     </Border>
@@ -96,7 +91,7 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation
-                                            To="0.5"
+                                            To="1"
                                             Duration="00:00:0.3"
                                             Storyboard.TargetName="border"
                                             Storyboard.TargetProperty="Opacity"
@@ -108,7 +103,7 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation
-                                            To="0.3"
+                                            To="0.5"
                                             Duration="00:00:0.3"
                                             Storyboard.TargetName="border"
                                             Storyboard.TargetProperty="Opacity"
@@ -128,15 +123,16 @@
 
 
     <Style TargetType="{x:Type Button}" x:Key="BaseIconButton">
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="{StaticResource DarkBlueBrush}"/>
         <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Margin" Value="5"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="border"
-                            Opacity="0.3" 
+                            Opacity="0.8" 
                             Background="{TemplateBinding Background}"
                             BorderBrush="{StaticResource DarkBlueBrush}"
                             CornerRadius="5"
@@ -164,7 +160,7 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation
-                                            To="0.3"
+                                            To="0.8"
                                             Duration="00:00:0.3"
                                             Storyboard.TargetName="border"
                                             Storyboard.TargetProperty="Opacity"

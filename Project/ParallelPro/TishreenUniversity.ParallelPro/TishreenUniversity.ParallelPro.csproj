@@ -66,6 +66,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\StatusControls\InstructionStatusControl.xaml.cs">
+      <DependentUpon>InstructionStatusControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ScoreBoardingWindow.xaml.cs">
+      <DependentUpon>ScoreBoardingWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\CustomItems\InstructionItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -88,9 +94,17 @@
     </Page>
     <Page Include="Controls\Main Window Buttons\InstructionMenuControl.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Controls\Main Window Buttons\MainWindowButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Main Window Buttons\MainWindowFunctionClockCycles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\StatusControls\InstructionStatusControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,10 +181,15 @@
     <Compile Include="Controls\Main Window Buttons\MainWindowButtons.xaml.cs">
       <DependentUpon>MainWindowButtons.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Main Window Buttons\MainWindowFunctionClockCycles.xaml.cs">
+      <DependentUpon>MainWindowFunctionClockCycles.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Titles\MainTitle.xaml.cs">
       <DependentUpon>MainTitle.xaml</DependentUpon>
     </Compile>
     <Compile Include="Icons\Icons.cs" />
+    <Compile Include="IValueConverters\FlipVisibilityValueConverter.cs" />
+    <Compile Include="IValueConverters\StringToVisiblityValueConverter.cs" />
     <Compile Include="IValueConverters\ApplicationPageValueConverter.cs" />
     <Compile Include="IValueConverters\Base\BaseValueConverters.cs" />
     <Compile Include="IValueConverters\MainWindowIconValueConverter.cs" />
@@ -179,6 +198,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\ScoreBoardingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

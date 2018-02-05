@@ -4,32 +4,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
+             xmlns:core="clr-namespace:Tishreen.ParallelPro.Core;assembly=Tishreen.ParallelPro.Core"
              xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
-             mc:Ignorable="d" 
+     x:TypeArguments="core:MainAlgorithmsInstructionMenuViewModel"
+             
+                       mc:Ignorable="d" 
              >
-
 
     <!--Main Content-->
     <Grid Grid.Row="2">
         <Grid.ColumnDefinitions>
-            <!--Algorithims Menu-->
-            <ColumnDefinition Width="auto"/>
             <!--instuctions-->
             <ColumnDefinition Width="*"/>
+            <!--Open/Close Button-->
+            <ColumnDefinition Width="auto"/>
+            <!--Clock cycle menu-->
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
 
 
-        <Button Click="Button_Click" Style="{StaticResource SideMenuButton}"/>
-
-        <!--Algorithims-->
-        <controls:MainWindowButtons  x:Name="SideAlgo" VerticalAlignment="Top" />
-
 
         <!--Instructions-->
-        <controls:InstructionMenuControl Grid.Column="1" Margin="20 0"/>
+        <controls:InstructionMenuControl  Grid.Column="0" Margin="20 0"/>
 
-        <Button Grid.Column="2" Margin="-20 0 0 0" Click="Button_Click" Style="{StaticResource SideMenuButton}"/>
+        <Button  HorizontalAlignment="Left" Tag="Open" Grid.Column="1"  Click="ChangeSideMenuState" Style="{StaticResource SideMenuButton}"/>
+
+        <!--Clock cycles menu-->
+        <controls:MainWindowFunctionClockCycles Visibility="Collapsed" Grid.Column="2" x:Name="SideClockCycles"/>
+
 
     </Grid>
 
