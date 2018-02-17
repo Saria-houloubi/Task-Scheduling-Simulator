@@ -66,6 +66,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\CustomItems\InstructionWithStatusItem.xaml.cs">
+      <DependentUpon>InstructionWithStatusItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomLists\InstructionStatusTable.xaml.cs">
+      <DependentUpon>InstructionStatusTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomLists\InstructionsWithStatusList.xaml.cs">
+      <DependentUpon>InstructionsWithStatusList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\StatusControls\InstructionStatusControl.xaml.cs">
       <DependentUpon>InstructionStatusControl.xaml</DependentUpon>
     </Compile>
@@ -76,7 +85,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\CustomItems\InstructionWithStatusItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\CustomLists\InstructionListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CustomLists\InstructionStatusTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CustomLists\InstructionsWithStatusList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

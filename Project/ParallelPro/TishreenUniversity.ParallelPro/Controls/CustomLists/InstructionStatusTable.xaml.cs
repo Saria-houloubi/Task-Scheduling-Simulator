@@ -12,28 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TishreenUniversity.ParallelPro.Windows;
 
 namespace TishreenUniversity.ParallelPro.Controls
 {
     /// <summary>
-    /// Interaction logic for MainWindowButtons.xaml
+    /// Interaction logic for InstructionStatusTable.xaml
     /// </summary>
-    public partial class MainWindowButtons : BaseUserControl
+    public partial class InstructionStatusTable : BaseUserControl
     {
-        public MainWindowButtons()
+        public InstructionStatusTable()
         {
-
             InitializeComponent();
-
-            AnimateInAnimationType = AnimationTypes.FadeIn;
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ScoreBoardingWindow scoreBoardingWindow = new ScoreBoardingWindow();
-            scoreBoardingWindow.Show();
         }
     }
 }

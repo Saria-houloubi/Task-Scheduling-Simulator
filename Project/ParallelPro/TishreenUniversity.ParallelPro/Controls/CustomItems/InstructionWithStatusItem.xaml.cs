@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TishreenUniversity.ParallelPro.Controls
+namespace TishreenUniversity.ParallelPro.Controls.CustomItems
 {
     /// <summary>
-    /// Interaction logic for InstructionStatusControl.xaml
+    /// Interaction logic for InstructionWithStatusItem.xaml
     /// </summary>
-    public partial class InstructionStatusControl : BaseUserControl
+    public partial class InstructionWithStatusItem : BaseUserControl
     {
-        public InstructionStatusControl()
+        public InstructionWithStatusItem()
         {
             InitializeComponent();
         }

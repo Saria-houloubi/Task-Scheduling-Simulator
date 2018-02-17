@@ -8,7 +8,7 @@
              d:DesignHeight="400" d:DesignWidth="500">
         <StackPanel >
 
-            <Button Style="{StaticResource MainWindowButtons}" Tag="Scoreboarding" />
+            <Button Style="{StaticResource MainWindowButtons}" Tag="Scoreboarding" Click="Button_Click" />
             <Button  Style="{StaticResource MainWindowButtons}" Tag="Tomasolu" />
             <Button Style="{StaticResource MainWindowButtons}" Tag="Loop Unrolling" />
 

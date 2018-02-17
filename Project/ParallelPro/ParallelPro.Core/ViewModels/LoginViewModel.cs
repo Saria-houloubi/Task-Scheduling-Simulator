@@ -34,9 +34,7 @@ namespace Tishreen.Tishreen.ParallelPro.Core
                 default:
                     Debugger.Break();
                     return false;
-                    break;
             }
-            return false;
         }
     }
 }

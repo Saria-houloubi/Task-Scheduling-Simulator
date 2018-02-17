@@ -16,7 +16,7 @@ namespace Tishreen.ParallelPro.Core.ViewModels.Desgin
         /// <summary>
         /// A singletone property which we will bind to
         /// </summary>
-        public static InstructionItemDesign Instance { get { return new InstructionItemDesign(); } }
+        public static InstructionItemDesign Instance => new InstructionItemDesign();
         #endregion
 
         #region Properties

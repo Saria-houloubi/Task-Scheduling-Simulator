@@ -4,12 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TishreenUniversity.ParallelPro.Windows"
-        mc:Ignorable="d"
+        xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
+        mc:Ignorable="d" 
         Title="ScoreBoarding">
     <Grid>
         <Grid.RowDefinitions>
             <!--The instruction status-->
-            <RowDefinition/>
+            <RowDefinition Height="auto"/>
             <!--The Functional unit status  -->
             <RowDefinition/>
             <!--The Register result status-->
@@ -17,5 +18,6 @@
         </Grid.RowDefinitions>
         
         <!--Instruction status-->
+        <controls:InstructionStatusControl/>
     </Grid>
 </Window>

@@ -1,0 +1,50 @@
+﻿<local:BaseUserControl x:Class="TishreenUniversity.ParallelPro.Controls.InstructionStatusTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
+            xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls.CustomLists"
+             xmlns:desgin="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Desgin;assembly=Tishreen.ParallelPro.Core"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="550">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" HorizontalAlignment="Left"  Style="{StaticResource DarkHeader}" Text="Operation"/>
+        <TextBlock Grid.Column="1"  Style="{StaticResource DarkHeader}" Text="Target Reg"/>
+        <TextBlock Grid.Column="2"  Style="{StaticResource DarkHeader}" Text="Source Reg"/>
+        <TextBlock Grid.Column="3"  Style="{StaticResource DarkHeader}" Text="Source Reg2"/>
+        <TextBlock Grid.Column="4"  Style="{StaticResource DarkHeader}" Text="Issued"/>
+        <TextBlock Grid.Column="5"  Style="{StaticResource DarkHeader}" Text="Read"/>
+        <TextBlock Grid.Column="6"  Style="{StaticResource DarkHeader}" Text="Executed"/>
+        <TextBlock Grid.Column="7"  Style="{StaticResource DarkHeader}" Text="Write Back"/>
+        
+        <!--Separater Border-->
+        <Border Grid.ColumnSpan="8" Margin="0 0 0 -2" BorderThickness="0 0 0 1 " >
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0.0,0.0" EndPoint="1.0 ,0.0">
+                    <GradientStop Offset="0" Color="White"/>
+                    <GradientStop Offset="0.5" Color="Black"/>
+                    <GradientStop Offset="1" Color="White"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        </Border>
+
+        <!--Instruction and there status-->
+        <controls:InstructionsWithStatusList Grid.Row="1" DataContext="{x:Static desgin:InstructionWithStatusListDesign.Instance}" Grid.ColumnSpan="8"/>
+
+    </Grid>
+</local:BaseUserControl>
