@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:TishreenUniversity.ParallelPro">
+
+    <Style TargetType="{x:Type Border}" x:Key="StatusControlsBorder">
+        <Setter Property="BorderThickness" Value="3"/>
+        <Setter Property="CornerRadius" Value="0 0 5 5"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0.0,0.0" EndPoint="1.0 ,0.0" SpreadMethod="Reflect">
+                                <GradientStopCollection>
+                                    <GradientStop Offset="0" Color="{StaticResource DarkBlue}"/>
+                                    <GradientStop Offset="0.4" Color="Black"/>
+                                </GradientStopCollection>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" BlurRadius="15" Direction="190"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

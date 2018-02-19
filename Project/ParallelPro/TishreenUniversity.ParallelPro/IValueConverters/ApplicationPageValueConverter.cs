@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Globalization;
-using ThishreenUniversity.ParallelPro.Enums.Instructions;
+using ThishreenUniversity.ParallelPro.Enums;
 using TishreenUniversity.ParallelPro.Controls;
-using TishreenUniversity.ParallelPro.Controls.Login;
 
 namespace TishreenUniversity.ParallelPro.IValueConverters
 {

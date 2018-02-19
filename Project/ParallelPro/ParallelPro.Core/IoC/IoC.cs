@@ -1,8 +1,6 @@
 ﻿using Ninject;
-using ThishreenUniversity.ParallelPro.Enums.Instructions;
-using Tishreen.Tishreen.ParallelPro.Core;
 
-namespace Tishreen.ParallelPro.Core.IoC
+namespace Tishreen.ParallelPro.Core
 {
     /// <summary>
     /// The IoC class that will work with to get data accross the hole application

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Tishreen.ParallelPro.Core.Models;
 
-namespace Tishreen.ParallelPro.Core.ViewModels.Desgin
+namespace Tishreen.ParallelPro.Core.ViewModels.Design
 {
     /// <summary>
-    /// A desgin time data class
+    /// A Design time data class
     /// </summary>
    public class InstructionListDesign
     {

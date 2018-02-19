@@ -12,10 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ThishreenUniversity.ParallelPro.Enums.Enums;
+using ThishreenUniversity.ParallelPro.Enums;
 using Tishreen.Tishreen.ParallelPro.Core;
 
-namespace TishreenUniversity.ParallelPro.Controls.Login
+namespace TishreenUniversity.ParallelPro.Controls
 {
     /// <summary>
     /// Interaction logic for LoginUserControl.xaml

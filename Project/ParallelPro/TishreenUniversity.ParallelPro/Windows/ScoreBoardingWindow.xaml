@@ -5,19 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TishreenUniversity.ParallelPro.Windows"
         xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
-        mc:Ignorable="d" 
+        mc:Ignorable="d" WindowState="Maximized"
         Title="ScoreBoarding">
     <Grid>
-        <Grid.RowDefinitions>
-            <!--The instruction status-->
-            <RowDefinition Height="auto"/>
-            <!--The Functional unit status  -->
-            <RowDefinition/>
-            <!--The Register result status-->
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        
-        <!--Instruction status-->
-        <controls:InstructionStatusControl/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <!--The instruction status-->
+                <RowDefinition Height="auto"/>
+                <!--Seperator-->
+                <RowDefinition Height="auto"/>
+                <!--The Functional unit status  -->
+                <RowDefinition/>
+                <!--The Register result status-->
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!--Instruction status-->
+            <controls:InstructionStatusControl x:Name="Instructions" Margin="10"/>
+
+            <!--Spliter border-->
+            <Border  Grid.Row="1" Style="{StaticResource StatusControlsBorder}" Margin="5 0" CornerRadius="5"/>
+
+            <!--Functional units status-->
+            <controls:FunctionalUnitStatusControl Margin="{Binding ElementName=Instructions,Path=Margin}" Grid.Row="2"/>
+
+        </Grid>
+
+        <!--Instructions status-->
+        <controls:ChooseFunctionalUnitsScoreBoard x:Name="CF" Visibility="Collapsed" />
+
     </Grid>
 </Window>

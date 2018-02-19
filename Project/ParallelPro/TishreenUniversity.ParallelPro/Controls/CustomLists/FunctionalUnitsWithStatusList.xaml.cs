@@ -18,9 +18,9 @@ namespace TishreenUniversity.ParallelPro.Controls
     /// <summary>
     /// Interaction logic for InstructionsWithStatusList.xaml
     /// </summary>
-    public partial class InstructionsWithStatusList : BaseUserControl
+    public partial class FunctionalUnitsWithStatusList : BaseUserControl
     {
-        public InstructionsWithStatusList()
+        public FunctionalUnitsWithStatusList()
         {
             InitializeComponent();
         }

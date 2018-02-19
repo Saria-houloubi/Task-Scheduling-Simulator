@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ThishreenUniversity.ParallelPro.Enums;
+using Tishreen.ParallelPro.Core.ViewModels;
 
 namespace TishreenUniversity.ParallelPro.Windows
 {
@@ -19,9 +21,12 @@ namespace TishreenUniversity.ParallelPro.Windows
     /// </summary>
     public partial class ScoreBoardingWindow : Window
     {
-        public ScoreBoardingWindow()
+        public ScoreBoardingWindow(List<object> instructionList,List<KeyValuePair<FunctionsTypes,int>> functionClockCycles)
         {
             InitializeComponent();
+
+            //Bind the window with its logic
+            this.DataContext = new ScoreBoardingWindowViewModel(instructionList, functionClockCycles);
         }
     }
 }

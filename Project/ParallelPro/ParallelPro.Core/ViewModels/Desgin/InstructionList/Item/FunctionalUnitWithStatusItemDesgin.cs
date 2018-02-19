@@ -10,23 +10,27 @@ namespace Tishreen.ParallelPro.Core.ViewModels.Design
     /// <summary>
     /// The Design time view model for the instruction item with status
     /// </summary>
-    public class InstructionWithStatusItemDesign : InstructionWithStatusModel
+    public class FunctionalUnitWithStatusItemDesign : FunctionalUnitWithStatusModel
     {
         /// <summary>
         /// The inctance that will bind to for Design data
         /// </summary>
-        public static InstructionWithStatusItemDesign  Instance => new InstructionWithStatusItemDesign();
+        public static FunctionalUnitWithStatusItemDesign Instance => new FunctionalUnitWithStatusItemDesign();
 
-        public InstructionWithStatusItemDesign()
+        public FunctionalUnitWithStatusItemDesign()
         {
-            this.Name = "ADD";
+            this.ID = 1;
+            this.Name = "Add";
+            this.IsBusy = false;
+            this.Time = null;
+            this.Operation = "SUB";
             this.TargetRegistery = "R8";
             this.SourceRegistery01= "R2";
             this.SourceRegistery02 = "R1";
-            this.IssueCycle= 1;
-            this.ReadCycle = 2;
-            this.ExecuteCycle= 3;
-            this.WriteBackCycle = 10;
+            this.WaitingOperationForSorce01 = null;
+            this.WaitingOperationForSorce02 = null;
+            this.IsSorce01Ready = null;
+            this.IsSorce02Ready=  null;
         }
     }
 }

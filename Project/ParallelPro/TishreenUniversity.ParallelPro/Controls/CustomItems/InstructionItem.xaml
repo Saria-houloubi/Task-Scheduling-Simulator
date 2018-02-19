@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
-             xmlns:desgin="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Desgin;assembly=Tishreen.ParallelPro.Core"
+             xmlns:Design="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Design;assembly=Tishreen.ParallelPro.Core"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="300">
 
@@ -124,5 +124,5 @@
         </Style>
     </UserControl.Resources>
 
-    <ContentControl Margin="5" d:DataContext="{x:Static desgin:InstructionItemDesign.Instance}" Style="{StaticResource ContentStyle}" />
+    <ContentControl Margin="5" d:DataContext="{x:Static Design:InstructionItemDesign.Instance}" Style="{StaticResource ContentStyle}" />
 </local:BaseUserControl>

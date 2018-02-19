@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
+                       xmlns:enums="clr-namespace:ThishreenUniversity.ParallelPro.Enums;assembly=ThishreenUniversity.ParallelPro.Enums"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="500">
         <StackPanel >
 
-            <Button Style="{StaticResource MainWindowButtons}" Tag="Scoreboarding" Click="Button_Click" />
+        <Button Style="{StaticResource MainWindowButtons}" Tag="Scoreboarding" Command="{Binding OpenAlgoWindowCommand}" CommandParameter="{x:Static enums:ApplicationPages.ScoreBoarding}"/>
             <Button  Style="{StaticResource MainWindowButtons}" Tag="Tomasolu" />
             <Button Style="{StaticResource MainWindowButtons}" Tag="Loop Unrolling" />
 

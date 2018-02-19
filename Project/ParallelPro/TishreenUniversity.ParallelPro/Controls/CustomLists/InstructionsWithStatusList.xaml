@@ -1,15 +1,15 @@
-﻿<local:BaseUserControl x:Class="TishreenUniversity.ParallelPro.Controls.CustomLists.InstructionsWithStatusList"
+﻿<local:BaseUserControl x:Class="TishreenUniversity.ParallelPro.Controls.InstructionsWithStatusList"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-          xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls.CustomItems"
+          xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
-           xmlns:desgin="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Desgin;assembly=Tishreen.ParallelPro.Core"
+           xmlns:Design="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Design;assembly=Tishreen.ParallelPro.Core"
                        mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="550">
 
-    <Grid  d:DataContext="{x:Static desgin:InstructionWithStatusListDesign.Instance}">
+    <Grid  d:DataContext="{x:Static Design:InstructionWithStatusListDesign.Instance}">
         <ScrollViewer
             HorizontalScrollBarVisibility="Auto"
             VerticalScrollBarVisibility="Auto">

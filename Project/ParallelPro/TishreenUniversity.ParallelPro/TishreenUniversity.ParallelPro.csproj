@@ -66,26 +66,59 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\CustomHoverOverControls\ChooseFunctionalUnitsScoreBoard.xaml.cs">
+      <DependentUpon>ChooseFunctionalUnitsScoreBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomItems\FunctionalUnitWithStatusItem.xaml.cs">
+      <DependentUpon>FunctionalUnitWithStatusItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CustomItems\InstructionWithStatusItem.xaml.cs">
       <DependentUpon>InstructionWithStatusItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CustomLists\InstructionStatusTable.xaml.cs">
+    <Compile Include="Controls\CustomLists\FunctionalUnitsWithStatusList.xaml.cs">
+      <DependentUpon>FunctionalUnitsWithStatusList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomTables\FunctionalStatusTable.xaml.cs">
+      <DependentUpon>FunctionalStatusTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomTables\InstructionStatusTable.xaml.cs">
       <DependentUpon>InstructionStatusTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CustomLists\InstructionsWithStatusList.xaml.cs">
       <DependentUpon>InstructionsWithStatusList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\StatusControls\FunctionalUnitStatusControl.xaml.cs">
+      <DependentUpon>FunctionalUnitStatusControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\StatusControls\InstructionStatusControl.xaml.cs">
       <DependentUpon>InstructionStatusControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IValueConverters\BooleanToYesNoStringValueConverter.cs" />
+    <Compile Include="ViewModels\UIManager.cs" />
     <Compile Include="Windows\ScoreBoardingWindow.xaml.cs">
       <DependentUpon>ScoreBoardingWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\CustomHoverOverControls\ChooseFunctionalUnitsScoreBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\CustomItems\InstructionItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\CustomItems\FunctionalUnitWithStatusItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\CustomItems\InstructionWithStatusItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CustomLists\FunctionalUnitsWithStatusList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CustomTables\FunctionalStatusTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -93,7 +126,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\CustomLists\InstructionStatusTable.xaml">
+    <Page Include="Controls\CustomTables\InstructionStatusTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,15 +146,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Main Window Buttons\InstructionMenuControl.xaml">
+    <Page Include="Controls\Main Controls\InstructionMenuControl.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="Controls\Main Window Buttons\MainWindowButtons.xaml">
+    <Page Include="Controls\Main Controls\MainWindowButtons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Main Window Buttons\MainWindowFunctionClockCycles.xaml">
+    <Page Include="Controls\Main Controls\MainWindowFunctionClockCycles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\StatusControls\FunctionalUnitStatusControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -130,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Titles\MainTitle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Borders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,13 +237,13 @@
     <Compile Include="Controls\Main Controls\MainWindowInstructionAndAlgoControl.xaml.cs">
       <DependentUpon>MainWindowInstructionAndAlgoControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Main Window Buttons\InstructionMenuControl.xaml.cs">
+    <Compile Include="Controls\Main Controls\InstructionMenuControl.xaml.cs">
       <DependentUpon>InstructionMenuControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Main Window Buttons\MainWindowButtons.xaml.cs">
+    <Compile Include="Controls\Main Controls\MainWindowButtons.xaml.cs">
       <DependentUpon>MainWindowButtons.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Main Window Buttons\MainWindowFunctionClockCycles.xaml.cs">
+    <Compile Include="Controls\Main Controls\MainWindowFunctionClockCycles.xaml.cs">
       <DependentUpon>MainWindowFunctionClockCycles.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Titles\MainTitle.xaml.cs">

@@ -12,28 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TishreenUniversity.ParallelPro.Windows;
 
 namespace TishreenUniversity.ParallelPro.Controls
 {
     /// <summary>
-    /// Interaction logic for MainWindowButtons.xaml
+    /// Interaction logic for ChooseFunctionalUnitsScoreBoard.xaml
     /// </summary>
-    public partial class MainWindowButtons : BaseUserControl
+    public partial class ChooseFunctionalUnitsScoreBoard : BaseUserControl
     {
-        public MainWindowButtons()
+        public ChooseFunctionalUnitsScoreBoard()
         {
-
             InitializeComponent();
-
-            AnimateInAnimationType = AnimationTypes.FadeIn;
-
+            this.AnimateInAnimationType = AnimationTypes.None;
+            this.Visibility = Visibility.Visible;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ScoreBoardingWindow scoreBoardingWindow = new ScoreBoardingWindow();
-            scoreBoardingWindow.Show();
+            this.FadeOutAsync();
         }
     }
 }

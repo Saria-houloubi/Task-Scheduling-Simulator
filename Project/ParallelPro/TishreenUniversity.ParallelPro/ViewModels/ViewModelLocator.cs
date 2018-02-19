@@ -1,6 +1,5 @@
 ﻿using Ninject;
 using Tishreen.ParallelPro.Core;
-using Tishreen.ParallelPro.Core.IoC;
 
 namespace TishreenUniversity.ParallelPro
 {

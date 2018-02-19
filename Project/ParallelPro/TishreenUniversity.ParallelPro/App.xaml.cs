@@ -1,5 +1,6 @@
-﻿using Tishreen.ParallelPro.Core.IoC;
-using System.Windows;
+﻿using System.Windows;
+using Tishreen.ParallelPro.Core;
+using TishreenUniversity.ParallelPro.ViewModels;
 
 namespace TishreenUniversity.ParallelPro
 {
@@ -19,6 +20,7 @@ namespace TishreenUniversity.ParallelPro
 
             //Setup hte Kernel
             IoC.Setup();
+            IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());
 
             this.MainWindow = new MainWindow();
             this.MainWindow.Show();

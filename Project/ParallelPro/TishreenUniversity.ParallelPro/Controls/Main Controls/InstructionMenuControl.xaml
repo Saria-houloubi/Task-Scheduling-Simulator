@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
             xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
-             xmlns:desgin="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Desgin;assembly=Tishreen.ParallelPro.Core"
+             xmlns:Design="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Design;assembly=Tishreen.ParallelPro.Core"
              xmlns:core="clr-namespace:Tishreen.ParallelPro.Core;assembly=Tishreen.ParallelPro.Core"
               mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -59,7 +59,7 @@
                 BorderBrush="{StaticResource DarkBlueBrush}"
                 Background="LightGray">
 
-            <controls:InstructionListControl d:DataContext="{x:Static desgin:InstructionListDesign.Instance }"/>
+            <controls:InstructionListControl d:DataContext="{x:Static Design:InstructionListDesign.Instance }"/>
         </Border>
     </Grid>
 </local:BaseUserControl>

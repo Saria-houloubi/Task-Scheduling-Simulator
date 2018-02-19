@@ -3,7 +3,7 @@ using Prism.Commands;
 using System.Collections.Generic;
 using System;
 using System.Collections.ObjectModel;
-using ThishreenUniversity.ParallelPro.Enums.Instructions;
+using ThishreenUniversity.ParallelPro.Enums;
 using Ninject;
 
 namespace Tishreen.ParallelPro.Core
@@ -90,33 +90,33 @@ namespace Tishreen.ParallelPro.Core
         /// such as ADD ,SUBD
         /// Default to 2
         /// </summary>
-        private int _floatingPointAdd = 2;
-        public int FloatingPointAdd
+        private int _floatingPointAddClockCylces = 2;
+        public int FloatingPointAddClockCycles
         {
-            get { return _floatingPointAdd; }
-            set { SetProperty(ref _floatingPointAdd, value); }
+            get { return _floatingPointAddClockCylces; }
+            set { SetProperty(ref _floatingPointAddClockCylces, value); }
         }
         /// <summary>
         /// The amount of clock cycles that a Multiply opperation will take
         /// such as MULTD
         /// Default to 10 
         /// </summary>
-        private int _floatingPointMultiply = 10;
-        public int FloatinPointMultiply
+        private int _floatingPointMultiplyClockCycles = 10;
+        public int FloatinPointMultiplyClockCycles
         {
-            get { return _floatingPointMultiply; }
-            set { SetProperty(ref _floatingPointMultiply, value); }
+            get { return _floatingPointMultiplyClockCycles; }
+            set { SetProperty(ref _floatingPointMultiplyClockCycles, value); }
         }
         /// <summary>
         /// The amount of clock cycles that a Divide opperation will take
         /// such as DIVD
         /// Default to 40 
         /// </summary>
-        private int _floatingPointDivide = 10;
-        public int FloatinPointDivide
+        private int _floatingPointDivideClockCycles = 10;
+        public int FloatinPointDivideClockCycles
         {
-            get { return _floatingPointDivide; }
-            set { SetProperty(ref _floatingPointDivide, value); }
+            get { return _floatingPointDivideClockCycles; }
+            set { SetProperty(ref _floatingPointDivideClockCycles, value); }
         }
 
         #region Lists And Collections
@@ -172,6 +172,10 @@ namespace Tishreen.ParallelPro.Core
         /// The command that delete an instruction
         /// </summary>
         public DelegateCommand DeleteItemCommand { get; private set; }
+        /// <summary>
+        /// The command to open the spacific algorithm window
+        /// </summary>
+        public DelegateCommand<object> OpenAlgoWindowCommand { get; private set; }
         #endregion
 
         #region Fill Functions
@@ -203,15 +207,15 @@ namespace Tishreen.ParallelPro.Core
                 var stringValue = Enum.GetName(typeof(RegisteriesAndMemory), item);
                 if (function == FunctionsTypes.LD.ToString())
                 {
-                    //If it is a memory spot add it to target
-                    if ((int)item < 31)
+                    //If it is a registery spot add it to target
+                    if ((int)item < 31) 
                         TargetRegistries.Add(stringValue);
                     else
                         SourceRegisteries.Add(stringValue);
                 }
                 else if (function == FunctionsTypes.SD.ToString())
                 {
-                    //If it is a registery add it to target
+                    //If it is a memory add it to target
                     if ((int)item >= 31)
                         TargetRegistries.Add(stringValue);
                     else
@@ -220,7 +224,9 @@ namespace Tishreen.ParallelPro.Core
                 else
                 {
                     TargetRegistries.Add(stringValue);
-                    SourceRegisteries.Add(stringValue);
+                    //If it is a registery spot add it to target
+                    if ((int)item < 31)
+                        SourceRegisteries.Add(stringValue);
                 }
             }
             //Disable source02 if the function is either load or store
@@ -265,6 +271,20 @@ namespace Tishreen.ParallelPro.Core
                 ReOrderAfterDelete(SelectedInstruction.ID);
                 Instructions.Remove(SelectedInstruction);
             }, () => { return SelectedInstruction != null; }).ObservesProperty(() => SelectedInstruction);
+            OpenAlgoWindowCommand = new DelegateCommand<object>((parameter) =>
+            {
+                //Setting the list for the functionlal unit clock cycles
+                var functionClockCycles = new List<KeyValuePair<FunctionsTypes, int>>
+                {
+                    new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.ADD, FloatingPointAddClockCycles),
+                    new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.DIV,FloatinPointDivideClockCycles),
+                    new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.LD,IntegerClockCycles),
+                    new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.MULT,FloatinPointMultiplyClockCycles),
+                    new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.SD,IntegerClockCycles),
+                    new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.SUB,FloatingPointAddClockCycles),
+                };
+               IoC.Kernel.Get<IUIManager>().ShowWinodw((ApplicationPages)parameter,new List<object>(Instructions),functionClockCycles);
+            });
         }
         #endregion
 
@@ -315,3 +335,4 @@ namespace Tishreen.ParallelPro.Core
 
     }
 }
+    

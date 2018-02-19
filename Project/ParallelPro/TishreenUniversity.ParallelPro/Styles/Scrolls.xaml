@@ -89,6 +89,11 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="ContextMenu" >
+            <Setter.Value>
+                <ContextMenu/>
+            </Setter.Value>
+        </Setter>
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Horizontal">
                 <Setter Property="Width"  Value="Auto" />

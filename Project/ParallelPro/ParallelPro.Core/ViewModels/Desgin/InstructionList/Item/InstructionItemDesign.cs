@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tishreen.ParallelPro.Core.ViewModels.Desgin
+namespace Tishreen.ParallelPro.Core.ViewModels.Design
 {
     /// <summary>
-    /// A desgin time data class
+    /// A Design time data class
     /// </summary>
    public class InstructionItemDesign
     {

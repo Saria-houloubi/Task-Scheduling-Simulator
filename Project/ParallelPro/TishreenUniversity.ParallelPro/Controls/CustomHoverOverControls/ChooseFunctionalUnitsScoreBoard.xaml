@@ -1,0 +1,49 @@
+﻿<local:BaseUserControl x:Class="TishreenUniversity.ParallelPro.Controls.ChooseFunctionalUnitsScoreBoard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Border Background="#001020" Visibility="{Binding ElementName=CF,Path=Visibility}">
+            <Border.Effect>
+                <BlurEffect KernelType="Gaussian" Radius="10" />
+            </Border.Effect>
+        </Border>
+
+        <Border CornerRadius="5" Background="White" 
+                BorderBrush="Black" BorderThickness="2" 
+                HorizontalAlignment="Center" VerticalAlignment="Center" 
+                >
+            <Grid Margin="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Load/Store Units = " Style="{StaticResource DarkText}" />
+                <TextBlock Text="ADD/SUB Units = " Style="{StaticResource DarkText}" Grid.Row="1" />
+                <TextBlock Text="Multiply Units = " Style="{StaticResource DarkText}" Grid.Row="2" />
+                <TextBlock Text="Divide Units  = " Style="{StaticResource DarkText}" Grid.Row="3"/>
+
+
+
+                <metro:NumericUpDown Value="{Binding NumberOfIntegerUnits}" Grid.Column="1" VerticalAlignment="Center"  Maximum="5" HorizontalAlignment="Left"/>
+                <metro:NumericUpDown Value="{Binding NumberOfAddUnits}" Grid.Column="1" VerticalAlignment="Center"  Grid.Row="1"  Maximum="5" HorizontalAlignment="Left"/>
+                <metro:NumericUpDown Value="{Binding NumberOfMultiplyUnits}" Grid.Column="1" VerticalAlignment="Center"  Grid.Row="2" Maximum="5" HorizontalAlignment="Left"/>
+                <metro:NumericUpDown Value="{Binding NumberOfDivideUnits}" Grid.Column="1" VerticalAlignment="Center"  Grid.Row="3" Maximum="5" HorizontalAlignment="Left"/>
+
+                <Button Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource BaseIconButton}" Foreground="White"  Tag="{StaticResource Check_Circle}" Click="Button_Click"/>
+            </Grid>
+        </Border>
+    </Grid>
+</local:BaseUserControl>

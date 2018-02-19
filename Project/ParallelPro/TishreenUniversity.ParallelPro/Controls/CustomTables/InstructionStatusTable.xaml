@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
-            xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls.CustomLists"
-             xmlns:desgin="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Desgin;assembly=Tishreen.ParallelPro.Core"
+            xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
+             xmlns:Design="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Design;assembly=Tishreen.ParallelPro.Core"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="550">
     <Grid >
@@ -33,7 +33,7 @@
         <TextBlock Grid.Column="7"  Style="{StaticResource DarkHeader}" Text="Write Back"/>
         
         <!--Separater Border-->
-        <Border Grid.ColumnSpan="8" Margin="0 0 0 -2" BorderThickness="0 0 0 1 " >
+        <Border Grid.ColumnSpan="8"  Margin="0 0 0 -2" BorderThickness="0 0 0 1 " >
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0.0,0.0" EndPoint="1.0 ,0.0">
                     <GradientStop Offset="0" Color="White"/>
@@ -44,7 +44,7 @@
         </Border>
 
         <!--Instruction and there status-->
-        <controls:InstructionsWithStatusList Grid.Row="1" DataContext="{x:Static desgin:InstructionWithStatusListDesign.Instance}" Grid.ColumnSpan="8"/>
+        <controls:InstructionsWithStatusList Grid.Row="1" d:DataContext="{x:Static Design:InstructionWithStatusListDesign.Instance}" Grid.ColumnSpan="8"/>
 
     </Grid>
 </local:BaseUserControl>

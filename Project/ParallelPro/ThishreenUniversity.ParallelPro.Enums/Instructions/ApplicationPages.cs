@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ThishreenUniversity.ParallelPro.Enums.Instructions
+namespace ThishreenUniversity.ParallelPro.Enums
 {
     /// <summary>
     /// All the application pages that we can show to the user
@@ -19,6 +19,10 @@ namespace ThishreenUniversity.ParallelPro.Enums.Instructions
         /// Shows the login page
         /// </summary>
         LoginPage = 1,
+        /// <summary>
+        /// The scoreboarding algo window
+        /// </summary>
+        ScoreBoarding = 2,
 
     }
 }

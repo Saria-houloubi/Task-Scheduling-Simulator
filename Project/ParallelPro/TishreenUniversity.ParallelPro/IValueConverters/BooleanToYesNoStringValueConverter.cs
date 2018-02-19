@@ -5,16 +5,16 @@ using System.Windows;
 namespace TishreenUniversity.ParallelPro.IValueConverters
 {
     /// <summary>
-    /// Returns the page that that we want
+    /// Return Yes if the value is true and No if the value is false
     /// </summary>
-    public class StringToVisiblityValueConverter : BaseValueConverters<StringToVisiblityValueConverter>
+    public class BooleanToYesNoStringValueConverter : BaseValueConverters<BooleanToYesNoStringValueConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value.ToString() == "Closed")
-                return Visibility.Visible;
+            if ((bool)value)
+                return "Yes";
             else
-                return Visibility.Hidden;
+                return "No";
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

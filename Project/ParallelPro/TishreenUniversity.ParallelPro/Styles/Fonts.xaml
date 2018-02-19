@@ -22,7 +22,9 @@
     <system:String x:Key="LeftArrow">&#xf061;</system:String>
     <system:String x:Key="Bars">&#xf0c9;</system:String>
     <system:String x:Key="Clock">&#xf017;</system:String>
+    <system:String x:Key="Check_Circle">&#xf058;</system:String>
 
+    
     
 
 </ResourceDictionary>

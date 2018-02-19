@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ThishreenUniversity.ParallelPro.Enums.Instructions
+namespace ThishreenUniversity.ParallelPro.Enums
 {
     /// <summary>
     /// The funcitons that the user can use in the mips code

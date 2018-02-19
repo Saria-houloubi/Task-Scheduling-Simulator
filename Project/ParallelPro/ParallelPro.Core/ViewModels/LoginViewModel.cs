@@ -1,9 +1,7 @@
-﻿using ThishreenUniversity.ParallelPro.Enums.Enums;
+﻿using ThishreenUniversity.ParallelPro.Enums;
 using System.Diagnostics;
-using Tishreen.ParallelPro.Core.IoC;
 using Ninject;
 using Tishreen.ParallelPro.Core;
-using ThishreenUniversity.ParallelPro.Enums.Instructions;
 
 namespace Tishreen.Tishreen.ParallelPro.Core
 {

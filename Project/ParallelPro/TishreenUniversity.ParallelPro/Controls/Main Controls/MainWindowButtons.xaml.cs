@@ -12,17 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TishreenUniversity.ParallelPro.Windows;
 
 namespace TishreenUniversity.ParallelPro.Controls
 {
     /// <summary>
-    /// Interaction logic for InstructionsWithStatusList.xaml
+    /// Interaction logic for MainWindowButtons.xaml
     /// </summary>
-    public partial class InstructionsWithStatusList : BaseUserControl
+    public partial class MainWindowButtons : BaseUserControl
     {
-        public InstructionsWithStatusList()
+        public MainWindowButtons()
         {
+
             InitializeComponent();
+
+            AnimateInAnimationType = AnimationTypes.FadeIn;
         }
     }
 }

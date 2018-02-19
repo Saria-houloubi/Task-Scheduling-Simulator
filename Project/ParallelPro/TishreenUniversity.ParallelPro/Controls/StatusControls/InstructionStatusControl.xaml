@@ -5,22 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"          
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
-             xmlns:desgin="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Desgin;assembly=Tishreen.ParallelPro.Core"
+             xmlns:Design="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Design;assembly=Tishreen.ParallelPro.Core"
              xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
                        mc:Ignorable="d" 
              d:DesignHeight="300" >
     <Grid>
-        <Border BorderThickness="3" Margin="5">
-            <Border.BorderBrush>
-                <LinearGradientBrush StartPoint="0.0,0.0" EndPoint="1.0,0.0">
-                    <GradientStop Offset="0" Color="{StaticResource DarkBlue}"/>
-                    <GradientStop Offset="0.4" Color="Black"/>
-                </LinearGradientBrush>
-            </Border.BorderBrush>
-            <Border.Effect>
-                <DropShadowEffect Color="Black" BlurRadius="8" Direction="190"/>
-            </Border.Effect>
-        </Border>
+        <Border Style="{StaticResource StatusControlsBorder}"/>
         <GroupBox Name="content" BorderThickness="0" >
             <GroupBox.Background>
                 <LinearGradientBrush StartPoint="0.0,0.0" EndPoint="1.0,0.0">
@@ -30,11 +20,11 @@
             </GroupBox.Background>
             <GroupBox.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="Instruction Status" Margin="0"/>
+                    <TextBlock Text="Instruction Status" Style="{StaticResource StatusControlsHeaderText}"/>
                 </DataTemplate>
             </GroupBox.HeaderTemplate>
             <!--Instruction list-->
-            <controls:InstructionStatusTable Focusable="False" Margin="5"  d:DataContext="{x:Static desgin:InstructionListDesign.Instance}"/>
+            <controls:InstructionStatusTable Focusable="False" Margin="5"  d:DataContext="{x:Static Design:InstructionListDesign.Instance}"/>
         </GroupBox>
     </Grid>
 </local:BaseUserControl>

@@ -1,0 +1,60 @@
+﻿<local:BaseUserControl x:Class="TishreenUniversity.ParallelPro.Controls.FunctionalUnitWithStatusItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
+             xmlns:converters="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
+             xmlns:Design="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Design;assembly=Tishreen.ParallelPro.Core"
+                       mc:Ignorable="d"  
+             d:DesignHeight="50" d:DesignWidth="500">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type ContentControl}" x:Key="ContentStyle">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template" >
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                        <Border BorderThickness="0 0 0 1" BorderBrush="Black">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0"  Style="{StaticResource InstructionItemText}" Text="{Binding Time}"/>
+                                <TextBlock Grid.Column="1" TextWrapping="Wrap" HorizontalAlignment="Left"  Style="{StaticResource InstructionItemText}" Text="{Binding Name}"/>
+
+                                <!--Separter Borader-->
+                                <Border Grid.Column="2" HorizontalAlignment="Left" Width="1" Margin="0 1"  Background="Black"/>
+
+                                <TextBlock Grid.Column="2"  Style="{StaticResource InstructionItemText}" Text="{Binding IsBusy,Converter={converters:BooleanToYesNoStringValueConverter}}"/>
+                                <TextBlock Grid.Column="3"  TextWrapping="Wrap" Style="{StaticResource InstructionItemText}" Text="{Binding Operation}"/>
+                                <TextBlock Grid.Column="4"  Style="{StaticResource InstructionItemText}" Text="{Binding TargetRegistery}"/>
+                                <TextBlock Grid.Column="5"  Style="{StaticResource InstructionItemText}" Text="{Binding SourceRegistery01}"/>
+                                <TextBlock Grid.Column="6"  Style="{StaticResource InstructionItemText}" Text="{Binding SourceRegistery02}"/>
+
+                                <TextBlock Grid.Column="7"  Style="{StaticResource InstructionItemText}" Text="{Binding WaitingOperationForSorce01}"/>
+                                <TextBlock Grid.Column="8"  Style="{StaticResource InstructionItemText}" Text="{Binding WaitingOperationForSorce02}"/>
+                                <TextBlock Grid.Column="9"  Style="{StaticResource InstructionItemText}" Text="{Binding IsSorce01Ready}"/>
+                                <TextBlock Grid.Column="10"  Style="{StaticResource InstructionItemText}" Text="{Binding IsSorce02Ready}"/>
+                                <Border Grid.Column="10" HorizontalAlignment="Right" Width="1" Margin="0 1"  Background="Black"/>
+
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+
+    <ContentControl Style="{StaticResource ContentStyle}" d:DataContext="{x:Static Design:FunctionalUnitWithStatusItemDesign.Instance}" />
+</local:BaseUserControl>

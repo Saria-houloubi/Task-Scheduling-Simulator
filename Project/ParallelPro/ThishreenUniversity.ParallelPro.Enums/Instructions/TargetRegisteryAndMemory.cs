@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ThishreenUniversity.ParallelPro.Enums.Instructions
+namespace ThishreenUniversity.ParallelPro.Enums
 {
     /// <summary>
     /// Holds all the regiteries and memory spots that user can only use in the application

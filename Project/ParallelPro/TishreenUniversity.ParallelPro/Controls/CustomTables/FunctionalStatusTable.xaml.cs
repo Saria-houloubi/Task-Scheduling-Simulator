@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace TishreenUniversity.ParallelPro.Controls
 {
     /// <summary>
-    /// Interaction logic for InstructionsWithStatusList.xaml
+    /// Interaction logic for FunctionalStatusTable.xaml
     /// </summary>
-    public partial class InstructionsWithStatusList : BaseUserControl
+    public partial class FunctionalStatusTable : BaseUserControl
     {
-        public InstructionsWithStatusList()
+        public FunctionalStatusTable()
         {
             InitializeComponent();
         }

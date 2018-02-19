@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TishreenUniversity.ParallelPro.Controls.CustomItems
+namespace TishreenUniversity.ParallelPro.Controls
 {
     /// <summary>
     /// Interaction logic for InstructionWithStatusItem.xaml

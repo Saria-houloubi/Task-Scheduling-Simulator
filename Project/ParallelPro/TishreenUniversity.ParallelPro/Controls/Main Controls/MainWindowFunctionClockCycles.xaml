@@ -39,15 +39,15 @@
                     <TextBlock Text="Number of itteration for each cycle function" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
                 </StackPanel>
 
-                <TextBlock  Text="Integer : " Grid.Row="1"/>
+                <TextBlock  Text="Load / Store  : " Grid.Row="1"/>
                 <TextBlock  Text="Floating point add : " Grid.Row="2"/>
                 <TextBlock  Text="Floating point multiply : " Grid.Row="3"/>
                 <TextBlock  Text="Floating point divide : " Grid.Row="4"/>
 
                 <TextBox Text="{Binding IntegerClockCycles}" Grid.Column="1" Grid.Row="1" />
-                <TextBox Text="{Binding FloatingPointAdd}" Grid.Column="1" Grid.Row="2" />
-                <TextBox Text="{Binding FloatinPointMultiply}" Grid.Column="1" Grid.Row="3" />
-                <TextBox Text="{Binding FloatinPointDivide}" Grid.Column="1" Grid.Row="4" />
+                <TextBox Text="{Binding FloatingPointAddClockCycles}" Grid.Column="1" Grid.Row="2" />
+                <TextBox Text="{Binding FloatinPointMultiplyClockCycles}" Grid.Column="1" Grid.Row="3" />
+                <TextBox Text="{Binding FloatinPointDivideClockCycles}" Grid.Column="1" Grid.Row="4" />
             </Grid>
         </Border>
         <!--Choose Algorithm-->

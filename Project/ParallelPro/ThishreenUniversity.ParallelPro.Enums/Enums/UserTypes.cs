@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ThishreenUniversity.ParallelPro.Enums.Enums
+namespace ThishreenUniversity.ParallelPro.Enums
 {
     /// <summary>
     /// The types of users that we have
