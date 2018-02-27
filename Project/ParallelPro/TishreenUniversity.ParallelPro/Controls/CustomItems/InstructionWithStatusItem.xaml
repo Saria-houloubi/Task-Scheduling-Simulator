@@ -10,10 +10,11 @@
     <UserControl.Resources>
         <Style TargetType="{x:Type ContentControl}" x:Key="ContentStyle">
             <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Template" >
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ContentControl}">
-                        <Grid >
+                        <Grid  x:Name="outerGrid" Background="{TemplateBinding Background}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -33,12 +34,35 @@
 
                             <TextBlock Grid.Column="4"  Style="{StaticResource InstructionItemText}" Text="{Binding IssueCycle}"/>
                             <TextBlock Grid.Column="5"  Style="{StaticResource InstructionItemText}" Text="{Binding ReadCycle}"/>
-                            <TextBlock Grid.Column="6"  Style="{StaticResource InstructionItemText}" Text="{Binding ExecuteCycle}"/>
+                            <TextBlock Grid.Column="6"  Style="{StaticResource InstructionItemText}" Text="{Binding ExecuteCompletedCycle}"/>
                             <TextBlock Grid.Column="7"  Style="{StaticResource InstructionItemText}" Text="{Binding WriteBackCycle}"/>
 
                         </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <!-- With WPF animation you should allways begin a storyboard -->
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="LightGray" Duration="0:0:0.3" Storyboard.TargetName="outerGrid" Storyboard.TargetProperty="Background.Color"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <!-- With WPF animation you should allways begin a storyboard -->
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="Transparent" Duration="0:0:0.3" Storyboard.TargetName="outerGrid" Storyboard.TargetProperty="Background.Color"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
+                
                 </Setter.Value>
+                
+                
             </Setter>
         </Style>
     </UserControl.Resources>

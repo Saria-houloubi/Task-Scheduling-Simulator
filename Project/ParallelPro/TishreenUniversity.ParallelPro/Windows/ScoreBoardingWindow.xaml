@@ -7,32 +7,49 @@
         xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
         mc:Ignorable="d" WindowState="Maximized"
         Title="ScoreBoarding">
-    <Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <!--The instruction status-->
-                <RowDefinition Height="auto"/>
-                <!--Seperator-->
-                <RowDefinition Height="auto"/>
-                <!--The Functional unit status  -->
-                <RowDefinition/>
-                <!--The Register result status-->
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+    <ScrollViewer BorderBrush="Red">
+        <Grid >
+            <Grid Margin="15 0" >
+                <Grid.RowDefinitions>
+                    <!--Clock cycles-->
+                    <RowDefinition Height="auto"/>
+                    <!--The instruction status-->
+                    <RowDefinition Height="auto"/>
+                    <!--The Functional unit status  -->
+                    <RowDefinition Height="auto"/>
+                    <!--The Register result status-->
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--#region Clock cycles-->
+                <Grid Margin="0 10" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Clock Cycle : " Style="{StaticResource DarkHeader}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox Text="{Binding ClockCycle}" Grid.Column="1"  Foreground="Black"/>
 
-            <!--Instruction status-->
-            <controls:InstructionStatusControl x:Name="Instructions" Margin="10"/>
+                    <Button Command="{Binding ScoreBoardCommand}" Tag="Next" Grid.Column="2" Style="{StaticResource RegularButton}" Background="Green"/>
+                    <Button Tag="Previous" Grid.Column="3" Style="{StaticResource RegularButton}" Background="Orange"/>
+                    <Button Tag="To end" Grid.Column="4" Style="{StaticResource RegularButton}" />
+                </Grid>
+                <!--#endregion-->
+                <!--Instruction status-->
+                <controls:InstructionStatusControl x:Name="Instructions" Grid.Row="1" Margin="10"/>
 
-            <!--Spliter border-->
-            <Border  Grid.Row="1" Style="{StaticResource StatusControlsBorder}" Margin="5 0" CornerRadius="5"/>
+                <!--Functional units status-->
+                <controls:FunctionalUnitStatusControl Margin="{Binding ElementName=Instructions,Path=Margin}" Grid.Row="2"/>
 
-            <!--Functional units status-->
-            <controls:FunctionalUnitStatusControl Margin="{Binding ElementName=Instructions,Path=Margin}" Grid.Row="2"/>
+                <!--Registers units status-->
+                <controls:RegisterResultStatusControl Margin="{Binding ElementName=Instructions,Path=Margin}" Grid.Row="3"/>
+            </Grid>
+            <!--Instructions status-->
+            <controls:ChooseFunctionalUnitsScoreBoard Visibility="Visible" />
 
         </Grid>
-
-        <!--Instructions status-->
-        <controls:ChooseFunctionalUnitsScoreBoard x:Name="CF" Visibility="Collapsed" />
-
-    </Grid>
+    </ScrollViewer>
 </Window>
+    

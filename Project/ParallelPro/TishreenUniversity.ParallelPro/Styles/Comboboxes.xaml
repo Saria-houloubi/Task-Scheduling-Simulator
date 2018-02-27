@@ -4,7 +4,7 @@
                     xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <!--Default combobox-->
     <Style TargetType="{x:Type ComboBox}">
-        <Setter Property="Background" Value="Red"/>
+        <Setter Property="Background" Value="Gray"/>
         <Setter Property="Margin" Value="5 0 5 2"/>
         <Setter Property="VerticalContentAlignment" Value="Bottom"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -20,7 +20,7 @@
                         </Grid.ColumnDefinitions>
                         <Popup x:Name="PART_Popup" AllowsTransparency="True" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
                             <Themes:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
-                                <Border x:Name="DropDownBorder" BorderBrush="Gray" BorderThickness="1" Background="{StaticResource DarkBlueBrush}">
+                                <Border x:Name="DropDownBorder" BorderBrush="Gray" BorderThickness="1" Background="Gray">
                                     <ScrollViewer x:Name="DropDownScrollViewer">
                                         <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                             <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
@@ -43,7 +43,7 @@
                                         <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                                <Border x:Name="templateRoot" BorderBrush="Gray" BorderThickness="0 0 0 1" SnapsToDevicePixels="True" Background="Transparent">
+                                                <Border x:Name="templateRoot" BorderBrush="Gray" CornerRadius="5 5 0 0" BorderThickness="0 0 0 1" SnapsToDevicePixels="True" Background="{TemplateBinding Background}" >
                                                     <Border x:Name="splitBorder" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Right" Margin="0" SnapsToDevicePixels="True" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                                                         <Path x:Name="Arrow" Data="F1M0,0L2.667,2.66665 5.3334,0 5.3334,-1.78168 2.6667,0.88501 0,-1.78168 0,0z" Fill="#FF606060" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
                                                     </Border>
@@ -70,7 +70,6 @@
                                                             <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
                                                             <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ComboBox}}}" Value="false"/>
                                                         </MultiDataTrigger.Conditions>
-                                                        <Setter Property="Background" TargetName="templateRoot" Value="Transparent"/>
                                                         <Setter Property="BorderBrush" TargetName="templateRoot" Value="#FF7EB4EA"/>
                                                     </MultiDataTrigger>
                                                     <MultiDataTrigger>

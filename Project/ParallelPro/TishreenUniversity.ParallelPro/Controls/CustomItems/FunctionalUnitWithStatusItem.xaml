@@ -14,7 +14,7 @@
             <Setter Property="Template" >
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ContentControl}">
-                        <Border BorderThickness="0 0 0 1" BorderBrush="Black">
+                        <Border  x:Name="border" Background="Transparent" BorderThickness="0 0 0 1" BorderBrush="Black">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
@@ -41,14 +41,33 @@
                                 <TextBlock Grid.Column="5"  Style="{StaticResource InstructionItemText}" Text="{Binding SourceRegistery01}"/>
                                 <TextBlock Grid.Column="6"  Style="{StaticResource InstructionItemText}" Text="{Binding SourceRegistery02}"/>
 
-                                <TextBlock Grid.Column="7"  Style="{StaticResource InstructionItemText}" Text="{Binding WaitingOperationForSorce01}"/>
-                                <TextBlock Grid.Column="8"  Style="{StaticResource InstructionItemText}" Text="{Binding WaitingOperationForSorce02}"/>
-                                <TextBlock Grid.Column="9"  Style="{StaticResource InstructionItemText}" Text="{Binding IsSorce01Ready}"/>
-                                <TextBlock Grid.Column="10"  Style="{StaticResource InstructionItemText}" Text="{Binding IsSorce02Ready}"/>
+                                <TextBlock Grid.Column="7"  Style="{StaticResource InstructionItemText}" Text="{Binding WaitingOperationForSource01}"/>
+                                <TextBlock Grid.Column="8"  Style="{StaticResource InstructionItemText}" Text="{Binding WaitingOperationForSource02}"/>
+                                <TextBlock Grid.Column="9"  Style="{StaticResource InstructionItemText}" Text="{Binding IsSource01Ready}"/>
+                                <TextBlock Grid.Column="10"  Style="{StaticResource InstructionItemText}" Text="{Binding IsSource02Ready}"/>
                                 <Border Grid.Column="10" HorizontalAlignment="Right" Width="1" Margin="0 1"  Background="Black"/>
 
                             </Grid>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <!-- With WPF animation you should allways begin a storyboard -->
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="LightGray" Duration="0:0:0.3" Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <!-- With WPF animation you should allways begin a storyboard -->
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="Transparent" Duration="0:0:0.3" Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

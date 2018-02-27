@@ -11,6 +11,8 @@ namespace ThishreenUniversity.ParallelPro.Enums
     /// </summary>
     public enum FunctionsTypes
     {
+
+        
         /// <summary>
         /// Loads a value to a registery
         /// Example: LD F9 M(30)

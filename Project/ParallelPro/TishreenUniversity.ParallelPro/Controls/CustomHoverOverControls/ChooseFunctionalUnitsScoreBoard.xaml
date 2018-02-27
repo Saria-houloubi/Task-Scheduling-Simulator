@@ -37,12 +37,19 @@
 
 
 
-                <metro:NumericUpDown Value="{Binding NumberOfIntegerUnits}" Grid.Column="1" VerticalAlignment="Center"  Maximum="5" HorizontalAlignment="Left"/>
-                <metro:NumericUpDown Value="{Binding NumberOfAddUnits}" Grid.Column="1" VerticalAlignment="Center"  Grid.Row="1"  Maximum="5" HorizontalAlignment="Left"/>
-                <metro:NumericUpDown Value="{Binding NumberOfMultiplyUnits}" Grid.Column="1" VerticalAlignment="Center"  Grid.Row="2" Maximum="5" HorizontalAlignment="Left"/>
-                <metro:NumericUpDown Value="{Binding NumberOfDivideUnits}" Grid.Column="1" VerticalAlignment="Center"  Grid.Row="3" Maximum="5" HorizontalAlignment="Left"/>
+                <metro:NumericUpDown Value="{Binding NumberOfLoadUnits}" Grid.Column="1" VerticalAlignment="Center"  Maximum="5" HorizontalAlignment="Left" Minimum="1"/>
+                <metro:NumericUpDown Value="{Binding NumberOfAddUnits}" Grid.Column="1" VerticalAlignment="Center"  Grid.Row="1" Minimum="1"  Maximum="5" HorizontalAlignment="Left"/>
+                <metro:NumericUpDown Value="{Binding NumberOfMultiplyUnits}" Grid.Column="1" VerticalAlignment="Center"  Grid.Row="2" Minimum="1" Maximum="5" HorizontalAlignment="Left"/>
+                <metro:NumericUpDown Value="{Binding NumberOfDivideUnits}" Grid.Column="1" VerticalAlignment="Center"  Grid.Row="3" Minimum="1" Maximum="5" HorizontalAlignment="Left"/>
 
-                <Button Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource BaseIconButton}" Foreground="White"  Tag="{StaticResource Check_Circle}" Click="Button_Click"/>
+                <Button Grid.Row="4"
+                        Grid.ColumnSpan="2" 
+                        Style="{StaticResource BaseIconButton}"   
+                        Tag="{StaticResource Check_Circle}" 
+                        Command="{Binding FillFunctionalUnitsCommand}"
+                        Click="Button_Click" Margin="0 5"
+                        Foreground="White"
+                        />
             </Grid>
         </Border>
     </Grid>

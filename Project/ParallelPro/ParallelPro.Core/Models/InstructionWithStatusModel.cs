@@ -1,11 +1,10 @@
-﻿
-namespace Tishreen.ParallelPro.Core.Models
+﻿namespace Tishreen.ParallelPro.Core.Models
 {
     /// <summary>
     /// A model for all the instruction with there status record
     /// Funtion TargetRegistry  Source1 Source2 issue Fitched Executed WriteResult
     /// </summary>
-    public class InstructionWithStatusModel
+    public class InstructionWithStatusModel : BaseModel
     {
         #region Properties
         /// <summary>
@@ -31,19 +30,39 @@ namespace Tishreen.ParallelPro.Core.Models
         /// <summary>
         /// The clock cycle when this operation was issued
         /// </summary>
-        public int? IssueCycle { get; set; }
+        private int? _issueCycle;
+        public int? IssueCycle
+        {
+            get { return _issueCycle; }
+            set { SetProperty(ref _issueCycle, value); }
+        }
         /// <summary>
         /// The clock cylce when the operation was read
         /// </summary>
-        public int? ReadCycle { get; set; }
+        private int? _readCycle;
+        public int? ReadCycle
+        {
+            get { return _readCycle; }
+            set { SetProperty(ref _readCycle, value); }
+        }
         /// <summary>
         /// The clock cycle when the execute started
         /// </summary>
-        public int? ExecuteCycle { get; set; }
+        private int? _executeCompletedCycle;
+        public int? ExecuteCompletedCycle
+        {
+            get { return _executeCompletedCycle; }
+            set { SetProperty(ref _executeCompletedCycle, value); }
+        }
         /// <summary>
         /// The clock cycle that the operation will write the result back
         /// </summary>
-        public int? WriteBackCycle { get; set; }
+        private int? _writeBackCycle;
+        public int? WriteBackCycle
+        {
+            get { return _writeBackCycle; }
+            set { SetProperty(ref _writeBackCycle, value); }
+        }
         #endregion
 
         #region Constructers
@@ -73,7 +92,7 @@ namespace Tishreen.ParallelPro.Core.Models
             this.SourceRegistery02= sourceRegistery02;
             this.IssueCycle = issueCycle;
             this.ReadCycle = readCycle;
-            this.ExecuteCycle = executeCycle;
+            this.ExecuteCompletedCycle = executeCycle;
             this.WriteBackCycle = writeBackCycle;
         }
         #endregion

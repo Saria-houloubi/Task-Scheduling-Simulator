@@ -11,18 +11,7 @@
              d:DesignHeight="300" >
     <Grid>
         <Border Style="{StaticResource StatusControlsBorder}"/>
-        <GroupBox Name="content" BorderThickness="0" >
-            <GroupBox.Background>
-                <LinearGradientBrush StartPoint="0.0,0.0" EndPoint="1.0,0.0">
-                    <GradientStop Offset="0" Color="{StaticResource DarkBlue}"/>
-                    <GradientStop Offset="0.4" Color="Black"/>
-                </LinearGradientBrush>
-            </GroupBox.Background>
-            <GroupBox.HeaderTemplate>
-                <DataTemplate>
-                    <TextBlock Text="Instruction Status" Style="{StaticResource StatusControlsHeaderText}"/>
-                </DataTemplate>
-            </GroupBox.HeaderTemplate>
+        <GroupBox Style="{StaticResource StatusControlGroupBox}" Header="Instruction Status" >
             <!--Instruction list-->
             <controls:InstructionStatusTable Focusable="False" Margin="5"  d:DataContext="{x:Static Design:InstructionListDesign.Instance}"/>
         </GroupBox>

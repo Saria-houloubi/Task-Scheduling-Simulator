@@ -10,22 +10,13 @@
              d:DesignHeight="300" d:DesignWidth="800">
     <Grid>
         <Grid>
-            <Border  Style="{StaticResource StatusControlsBorder}"/>
-            <GroupBox Name="content" BorderThickness="0" >
-                <GroupBox.Background>
-                    <LinearGradientBrush StartPoint="0.0,0.0" EndPoint="1.0,0.0">
-                        <GradientStop Offset="0" Color="{StaticResource DarkBlue}"/>
-                        <GradientStop Offset="0.4" Color="Black"/>
-                    </LinearGradientBrush>
-                </GroupBox.Background>
-                <GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="Functional Unit Status" Style="{StaticResource StatusControlsHeaderText}"/>
-                    </DataTemplate>
-                </GroupBox.HeaderTemplate>
+            <Border   Style="{StaticResource StatusControlsBorder}"/>
+            
+            <GroupBox Style="{StaticResource StatusControlGroupBox}" Header="Functional Unit Status" >
                 
                 <!--Main Content-->
-                <controls:FunctionalStatusTable DataContext="{x:Static design:FunctionalUnitsWithStatusListDesign.Instance}"/>
+                <controls:FunctionalStatusTable d:DataContext="{x:Static design:FunctionalUnitsWithStatusListDesign.Instance}"/>
+            
             </GroupBox>
         </Grid>
     </Grid>

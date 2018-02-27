@@ -75,8 +75,14 @@
     <Compile Include="Controls\CustomItems\InstructionWithStatusItem.xaml.cs">
       <DependentUpon>InstructionWithStatusItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CustomItems\RegisterResultItem.xaml.cs">
+      <DependentUpon>RegisterResultItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CustomLists\FunctionalUnitsWithStatusList.xaml.cs">
       <DependentUpon>FunctionalUnitsWithStatusList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomLists\RegisterResultList.xaml.cs">
+      <DependentUpon>RegisterResultList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CustomTables\FunctionalStatusTable.xaml.cs">
       <DependentUpon>FunctionalStatusTable.xaml</DependentUpon>
@@ -92,6 +98,9 @@
     </Compile>
     <Compile Include="Controls\StatusControls\InstructionStatusControl.xaml.cs">
       <DependentUpon>InstructionStatusControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatusControls\RegisterResultStatusControl.xaml.cs">
+      <DependentUpon>RegisterResultStatusControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="IValueConverters\BooleanToYesNoStringValueConverter.cs" />
     <Compile Include="ViewModels\UIManager.cs" />
@@ -114,9 +123,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\CustomItems\RegisterResultItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\CustomLists\FunctionalUnitsWithStatusList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CustomLists\RegisterResultList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\CustomTables\FunctionalStatusTable.xaml">
       <SubType>Designer</SubType>
@@ -166,6 +183,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\StatusControls\RegisterResultStatusControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Titles\MainTitle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -189,6 +210,10 @@
     <Page Include="Styles\Fonts.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Groupboxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Menus.xaml">
       <Generator>MSBuild:Compile</Generator>
