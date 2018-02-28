@@ -3,7 +3,6 @@ using Prism.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using ThishreenUniversity.ParallelPro.Enums;
 using Tishreen.ParallelPro.Core.Models;
 
@@ -76,6 +75,18 @@ namespace Tishreen.ParallelPro.Core.ViewModels
             get { return _clockCycle; }
             set { SetProperty(ref _clockCycle, value); }
         }
+        #region Flags
+        /// <summary>
+        /// A flag to till if we can go to the next clock cycle
+        /// </summary>
+        private bool _canGoNextCycle = true;
+        public bool CanGoNextCycle
+        {
+            get { return _canGoNextCycle; }
+            set { SetProperty(ref _canGoNextCycle, value); }
+        }
+        #endregion
+
         #endregion
 
         #region Commands
@@ -84,9 +95,13 @@ namespace Tishreen.ParallelPro.Core.ViewModels
         /// </summary>
         public DelegateCommand FillFunctionalUnitsCommand { get; private set; }
         /// <summary>
-        /// The command to start scoreboading algorithm
+        /// The command to start scoreboading algorithm for one clock cycle
         /// </summary>
-        public DelegateCommand ScoreBoardCommand { get; private set; }
+        public DelegateCommand ScoreBoardOneCycleCommand { get; private set; }
+        /// <summary>
+        /// The command to scoreboard till the end of the algorithm
+        /// </summary>
+        public DelegateCommand ScoreBoardTillEndCommand { get; private set; }
         #endregion
 
         #region Command Metods
@@ -129,7 +144,8 @@ namespace Tishreen.ParallelPro.Core.ViewModels
             FunctionClockCycle = functionClockCycle;
             //Create the commands
             FillFunctionalUnitsCommand = new DelegateCommand(FillFunctionalUnitsCommandMethod);
-            ScoreBoardCommand = new DelegateCommand(ScoreBoard);
+            ScoreBoardOneCycleCommand = new DelegateCommand(StartScoreBoardOneStep);
+            ScoreBoardTillEndCommand = new DelegateCommand(StartScoreBoardTillTheEnd);
         }
         /// <summary>
         /// Fills the instruction with status list on the start of the window
@@ -170,7 +186,18 @@ namespace Tishreen.ParallelPro.Core.ViewModels
         #endregion
 
         #region ScroeBorading Algorithm
-        private void ScoreBoard()
+        /// <summary>
+        /// ScoreBoard the instruction until it ends
+        /// </summary>
+        private void StartScoreBoardTillTheEnd() {  while (!ScoreBoard()) ;}
+        /// <summary>
+        /// only one clock cycle for the algorithm
+        /// </summary>
+        private void StartScoreBoardOneStep() => ScoreBoard();
+        /// <summary>
+        /// The score board algorithm 
+        /// </summary>
+        private bool ScoreBoard()
         {
             ClockCycle++;
 
@@ -182,7 +209,7 @@ namespace Tishreen.ParallelPro.Core.ViewModels
                 {
                     //Issue the instruction if all hazerds are gone
                     IssueIfApproved(instruction);
-                    
+
                     //Restart from top when we issue a new instruction
                     i = -1;
 
@@ -194,12 +221,19 @@ namespace Tishreen.ParallelPro.Core.ViewModels
                 else if (instruction.WriteBackCycle != null)
                 {
                     if (CheckIfDone())
-                        return;
+                    {
+                        //Get the cycle back to the right value
+                        ClockCycle--;
+                        CanGoNextCycle = false;
+                        return true;
+                    }
                 }
                 else
                     //Execute the instruction
                     ExecuteInstrution(instruction);
             }
+
+            return false;
         }
 
         #region Which is the right functional unit
@@ -341,7 +375,7 @@ namespace Tishreen.ParallelPro.Core.ViewModels
             unit.IsBusy = false;
             unit.WorkingInstructionID = 0;
             unit.Operation = null;
-            unit.SourceRegistery01 = null ;
+            unit.SourceRegistery01 = null;
             unit.SourceRegistery02 = null;
             unit.TargetRegistery = null;
             unit.WaitingOperationForSource01 = null;

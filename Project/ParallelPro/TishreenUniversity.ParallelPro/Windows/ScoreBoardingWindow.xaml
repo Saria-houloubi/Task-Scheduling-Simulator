@@ -27,18 +27,16 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Clock Cycle : " Style="{StaticResource DarkHeader}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <TextBox Text="{Binding ClockCycle}" Grid.Column="1"  Foreground="Black"/>
+                    <TextBlock Style="{StaticResource HeaderText}" FontSize="{StaticResource FontSizeExtraLarg}" FontWeight="Bold" Text="{Binding ClockCycle}" Grid.Column="1"  Foreground="Black"/>
 
-                    <Button Command="{Binding ScoreBoardCommand}" Tag="Next" Grid.Column="2" Style="{StaticResource RegularButton}" Background="Green"/>
-                    <Button Tag="Previous" Grid.Column="3" Style="{StaticResource RegularButton}" Background="Orange"/>
-                    <Button Tag="To end" Grid.Column="4" Style="{StaticResource RegularButton}" />
+                    <Button IsEnabled="{Binding CanGoNextCycle}" Command="{Binding ScoreBoardOneCycleCommand}" Tag="Next" Grid.Column="2" Style="{StaticResource RegularButton}"/>
+                    <Button IsEnabled="{Binding CanGoNextCycle}" Tag="To end" Grid.Column="4" Command="{Binding ScoreBoardTillEndCommand}" Style="{StaticResource RegularButton}" Background="Black" />
                 </Grid>
                 <!--#endregion-->
                 <!--Instruction status-->
-                <controls:InstructionStatusControl x:Name="Instructions" Grid.Row="1" Margin="10"/>
+                <controls:InstructionStatusControl  x:Name="Instructions" Grid.Row="1" Margin="10"/>
 
                 <!--Functional units status-->
                 <controls:FunctionalUnitStatusControl Margin="{Binding ElementName=Instructions,Path=Margin}" Grid.Row="2"/>

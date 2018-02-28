@@ -237,6 +237,9 @@
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Background" TargetName="border"  Value="{StaticResource BackgroundBlueBrush}"/>
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="border" Value="RoyalBlue"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

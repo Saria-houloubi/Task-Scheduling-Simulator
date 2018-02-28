@@ -265,7 +265,7 @@ namespace Tishreen.ParallelPro.Core
             {
                 Instructions.Add(new InstructionModel(counter++, SelectedFunction, SelectedTargetRegistery, SelectedSourceRegistery01, SelectedSourceRegistery02));
                 EmptyProperties();
-            }, () => { return SelectedFunction != null && !string.IsNullOrWhiteSpace(SelectedTargetRegistery); }).ObservesProperty(() => SelectedFunction).ObservesProperty(() => SelectedTargetRegistery);
+            }, () => { return SelectedFunction != null && !string.IsNullOrWhiteSpace(SelectedTargetRegistery) && !string.IsNullOrEmpty(SelectedSourceRegistery01) && (!string.IsNullOrEmpty(SelectedSourceRegistery02) || SelectedFunction == FunctionsTypes.LD.ToString() || SelectedFunction == FunctionsTypes.SD.ToString()); }).ObservesProperty(() => SelectedFunction).ObservesProperty(() => SelectedTargetRegistery).ObservesProperty(() => SelectedSourceRegistery01).ObservesProperty(() => SelectedSourceRegistery02);
             DeleteItemCommand = new DelegateCommand(() =>
             {
                 ReOrderAfterDelete(SelectedInstruction.ID);

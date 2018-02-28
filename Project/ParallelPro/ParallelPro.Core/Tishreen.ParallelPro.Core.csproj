@@ -72,13 +72,13 @@
     <Compile Include="ViewModels\ScoreBoardingWindowViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GeneralHelpers\GeneralHelpers.csproj">
+      <Project>{8950c3d4-0afa-4309-ad8a-4997f4a6d272}</Project>
+      <Name>GeneralHelpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ThishreenUniversity.ParallelPro.Enums\ThishreenUniversity.ParallelPro.Enums.csproj">
       <Project>{8b39dc27-b702-48e2-91dc-d2a88500c9ba}</Project>
       <Name>ThishreenUniversity.ParallelPro.Enums</Name>
-    </ProjectReference>
-    <ProjectReference Include="E:\Work\Sam Electronics\Simple Accounter Project\Source Code V2.0\SimpleAccounterProject\GeneralHelpers\GeneralHelpers.csproj">
-      <Project>{8950c3d4-0afa-4309-ad8a-4997f4a6d272}</Project>
-      <Name>GeneralHelpers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
