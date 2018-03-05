@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using Tishreen.ParallelPro.Core;
 using TishreenUniversity.ParallelPro.ViewModels;
 
@@ -18,6 +19,9 @@ namespace TishreenUniversity.ParallelPro
             //Let the start up do its work
             base.OnStartup(e);
 
+            AppDomain currentDomain = AppDomain.CurrentDomain;
+            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(MyHandler);
+
             //Setup hte Kernel
             IoC.Setup();
             IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());
@@ -25,6 +29,15 @@ namespace TishreenUniversity.ParallelPro
             this.MainWindow = new MainWindow();
             this.MainWindow.Show();
 
+        }
+
+        void MyHandler(object sender, UnhandledExceptionEventArgs args)
+        {
+            Exception e = (Exception)args.ExceptionObject;
+            MessageBox.Show(e.Message);
+            MessageBox.Show(e.InnerException.Message);
+            MessageBox.Show(e.StackTrace.ToString());
+            // print out the exception stack trace to a log
         }
     }
 }
