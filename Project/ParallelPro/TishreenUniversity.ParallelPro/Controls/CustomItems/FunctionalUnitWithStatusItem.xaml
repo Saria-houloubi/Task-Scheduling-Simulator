@@ -38,11 +38,11 @@
                                 <TextBlock Grid.Column="2"  Style="{StaticResource InstructionItemText}" Text="{Binding IsBusy,Converter={converters:BooleanToYesNoStringValueConverter}}"/>
                                 <TextBlock Grid.Column="3"  TextWrapping="Wrap" Style="{StaticResource InstructionItemText}" Text="{Binding Operation}"/>
                                 <TextBlock Grid.Column="4"  Style="{StaticResource InstructionItemText}" Text="{Binding TargetRegistery}"/>
-                                <TextBlock Grid.Column="5"  Style="{StaticResource InstructionItemText}" Text="{Binding SourceRegistery01}"/>
-                                <TextBlock Grid.Column="6"  Style="{StaticResource InstructionItemText}" Text="{Binding SourceRegistery02}"/>
+                                <TextBlock Grid.Column="5"  Style="{StaticResource InstructionItemText}" Text="{Binding SourceRegistery01}" Visibility="{Binding ElementName=WaitingOperation01 ,Path=Text,Converter={converters:StringToVisiblityValueConverter}}" />
+                                <TextBlock Grid.Column="6"  Style="{StaticResource InstructionItemText}" Text="{Binding SourceRegistery02}" Visibility="{Binding ElementName=WaitingOperation02 ,Path=Text,Converter={converters:StringToVisiblityValueConverter}}"/>
 
-                                <TextBlock Grid.Column="7"  Style="{StaticResource InstructionItemText}" Text="{Binding WaitingOperationForSource01}"/>
-                                <TextBlock Grid.Column="8"  Style="{StaticResource InstructionItemText}" Text="{Binding WaitingOperationForSource02}"/>
+                                <TextBlock Grid.Column="7"  Style="{StaticResource InstructionItemText}" Text="{Binding WaitingOperationForSource01}" x:Name="WaitingOperation01"/>
+                                <TextBlock Grid.Column="8"  Style="{StaticResource InstructionItemText}" Text="{Binding WaitingOperationForSource02}" x:Name="WaitingOperation02"/>
                                 <TextBlock Grid.Column="9"  Style="{StaticResource InstructionItemText}" Text="{Binding IsSource01Ready}"/>
                                 <TextBlock Grid.Column="10"  Style="{StaticResource InstructionItemText}" Text="{Binding IsSource02Ready}"/>
                                 <Border Grid.Column="10" HorizontalAlignment="Right" Width="1" Margin="0 1"  Background="Black"/>

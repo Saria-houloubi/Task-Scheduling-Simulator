@@ -102,7 +102,9 @@
     <Compile Include="Controls\StatusControls\RegisterResultStatusControl.xaml.cs">
       <DependentUpon>RegisterResultStatusControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IValueConverters\BooleanToVisibilityValueConverter.cs" />
     <Compile Include="IValueConverters\BooleanToYesNoStringValueConverter.cs" />
+    <Compile Include="IValueConverters\BooleanToBrushValueConverter.cs" />
     <Compile Include="ViewModels\UIManager.cs" />
     <Compile Include="Windows\ScoreBoardingWindow.xaml.cs">
       <DependentUpon>ScoreBoardingWindow.xaml</DependentUpon>

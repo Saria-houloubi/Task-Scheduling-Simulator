@@ -131,6 +131,10 @@ namespace Tishreen.ParallelPro.Core.Models
         /// The id of the instruction that the functional unit is working with
         /// </summary>
         public int WorkingInstructionID { get; set; }
+        /// <summary>
+        /// A flag represents that the unit just got freed and can not yet take an instruction unitl the next cycle
+        /// </summary>
+        public bool JustFreedUp { get; set; }
         #endregion
 
         #region Constructers

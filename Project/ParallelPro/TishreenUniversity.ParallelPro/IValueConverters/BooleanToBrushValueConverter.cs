@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows;
-
+using System.Windows.Media;
 namespace TishreenUniversity.ParallelPro.IValueConverters
 {
     /// <summary>
     /// Returns the page that that we want
     /// </summary>
-    public class StringToVisiblityValueConverter : BaseValueConverters<StringToVisiblityValueConverter>
+    public class BooleanToBrushValueConverter : BaseValueConverters<BooleanToBrushValueConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (string.IsNullOrEmpty((string)value))
-                return Visibility.Visible;
+            if ((bool)value)
+                return new SolidColorBrush(Colors.Red);
             else
-                return Visibility.Hidden;
+                return new SolidColorBrush(Colors.Green);
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

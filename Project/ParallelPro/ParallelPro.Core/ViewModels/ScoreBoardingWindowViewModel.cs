@@ -189,7 +189,7 @@ namespace Tishreen.ParallelPro.Core.ViewModels
         /// <summary>
         /// ScoreBoard the instruction until it ends
         /// </summary>
-        private void StartScoreBoardTillTheEnd() {  while (!ScoreBoard()) ;}
+        private void StartScoreBoardTillTheEnd() { while (!ScoreBoard()) ; }
         /// <summary>
         /// only one clock cycle for the algorithm
         /// </summary>
@@ -200,6 +200,7 @@ namespace Tishreen.ParallelPro.Core.ViewModels
         private bool ScoreBoard()
         {
             ClockCycle++;
+            RecheckIfRegistersAreFree();
 
             var instructionLenght = Instructions.Count;
             for (int i = 0; i < instructionLenght; i++)
@@ -277,45 +278,51 @@ namespace Tishreen.ParallelPro.Core.ViewModels
                     //Issuee only when functional unit is not busy structural hazard and...
                     if (!unit.IsBusy)
                     {
-
-                        //The target register to write in is free WAW hazard
-                        var registerToTarget = Registers.SingleOrDefault(reg => reg.Name == instruction.TargetRegistery);
-                        if (registerToTarget.Operation == null)
+                        if (!unit.JustFreedUp)
                         {
-                            instruction.IssueCycle = ClockCycle;
-
-                            //Set the register as busy
-                            registerToTarget.Operation = unit.Name;
-
-                            //Set it to busy
-                            unit.IsBusy = true;
-                            //Assign it the operation values
-                            unit.WorkingInstructionID = instruction.ID;
-                            unit.Operation = instruction.Name;
-                            unit.SourceRegistery01 = instruction.SourceRegistery01;
-                            unit.SourceRegistery02 = instruction.SourceRegistery02;
-                            unit.TargetRegistery = instruction.TargetRegistery;
-                            var operationOnSource01 = Registers.SingleOrDefault(reg => reg.Name == instruction.SourceRegistery01);
-                            var operationOnSource02 = Registers.SingleOrDefault(reg => reg.Name == instruction.SourceRegistery02);
-                            if (operationOnSource01 is null || operationOnSource01.Operation == null)
-                                unit.IsSource01Ready = "Yes";
-                            else
+                            //The target register to write in is free WAW hazard
+                            var registerToTarget = Registers.SingleOrDefault(reg => reg.Name == instruction.TargetRegistery);
+                            if (!registerToTarget.IsBusy)
                             {
-                                unit.IsSource01Ready = "No";
-                                unit.WaitingOperationForSource01 = operationOnSource01.Operation;
-                            }
-                            if (operationOnSource02 is null)
-                                unit.IsSource02Ready = "";
-                            else if (operationOnSource02.Operation == null)
-                                unit.IsSource02Ready = "Yes";
-                            else
-                            {
-                                unit.IsSource02Ready = "No";
-                                unit.WaitingOperationForSource02 = operationOnSource02.Operation;
-                            }
+                                instruction.IssueCycle = ClockCycle;
 
-                            return true;
+
+                                //Set it to busy
+                                unit.IsBusy = true;
+                                //Assign it the operation values
+                                unit.WorkingInstructionID = instruction.ID;
+                                unit.Operation = instruction.Name;
+                                unit.SourceRegistery01 = instruction.SourceRegistery01;
+                                unit.SourceRegistery02 = instruction.SourceRegistery02;
+                                unit.TargetRegistery = instruction.TargetRegistery;
+                                var operationOnSource01 = Registers.SingleOrDefault(reg => reg.Name == instruction.SourceRegistery01);
+                                var operationOnSource02 = Registers.SingleOrDefault(reg => reg.Name == instruction.SourceRegistery02);
+                                if (operationOnSource01 is null || operationOnSource01.Operation == null)
+                                    unit.IsSource01Ready = "Yes";
+                                else
+                                {
+                                    unit.IsSource01Ready = "No";
+                                    unit.WaitingOperationForSource01 = operationOnSource01.Operation;
+                                }
+                                if (operationOnSource02 is null)
+                                    unit.IsSource02Ready = "";
+                                else if (operationOnSource02.Operation == null)
+                                    unit.IsSource02Ready = "Yes";
+                                else
+                                {
+                                    unit.IsSource02Ready = "No";
+                                    unit.WaitingOperationForSource02 = operationOnSource02.Operation;
+                                }
+
+                                //Set the register as busy
+                                registerToTarget.Operation = unit.Operation == "LD" ? string.Format("F[{0}]", unit.SourceRegistery01) : string.Format("F[{0}]", unit.Name);
+                                registerToTarget.IsBusy = true;
+                                registerToTarget.WorkingInstructionID = unit.WorkingInstructionID;
+
+                                return true;
+                            }
                         }
+                        unit.JustFreedUp = false;
                     }
                     return false;
                 }
@@ -330,17 +337,18 @@ namespace Tishreen.ParallelPro.Core.ViewModels
         private bool ReadIfApproved(InstructionWithStatusModel instruction)
         {
             //Get the functional unit that the instruction is working on
-            var functionalUnitForTheInstruction = FunctionalUnits.SingleOrDefault(unit => unit.WorkingInstructionID == instruction.ID);
+            var unit = FunctionalUnits.SingleOrDefault(item => item.WorkingInstructionID == instruction.ID);
 
             //If both Sources are ready to be read
-            if (functionalUnitForTheInstruction.IsSource01Ready == "Yes" &&
-                (functionalUnitForTheInstruction.IsSource02Ready == "Yes" || string.IsNullOrEmpty(functionalUnitForTheInstruction.IsSource02Ready)))
+            if (unit.IsSource01Ready == "Yes" &&
+                (unit.IsSource02Ready == "Yes" || string.IsNullOrEmpty(unit.IsSource02Ready)))
             {
+
                 //Read the values and set the clock cycle
                 instruction.ReadCycle = ClockCycle;
 
                 //Set the amount of the clokc cycles
-                functionalUnitForTheInstruction.Time = FunctionClockCycle.SingleOrDefault(function => function.Key.ToString() == functionalUnitForTheInstruction.Operation).Value;
+                unit.Time = FunctionClockCycle.SingleOrDefault(function => function.Key.ToString() == unit.Operation).Value;
                 return true;
             }
             return false;
@@ -370,6 +378,9 @@ namespace Tishreen.ParallelPro.Core.ViewModels
         /// <param name="unit"></param>
         private void ClearUnitFunction(FunctionalUnitWithStatusModel unit)
         {
+            //Free the register up
+            Registers.SingleOrDefault(reg => reg.WorkingInstructionID == unit.WorkingInstructionID).IsBusy = false;
+            unit.JustFreedUp = true;
             unit.Time = null;
             unit.Operation = null;
             unit.IsBusy = false;
@@ -382,9 +393,6 @@ namespace Tishreen.ParallelPro.Core.ViewModels
             unit.WaitingOperationForSource02 = null;
             unit.IsSource01Ready = null;
             unit.IsSource02Ready = null;
-            //Free the register up
-            Registers.SingleOrDefault(reg => reg.Operation == unit.Name).Operation = null;
-            RecheckIfRegistersAreFree();
         }
         /// <summary>
         /// Checks if the register are free so we can start reading 
@@ -396,7 +404,7 @@ namespace Tishreen.ParallelPro.Core.ViewModels
             {
                 if (unit.IsSource01Ready == "No")
                 {
-                    if (Registers.SingleOrDefault(reg => reg.Name == unit.SourceRegistery01).Operation == null)
+                    if (Registers.SingleOrDefault(reg => reg.Name == unit.SourceRegistery01).IsBusy == false)
                     {
                         unit.IsSource01Ready = "Yes";
                         unit.WaitingOperationForSource01 = null;
@@ -404,7 +412,7 @@ namespace Tishreen.ParallelPro.Core.ViewModels
                 }
                 if (unit.IsSource02Ready == "No")
                 {
-                    if (Registers.SingleOrDefault(reg => reg.Name == unit.SourceRegistery02).Operation == null)
+                    if (Registers.SingleOrDefault(reg => reg.Name == unit.SourceRegistery02).IsBusy == false)
                     {
                         unit.IsSource02Ready = "Yes";
                         unit.WaitingOperationForSource01 = null;
