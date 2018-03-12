@@ -60,37 +60,33 @@
             <StackPanel   Grid.Row="2"  MinWidth="400">
                 <!--The Username for the person-->
                 <TextBox
+                    Visibility="{Binding ElementName=checkbox,Path=IsChecked,Converter={converter:BooleanToVisibilityValueConverter},ConverterParameter=true}"
                     x:Name="Username" Margin="5 20"  
                     metro:TextBoxHelper.Watermark="Username"  
                     Foreground="White"/>
                 <!--The password for him-->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
 
-                    <Grid Grid.Column="1" HorizontalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <CheckBox Name="checkbox" IsChecked="False"/>
-                        <TextBlock Text="Student" Grid.Column="2"  VerticalAlignment="Center"/>
-                    </Grid>
-                    <PasswordBox 
-                        Width="300"
-                        Visibility="{Binding ElementName=checkbox,Path=IsChecked,Converter={converter:BooleanToVisibilityValueConverter},ConverterParameter=true}"
-                Style="{StaticResource MetroPasswordBox}" 
-                        Background="Transparent" 
-                        BorderThickness="0 0 0 1" 
-                        Margin="5 20" 
-                        metro:TextBoxHelper.Watermark="Password" 
-                        HorizontalContentAlignment="Center" 
-                        FontSize="{Binding ElementName=Username,Path=FontSize}" 
-                        FontWeight="{Binding ElementName=Username,Path=FontWeight}" 
-                        Foreground="{Binding ElementName=Username,Path=Foreground}"/>
+                <PasswordBox 
+                    x:Name="Password"
+                    Visibility="{Binding ElementName=checkbox,Path=IsChecked,Converter={converter:BooleanToVisibilityValueConverter},ConverterParameter=true}"
+                    Style="{StaticResource MetroPasswordBox}" 
+                    Background="Transparent" 
+                    BorderThickness="0 0 0 1" 
+                    Margin="5 20" 
+                    metro:TextBoxHelper.Watermark="Password" 
+                    HorizontalContentAlignment="Center" 
+                    FontSize="{Binding ElementName=Username,Path=FontSize}" 
+                    FontWeight="{Binding ElementName=Username,Path=FontWeight}" 
+                    Foreground="{Binding ElementName=Username,Path=Foreground}"/>
+                <Grid Grid.Column="1" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Name="checkbox" IsChecked="False"/>
+                    <TextBlock Text="Student" Grid.Column="2"  VerticalAlignment="Center"/>
                 </Grid>
+
                 <Button 
                     Style="{StaticResource MainWindowButtons}" 
                     Tag="Login"

@@ -19,6 +19,8 @@ namespace TishreenUniversity.ParallelPro.IValueConverters
                     return new MainWindowInstructionAndAlgoControl();
                 case ApplicationPages.LoginPage:
                     return new LoginUserControl();
+                case ApplicationPages.AdminSettings:
+                    return new AdminSettingsControl();
                 default:
                     Debugger.Break();
                     return null;

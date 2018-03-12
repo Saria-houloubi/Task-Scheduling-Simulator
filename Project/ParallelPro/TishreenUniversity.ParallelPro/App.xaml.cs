@@ -18,7 +18,6 @@ namespace TishreenUniversity.ParallelPro
         {
             //Let the start up do its work
             base.OnStartup(e);
-
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += new UnhandledExceptionEventHandler(MyHandler);
 

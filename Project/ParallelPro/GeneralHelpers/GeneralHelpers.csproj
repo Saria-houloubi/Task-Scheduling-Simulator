@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="DatabaseHelpers\DatabaseHelpers.cs" />
     <Compile Include="Expressions\ExpressionHelpers.cs" />
+    <Compile Include="PasswordHelpers\LoginPasswordCheck.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

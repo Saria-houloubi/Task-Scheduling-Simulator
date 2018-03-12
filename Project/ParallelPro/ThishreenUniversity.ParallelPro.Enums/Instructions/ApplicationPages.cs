@@ -23,6 +23,9 @@ namespace ThishreenUniversity.ParallelPro.Enums
         /// The scoreboarding algo window
         /// </summary>
         ScoreBoarding = 2,
-
+        /// <summary>
+        /// The admin setting page
+        /// </summary>
+        AdminSettings = 3,
     }
 }

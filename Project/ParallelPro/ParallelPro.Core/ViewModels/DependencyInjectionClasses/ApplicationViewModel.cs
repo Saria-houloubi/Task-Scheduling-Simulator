@@ -11,7 +11,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The current page that will be shown to the user 
         /// </summary>
-        private ApplicationPages _currentPage = ApplicationPages.MainWindow;
+        private ApplicationPages _currentPage = ApplicationPages.LoginPage;
         public ApplicationPages CurrentPage
         {
             get { return _currentPage; }

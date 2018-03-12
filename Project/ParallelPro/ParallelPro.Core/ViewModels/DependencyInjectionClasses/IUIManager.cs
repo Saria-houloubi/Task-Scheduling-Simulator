@@ -16,5 +16,11 @@ namespace Tishreen.ParallelPro.Core
         /// <param name="parameter02"></param>
         void ShowWinodw(ApplicationPages windowType,List<object> parameter = null,object parameter02 = null);
 
+
+        /// <summary>
+        /// Shows the sent content in a messagebox 
+        /// </summary>
+        /// <param name="content"></param>
+        void ShowMessage(string content);
     }
 }

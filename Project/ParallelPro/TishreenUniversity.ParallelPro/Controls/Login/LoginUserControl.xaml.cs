@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeneralHelpers.Password;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,19 @@ namespace TishreenUniversity.ParallelPro.Controls
 
         private void Login(object sender, RoutedEventArgs e)
         {
-            LoginViewModel.LoginCheck("admin", "", UserTypes.admin);
+
+            //Send the password for check
+            var check = LoginViewModel.LoginCheck("admin", Password.Password, Properties.Settings.Default.Password, Properties.Settings.Default.Salt, UserTypes.admin);
+
+            if (!check)
+                MessageBox.Show("Username or Password are not correct\n please check and try again!", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        // var salt = CheckPassword.GenerateSalt(8);
+        //Properties.Settings.Default.Password = Convert.ToBase64String(CheckPassword.GenerateHash(Encoding.UTF8.GetBytes("admin"),salt, 1000));
+        // Properties.Settings.Default.Salt = Convert.ToBase64String(salt);
+        // Properties.Settings.Default.Save();
+
+
     }
 }

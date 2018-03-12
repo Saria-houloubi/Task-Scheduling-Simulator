@@ -14,6 +14,18 @@ namespace Tishreen.ParallelPro.Core
         public static IKernel Kernel { get; private set; } = new StandardKernel();
         #endregion
 
+        #region Short cuts
+
+        /// <summary>
+        /// A short cut for the <see cref="ApplicationViewModel"/>
+        /// </summary>
+        public static ApplicationViewModel Appliation => IoC.Kernel.Get<ApplicationViewModel>();
+        /// <summary>
+        /// A short cut for the ui
+        /// </summary>
+        public static IUIManager UI => IoC.Kernel.Get<IUIManager>();
+        #endregion
+
         #region Construction
         /// <summary>
         /// Sets the binding for all the classes

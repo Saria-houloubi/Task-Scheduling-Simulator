@@ -93,6 +93,9 @@
     <Compile Include="Controls\CustomLists\InstructionsWithStatusList.xaml.cs">
       <DependentUpon>InstructionsWithStatusList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Settings\AdminSettingsControl.xaml.cs">
+      <DependentUpon>AdminSettingsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\StatusControls\FunctionalUnitStatusControl.xaml.cs">
       <DependentUpon>FunctionalUnitStatusControl.xaml</DependentUpon>
     </Compile>
@@ -174,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Main Controls\MainWindowFunctionClockCycles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Settings\AdminSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -325,6 +332,10 @@
     <Resource Include="Images\TishreenLogoSemiTransparent.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GeneralHelpers\GeneralHelpers.csproj">
+      <Project>{8950c3d4-0afa-4309-ad8a-4997f4a6d272}</Project>
+      <Name>GeneralHelpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ParallelPro.Core\Tishreen.ParallelPro.Core.csproj">
       <Project>{ae4e55ba-dc8f-41e4-9c43-912916b78b19}</Project>
       <Name>Tishreen.ParallelPro.Core</Name>

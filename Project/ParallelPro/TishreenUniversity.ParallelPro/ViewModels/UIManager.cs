@@ -14,6 +14,11 @@ namespace TishreenUniversity.ParallelPro.ViewModels
     /// </summary>
     public class UIManager : IUIManager
     {
+        public void ShowMessage(string content)
+        {
+            MessageBox.Show(content);
+        }
+
         public void ShowWinodw(ApplicationPages windowType,List<object> parameter = null,object parameter02 = null)
         {
 
