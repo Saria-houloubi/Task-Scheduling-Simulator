@@ -30,19 +30,20 @@ namespace TishreenUniversity.ParallelPro.Controls
 
         private void Login(object sender, RoutedEventArgs e)
         {
-
+            //when the checkbox is not check means the user is not a student
+            if (!(bool)checkbox.IsChecked && Username.Text.ToLower() != Properties.Settings.Default.AdminUsername)
+            {
+                MessageBox.Show("Username is invalid\n please check and try again!", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             //Send the password for check
-            var check = LoginViewModel.LoginCheck("admin", Password.Password, Properties.Settings.Default.Password, Properties.Settings.Default.Salt, UserTypes.admin);
+            var check = LoginViewModel.LoginCheck(Username.Text, Password.Password, Properties.Settings.Default.Password, Properties.Settings.Default.AdminSalt,(bool)checkbox.IsChecked?UserTypes.student:UserTypes.admin);
 
             if (!check)
-                MessageBox.Show("Username or Password are not correct\n please check and try again!", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Password are is incorrect\n please check and try again!", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        // var salt = CheckPassword.GenerateSalt(8);
-        //Properties.Settings.Default.Password = Convert.ToBase64String(CheckPassword.GenerateHash(Encoding.UTF8.GetBytes("admin"),salt, 1000));
-        // Properties.Settings.Default.Salt = Convert.ToBase64String(salt);
-        // Properties.Settings.Default.Save();
-
+    
 
     }
 }

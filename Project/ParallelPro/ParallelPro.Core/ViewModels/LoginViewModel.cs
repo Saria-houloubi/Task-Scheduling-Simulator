@@ -21,6 +21,14 @@ namespace Tishreen.Tishreen.ParallelPro.Core
         /// <returns></returns>
         public static bool LoginCheck(string username, string inputPasssword, string password, string salt, UserTypes userType)
         {
+            //If there is no username then it is a student
+            if (userType == UserTypes.student)
+            {
+                //Let him enter to main page
+                IoC.Appliation.CurrentPage = ApplicationPages.MainWindow;
+
+                return true;
+            }
             //Convert the salt back to a byte array
             var byteSalt = Convert.FromBase64String(salt);
 

@@ -18,5 +18,14 @@ namespace Tishreen.ParallelPro.Core
             set { SetProperty(ref _currentPage, value); }
         }
 
+        /// <summary>
+        /// If the user is an admin
+        /// </summary>
+        private bool _isAdminMode = false;
+        public bool IsAdminMode
+        {
+            get { return _isAdminMode ; }
+            set { SetProperty(ref _isAdminMode, value); }
+        }
     }
 }

@@ -23,6 +23,7 @@
                 <ResourceDictionary Source="/Styles/Borders.xaml"/>
                 <ResourceDictionary Source="/Styles/Textblocks.xaml"/>
                 <ResourceDictionary Source="/Styles/Textboxes.xaml"/>
+                <ResourceDictionary Source="/Styles/PasswordBoxes.xaml"/>
                 <ResourceDictionary Source="/Styles/Comboboxes.xaml"/>
                 <ResourceDictionary Source="/Styles/Buttons.xaml"/>
                 <ResourceDictionary Source="/Styles/Scrolls.xaml"/>

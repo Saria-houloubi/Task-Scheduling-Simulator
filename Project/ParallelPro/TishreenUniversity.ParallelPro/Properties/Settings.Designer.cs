@@ -38,12 +38,48 @@ namespace TishreenUniversity.ParallelPro.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("salt")]
-        public string Salt {
+        public string AdminSalt {
             get {
-                return ((string)(this["Salt"]));
+                return ((string)(this["AdminSalt"]));
             }
             set {
-                this["Salt"] = value;
+                this["AdminSalt"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Test")]
+        public string TeacherPassword {
+            get {
+                return ((string)(this["TeacherPassword"]));
+            }
+            set {
+                this["TeacherPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("salt")]
+        public string TeacherSalt {
+            get {
+                return ((string)(this["TeacherSalt"]));
+            }
+            set {
+                this["TeacherSalt"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("admin")]
+        public string AdminUsername {
+            get {
+                return ((string)(this["AdminUsername"]));
+            }
+            set {
+                this["AdminUsername"] = value;
             }
         }
     }

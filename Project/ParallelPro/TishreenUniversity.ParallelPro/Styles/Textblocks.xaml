@@ -8,6 +8,7 @@
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
         <Setter Property="Margin" Value="2 10"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
     <Style TargetType="{x:Type TextBlock}"  x:Key="WhiteRegularText">
         <Setter Property="Focusable" Value="False"/>
