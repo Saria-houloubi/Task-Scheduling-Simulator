@@ -7,7 +7,8 @@
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:converter="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
              xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
-             xmlns:icons="clr-namespace:ThishreenUniversity.ParallelPro.Enums;assembly=ThishreenUniversity.ParallelPro.Enums"
+            xmlns:properties="clr-namespace:TishreenUniversity.ParallelPro.Properties"
+                       xmlns:icons="clr-namespace:ThishreenUniversity.ParallelPro.Enums;assembly=ThishreenUniversity.ParallelPro.Enums"
              mc:Ignorable="d" 
              
              >
@@ -83,6 +84,12 @@
                     Style="{StaticResource MainWindowButtons}" 
                     Tag="Login"
                     Click="Login"/>
+                <Button 
+                    Style="{StaticResource MainWindowButtons}" 
+                    Tag="Exam"
+                    Background="Red"
+                    Loaded="ExamButton_Loaded"
+                    />
             </StackPanel>
         </Grid>
 

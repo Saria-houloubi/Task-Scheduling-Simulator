@@ -43,7 +43,20 @@ namespace TishreenUniversity.ParallelPro.Controls
                 MessageBox.Show("Password are is incorrect\n please check and try again!", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-    
+        /// <summary>
+        /// Is called once the exam button is loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExamButton_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Get the send
+            var button = (sender as Button);
 
+            if (Properties.Settings.Default.IsExamMode)
+                button.Visibility = Visibility.Visible;
+            else
+                button.Visibility = Visibility.Collapsed;
+        }
     }
 }

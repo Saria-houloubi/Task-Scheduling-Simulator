@@ -1,4 +1,5 @@
 ﻿using GeneralHelpers.Password;
+using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -120,6 +122,36 @@ namespace TishreenUniversity.ParallelPro.Controls
                 var message = string.Format("Success!\nNew {0} password = {1}",name,password.Password);
                 MessageBox.Show(message, "Saved Passwords!", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
+        }
+
+        /// <summary>
+        /// The event that will be fired when the admin checks/Unchecks exam mode
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExamMode_Checked_Unchecked(object sender, RoutedEventArgs e)
+        {
+            //Get the sender
+            var check = (sender as ToggleSwitch);
+
+            //Set the property to its value
+            Properties.Settings.Default.IsExamMode = (bool)check.IsChecked;
+
+            //Save the update
+            Properties.Settings.Default.Save();
+
+        }
+        /// <summary>
+        /// Cal
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExamMode_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Get the sender
+            var check = (sender as ToggleSwitch);
+
+            check.IsChecked = Properties.Settings.Default.IsExamMode;
         }
     }
 }

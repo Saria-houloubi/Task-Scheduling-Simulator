@@ -82,5 +82,17 @@ namespace TishreenUniversity.ParallelPro.Properties {
                 this["AdminUsername"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsExamMode {
+            get {
+                return ((bool)(this["IsExamMode"]));
+            }
+            set {
+                this["IsExamMode"] = value;
+            }
+        }
     }
 }
