@@ -66,7 +66,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\DependencyInjectionClasses\IUIManager.cs" />
     <Compile Include="ViewModels\DependencyInjectionClasses\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />

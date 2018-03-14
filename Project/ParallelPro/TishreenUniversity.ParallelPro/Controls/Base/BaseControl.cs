@@ -117,7 +117,7 @@ namespace TishreenUniversity.ParallelPro
         #endregion
 
         #region Public Properties
-        
+
         /// <summary>
         /// The type of the aniamte in for the controls
         /// </summary>
@@ -198,19 +198,19 @@ namespace TishreenUniversity.ParallelPro
         /// <returns></returns>
         public async Task AnimateOutAsync()
         {
-            if (this.AnimateOutAnimationType == AnimationTypes.None)
-                return;
+            if (this.AnimateOutAnimationType != AnimationTypes.None)
+                switch (this.AnimateOutAnimationType)
+                {
+                    case AnimationTypes.SlideOutFromLeft:
+                        // Start the animation 
+                        await this.SlideOutToLeftAsync(this.Secounds);
+                        break;
+                    case AnimationTypes.FadeOut:
+                        await this.FadeOutAsync(this.Secounds);
+                        break;
+                }
+            this.Visibility = Visibility.Collapsed;
 
-            switch (this.AnimateOutAnimationType)
-            {
-                case AnimationTypes.SlideOutFromLeft:
-                    // Start the animation 
-                    await this.SlideOutToLeftAsync(this.Secounds);
-                    break;
-                case AnimationTypes.FadeOut:
-                    await this.FadeOutAsync(this.Secounds);
-                    break;
-            }
         }
         #endregion
     }
