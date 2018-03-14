@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                       xmlns:core="clr-namespace:Tishreen.ParallelPro.Core;assembly=Tishreen.ParallelPro.Core"
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
+                       xmlns:converters="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
              mc:Ignorable="d" 
               d:DesignWidth="500">
     <Grid Margin="10"  >
@@ -41,7 +43,9 @@
        
         <!--Enter Exam Mode-->
         <TextBlock Text="Enter Exam Mode : " Grid.Row="3"/>
-        <metro:ToggleSwitch Grid.Column="1" Loaded="ExamMode_Loaded" Unchecked="ExamMode_Checked_Unchecked" Checked="ExamMode_Checked_Unchecked" Grid.Row="3" HorizontalAlignment="Left" ThumbIndicatorBrush="White" OnSwitchBrush="Red"/>
+        <metro:ToggleSwitch Grid.Column="1" 
+                 IsChecked="{Binding Source={x:Static local:ViewModelLocator.Instance},Path=ApplicationViewModel.IsExamMode}"
+                               Grid.Row="3" HorizontalAlignment="Left" ThumbIndicatorBrush="White" OnSwitchBrush="Red"/>
 
         <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" Grid.Row="4" HorizontalAlignment="Right">
             <Button Grid.Row="3"  Tag="Open program" Click="OpenProgram_Click" Style="{StaticResource RegularButton}"/>

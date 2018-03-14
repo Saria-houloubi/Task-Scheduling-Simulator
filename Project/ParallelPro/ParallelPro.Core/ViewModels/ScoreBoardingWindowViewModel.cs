@@ -6,7 +6,7 @@ using System.Linq;
 using ThishreenUniversity.ParallelPro.Enums;
 using Tishreen.ParallelPro.Core.Models;
 
-namespace Tishreen.ParallelPro.Core.ViewModels
+namespace Tishreen.ParallelPro.Core
 {
     /// <summary>
     /// The view model and the logic for the scoreboarding alog

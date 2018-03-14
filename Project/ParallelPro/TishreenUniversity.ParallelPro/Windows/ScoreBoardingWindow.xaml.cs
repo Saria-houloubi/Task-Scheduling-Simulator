@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ThishreenUniversity.ParallelPro.Enums;
-using Tishreen.ParallelPro.Core.ViewModels;
+using Tishreen.ParallelPro.Core;
 
 namespace TishreenUniversity.ParallelPro.Windows
 {

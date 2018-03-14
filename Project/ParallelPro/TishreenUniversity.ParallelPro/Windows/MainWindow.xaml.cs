@@ -27,19 +27,6 @@ namespace TishreenUniversity.ParallelPro
 
         }
 
-        private void ExamModeTitle_Loaded(object sender, RoutedEventArgs e)
-        {
-            //If we are in exam mode
-            if (Properties.Settings.Default.IsExamMode)
-            {
-                //Show the exam title
-                ExamModeTitle.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                //Hide the exam title
-                ExamModeTitle.Visibility = Visibility.Collapsed; 
-            }
-        }
+      
     }
 }

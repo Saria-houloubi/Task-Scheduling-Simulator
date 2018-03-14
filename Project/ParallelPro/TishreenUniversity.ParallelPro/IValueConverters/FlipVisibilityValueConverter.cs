@@ -11,10 +11,10 @@ namespace TishreenUniversity.ParallelPro.IValueConverters
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((Visibility)value == Visibility.Hidden)
+            if ((Visibility)value == Visibility.Collapsed)
                 return Visibility.Visible;
             else
-                return Visibility.Hidden;
+                return Visibility.Collapsed;
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

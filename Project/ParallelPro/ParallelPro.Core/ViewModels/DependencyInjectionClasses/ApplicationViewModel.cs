@@ -19,13 +19,13 @@ namespace Tishreen.ParallelPro.Core
         }
 
         /// <summary>
-        /// If the user is an admin
+        /// Is exam mode on
         /// </summary>
-        private bool _isAdminMode = false;
-        public bool IsAdminMode
+        private bool _isExamMode = false;
+        public bool IsExamMode
         {
-            get { return _isAdminMode ; }
-            set { SetProperty(ref _isAdminMode, value); }
+            get { return _isExamMode ; }
+            set { SetProperty(ref _isExamMode, value); }
         }
     }
 }

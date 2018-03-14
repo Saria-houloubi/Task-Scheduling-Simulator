@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:converter="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
+             xmlns:converters="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
              xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
             xmlns:properties="clr-namespace:TishreenUniversity.ParallelPro.Properties"
                        xmlns:icons="clr-namespace:ThishreenUniversity.ParallelPro.Enums;assembly=ThishreenUniversity.ParallelPro.Enums"
@@ -37,7 +37,7 @@
                 HorizontalAlignment="Center" 
                  Fill="White" 
                 Name="Icon" 
-                Tag="{x:Static icons:ApplicationIcons.LoginUserIcon}" Data="{Binding  RelativeSource={RelativeSource Self},Path=Tag,Converter={converter:ApplicationIconValueConverter}}">
+                Tag="{x:Static icons:ApplicationIcons.LoginUserIcon}" Data="{Binding  RelativeSource={RelativeSource Self},Path=Tag,Converter={converters:ApplicationIconValueConverter}}">
 
                 <Path.Triggers>
                     <EventTrigger RoutedEvent="MouseEnter">
@@ -61,17 +61,17 @@
             <StackPanel   Grid.Row="2"  MinWidth="400">
                 <!--The Username for the person-->
                 <TextBox
-                    Visibility="{Binding ElementName=checkbox,Path=IsChecked,Converter={converter:BooleanToVisibilityValueConverter},ConverterParameter=true}"
+                    Visibility="{Binding ElementName=checkbox,Path=IsChecked,Converter={converters:BooleanToVisibilityValueConverter},ConverterParameter=true}"
                     x:Name="Username" Margin="5 20"  
                     metro:TextBoxHelper.Watermark="Username"  
                     Foreground="White"/>
                 <!--The password for him-->
                 <PasswordBox 
                     x:Name="Password"
-                    Visibility="{Binding ElementName=checkbox,Path=IsChecked,Converter={converter:BooleanToVisibilityValueConverter},ConverterParameter=true}"
+                    Visibility="{Binding ElementName=checkbox,Path=IsChecked,Converter={converters:BooleanToVisibilityValueConverter},ConverterParameter=true}"
                     Style="{StaticResource RegularPasswordBox}" 
                     />
-                <Grid Grid.Column="1" HorizontalAlignment="Center" x:Name="studentCheck">
+                <Grid Grid.Column="1" HorizontalAlignment="Center" x:Name="studentCheck" Visibility="{Binding ElementName=ExamMode,Path=Visibility,Converter={converters:FlipVisibilityValueConverter}}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -85,10 +85,11 @@
                     Tag="Login"
                     Click="Login"/>
                 <Button 
+                    x:Name="ExamMode"
                     Style="{StaticResource MainWindowButtons}" 
                     Tag="Exam"
+                    Visibility="{Binding Source={x:Static local:ViewModelLocator.Instance},Path=ApplicationViewModel.IsExamMode,Converter={converters:BooleanToVisibilityValueConverter}}"
                     Background="Red"
-                    Loaded="ExamButton_Loaded" 
                     />
             </StackPanel>
         </Grid>
