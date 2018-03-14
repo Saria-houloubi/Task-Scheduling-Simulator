@@ -71,7 +71,7 @@
                     Visibility="{Binding ElementName=checkbox,Path=IsChecked,Converter={converter:BooleanToVisibilityValueConverter},ConverterParameter=true}"
                     Style="{StaticResource RegularPasswordBox}" 
                     />
-                <Grid Grid.Column="1" HorizontalAlignment="Center">
+                <Grid Grid.Column="1" HorizontalAlignment="Center" x:Name="studentCheck">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -88,7 +88,7 @@
                     Style="{StaticResource MainWindowButtons}" 
                     Tag="Exam"
                     Background="Red"
-                    Loaded="ExamButton_Loaded"
+                    Loaded="ExamButton_Loaded" 
                     />
             </StackPanel>
         </Grid>

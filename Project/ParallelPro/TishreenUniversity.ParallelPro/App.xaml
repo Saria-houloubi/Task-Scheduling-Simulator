@@ -32,6 +32,8 @@
                     
 
             </ResourceDictionary.MergedDictionaries>
+
+            <SolidColorBrush x:Key="MainBorderBackground"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

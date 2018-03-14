@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 using Tishreen.ParallelPro.Core;
 using TishreenUniversity.ParallelPro.ViewModels;
 
@@ -24,6 +25,9 @@ namespace TishreenUniversity.ParallelPro
             //Setup hte Kernel
             IoC.Setup();
             IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());
+
+            //Set the main border background bruhs colore
+            Application.Current.Resources["MainBorderBackground"] = new SolidColorBrush(Colors.Black);
 
             this.MainWindow = new MainWindow();
             this.MainWindow.Show();

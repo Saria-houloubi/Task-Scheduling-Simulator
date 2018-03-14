@@ -6,9 +6,13 @@
         xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
         xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
         xmlns:converters="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
-        mc:Ignorable="d" WindowState="Maximized"
+        mc:Ignorable="d" WindowState="Maximized" 
         Title="النافذة الرئيسية" >
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
     <!--Setting the background to a looping video-->
     <Grid.Background>
         <VisualBrush>
@@ -36,14 +40,18 @@
             </VisualBrush.Visual>
         </VisualBrush>
     </Grid.Background>
+
+        <Border x:Name="ExamModeTitle" Grid.Row="0" Background="Red" CornerRadius=" 0 0 5 5" Panel.ZIndex="-2" Margin="0 -2 0 0" BorderThickness="1">
+            <TextBlock Text="Exam Mode" HorizontalAlignment="Center"/>
+        </Border>
         <!--Background blure effect black-->
-        <Border  Margin="0 " Background="#CE000000" >
+        <Border Grid.Row="1"  Margin="0 " Background="{DynamicResource MainBorderBackground}" Opacity="0.75" >
             <Border.Effect>
                 <BlurEffect Radius="10" KernelType="Gaussian"/>
             </Border.Effect>
         </Border>
 
-        <local:HostUserControl x:Name="Host" CurrentControl="{Binding Source={x:Static local:ViewModelLocator.Instance},Path= ApplicationViewModel.CurrentPage, Converter={converters:ApplicationPageValueConverter}}"  />
+        <local:HostUserControl Loaded="ExamModeTitle_Loaded" Grid.Row="1" x:Name="Host" CurrentControl="{Binding Source={x:Static local:ViewModelLocator.Instance},Path= ApplicationViewModel.CurrentPage, Converter={converters:ApplicationPageValueConverter}}"  />
 
     </Grid>
 </Window>
