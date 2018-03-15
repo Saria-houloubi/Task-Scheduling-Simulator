@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ThishreenUniversity.ParallelPro.Enums;
+using Tishreen.ParallelPro.Core;
 using Tishreen.Tishreen.ParallelPro.Core;
 
 namespace TishreenUniversity.ParallelPro.Controls
@@ -42,5 +43,13 @@ namespace TishreenUniversity.ParallelPro.Controls
             if (!check)
                 MessageBox.Show("Password are is incorrect\n please check and try again!", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        /// <summary>
+        /// The event when the exam button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExamMode_Click(object sender, RoutedEventArgs e) => IoC.Appliation.CurrentPage = ApplicationPages.ExamStudentInformation;
+        
     }
 }

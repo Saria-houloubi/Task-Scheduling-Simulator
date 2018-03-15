@@ -27,5 +27,9 @@ namespace ThishreenUniversity.ParallelPro.Enums
         /// The admin setting page
         /// </summary>
         AdminSettings = 3,
+        /// <summary>
+        /// The student information page before the exam
+        /// </summary>
+        ExamStudentInformation = 4,
     }
 }

@@ -69,6 +69,9 @@
     <Compile Include="Controls\CustomHoverOverControls\ChooseFunctionalUnitsScoreBoard.xaml.cs">
       <DependentUpon>ChooseFunctionalUnitsScoreBoard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CustomHoverOverControls\StudentInformationAtExamControl.xaml.cs">
+      <DependentUpon>StudentInformationAtExamControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CustomItems\FunctionalUnitWithStatusItem.xaml.cs">
       <DependentUpon>FunctionalUnitWithStatusItem.xaml</DependentUpon>
     </Compile>
@@ -113,6 +116,10 @@
       <DependentUpon>ScoreBoardingWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\CustomHoverOverControls\ChooseFunctionalUnitsScoreBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CustomHoverOverControls\StudentInformationAtExamControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

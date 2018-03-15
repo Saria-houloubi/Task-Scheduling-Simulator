@@ -21,7 +21,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// Is exam mode on
         /// </summary>
-        private bool _isExamMode = false;
+        private bool _isExamMode = true;
         public bool IsExamMode
         {
             get { return _isExamMode ; }

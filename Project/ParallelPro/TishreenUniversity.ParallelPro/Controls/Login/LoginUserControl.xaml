@@ -89,7 +89,7 @@
                     Style="{StaticResource MainWindowButtons}" 
                     Tag="Exam"
                     Visibility="{Binding Source={x:Static local:ViewModelLocator.Instance},Path=ApplicationViewModel.IsExamMode,Converter={converters:BooleanToVisibilityValueConverter}}"
-                    Background="Red"
+                    Background="Red" Click="ExamMode_Click"
                     />
             </StackPanel>
         </Grid>

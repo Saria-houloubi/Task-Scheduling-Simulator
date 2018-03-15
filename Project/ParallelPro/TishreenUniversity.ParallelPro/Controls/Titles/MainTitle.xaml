@@ -30,7 +30,7 @@
             </Border>
 
         </Grid>
-        <TextBlock FontWeight="Bold" Margin="12 -10 0 0" Grid.Row="1" FontSize="{StaticResource FontSizeLarg}">
+        <TextBlock FontWeight="Bold" Margin="10 -16 0 0" Grid.Row="1" FontSize="{StaticResource FontSizeLarg}">
             <Run Foreground="{StaticResource DarkBlueBrush}" FontSize="{StaticResource FontSizeLarg}">A</Run><Run Foreground="White">rchitecture</Run> 
         </TextBlock>
         <TextBlock Grid.Row="2" Margin="24 -5 0 0">

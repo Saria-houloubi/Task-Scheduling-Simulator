@@ -21,6 +21,8 @@ namespace TishreenUniversity.ParallelPro.IValueConverters
                     return new LoginUserControl();
                 case ApplicationPages.AdminSettings:
                     return new AdminSettingsControl();
+                case ApplicationPages.ExamStudentInformation:
+                    return new StudentInformationAtExamControl();
                 default:
                     Debugger.Break();
                     return null;
