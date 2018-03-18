@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:converters="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
         <Border Background="#001020" Visibility="{Binding ElementName=CF,Path=Visibility}">
             <Border.Effect>
@@ -28,6 +29,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Load/Store Units = " Style="{StaticResource DarkText}" />
@@ -41,8 +43,42 @@
                 <metro:NumericUpDown Value="{Binding NumberOfAddUnits}" Grid.Column="1" VerticalAlignment="Center"  Grid.Row="1" Minimum="1"  Maximum="5" HorizontalAlignment="Left"/>
                 <metro:NumericUpDown Value="{Binding NumberOfMultiplyUnits}" Grid.Column="1" VerticalAlignment="Center"  Grid.Row="2" Minimum="1" Maximum="5" HorizontalAlignment="Left"/>
                 <metro:NumericUpDown Value="{Binding NumberOfDivideUnits}" Grid.Column="1" VerticalAlignment="Center"  Grid.Row="3" Minimum="1" Maximum="5" HorizontalAlignment="Left"/>
+                <!--#region Exam Mode Settings-->
+                <Border Grid.Row="4" Grid.ColumnSpan="2"
+                         BorderThickness="2"
+                    BorderBrush="Red"
+                    CornerRadius="5"
+                   >
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15"/>
+                    </Border.Effect>
+                </Border>
+                <Border
+                    Visibility="{Binding Source={x:Static local:ViewModelLocator.ApplicationViewModel},Path=IsExamMode,Converter={converters:BooleanToVisibilityValueConverter}}"
+                    Grid.Row="4" Grid.ColumnSpan="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
 
-                <Button Grid.Row="4"
+                        <Border Grid.ColumnSpan="2" BorderBrush="Red" BorderThickness="0 0 0 2">
+                            <TextBlock
+                            Text="Exam Settings" Style="{StaticResource DarkText}" HorizontalAlignment="Center" Grid.ColumnSpan="2"/>
+                        </Border>
+                        <TextBlock Text="To Clock Cycle = " Grid.Row="1"  Style="{StaticResource DarkText}"/>
+                        <TextBox Grid.Row="1" Grid.Column="1"/>
+
+                    </Grid>
+                </Border>
+                <!--#endregion-->
+
+                <Button Grid.Row="5"
                         Grid.ColumnSpan="2" 
                         Style="{StaticResource BaseIconButton}"   
                         Tag="{StaticResource Check_Circle}" 

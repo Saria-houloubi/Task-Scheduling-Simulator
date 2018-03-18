@@ -62,8 +62,6 @@ namespace Tishreen.ParallelPro.Core
         public DelegateCommand EnterExamCommand { get; set; }
         #endregion
 
-
-
         #region Constructer
         /// <summary>
         /// Default Constructer
@@ -75,12 +73,19 @@ namespace Tishreen.ParallelPro.Core
             //Create Commands
             EnterExamCommand = new DelegateCommand(
                 //Exceute
-                () => 
-                IoC.Appliation.CurrentPage = ApplicationPages.MainWindow,
+                () =>
+                {
+                    //Set the student information
+                    StudentExamInformationAndMarks.Name = this.Name;
+                    StudentExamInformationAndMarks.Number = this.Number;
+                    StudentExamInformationAndMarks.ClassTime = this.SelectedClassTime;
+                    StudentExamInformationAndMarks.StartTime = DateTime.Now;
+                    IoC.Appliation.CurrentPage = ApplicationPages.MainWindow;
+                },
                 //Canexecute
-                () => 
+                () =>
                 !string.IsNullOrEmpty(Name) && Number != null)
-            .ObservesProperty(()=>Name).ObservesProperty(()=>Number);
+            .ObservesProperty(() => Name).ObservesProperty(() => Number);
         }
         #endregion
 

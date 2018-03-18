@@ -39,7 +39,7 @@
         <TextBlock Grid.Column="10"  Style="{StaticResource DarkHeader}" ><Run>Fk? R</Run><Run Style="{StaticResource SmallNumericText}">k</Run></TextBlock>
 
         <!--Separater Border-->
-        <Border Grid.ColumnSpan="10"  Margin="0 0 0 -2" BorderThickness="0 0 0 1 " >
+        <Border Grid.ColumnSpan="11"  Margin="0 0 0 -2" BorderThickness="0 0 0 1" >
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0.0,0.0" EndPoint="1.0 ,0.0">
                     <GradientStop Offset="0" Color="White"/>
