@@ -103,8 +103,8 @@ namespace Tishreen.ParallelPro.Core.Models
         /// <summary>
         /// A flag shows if the Source01 is ready or not
         /// </summary>
-        private string _isSource01Ready;
-        public string IsSource01Ready
+        private bool _isSource01Ready;
+        public bool IsSource01Ready
         {
             get { return _isSource01Ready; }
             set { SetProperty(ref _isSource01Ready, value); }
@@ -112,8 +112,8 @@ namespace Tishreen.ParallelPro.Core.Models
         /// <summary>
         /// A flag shows if the Source02 is ready or not
         /// </summary>
-        private string _isSource02Ready;
-        public string IsSource02Ready
+        private bool _isSource02Ready;
+        public bool IsSource02Ready
         {
             get { return _isSource02Ready; }
             set { SetProperty(ref _isSource02Ready, value); }

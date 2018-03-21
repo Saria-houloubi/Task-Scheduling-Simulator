@@ -4,12 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
-             xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
-         xmlns:design="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Design;assembly=Tishreen.ParallelPro.Core"
+             xmlns:converters="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
+            xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
+             xmlns:design="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Design;assembly=Tishreen.ParallelPro.Core"
                        mc:Ignorable="d" x:Name="host"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid d:DataContext="{x:Static design:RegisterResultListDesign.Instance}">
-         <ListView
+    <Grid>
+        <Grid d:DataContext="{x:Static design:RegisterResultListDesign.Instance}">
+            <ListView
               Background="Transparent" BorderThickness="0" 
                 SelectedItem="{Binding SelectedInstruction}"
                 ItemsSource="{Binding Registers,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -31,5 +33,10 @@
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
+        </Grid>
+        <!--Overlay border to stop user from editing-->
+        <Border Background="Transparent" Margin="0 10 0 17" Visibility="{Binding ElementName=host,Path=CanStudentEdit,Converter={converters:BooleanToVisibilityValueConverter},ConverterParameter=True}"/>
     </Grid>
+
+
 </local:BaseUserControl>

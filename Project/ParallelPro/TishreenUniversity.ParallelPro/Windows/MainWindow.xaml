@@ -45,7 +45,7 @@
         <Border  x:Name="ExamModeTitle"
                  Visibility="{Binding Source={x:Static local:ViewModelLocator.Instance},Path=ApplicationViewModel.IsExamMode,Converter={converters:BooleanToVisibilityValueConverter}}"
                  Grid.Row="0" Background="Red" CornerRadius=" 0 0 5 5" Panel.ZIndex="-2" Margin="0 -2 0 0" BorderThickness="1">
-            <TextBlock Text="Exam Mode" HorizontalAlignment="Center"/>
+            <TextBlock Text="Exam Mode" Style="{StaticResource WhiteRegularText}" HorizontalAlignment="Center"/>
         </Border>
         <!--Background blure effect black-->
         <Border Grid.Row="1"  Margin="0 " Background="{DynamicResource MainBorderBackground}" Opacity="0.75" >

@@ -29,8 +29,8 @@ namespace Tishreen.ParallelPro.Core.ViewModels.Design
             this.SourceRegistery02 = "R1";
             this.WaitingOperationForSource01 = null;
             this.WaitingOperationForSource02 = null;
-            this.IsSource01Ready = null;
-            this.IsSource02Ready=  null;
+            this.IsSource01Ready = false;
+            this.IsSource02Ready=  false;
         }
     }
 }

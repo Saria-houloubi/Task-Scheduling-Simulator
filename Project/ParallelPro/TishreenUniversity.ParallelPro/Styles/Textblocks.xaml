@@ -4,18 +4,21 @@
 
     <Style TargetType="{x:Type TextBlock}" >
         <Setter Property="Focusable" Value="False"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
         <Setter Property="Margin" Value="2 10"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
+    
     <Style TargetType="{x:Type TextBlock}"  x:Key="WhiteRegularText">
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
         <Setter Property="Margin" Value="2 10"/>
+        <Setter Property="Margin" Value="2 10"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
     <Style TargetType="{x:Type TextBlock}" x:Key="DarkText" BasedOn="{StaticResource WhiteRegularText}">
@@ -45,7 +48,7 @@
         <Setter Property="VerticalAlignment" Value="Top"/>
     </Style>
 
-    <Style TargetType="{x:Type TextBlock}" x:Key="InstructionItemText" BasedOn="{StaticResource HeaderText}">
+    <Style TargetType="{x:Type TextBlock}" x:Key="InstructionItemTextBlock" BasedOn="{StaticResource HeaderText}">
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>

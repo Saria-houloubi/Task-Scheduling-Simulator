@@ -25,17 +25,17 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" HorizontalAlignment="Left"  Style="{StaticResource InstructionItemText}" Text="{Binding Name}"/>
-                            <TextBlock Grid.Column="1"  Style="{StaticResource InstructionItemText}" Text="{Binding TargetRegistery}"/>
-                            <TextBlock Grid.Column="2"  Style="{StaticResource InstructionItemText}" Text="{Binding SourceRegistery01}"/>
-                            <TextBlock Grid.Column="3"  Style="{StaticResource InstructionItemText}" Text="{Binding SourceRegistery02}"/>
+                            <TextBlock Grid.Column="0" HorizontalAlignment="Left"  Style="{StaticResource InstructionItemTextBlock}" Text="{Binding Name}"/>
+                            <TextBlock Grid.Column="1"  Style="{StaticResource InstructionItemTextBlock}" Text="{Binding TargetRegistery}"/>
+                            <TextBlock Grid.Column="2"  Style="{StaticResource InstructionItemTextBlock}" Text="{Binding SourceRegistery01}"/>
+                            <TextBlock Grid.Column="3"  Style="{StaticResource InstructionItemTextBlock}" Text="{Binding SourceRegistery02}"/>
                             <!--Separter Borader-->
                             <Border Grid.Column="4"  BorderThickness="1 0 0 0" BorderBrush="Black" Margin="0 1" />
 
-                            <TextBlock Grid.Column="4"  Style="{StaticResource InstructionItemText}" Text="{Binding IssueCycle}"/>
-                            <TextBlock Grid.Column="5"  Style="{StaticResource InstructionItemText}" Text="{Binding ReadCycle}"/>
-                            <TextBlock Grid.Column="6"  Style="{StaticResource InstructionItemText}" Text="{Binding ExecuteCompletedCycle}"/>
-                            <TextBlock Grid.Column="7"  Style="{StaticResource InstructionItemText}" Text="{Binding WriteBackCycle}"/>
+                            <TextBox Grid.Column="4"  Style="{StaticResource InstructionItemTextBox}" Text="{Binding IssueCycle}"/>
+                            <TextBox Grid.Column="5"  Style="{StaticResource InstructionItemTextBox}" Text="{Binding ReadCycle}"/>
+                            <TextBox Grid.Column="6"  Style="{StaticResource InstructionItemTextBox}" Text="{Binding ExecuteCompletedCycle}"/>
+                            <TextBox Grid.Column="7"  Style="{StaticResource InstructionItemTextBox}" Text="{Binding WriteBackCycle}"/>
 
                         </Grid>
 

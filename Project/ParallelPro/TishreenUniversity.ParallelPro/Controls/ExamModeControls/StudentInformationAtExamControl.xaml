@@ -31,11 +31,11 @@
                        Text="Please provide the correct values any wrong or invalid information the student mark will be Zero!!"/>
         </StackPanel>
 
-        <TextBlock Text="Name : " Grid.Row="1"/>
-        <TextBlock Text="University No. : " Grid.Row="2"/>
-        <TextBlock Text="Lab group time : " Grid.Row="3"/>
+        <TextBlock Style="{StaticResource WhiteRegularText}" Text="Name : " Grid.Row="1"/>
+        <TextBlock Style="{StaticResource WhiteRegularText}" Text="University No. : " Grid.Row="2"/>
+        <TextBlock Style="{StaticResource WhiteRegularText}" Text="Lab group time : " Grid.Row="3"/>
 
-        <TextBox  Grid.Column="1" Grid.Row="1" metro:TextBoxHelper.Watermark="...My Name..." Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox  Grid.Column="1" Grid.Row="1" metro:TextBoxHelper.Watermark="...Saria Houloubi..." Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox Grid.Column="1" Grid.Row="2" metro:TextBoxHelper.Watermark="...2479..." Text="{Binding Number,UpdateSourceTrigger=PropertyChanged}"/>
         <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding ClassesTime}" SelectedItem="{Binding SelectedClassTime}"/>
 

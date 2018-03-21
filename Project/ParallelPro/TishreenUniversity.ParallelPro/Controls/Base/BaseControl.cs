@@ -114,6 +114,30 @@ namespace TishreenUniversity.ParallelPro
                 Task task = control.FadeOutAsync();
             }
         }
+
+
+        /// <summary>
+        /// Property to hold if the student can edit on the values
+        /// </summary>
+        public bool CanStudentEdit
+        {
+            get { return (bool)GetValue(CanStudentEditProperty); }
+            set { SetValue(CanStudentEditProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CanStudentEdit.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CanStudentEditProperty =
+            DependencyProperty.Register("CanStudentEdit", typeof(bool), typeof(BaseUserControl), new UIPropertyMetadata(default(bool), OnCanStudentEditPropertyChange));
+
+        /// <summary>
+        /// A function is called when the property is changed
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="e"></param>
+        private static void OnCanStudentEditPropertyChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+        }
+
         #endregion
 
         #region Public Properties

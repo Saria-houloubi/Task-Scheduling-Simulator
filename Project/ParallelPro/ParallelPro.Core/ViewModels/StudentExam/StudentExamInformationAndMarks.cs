@@ -31,8 +31,8 @@ namespace Tishreen.ParallelPro.Core
         public static DateTime EndTime { get; set; }
         /// <summary>
         /// The student exam marks
-        /// ex :    1       ;      4       ;   5  ; 10
-        /// means first exam; Clock Cycles ; Mark ; Fullmark
+        /// ex :    1       ;      4       ;   5  ; 10         /
+        /// means first exam; Clock Cycles ; Mark ; Fullmark   end
         /// </summary>
         public static List<string> ExamMarks { get; set; }
         #endregion

@@ -27,6 +27,9 @@ namespace TishreenUniversity.ParallelPro.Controls
         public LoginUserControl()
         {
             InitializeComponent();
+
+            //Set the exam mode status
+            IoC.Appliation.IsExamMode = Properties.Settings.Default.IsExamMode;
         }
 
         private void Login(object sender, RoutedEventArgs e)

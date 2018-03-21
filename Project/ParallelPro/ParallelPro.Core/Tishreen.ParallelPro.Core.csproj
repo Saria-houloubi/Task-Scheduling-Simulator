@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtensionMethods\ExtensionMethods.cs" />
     <Compile Include="Interfaces\IHavePassword.cs" />
     <Compile Include="IoC\IoC.cs" />
     <Compile Include="Models\Base\BaseModel.cs" />

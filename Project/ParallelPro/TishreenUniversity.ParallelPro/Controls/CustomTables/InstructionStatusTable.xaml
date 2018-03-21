@@ -44,7 +44,7 @@
         </Border>
 
         <!--Instruction and there status-->
-        <controls:InstructionsWithStatusList Grid.Row="1" d:DataContext="{x:Static Design:InstructionWithStatusListDesign.Instance}" Grid.ColumnSpan="8"/>
+        <controls:InstructionsWithStatusList CanStudentEdit="{Binding Source={x:Static local:ViewModelLocator.ApplicationViewModel},Path=IsExamMode}"  Grid.Row="1" d:DataContext="{x:Static Design:InstructionWithStatusListDesign.Instance}" Grid.ColumnSpan="8"/>
 
     </Grid>
 </local:BaseUserControl>

@@ -4,12 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:converters="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
              xmlns:Design="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Design;assembly=Tishreen.ParallelPro.Core"
                        mc:Ignorable="d"  
              d:DesignHeight="50" d:DesignWidth="500">
     <UserControl.Resources>
         <Style TargetType="{x:Type ContentControl}" x:Key="ContentStyle">
+            <Setter Property="Background" Value="Red"/>
             <Setter Property="Focusable" Value="False"/>
             <Setter Property="Template" >
                 <Setter.Value>
@@ -17,34 +19,34 @@
                         <Border  x:Name="border" Background="Transparent" BorderThickness="0 0 0 1" BorderBrush="Black">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0"  Style="{StaticResource InstructionItemText}" Text="{Binding Time}"/>
-                                <TextBlock Grid.Column="1" TextWrapping="Wrap" HorizontalAlignment="Left"  Style="{StaticResource InstructionItemText}" Text="{Binding Name}"/>
+                                <TextBox Grid.Column="0"  Style="{StaticResource InstructionItemTextBox}" Text="{Binding Time}"/>
+                                <TextBlock Grid.Column="1" TextWrapping="Wrap"   Style="{StaticResource InstructionItemTextBlock}" Text="{Binding Name}"/>
 
                                 <!--Separter Borader-->
                                 <Border Grid.Column="2" HorizontalAlignment="Left" Width="1" Margin="0 1"  Background="Black"/>
 
-                                <TextBlock Grid.Column="2"  Style="{StaticResource InstructionItemText}" Text="{Binding IsBusy,Converter={converters:BooleanToYesNoStringValueConverter}}"/>
-                                <TextBlock Grid.Column="3"  TextWrapping="Wrap" Style="{StaticResource InstructionItemText}" Text="{Binding Operation}"/>
-                                <TextBlock Grid.Column="4"  Style="{StaticResource InstructionItemText}" Text="{Binding TargetRegistery}"/>
-                                <TextBlock Grid.Column="5"  Style="{StaticResource InstructionItemText}" Text="{Binding SourceRegistery01}" Visibility="{Binding ElementName=WaitingOperation01 ,Path=Text,Converter={converters:StringToVisiblityValueConverter}}" />
-                                <TextBlock Grid.Column="6"  Style="{StaticResource InstructionItemText}" Text="{Binding SourceRegistery02}" Visibility="{Binding ElementName=WaitingOperation02 ,Path=Text,Converter={converters:StringToVisiblityValueConverter}}"/>
+                                <ToggleButton Margin="5"   Height="35" Padding="0" Content="{Binding IsBusy,Converter={converters:BooleanToYesNoStringValueConverter}}" Grid.Column="2" Focusable="False" IsChecked="{Binding IsBusy}"/>
+                                <TextBox Grid.Column="3"  Style="{StaticResource InstructionItemTextBox}"  Text="{Binding Operation}"/>
+                                <TextBox Grid.Column="4"  Style="{StaticResource InstructionItemTextBox}" Text="{Binding TargetRegistery}"/>
+                                <TextBox Grid.Column="5"  Style="{StaticResource InstructionItemTextBox}" Text="{Binding SourceRegistery01}" Visibility="{Binding ElementName=WaitingOperation01 ,Path=Text,Converter={converters:StringToVisiblityValueConverter}}" />
+                                <TextBox Grid.Column="6"  Style="{StaticResource InstructionItemTextBox}" Text="{Binding SourceRegistery02}" Visibility="{Binding ElementName=WaitingOperation02 ,Path=Text,Converter={converters:StringToVisiblityValueConverter}}"/>
 
-                                <TextBlock Grid.Column="7"  Style="{StaticResource InstructionItemText}" Text="{Binding WaitingOperationForSource01}" x:Name="WaitingOperation01"/>
-                                <TextBlock Grid.Column="8"  Style="{StaticResource InstructionItemText}" Text="{Binding WaitingOperationForSource02}" x:Name="WaitingOperation02"/>
-                                <TextBlock Grid.Column="9"  Style="{StaticResource InstructionItemText}" Text="{Binding IsSource01Ready}"/>
-                                <TextBlock Grid.Column="10"  Style="{StaticResource InstructionItemText}" Text="{Binding IsSource02Ready}"/>
+                                <TextBox Grid.Column="7"  Style="{StaticResource InstructionItemTextBox}" Text="{Binding WaitingOperationForSource01}" x:Name="WaitingOperation01"/>
+                                <TextBox Grid.Column="8"  Style="{StaticResource InstructionItemTextBox}" Text="{Binding WaitingOperationForSource02}" x:Name="WaitingOperation02"/>
+                                <ToggleButton Margin="5"   Height="35" Padding="0" Content="{Binding IsSource01Ready,Converter={converters:BooleanToYesNoStringValueConverter}}" Grid.Column="9" Focusable="False" IsChecked="{Binding IsBusy}"/>
+                                <ToggleButton Margin="5"   Height="35" Padding="0" Content="{Binding IsSource02Ready,Converter={converters:BooleanToYesNoStringValueConverter}}" Grid.Column="10" Focusable="False" IsChecked="{Binding IsBusy}"/>
                                 <Border Grid.Column="10" HorizontalAlignment="Right" Width="1" Margin="0 1"  Background="Black"/>
 
                             </Grid>

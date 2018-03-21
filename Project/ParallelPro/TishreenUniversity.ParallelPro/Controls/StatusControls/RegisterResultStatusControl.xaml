@@ -13,7 +13,7 @@
 
             <GroupBox Style="{StaticResource StatusControlGroupBox}" Header="Register Result Status" >
 
-                <controls:RegisterResultList  d:DataContext="{x:Static design:RegisterResultListDesign.Instance}"/>
+            <controls:RegisterResultList CanStudentEdit="{Binding Source={x:Static local:ViewModelLocator.ApplicationViewModel},Path=IsExamMode}"   d:DataContext="{x:Static design:RegisterResultListDesign.Instance}"/>
             </GroupBox>
         </Grid>
 

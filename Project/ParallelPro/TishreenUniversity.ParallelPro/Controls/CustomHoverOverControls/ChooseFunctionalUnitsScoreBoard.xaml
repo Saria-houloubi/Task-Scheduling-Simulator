@@ -44,38 +44,42 @@
                 <metro:NumericUpDown Value="{Binding NumberOfMultiplyUnits}" Grid.Column="1" VerticalAlignment="Center"  Grid.Row="2" Minimum="1" Maximum="5" HorizontalAlignment="Left"/>
                 <metro:NumericUpDown Value="{Binding NumberOfDivideUnits}" Grid.Column="1" VerticalAlignment="Center"  Grid.Row="3" Minimum="1" Maximum="5" HorizontalAlignment="Left"/>
                 <!--#region Exam Mode Settings-->
-                <Border Grid.Row="4" Grid.ColumnSpan="2"
+                <Grid  Grid.Row="4" Grid.ColumnSpan="2"
+                    Visibility="{Binding Source={x:Static local:ViewModelLocator.ApplicationViewModel},Path=IsExamMode,Converter={converters:BooleanToVisibilityValueConverter}}"
+                       >
+                    <!--Drop shadow effect border-->
+                    <Border
                          BorderThickness="2"
                     BorderBrush="Red"
                     CornerRadius="5"
                    >
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="15"/>
-                    </Border.Effect>
-                </Border>
-                <Border
-                    Visibility="{Binding Source={x:Static local:ViewModelLocator.ApplicationViewModel},Path=IsExamMode,Converter={converters:BooleanToVisibilityValueConverter}}"
-                    Grid.Row="4" Grid.ColumnSpan="2">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="15"/>
+                        </Border.Effect>
+                    </Border>
+                    <!--Main Content-->
+                    <Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
 
-                        <Border Grid.ColumnSpan="2" BorderBrush="Red" BorderThickness="0 0 0 2">
-                            <TextBlock
+                            <Border Grid.ColumnSpan="2" BorderBrush="Red" BorderThickness="0 0 0 2">
+                                <TextBlock
                             Text="Exam Settings" Style="{StaticResource DarkText}" HorizontalAlignment="Center" Grid.ColumnSpan="2"/>
-                        </Border>
-                        <TextBlock Text="To Clock Cycle = " Grid.Row="1"  Style="{StaticResource DarkText}"/>
-                        <TextBox Grid.Row="1" Grid.Column="1"/>
+                            </Border>
+                            <TextBlock Text="To Clock Cycle = " Grid.Row="1"  Style="{StaticResource DarkText}"/>
+                            <TextBox Grid.Row="1" Text="{Binding ExamClockCycle,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Foreground="Black"/>
 
-                    </Grid>
-                </Border>
+                        </Grid>
+                    </Border>
+                </Grid>
                 <!--#endregion-->
 
                 <Button Grid.Row="5"

@@ -88,13 +88,13 @@
                                         <ColumnDefinition Width="1*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Grid.Column="0" Style="{StaticResource InstructionItemText}" Margin="0">
+                                    <TextBlock Grid.Column="0" Style="{StaticResource InstructionItemTextBlock}" Margin="0">
                                         <Run Text="{Binding ID}"/><Run Text="-"/>
                                     </TextBlock>
-                                    <TextBlock Text="{Binding Name}" Style="{StaticResource InstructionItemText}" Grid.Column="1"/>
-                                    <TextBlock Text="{Binding TargetRegistery}" Style="{StaticResource InstructionItemText}" Grid.Column="2"/>
-                                    <TextBlock Text="{Binding SourceRegistery01}" Style="{StaticResource InstructionItemText}" Grid.Column="3"/>
-                                    <TextBlock Text="{Binding SourceRegistery02}" Style="{StaticResource InstructionItemText}" Grid.Column="4"/>
+                                    <TextBlock Text="{Binding Name}" Style="{StaticResource InstructionItemTextBlock}" Grid.Column="1"/>
+                                    <TextBlock Text="{Binding TargetRegistery}" Style="{StaticResource InstructionItemTextBlock}" Grid.Column="2"/>
+                                    <TextBlock Text="{Binding SourceRegistery01}" Style="{StaticResource InstructionItemTextBlock}" Grid.Column="3"/>
+                                    <TextBlock Text="{Binding SourceRegistery02}" Style="{StaticResource InstructionItemTextBlock}" Grid.Column="4"/>
                                 </Grid>
                             </Border>
                         </Border>

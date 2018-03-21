@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Navigation;
 using Tishreen.ParallelPro.Core;
 using TishreenUniversity.ParallelPro.ViewModels;
 
@@ -31,8 +32,8 @@ namespace TishreenUniversity.ParallelPro
 
             this.MainWindow = new MainWindow();
             this.MainWindow.Show();
-
         }
+
 
         void MyHandler(object sender, UnhandledExceptionEventArgs args)
         {

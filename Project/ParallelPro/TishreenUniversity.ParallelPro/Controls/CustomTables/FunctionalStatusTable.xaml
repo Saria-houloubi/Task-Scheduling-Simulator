@@ -27,7 +27,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0"   Style="{StaticResource DarkHeader}" Text="Time"/>
-        <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Style="{StaticResource DarkHeader}" Text="Name"/>
+        <TextBlock Grid.Column="1"  Style="{StaticResource DarkHeader}" Text="Name"/>
         <TextBlock Grid.Column="2"  Style="{StaticResource DarkHeader}" Text="Busy"/>
         <TextBlock Grid.Column="3"  Style="{StaticResource DarkHeader}" Text="Operation"/>
         <TextBlock Grid.Column="4"  Style="{StaticResource DarkHeader}" ><Run>Dest F</Run><Run Style="{StaticResource SmallNumericText}">i</Run></TextBlock>
@@ -50,7 +50,7 @@
         </Border>
 
         <!--Functions and there status-->
-        <controls:FunctionalUnitsWithStatusList Grid.Row="1" Grid.ColumnSpan="11" d:DataContext="{x:Static design:FunctionalUnitsWithStatusListDesign.Instance}"/>
+        <controls:FunctionalUnitsWithStatusList CanStudentEdit="{Binding Source={x:Static local:ViewModelLocator.ApplicationViewModel},Path=IsExamMode}" Grid.Row="1" Grid.ColumnSpan="11" d:DataContext="{x:Static design:FunctionalUnitsWithStatusListDesign.Instance}"/>
     </Grid>
 
 </local:BaseUserControl>

@@ -70,6 +70,22 @@
         /// Default Constructer
         /// </summary>
         public InstructionWithStatusModel() { }
+        /// <summary>
+        /// Default Constructer
+        /// </summary>
+        public InstructionWithStatusModel(InstructionWithStatusModel item)
+        {
+            this.ID = item.ID;
+            this.Name = item.Name;
+            this.TargetRegistery = item.TargetRegistery;
+            this.SourceRegistery01 = item.SourceRegistery01;
+            this.SourceRegistery02 = item.SourceRegistery02;
+            this.IssueCycle = item.IssueCycle;
+            this.ReadCycle = item.ReadCycle;
+            this.ExecuteCompletedCycle = item.ExecuteCompletedCycle;
+            this.WriteBackCycle = item.WriteBackCycle;
+
+        }
 
         /// <summary>
         /// Constructer to initialize the properties
@@ -87,14 +103,17 @@
         {
             this.ID = id;
             this.Name = name;
-            this.TargetRegistery= targetRegistry;
-            this.SourceRegistery01= sourceRegistry01;
-            this.SourceRegistery02= sourceRegistery02;
+            this.TargetRegistery = targetRegistry;
+            this.SourceRegistery01 = sourceRegistry01;
+            this.SourceRegistery02 = sourceRegistery02;
             this.IssueCycle = issueCycle;
             this.ReadCycle = readCycle;
             this.ExecuteCompletedCycle = executeCycle;
             this.WriteBackCycle = writeBackCycle;
         }
+
         #endregion
+
     }
+
 }

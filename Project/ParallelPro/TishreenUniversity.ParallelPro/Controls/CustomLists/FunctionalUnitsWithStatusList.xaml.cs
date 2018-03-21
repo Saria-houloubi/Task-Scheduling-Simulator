@@ -20,6 +20,7 @@ namespace TishreenUniversity.ParallelPro.Controls
     /// </summary>
     public partial class FunctionalUnitsWithStatusList : BaseUserControl
     {
+
         public FunctionalUnitsWithStatusList()
         {
             InitializeComponent();

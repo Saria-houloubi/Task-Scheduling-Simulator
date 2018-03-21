@@ -264,6 +264,7 @@ namespace Tishreen.ParallelPro.Core
             AddInstructionCommand = new DelegateCommand(() =>
             {
                 Instructions.Add(new InstructionModel(counter++, SelectedFunction, SelectedTargetRegistery, SelectedSourceRegistery01, SelectedSourceRegistery02));
+                RaisePropertyChanged(nameof(Instructions));
                 EmptyProperties();
             }, () => { return SelectedFunction != null && !string.IsNullOrWhiteSpace(SelectedTargetRegistery) && !string.IsNullOrEmpty(SelectedSourceRegistery01) && (!string.IsNullOrEmpty(SelectedSourceRegistery02) || SelectedFunction == FunctionsTypes.LD.ToString() || SelectedFunction == FunctionsTypes.SD.ToString()); }).ObservesProperty(() => SelectedFunction).ObservesProperty(() => SelectedTargetRegistery).ObservesProperty(() => SelectedSourceRegistery01).ObservesProperty(() => SelectedSourceRegistery02);
             DeleteItemCommand = new DelegateCommand(() =>
@@ -284,7 +285,8 @@ namespace Tishreen.ParallelPro.Core
                     new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.SUB,FloatingPointAddClockCycles),
                 };
                IoC.Kernel.Get<IUIManager>().ShowWinodw((ApplicationPages)parameter,new List<object>(Instructions),functionClockCycles);
-            });
+            },(parameter) => 
+            Instructions.Count > 0 ).ObservesProperty(()=>Instructions);
         }
         #endregion
 

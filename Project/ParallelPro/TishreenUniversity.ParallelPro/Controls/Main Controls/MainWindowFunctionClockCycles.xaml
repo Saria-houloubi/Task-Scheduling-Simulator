@@ -36,13 +36,13 @@
                 <!--Title-->
                 <StackPanel Grid.ColumnSpan="2" Margin="5">
                     <TextBlock Style="{StaticResource IconsText}" Text="{StaticResource Clock}"/>
-                    <TextBlock Text="Number of itteration for each cycle function" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
+                    <TextBlock Text="Number of itteration for each cycle function"  Style="{StaticResource WhiteRegularText}" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
                 </StackPanel>
 
-                <TextBlock  Text="Load / Store  : " Grid.Row="1"/>
-                <TextBlock  Text="Floating point add : " Grid.Row="2"/>
-                <TextBlock  Text="Floating point multiply : " Grid.Row="3"/>
-                <TextBlock  Text="Floating point divide : " Grid.Row="4"/>
+                <TextBlock Style="{StaticResource WhiteRegularText}"  Text="Load / Store  : " Grid.Row="1"/>
+                <TextBlock Style="{StaticResource WhiteRegularText}" Text="Floating point add : " Grid.Row="2"/>
+                <TextBlock Style="{StaticResource WhiteRegularText}" Text="Floating point multiply : " Grid.Row="3"/>
+                <TextBlock Style="{StaticResource WhiteRegularText}" Text="Floating point divide : " Grid.Row="4"/>
 
                 <TextBox Text="{Binding IntegerClockCycles}" Grid.Column="1" Grid.Row="1" />
                 <TextBox Text="{Binding FloatingPointAddClockCycles}" Grid.Column="1" Grid.Row="2" />

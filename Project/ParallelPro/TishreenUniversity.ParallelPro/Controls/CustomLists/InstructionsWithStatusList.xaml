@@ -3,39 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-          xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
+             xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
-           xmlns:Design="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Design;assembly=Tishreen.ParallelPro.Core"
+             xmlns:converters="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
+             x:Name="usercontrol"
+             xmlns:Design="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Design;assembly=Tishreen.ParallelPro.Core"
                        mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="550">
 
-    <Grid  d:DataContext="{x:Static Design:InstructionWithStatusListDesign.Instance}">
-        <ScrollViewer
+    <Grid>
+        <Grid  d:DataContext="{x:Static Design:InstructionWithStatusListDesign.Instance}">
+            <ScrollViewer
             HorizontalScrollBarVisibility="Auto"
             VerticalScrollBarVisibility="Auto">
-            <ListView
+                <ListView
               Background="Transparent" BorderThickness="0" 
                 SelectedItem="{Binding SelectedInstruction}"
                 ItemsSource="{Binding Instructions,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                 HorizontalContentAlignment="Stretch">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <controls:InstructionWithStatusItem/>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-        </ScrollViewer>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <controls:InstructionWithStatusItem/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </ScrollViewer>
+        </Grid>
+        <!--Overlay border to stop user from editing-->
+        <Border Background="Transparent" Visibility="{Binding ElementName=usercontrol,Path=CanStudentEdit,Converter={converters:BooleanToVisibilityValueConverter},ConverterParameter=True}"/>
     </Grid>
+
 
 </local:BaseUserControl>
