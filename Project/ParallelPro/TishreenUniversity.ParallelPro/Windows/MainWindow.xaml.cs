@@ -1,18 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using TishreenUniversity.ParallelPro.Controls;
 
 namespace TishreenUniversity.ParallelPro
 {
@@ -25,8 +13,10 @@ namespace TishreenUniversity.ParallelPro
         {
             InitializeComponent();
 
+            //Set the video path by Getting current working folder and attach video path to it
+            var backgroundPath = $"{Directory.GetCurrentDirectory()}/Images/BackgroundVideo.wmv";
+            //Set the source of the media item
+            mediaItem.Source = new Uri(backgroundPath);
         }
-
-      
     }
 }

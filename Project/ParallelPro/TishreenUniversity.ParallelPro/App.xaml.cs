@@ -4,7 +4,7 @@ using System.Windows.Media;
 using System.Windows.Navigation;
 using Tishreen.ParallelPro.Core;
 using TishreenUniversity.ParallelPro.ViewModels;
-
+using System.IO;
 namespace TishreenUniversity.ParallelPro
 {
     /// <summary>
@@ -29,6 +29,7 @@ namespace TishreenUniversity.ParallelPro
 
             //Set the main border background bruhs colore
             Application.Current.Resources["MainBorderBackground"] = new SolidColorBrush(Colors.Black);
+
 
             this.MainWindow = new MainWindow();
             this.MainWindow.Show();

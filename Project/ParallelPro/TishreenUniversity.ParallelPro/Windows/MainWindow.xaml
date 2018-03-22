@@ -28,8 +28,8 @@
 
                                                 <!-- The MediaTimeline has a RepeatBehavior="Forever" which makes the media play
                                                 over and over indefinitely.-->
-                                                <MediaTimeline Source="C:\Users\houlo\Desktop\4th year project\Project\ParallelPro\TishreenUniversity.ParallelPro\bin\Debug\Images\BackgroundVideo.wmv" Storyboard.TargetName="background"  
-                                                RepeatBehavior="Forever" />
+                                                <MediaTimeline  x:Name="mediaItem" Storyboard.TargetName="background"  
+                                                RepeatBehavior="Forever"  />
 
                                             </Storyboard>
                                         </BeginStoryboard>
