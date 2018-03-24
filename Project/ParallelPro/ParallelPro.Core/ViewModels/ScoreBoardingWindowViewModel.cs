@@ -12,6 +12,17 @@ namespace Tishreen.ParallelPro.Core
     /// </summary>
     public class ScoreBoardingWindowViewModel : BaseViewModel
     {
+        #region Private Members
+        /// <summary>
+        /// The name of this class algorithm
+        /// </summary>
+        private string algoName = "ScoreBoarding";
+        /// <summary>
+        /// Holds the result for the student at each exam
+        /// Only created if in exam mode
+        /// </summary>
+        private ExamResultModel mExamResult;
+        #endregion
         #region Properties
         /// <summary>
         /// The list that holds all the instructions that the user writes
@@ -142,6 +153,17 @@ namespace Tishreen.ParallelPro.Core
         /// <param name="functionClockCycle">The clock cycles for each function unit</param>
         public ScoreBoardingWindowViewModel(List<object> instructionList, List<KeyValuePair<FunctionsTypes, int>> functionClockCycle)
         {
+            //If exam mode save the instructions that the student entered
+            if(IoC.Appliation.IsExamMode)
+            {
+                //Set the start of exam data
+                mExamResult = new ExamResultModel
+                {
+                    AlgorithmName = algoName,
+                };
+                //Save the instructions
+                instructionList.ForEach(item => mExamResult.StudentEnteredInstruction.Add((InstructionModel)item));
+            }
             //Call on the start to fill the instruction list
             FillInstructionList(instructionList);
             FillRegisterList();
@@ -482,15 +504,6 @@ namespace Tishreen.ParallelPro.Core
 
         #endregion
 
-        /// <summary>
-        /// Counts which exam the student is on
-        /// </summary>
-        private int ExamCounter = 1;
-        /// <summary>
-        /// the report which gose as
-        ///  ExamNumber;ChoosenClockCycle;Mark;FullMark/
-        /// </summary>
-        private string ExamReport = "";
         #endregion
 
         #region Exam Commands
@@ -505,35 +518,50 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The method for the <see cref="CorrectExamAndSetMarkCommand"/>
         /// +1  for evert correct value
-        /// -1 for every unlike value
-        /// -0.25 for every null value that has been set by the student
+        /// 0 for noncorrect
         /// </summary>
         private void CorrectExamAndSetMarkCommandMethod()
         {
             //The start mark
             float studentMark = 0;
-
+            var fullMark = 0;
             //Correct instrucitons
             //Get the number of elements inside the list 
             int instructionCount = Instructions.Count;
             //loop throw the instructions
             for (int i = 0; i < instructionCount; i++)
-                studentMark += Instructions[i].CompareInstructions(InstructionsExamResult[i]);
+                studentMark += InstructionsExamResult[i].CompareInstructions(Instructions[i]);
+            //As every instruction has 4 fileds student can enter
+            fullMark += instructionCount * 4;
 
             //Correct functional units
             //Get the number of elements inside the list 
             int functionalUnitsCount = FunctionalUnits.Count;
             //loop throw the functional units
             for (int i = 0; i < functionalUnitsCount; i++)
-                studentMark += FunctionalUnits[i].CompareInstructions(FunctionalUnitsExamResult[i]);
-           
+                studentMark += FunctionalUnitsExamResult[i].CompareFunctionUnits(FunctionalUnits[i]);
+            //Only 10 fileds student can fill in exam
+            fullMark += functionalUnitsCount * 10;
+
             //Correct registers
             //Get the number of elements inside the list 
                 int RegisterCount = Registers.Count;
             //loop throw the registers
             for (int i = 0; i < RegisterCount; i++)
-                studentMark += Registers[i].CompareInstructions(RegistersExamResults[i]);
+                studentMark += RegistersExamResults[i].CompareRegisters(Registers[i]);
+            //For every right register will hold a mark
+            fullMark += RegisterCount;
 
+            //Attach the marks with the exam report 
+            mExamResult.StudentMark = studentMark;
+            mExamResult.FullMark = fullMark;
+            mExamResult.StudentMarkPercentage =(100 * (int)studentMark) / fullMark;
+
+            //Attach the exam result to the student 
+            StudentExamInformationAndMarks.Results.Add(mExamResult);
+
+
+            IoC.UI.ShowWinodw(ApplicationPages.ResultWindow);
         }
         #endregion
 
@@ -545,15 +573,14 @@ namespace Tishreen.ParallelPro.Core
         /// </summary>
         private void SetExamPropertiesAndStoreSolution()
         {
-            //Set the start information
-            ExamReport = $"{ExamCounter};{ExamClockCycle}";
+            //Set the exam clock cycle
+            mExamResult.ChoosenClockCycle = ExamClockCycle;
             //Set the startup values
             Instructions.ForEach(item => InstructionsExamResult.Add(new InstructionWithStatusModel(item)));
             FunctionalUnits.ForEach(item => FunctionalUnitsExamResult.Add(new FunctionalUnitWithStatusModel(item.ID, item.Name, item.Function)));
             Registers.ForEach(item => RegistersExamResults.Add(new RegisterResultModel(item.Name, item.Operation)));
             //Scrore board the instruction to the wanted clockCycle
             StartScoreBoardTillClockCycle(InstructionsExamResult, FunctionalUnitsExamResult, RegistersExamResults, ExamClockCycle);
-
         }
         #endregion
 

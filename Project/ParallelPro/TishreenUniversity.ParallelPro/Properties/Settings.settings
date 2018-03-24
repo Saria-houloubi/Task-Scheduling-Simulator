@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="Password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">admin</Value>
+      <Value Profile="(Default)">DWnWRHi/k79kR8ex1DH9/w==</Value>
     </Setting>
     <Setting Name="AdminSalt" Type="System.String" Scope="User">
-      <Value Profile="(Default)">salt</Value>
+      <Value Profile="(Default)">gRwvvB6vTiA=</Value>
     </Setting>
     <Setting Name="TeacherPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">Test</Value>

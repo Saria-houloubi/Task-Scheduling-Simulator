@@ -1,0 +1,93 @@
+[33mcommit 51b47440d74d69b0f46288d4927039cf4ac2d7d1[m
+Author: Saria houloubi <houlouis@gmail.com>
+Date:   Fri Mar 23 01:34:30 2018 +0200
+
+    Fixed background video not loading on diffrent machines
+
+[1mdiff --git a/Project/ParallelPro/TishreenUniversity.ParallelPro/App.xaml.cs b/Project/ParallelPro/TishreenUniversity.ParallelPro/App.xaml.cs[m
+[1mindex ef9d824..c9bbbad 100644[m
+[1m--- a/Project/ParallelPro/TishreenUniversity.ParallelPro/App.xaml.cs[m
+[1m+++ b/Project/ParallelPro/TishreenUniversity.ParallelPro/App.xaml.cs[m
+[36m@@ -4,7 +4,7 @@[m [musing System.Windows.Media;[m
+ using System.Windows.Navigation;[m
+ using Tishreen.ParallelPro.Core;[m
+ using TishreenUniversity.ParallelPro.ViewModels;[m
+[31m-[m
+[32m+[m[32musing System.IO;[m
+ namespace TishreenUniversity.ParallelPro[m
+ {[m
+     /// <summary>[m
+[36m@@ -30,6 +30,7 @@[m [mnamespace TishreenUniversity.ParallelPro[m
+             //Set the main border background bruhs colore[m
+             Application.Current.Resources["MainBorderBackground"] = new SolidColorBrush(Colors.Black);[m
+ [m
+[32m+[m
+             this.MainWindow = new MainWindow();[m
+             this.MainWindow.Show();[m
+         }[m
+[1mdiff --git a/Project/ParallelPro/TishreenUniversity.ParallelPro/TishreenUniversity.ParallelPro.csproj b/Project/ParallelPro/TishreenUniversity.ParallelPro/TishreenUniversity.ParallelPro.csproj[m
+[1mindex daa1176..a68920a 100644[m
+[1m--- a/Project/ParallelPro/TishreenUniversity.ParallelPro/TishreenUniversity.ParallelPro.csproj[m
+[1m+++ b/Project/ParallelPro/TishreenUniversity.ParallelPro/TishreenUniversity.ParallelPro.csproj[m
+[36m@@ -361,5 +361,8 @@[m
+       <CopyToOutputDirectory>Always</CopyToOutputDirectory>[m
+     </Content>[m
+   </ItemGroup>[m
+[32m+[m[32m  <ItemGroup>[m
+[32m+[m[32m    <Folder Include="UriDirectory\" />[m
+[32m+[m[32m  </ItemGroup>[m
+   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />[m
+ </Project>[m
+\ No newline at end of file[m
+[1mdiff --git a/Project/ParallelPro/TishreenUniversity.ParallelPro/Windows/MainWindow.xaml b/Project/ParallelPro/TishreenUniversity.ParallelPro/Windows/MainWindow.xaml[m
+[1mindex 91f7e31..3bd5dc7 100644[m
+[1m--- a/Project/ParallelPro/TishreenUniversity.ParallelPro/Windows/MainWindow.xaml[m
+[1m+++ b/Project/ParallelPro/TishreenUniversity.ParallelPro/Windows/MainWindow.xaml[m
+[36m@@ -28,8 +28,8 @@[m
+ [m
+                                                 <!-- The MediaTimeline has a RepeatBehavior="Forever" which makes the media play[m
+                                                 over and over indefinitely.-->[m
+[31m-                                                <MediaTimeline Source="C:\Users\houlo\Desktop\4th year project\Project\ParallelPro\TishreenUniversity.ParallelPro\bin\Debug\Images\BackgroundVideo.wmv" Storyboard.TargetName="background"  [m
+[31m-                                                RepeatBehavior="Forever" />[m
+[32m+[m[32m                                                <MediaTimeline  x:Name="mediaItem" Storyboard.TargetName="background"[m[41m  [m
+[32m+[m[32m                                                RepeatBehavior="Forever"  />[m
+ [m
+                                             </Storyboard>[m
+                                         </BeginStoryboard>[m
+[1mdiff --git a/Project/ParallelPro/TishreenUniversity.ParallelPro/Windows/MainWindow.xaml.cs b/Project/ParallelPro/TishreenUniversity.ParallelPro/Windows/MainWindow.xaml.cs[m
+[1mindex 08ce5a4..1ea9c45 100644[m
+[1m--- a/Project/ParallelPro/TishreenUniversity.ParallelPro/Windows/MainWindow.xaml.cs[m
+[1m+++ b/Project/ParallelPro/TishreenUniversity.ParallelPro/Windows/MainWindow.xaml.cs[m
+[36m@@ -1,18 +1,6 @@[m
+ ﻿using System;[m
+[31m-using System.Collections.Generic;[m
+[31m-using System.Linq;[m
+[31m-using System.Text;[m
+[31m-using System.Threading.Tasks;[m
+[32m+[m[32musing System.IO;[m
+ using System.Windows;[m
+[31m-using System.Windows.Controls;[m
+[31m-using System.Windows.Data;[m
+[31m-using System.Windows.Documents;[m
+[31m-using System.Windows.Input;[m
+[31m-using System.Windows.Media;[m
+[31m-using System.Windows.Media.Imaging;[m
+[31m-using System.Windows.Navigation;[m
+[31m-using System.Windows.Shapes;[m
+[31m-using TishreenUniversity.ParallelPro.Controls;[m
+ [m
+ namespace TishreenUniversity.ParallelPro[m
+ {[m
+[36m@@ -25,8 +13,10 @@[m [mnamespace TishreenUniversity.ParallelPro[m
+         {[m
+             InitializeComponent();[m
+ [m
+[32m+[m[32m            //Set the video path by Getting current working folder and attach video path to it[m
+[32m+[m[32m            var backgroundPath = $"{Directory.GetCurrentDirectory()}/Images/BackgroundVideo.wmv";[m
+[32m+[m[32m            //Set the source of the media item[m
+[32m+[m[32m            mediaItem.Source = new Uri(backgroundPath);[m
+         }[m
+[31m-[m
+[31m-      [m
+     }[m
+ }[m

@@ -56,6 +56,7 @@
     <Compile Include="Interfaces\IHavePassword.cs" />
     <Compile Include="IoC\IoC.cs" />
     <Compile Include="Models\Base\BaseModel.cs" />
+    <Compile Include="Models\ExamResultModel.cs" />
     <Compile Include="Models\FunctionalUnitWithStatusModel.cs" />
     <Compile Include="Models\RegisterResultModel.cs" />
     <Compile Include="Models\InstructionWithStatusModel.cs" />

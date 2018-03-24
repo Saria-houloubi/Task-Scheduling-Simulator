@@ -45,8 +45,8 @@
 
                                 <TextBox Grid.Column="7"  Style="{StaticResource InstructionItemTextBox}" Text="{Binding WaitingOperationForSource01}" x:Name="WaitingOperation01"/>
                                 <TextBox Grid.Column="8"  Style="{StaticResource InstructionItemTextBox}" Text="{Binding WaitingOperationForSource02}" x:Name="WaitingOperation02"/>
-                                <ToggleButton Margin="5"   Height="35" Padding="0" Content="{Binding IsSource01Ready,Converter={converters:BooleanToYesNoStringValueConverter}}" Grid.Column="9" Focusable="False" IsChecked="{Binding IsBusy}"/>
-                                <ToggleButton Margin="5"   Height="35" Padding="0" Content="{Binding IsSource02Ready,Converter={converters:BooleanToYesNoStringValueConverter}}" Grid.Column="10" Focusable="False" IsChecked="{Binding IsBusy}"/>
+                                <ToggleButton Margin="5"   Height="35" Padding="0" Content="{Binding IsSource01Ready,Converter={converters:BooleanToYesNoStringValueConverter}}" Grid.Column="9" Focusable="False" IsChecked="{Binding IsSource01Ready}"/>
+                                <ToggleButton Margin="5"   Height="35" Padding="0" Content="{Binding IsSource02Ready,Converter={converters:BooleanToYesNoStringValueConverter}}" Grid.Column="10" Focusable="False" IsChecked="{Binding IsSource02Ready}"/>
                                 <Border Grid.Column="10" HorizontalAlignment="Right" Width="1" Margin="0 1"  Background="Black"/>
 
                             </Grid>

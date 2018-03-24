@@ -55,7 +55,6 @@ namespace GeneralHelpers.Password
             {
                 rng.GetBytes(bytes);
             }
-
             return bytes;
         }
         /// <summary>
@@ -87,9 +86,6 @@ namespace GeneralHelpers.Password
 
             return (0 == sComparer.Compare(hash, inpute));
         }
-
-
-
         #endregion
     }
 }

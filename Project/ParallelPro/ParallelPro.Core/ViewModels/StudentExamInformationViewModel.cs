@@ -53,6 +53,7 @@ namespace Tishreen.ParallelPro.Core
             get { return _selectedClassTime; }
             set { SetProperty(ref _selectedClassTime, value); }
         }
+
         #endregion
 
         #region Commnads

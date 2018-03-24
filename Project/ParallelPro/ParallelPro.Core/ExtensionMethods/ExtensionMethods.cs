@@ -18,21 +18,26 @@ namespace Tishreen.ParallelPro.Core
         {
             //The student mark
             float mark = 0;
-            //If the studnet sloution is not right
-            if (!correctValue.Equals(toCheckValue))
-                //Check if the right solution is null
-                if (correctValue is null)
-                    //Get 0.25 out of the mark
-                    mark -= 0.25f;
+            #region Not Used in time being
+            /*
+                //If the studnet sloution is not right
+                if (!correctValue.Equals(toCheckValue))
+                    //Check if the right solution is null
+                    if (correctValue is null)
+                        //Get 0.25 out of the mark
+                        mark -= 0.25f;
+                    else
+                        //else it is a wrong answer
+                        mark -= 1.0f;
                 else
-                    //else it is a wrong answer
-                    mark -= 1.0f;
-            else
-            {
-                if (correctValue != null)
-                    //If the answer is right add 1
-                    mark += 1.0f;
-            }
+                {
+                    if (correctValue != null)
+                        //If the answer is right add 1
+                        mark += 1.0f;
+                }*/
+            #endregion
+            if (correctValue.Equals(toCheckValue))
+                return ++mark;
             return mark;
         }
         /// <summary>
@@ -45,21 +50,28 @@ namespace Tishreen.ParallelPro.Core
         {
             //The student mark
             float mark = 0;
-            //If the studnet sloution is not right
-            if (correctValue != toCheckValue)
-                //Check if the right solution is null
-                if (correctValue == null)
-                    //Get 0.25 out of the mark
-                    mark -= 0.25f;
+            #region Not Used for time being
+            /*
+                //If the studnet sloution is not right
+                if (correctValue != toCheckValue)
+                    //Check if the right solution is null
+                    if (correctValue == null)
+                        //Get 0.25 out of the mark
+                        mark -= 0.25f;
+                    else
+                        //else it is a wrong answer
+                        mark -= 1.0f;
                 else
-                    //else it is a wrong answer
-                    mark -= 1.0f;
-            else
-            {
-                if (correctValue != null)
-                    //If the answer is right add 1
-                    mark += 1.0f;
-            }
+                {
+                    if (correctValue != null)
+                        //If the answer is right add 1
+                        mark += 1.0f;
+                }
+                */
+            #endregion
+
+            if (correctValue == toCheckValue)
+                return ++mark;
             return mark;
         }
        
@@ -109,7 +121,7 @@ namespace Tishreen.ParallelPro.Core
         /// <param name="computerSolution"></param>
         /// <param name="studentSolution"></param>
         /// <returns>The student mark</returns>
-        public static float CompareInstructions(this FunctionalUnitWithStatusModel computerSolution, FunctionalUnitWithStatusModel studentSolution)
+        public static float CompareFunctionUnits(this FunctionalUnitWithStatusModel computerSolution, FunctionalUnitWithStatusModel studentSolution)
         {
             //The student mark
             float mark = 0;
@@ -118,9 +130,9 @@ namespace Tishreen.ParallelPro.Core
             mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.Operation, studentSolution.Operation);
             mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.WaitingOperationForSource01, studentSolution.WaitingOperationForSource01);
             mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.WaitingOperationForSource02, studentSolution.WaitingOperationForSource02);
-            mark += computerSolution.IsSource01Ready == studentSolution.IsSource01Ready ? 1:-1;
-            mark += computerSolution.IsSource02Ready == studentSolution.IsSource02Ready ? 1:-1;
-            mark += computerSolution.IsBusy == studentSolution.IsBusy ? 1:-1;
+            mark += computerSolution.IsSource01Ready == studentSolution.IsSource01Ready ? 1:0;
+            mark += computerSolution.IsSource02Ready == studentSolution.IsSource02Ready ? 1:0;
+            mark += computerSolution.IsBusy == studentSolution.IsBusy ? 1:0;
             mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.SourceRegistery01, studentSolution.SourceRegistery01);
             mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.SourceRegistery02, studentSolution.SourceRegistery02);
             mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.TargetRegistery, studentSolution.TargetRegistery);
@@ -143,12 +155,11 @@ namespace Tishreen.ParallelPro.Core
         /// <param name="computerSolution"></param>
         /// <param name="studentSolution"></param>
         /// <returns>The student mark</returns>
-        public static float CompareInstructions(this RegisterResultModel computerSolution, RegisterResultModel studentSolution)
+        public static float CompareRegisters(this RegisterResultModel computerSolution, RegisterResultModel studentSolution)
         {
             //The student mark
             float mark = 0;
             //Correct each filed
-            mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.Name, studentSolution.Name);
             mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.Operation, studentSolution.Operation);
 
             return mark;

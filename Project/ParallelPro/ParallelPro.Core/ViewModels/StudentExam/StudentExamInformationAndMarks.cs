@@ -8,6 +8,8 @@ namespace Tishreen.ParallelPro.Core
     /// </summary>
     public static class StudentExamInformationAndMarks
     {
+
+
         #region Porperties
         /// <summary>
         /// The student name
@@ -30,11 +32,9 @@ namespace Tishreen.ParallelPro.Core
         /// </summary>
         public static DateTime EndTime { get; set; }
         /// <summary>
-        /// The student exam marks
-        /// ex :    1       ;      4       ;   5  ; 10         /
-        /// means first exam; Clock Cycles ; Mark ; Fullmark   end
+        /// The results for each exam with there information
         /// </summary>
-        public static List<string> ExamMarks { get; set; }
+        public static List<ExamResultModel> Results { get; set; } = new List<ExamResultModel>();
         #endregion
     }
 }

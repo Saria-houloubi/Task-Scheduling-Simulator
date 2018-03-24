@@ -12,7 +12,7 @@ namespace TishreenUniversity.ParallelPro.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.3.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,7 +25,7 @@ namespace TishreenUniversity.ParallelPro.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("admin")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DWnWRHi/k79kR8ex1DH9/w==")]
         public string Password {
             get {
                 return ((string)(this["Password"]));
@@ -37,7 +37,7 @@ namespace TishreenUniversity.ParallelPro.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("salt")]
+        [global::System.Configuration.DefaultSettingValueAttribute("gRwvvB6vTiA=")]
         public string AdminSalt {
             get {
                 return ((string)(this["AdminSalt"]));

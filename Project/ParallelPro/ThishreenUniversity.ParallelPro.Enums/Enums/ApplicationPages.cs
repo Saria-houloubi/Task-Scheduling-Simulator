@@ -31,5 +31,9 @@ namespace ThishreenUniversity.ParallelPro.Enums
         /// The student information page before the exam
         /// </summary>
         ExamStudentInformation = 4,
+        /// <summary>
+        /// The result window after an exam
+        /// </summary>
+        ResultWindow = 5,
     }
 }

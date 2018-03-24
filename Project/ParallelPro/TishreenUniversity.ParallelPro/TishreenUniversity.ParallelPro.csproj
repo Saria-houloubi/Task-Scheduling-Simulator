@@ -112,6 +112,9 @@
     <Compile Include="IValueConverters\BooleanToYesNoStringValueConverter.cs" />
     <Compile Include="IValueConverters\BooleanToBrushValueConverter.cs" />
     <Compile Include="ViewModels\UIManager.cs" />
+    <Compile Include="Windows\ExamResultWindow.xaml.cs">
+      <DependentUpon>ExamResultWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ScoreBoardingWindow.xaml.cs">
       <DependentUpon>ScoreBoardingWindow.xaml</DependentUpon>
     </Compile>
@@ -248,6 +251,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Textboxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ExamResultWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

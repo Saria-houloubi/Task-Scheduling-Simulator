@@ -33,6 +33,11 @@ namespace TishreenUniversity.ParallelPro.ViewModels
                 case ApplicationPages.ScoreBoarding:
                     wantedWindow = new ScoreBoardingWindow(parameter,(List<KeyValuePair<FunctionsTypes,int>>)parameter02);
                     break;
+                case ApplicationPages.ResultWindow:
+                    wantedWindow = new ExamResultWindow();
+                    //Do not let the user to change windows
+                    wantedWindow.ShowDialog();
+                    return;
                 default:
                     Debugger.Break();
                     break;
