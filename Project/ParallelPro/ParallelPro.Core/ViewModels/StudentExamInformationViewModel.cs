@@ -77,10 +77,10 @@ namespace Tishreen.ParallelPro.Core
                 () =>
                 {
                     //Set the student information
-                    StudentExamInformationAndMarks.Name = this.Name;
-                    StudentExamInformationAndMarks.Number = this.Number;
-                    StudentExamInformationAndMarks.ClassTime = this.SelectedClassTime;
-                    StudentExamInformationAndMarks.StartTime = DateTime.Now;
+                    IoC.ExamInfo.Name = this.Name;
+                    IoC.ExamInfo.Number = this.Number;
+                    IoC.ExamInfo.ClassTime = this.SelectedClassTime;
+                    IoC.ExamInfo.StartTime = DateTime.Now;
                     IoC.Appliation.CurrentPage = ApplicationPages.MainWindow;
                 },
                 //Canexecute

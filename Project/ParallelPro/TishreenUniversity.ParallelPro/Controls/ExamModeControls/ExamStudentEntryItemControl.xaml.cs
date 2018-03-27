@@ -16,21 +16,13 @@ using System.Windows.Shapes;
 namespace TishreenUniversity.ParallelPro.Controls
 {
     /// <summary>
-    /// Interaction logic for ChooseFunctionalUnitsScoreBoard.xaml
+    /// Interaction logic for ExamStudentEntryItem.xaml
     /// </summary>
-    public partial class ChooseFunctionalUnitsScoreBoard : BaseUserControl
+    public partial class ExamStudentEntryItemControl : BaseUserControl
     {
-        public ChooseFunctionalUnitsScoreBoard()
+        public ExamStudentEntryItemControl()
         {
             InitializeComponent();
-            this.AnimateInAnimationType = AnimationTypes.None;
-            this.Visibility = Visibility.Visible;
-        }
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            await this.FadeOutAsync();
-            this.Visibility = Visibility.Collapsed;
         }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
         xmlns:converter="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
         xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
-        mc:Ignorable="d" WindowState="Maximized"
+        mc:Ignorable="d" WindowState="Maximized" Tag="AppWindow"
         Title="ScoreBoarding">
     <ScrollViewer BorderBrush="Red">
         <Grid >
@@ -50,18 +50,17 @@
                         <Button
                             x:Name="nextExambutton"
                             Visibility="{Binding ElementName=NextCycleButton,Path=Visibility,Converter={converter:FlipVisibilityValueConverter}}"
-                            IsEnabled="{Binding CanGoNextCycle}" 
                             Tag="Next Test" 
                             Grid.Column="2"
-                            Command="{Binding ScoreBoardTillEndCommand}" 
+                            Click="NextExambutton_Click"
+                            Command="{Binding CorrectExamAndMoveToNextCommand}" 
                             Style="{StaticResource RegularButton}" 
                             Background="Red" />
                         <Button 
                             Visibility="{Binding ElementName=nextExambutton,Path=Visibility}"
-                            IsEnabled="{Binding CanGoNextCycle}" 
                             Tag="Finished" 
                             Grid.Column="3" 
-                            Command="{Binding CorrectExamAndSetMarkCommand}" 
+                            Command="{Binding CorrectExamAndEndCommand}" 
                             Style="{StaticResource RegularButton}" 
                             Background="Red" />
                         <!--#endregion-->

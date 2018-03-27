@@ -83,7 +83,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ScoreBoardingWindowViewModel.cs" />
     <Compile Include="ViewModels\StudentExamInformationViewModel.cs" />
-    <Compile Include="ViewModels\StudentExam\StudentExamInformationAndMarks.cs" />
+    <Compile Include="ViewModels\StudentExam\StudentExamInformationAndMarksViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GeneralHelpers\GeneralHelpers.csproj">

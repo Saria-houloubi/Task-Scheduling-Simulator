@@ -24,6 +24,10 @@ namespace Tishreen.ParallelPro.Core
         /// A short cut for the ui
         /// </summary>
         public static IUIManager UI => IoC.Kernel.Get<IUIManager>();
+        /// <summary>
+        /// short cut to get the exam results
+        /// </summary>
+        public static StudentExamInformationAndMarksViewModel ExamInfo => IoC.Kernel.Get<StudentExamInformationAndMarksViewModel>();
         #endregion
 
         #region Construction
@@ -40,6 +44,7 @@ namespace Tishreen.ParallelPro.Core
         private static void BindViewModels()
         {
             Kernel.Bind<ApplicationViewModel>().ToConstant(new ApplicationViewModel());
+            Kernel.Bind<StudentExamInformationAndMarksViewModel>().ToConstant(new StudentExamInformationAndMarksViewModel());
         } 
         #endregion
     }

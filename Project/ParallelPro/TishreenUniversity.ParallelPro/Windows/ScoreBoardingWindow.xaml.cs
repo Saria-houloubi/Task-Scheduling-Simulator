@@ -28,5 +28,10 @@ namespace TishreenUniversity.ParallelPro.Windows
             //Bind the window with its logic
             this.DataContext = new ScoreBoardingWindowViewModel(instructionList, functionClockCycles);
         }
+
+        private void NextExambutton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

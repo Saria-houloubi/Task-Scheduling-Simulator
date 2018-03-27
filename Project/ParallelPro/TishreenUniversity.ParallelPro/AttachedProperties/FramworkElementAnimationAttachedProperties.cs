@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 
 namespace TishreenUniversity.ParallelPro
 {
@@ -87,6 +88,7 @@ namespace TishreenUniversity.ParallelPro
     {
         public override async void DoAnimation(FrameworkElement element, bool value)
         {
+            await Task.Delay(1);
             //Animate in
             //if (value)
             //    await element.SlideAndFadeFromRight(0.8f);

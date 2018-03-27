@@ -32,7 +32,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The student mark in %
         /// </summary>
-        public int StudentMarkPercentage { get; set; }
+        public string StudentMarkPercentage => $"{(int)StudentMark * 100 / FullMark}%";
         /// <summary>
         /// The clock cycle the student choose for the exam
         /// </summary>
@@ -40,7 +40,42 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The instructions that the student entered at start of the exam
         /// </summary>
-        public List<InstructionModel> StudentEnteredInstruction { get; set; }
+        public List<InstructionModel> Instructions { get; set; }
+        /// <summary>
+        /// The amount of integer units that can execute functions like Load(LD) Store(SD)
+        /// </summary>
+        public  int NumberOfLoadUnits { get; set; }
+        /// <summary>
+        /// The amount of add/sub units that can execute functions like ADD(LD) SUB(SD)
+        /// </summary>
+        public int NumberOfAddUnits { get; set; }
+        /// <summary>
+        /// The number of units that can execute the Multiplcation functions MULT
+        /// </summary>
+        public int NumberOfMultiplyUnits { get; set; }
+        /// <summary>
+        /// The number of units that can execute the Divistion function DIVID
+        /// </summary>
+        public int NumberOfDivideUnits { get; set; }
+
+        /// <summary>
+        /// The time the student started his/her exam
+        /// </summary>
+        public DateTime StartTimeInner { get; set; }
+        /// <summary>
+        /// The time the student ended his/her exam
+        /// </summary>
+        public DateTime EndTimeInner { get; set; }
+        /// <summary>
+        /// The time the student started his/her exam
+        /// </summary>
+        public string StartTime => StartTimeInner.ToString("T");
+        /// <summary>
+        /// The time the student ended his/her exam
+        /// </summary>
+        public string EndTime => EndTimeInner.ToString("T");
+        
+        
         #endregion
 
         #region Constructer
@@ -49,7 +84,7 @@ namespace Tishreen.ParallelPro.Core
         /// </summary>
         public ExamResultModel()
         {
-            StudentEnteredInstruction = new List<InstructionModel>();
+            Instructions = new List<InstructionModel>();
         } 
         #endregion
     }

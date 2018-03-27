@@ -4,49 +4,67 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
+        xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
         xmlns:core="clr-namespace:Tishreen.ParallelPro.Core;assembly=Tishreen.ParallelPro.Core"
-        mc:Ignorable="d"
+        mc:Ignorable="d" Closing="Window_Closing" WindowState="Maximized" Tag="AppWindow"
         Title="Results" Height="450" Width="800">
-    <Grid >
+    <Grid>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <!--#region Student Information-->
+            <!--#region Student Information-->
 
-        <Border BorderThickness="0 0 0 1"
+            <Border BorderThickness="0 0 0 1"
                 BorderBrush="Black"
                 Margin="5 0">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Column = "0" Text="Student Name : "/>
-                <TextBlock Grid.Column="1"  Text="{Binding Source={x:Static core:StudentExamInformationAndMarks.Name},Mode=OneWay}" Style="{StaticResource ExamResultText}"/>
-                <TextBlock Grid.Column = "2" Text="Student No. : "/>
-                <TextBlock Grid.Column="3" Text="{Binding Source={x:Static core:StudentExamInformationAndMarks.Number},Mode=OneWay}" Style="{StaticResource ExamResultText}"/>
-                <TextBlock Grid.Column = "4" Text="Lab Time : "/>
-                <TextBlock Grid.Column="5" Text="{Binding Source={x:Static core:StudentExamInformationAndMarks.ClassTime},Mode=OneWay}" Style="{StaticResource ExamResultText}"/>
-                <TextBlock Grid.Row ="1" Grid.Column = "2" Text="Start Time : "/>
-                <TextBlock Grid.Row ="1" Grid.Column="3" Text="{Binding Source={x:Static core:StudentExamInformationAndMarks.StartTime},Mode=OneWay}" Style="{StaticResource ExamResultText}"/>
-                <TextBlock Grid.Row ="1" Grid.Column = "4" Text="End Time : "/>
-                <TextBlock Grid.Row ="1" Grid.Column="5" Text="{Binding Source={x:Static core:StudentExamInformationAndMarks.EndTime},Mode=OneWay}" Style="{StaticResource ExamResultText}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column = "0" Text="Student Name : "/>
+                    <TextBlock Grid.Column="1"  Text="{Binding Name}" Style="{StaticResource ExamResultText}"/>
+                    <TextBlock Grid.Column = "2" Text="Student No. : "/>
+                    <TextBlock Grid.Column="3" Text="{Binding Number}" Style="{StaticResource ExamResultText}"/>
+                    <TextBlock Grid.Column = "4" Text="Lab Time : "/>
+                    <TextBlock Grid.Column="5" Text="{Binding ClassTime}" Style="{StaticResource ExamResultText}"/>
+                    <TextBlock Grid.Row ="1" Grid.Column = "2" Text="Start Time : "/>
+                    <TextBlock Grid.Row ="1" Grid.Column="3" Text="{Binding StartTime}" Style="{StaticResource ExamResultText}"/>
+                    <TextBlock Grid.Row ="1" Grid.Column = "4" Text="End Time : "/>
+                    <TextBlock Grid.Row ="1" Grid.Column="5" Text="{Binding EndTime}" Style="{StaticResource ExamResultText}"/>
 
 
-            </Grid>
-        </Border>
-        <!--#endregion-->
+                </Grid>
+            </Border>
+            <!--#endregion-->
 
+            <controls:ExamResultsList Grid.Row="1" DataContext="{Binding}" />
+        </Grid>
+
+        <!--Hover over menu to enter a password for exit-->
+        <Grid x:Name="CheckPasswordControl" Visibility="Collapsed">
+            <Border Background="{StaticResource  BackgroundDarkBrush}" Opacity="0.95"/>
+            <Border x:Name="PasswordCheck" >
+                <StackPanel HorizontalAlignment="Center" 
+                        VerticalAlignment="Center">
+                    <PasswordBox Style="{StaticResource RegularPasswordBox}" Width="300" x:Name="TeacherPassword" metro:TextBoxHelper.Watermark="Enter Password"/>
+                    <Button Content="Check and exit" Click="CheckAndExitClick"/>
+                    <Button Content="Back" Margin="0 5" Click="BackButton_Click"/>
+
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
-
 </Window>

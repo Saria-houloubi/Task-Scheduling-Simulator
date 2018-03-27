@@ -69,6 +69,12 @@
     <Compile Include="Controls\CustomHoverOverControls\ChooseFunctionalUnitsScoreBoard.xaml.cs">
       <DependentUpon>ChooseFunctionalUnitsScoreBoard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CustomLists\ExamResultsList.xaml.cs">
+      <DependentUpon>ExamResultsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExamModeControls\ExamStudentEntryItemControl.xaml.cs">
+      <DependentUpon>ExamStudentEntryItemControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ExamModeControls\StudentInformationAtExamControl.xaml.cs">
       <DependentUpon>StudentInformationAtExamControl.xaml</DependentUpon>
     </Compile>
@@ -119,6 +125,14 @@
       <DependentUpon>ScoreBoardingWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\CustomHoverOverControls\ChooseFunctionalUnitsScoreBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CustomLists\ExamResultsList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ExamModeControls\ExamStudentEntryItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -368,8 +382,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UriDirectory\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

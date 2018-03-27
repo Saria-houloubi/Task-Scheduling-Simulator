@@ -23,6 +23,7 @@ namespace Tishreen.ParallelPro.Core
         /// </summary>
         private ExamResultModel mExamResult;
         #endregion
+
         #region Properties
         /// <summary>
         /// The list that holds all the instructions that the user writes
@@ -154,7 +155,7 @@ namespace Tishreen.ParallelPro.Core
         public ScoreBoardingWindowViewModel(List<object> instructionList, List<KeyValuePair<FunctionsTypes, int>> functionClockCycle)
         {
             //If exam mode save the instructions that the student entered
-            if(IoC.Appliation.IsExamMode)
+            if (IoC.Appliation.IsExamMode)
             {
                 //Set the start of exam data
                 mExamResult = new ExamResultModel
@@ -162,17 +163,18 @@ namespace Tishreen.ParallelPro.Core
                     AlgorithmName = algoName,
                 };
                 //Save the instructions
-                instructionList.ForEach(item => mExamResult.StudentEnteredInstruction.Add((InstructionModel)item));
+                instructionList.ForEach(item => mExamResult.Instructions.Add((InstructionModel)item));
             }
             //Call on the start to fill the instruction list
             FillInstructionList(instructionList);
             FillRegisterList();
             FunctionClockCycle = functionClockCycle;
             //Create the commands
-            FillFunctionalUnitsCommand = new DelegateCommand(FillFunctionalUnitsCommandMethod);
+            FillFunctionalUnitsCommand = new DelegateCommand(FillFunctionalUnitsCommandMethod,()=> ExamClockCycle >= 0 ).ObservesProperty(()=>ExamClockCycle);
             ScoreBoardOneCycleCommand = new DelegateCommand(StartScoreBoardOneStep);
             ScoreBoardTillEndCommand = new DelegateCommand(StartScoreBoardTillTheEnd);
-            CorrectExamAndSetMarkCommand = new DelegateCommand(CorrectExamAndSetMarkCommandMethod);
+            CorrectExamAndMoveToNextCommand = new DelegateCommand(CorrectAndMoveToNextTestCommandMethod);
+            CorrectExamAndEndCommand = new DelegateCommand(EndTestsAndShowResultsCommandMethod);
         }
         /// <summary>
         /// Fills the instruction with status list on the start of the window
@@ -216,7 +218,10 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// ScoreBoards the instructions to a specified clock cycle
         /// </summary>
-        private void StartScoreBoardTillClockCycle(List<InstructionWithStatusModel> instructions, List<FunctionalUnitWithStatusModel> functionalUnits, List<RegisterResultModel> registers, int toClockCylce) { while (!ScoreBoard(instructions, functionalUnits, registers, toClockCylce)) ; }
+        private void StartScoreBoardTillClockCycle(List<InstructionWithStatusModel> instructions, List<FunctionalUnitWithStatusModel> functionalUnits, List<RegisterResultModel> registers, int toClockCylce)
+        {
+            while (!ScoreBoard(instructions, functionalUnits, registers, toClockCylce)) ;
+        }
         /// <summary>
         /// ScoreBoard the instruction until it ends
         /// </summary>
@@ -373,7 +378,7 @@ namespace Tishreen.ParallelPro.Core
             var unit = functionalUnits.SingleOrDefault(item => item.WorkingInstructionID == instruction.ID);
 
             //If both Sources are ready to be read
-            if (unit.IsSource01Ready  &&
+            if (unit.IsSource01Ready &&
                 (unit.IsSource02Ready || string.IsNullOrEmpty(unit.SourceRegistery02)))
             {
 
@@ -404,8 +409,6 @@ namespace Tishreen.ParallelPro.Core
                 RecheckIfRegistersAreFree(functionalUnits, registers);
                 //Clear the functional unit from its data to reset it
                 ClearUnitFunction(unit, registers);
-
-
             }
         }
         /// <summary>
@@ -438,7 +441,7 @@ namespace Tishreen.ParallelPro.Core
         {
             foreach (var unit in functionalUnits)
             {
-                if (unit.IsSource01Ready == false)
+                if (unit.SourceRegistery02 != null && unit.IsSource01Ready == false)
                 {
                     if (registers.SingleOrDefault(reg => reg.Name == unit.SourceRegistery01).IsBusy == false)
                     {
@@ -446,7 +449,7 @@ namespace Tishreen.ParallelPro.Core
                         unit.WaitingOperationForSource01 = null;
                     }
                 }
-                if (unit.IsSource02Ready == false)
+                if (unit.SourceRegistery02 != null && unit.IsSource02Ready == false)
                 {
                     if (registers.SingleOrDefault(reg => reg.Name == unit.SourceRegistery02).IsBusy == false)
                     {
@@ -478,7 +481,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The clock cycle the student chooses to exam to 
         /// </summary>
-        private int _examClockCycle;
+        private int _examClockCycle = 0;
         public int ExamClockCycle
         {
             get { return _examClockCycle; }
@@ -510,29 +513,33 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// Corrects the student answears and sets his mark
         /// </summary>
-        public DelegateCommand CorrectExamAndSetMarkCommand { get; set; }
+        public DelegateCommand CorrectExamAndMoveToNextCommand { get; private set; }
+        /// <summary>
+        /// Corrects the current test and ends the exam
+        /// </summary>
+        public DelegateCommand CorrectExamAndEndCommand { get; private set; }
         #endregion
 
         #region Command methods
 
         /// <summary>
-        /// The method for the <see cref="CorrectExamAndSetMarkCommand"/>
+        /// Corrects and sets this exam mark
         /// +1  for evert correct value
+        /// -0.5 for filling wanted nulls
         /// 0 for noncorrect
         /// </summary>
-        private void CorrectExamAndSetMarkCommandMethod()
+        private void CorrectExamAndSetMark()
         {
             //The start mark
             float studentMark = 0;
-            var fullMark = 0;
+            var fullMark = GetFullMark();
+
             //Correct instrucitons
             //Get the number of elements inside the list 
             int instructionCount = Instructions.Count;
             //loop throw the instructions
             for (int i = 0; i < instructionCount; i++)
                 studentMark += InstructionsExamResult[i].CompareInstructions(Instructions[i]);
-            //As every instruction has 4 fileds student can enter
-            fullMark += instructionCount * 4;
 
             //Correct functional units
             //Get the number of elements inside the list 
@@ -540,27 +547,41 @@ namespace Tishreen.ParallelPro.Core
             //loop throw the functional units
             for (int i = 0; i < functionalUnitsCount; i++)
                 studentMark += FunctionalUnitsExamResult[i].CompareFunctionUnits(FunctionalUnits[i]);
-            //Only 10 fileds student can fill in exam
-            fullMark += functionalUnitsCount * 10;
-
             //Correct registers
             //Get the number of elements inside the list 
-                int RegisterCount = Registers.Count;
+            int RegisterCount = Registers.Count;
             //loop throw the registers
             for (int i = 0; i < RegisterCount; i++)
                 studentMark += RegistersExamResults[i].CompareRegisters(Registers[i]);
-            //For every right register will hold a mark
-            fullMark += RegisterCount;
 
             //Attach the marks with the exam report 
             mExamResult.StudentMark = studentMark;
             mExamResult.FullMark = fullMark;
-            mExamResult.StudentMarkPercentage =(100 * (int)studentMark) / fullMark;
-
+            mExamResult.EndTimeInner = DateTime.Now;
             //Attach the exam result to the student 
-            StudentExamInformationAndMarks.Results.Add(mExamResult);
+            IoC.ExamInfo.Results.Add(mExamResult);
+        }
 
-
+        /// <summary>
+        /// Corrects the exam and sets the studnet to a new exam
+        /// invoked by <see cref="CorrectExamAndMoveToNextCommand"/>
+        /// </summary>
+        private void CorrectAndMoveToNextTestCommandMethod()
+        {
+            //Correct this exam
+            CorrectExamAndSetMark();
+        }
+        /// <summary>
+        /// Ends the tests and opens the result window for the student 
+        /// invoked by <see cref="CorrectExamAndEndCommand"/>
+        /// </summary>
+        private void EndTestsAndShowResultsCommandMethod()
+        {
+            //Correct the mark first
+            CorrectExamAndSetMark();
+            //Set the end time
+            IoC.ExamInfo.EndTime = DateTime.Now;
+            //Show the result window
             IoC.UI.ShowWinodw(ApplicationPages.ResultWindow);
         }
         #endregion
@@ -575,12 +596,77 @@ namespace Tishreen.ParallelPro.Core
         {
             //Set the exam clock cycle
             mExamResult.ChoosenClockCycle = ExamClockCycle;
+            mExamResult.NumberOfAddUnits = NumberOfAddUnits;
+            mExamResult.NumberOfDivideUnits = NumberOfDivideUnits;
+            mExamResult.NumberOfLoadUnits = NumberOfLoadUnits;
+            mExamResult.NumberOfMultiplyUnits = NumberOfMultiplyUnits;
+            mExamResult.StartTimeInner = DateTime.Now;
+
             //Set the startup values
             Instructions.ForEach(item => InstructionsExamResult.Add(new InstructionWithStatusModel(item)));
             FunctionalUnits.ForEach(item => FunctionalUnitsExamResult.Add(new FunctionalUnitWithStatusModel(item.ID, item.Name, item.Function)));
             Registers.ForEach(item => RegistersExamResults.Add(new RegisterResultModel(item.Name, item.Operation)));
             //Scrore board the instruction to the wanted clockCycle
             StartScoreBoardTillClockCycle(InstructionsExamResult, FunctionalUnitsExamResult, RegistersExamResults, ExamClockCycle);
+        }
+        /// <summary>
+        /// Gets the full mark from the 
+        /// <see cref="InstructionsExamResult"/>
+        /// <see cref="FunctionalUnitsExamResult"/>
+        /// <see cref="RegistersExamResults"/>
+        /// </summary>
+        /// <returns></returns>
+        private int GetFullMark()
+        {
+            int fullMark = 0;
+
+            #region Get instrution marks
+            foreach (var item in InstructionsExamResult)
+            {
+                if (item.IssueCycle != null)
+                {
+                    fullMark++;
+                    if (item.ReadCycle != null)
+                    {
+                        fullMark++;
+                        if (item.ExecuteCompletedCycle != null)
+                        {
+                            fullMark++;
+                            if (item.WriteBackCycle != null)
+                                fullMark++;
+                        }
+                    }
+                }
+            }
+            #endregion
+
+            #region Get Functional Units marks
+            foreach (var item in FunctionalUnitsExamResult)
+            {
+                //If the item is busy then we can take marks from it
+                //In other words there is something to correct in it
+                if (item.IsBusy)
+                {
+                    //Because when the unit is busy at least six fileds must be corrected excpets the source02 if there was not any
+                    fullMark += 6;
+                    //If there is a second source 
+                    if (item.SourceRegistery02 != null)
+                        //Add two more marks on is souce avaible and the name of the function hloding the source
+                        fullMark += 2;
+                }
+            }
+            #endregion
+
+            #region Get Registery Units marks
+            foreach (var item in RegistersExamResults)
+            {
+                //If there is an opeartion in the registery then add a mark on it
+                if (item.Operation != null)
+                    fullMark++;
+            }
+            #endregion
+
+            return fullMark;
         }
         #endregion
 

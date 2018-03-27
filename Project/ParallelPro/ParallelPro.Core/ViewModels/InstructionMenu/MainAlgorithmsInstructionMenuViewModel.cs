@@ -285,6 +285,14 @@ namespace Tishreen.ParallelPro.Core
                     new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.SUB,FloatingPointAddClockCycles),
                 };
                IoC.Kernel.Get<IUIManager>().ShowWinodw((ApplicationPages)parameter,new List<object>(Instructions),functionClockCycles);
+
+                //If exam mode clear the instruction
+                //so student can enter new instruction on next test
+                if (IoC.Appliation.IsExamMode)
+                {
+                    counter = 1;
+                    Instructions = new ObservableCollection<InstructionModel>();
+                }
             },(parameter) => 
             Instructions.Count > 0 ).ObservesProperty(()=>Instructions);
         }

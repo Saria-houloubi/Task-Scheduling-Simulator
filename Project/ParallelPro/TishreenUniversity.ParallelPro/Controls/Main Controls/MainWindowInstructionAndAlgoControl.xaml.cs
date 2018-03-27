@@ -36,12 +36,12 @@ namespace TishreenUniversity.ParallelPro.Controls
             SideClockCycles.Loaded += SideClockCycles_Loaded;
         }
 
-        private void SideClockCycles_Loaded(object sender, RoutedEventArgs e)
+        private async void SideClockCycles_Loaded(object sender, RoutedEventArgs e)
         {
             //Get the menu
             var sideMenu = (MainWindowFunctionClockCycles)sender;
             //This will run on the main ui thread
-            sideMenu.SlideOutToRightAsync();
+            await sideMenu.SlideOutToRightAsync();
         }
 
         private async void ChangeSideMenuState(object sender, RoutedEventArgs e)

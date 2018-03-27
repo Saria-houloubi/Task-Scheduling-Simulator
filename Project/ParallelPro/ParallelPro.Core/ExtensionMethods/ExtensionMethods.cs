@@ -13,31 +13,22 @@ namespace Tishreen.ParallelPro.Core
         /// <param name="correctValue">The correct solution</param>
         /// <param name="toCheckValue">The solution to check if right</param>
         /// <returns>The number of corect/wrong/null hits</returns>
-        public static float CompareFiledsAndGetMark<T>(T? correctValue, T? toCheckValue)
-            where T : struct
+        public static float CompareFiledsAndGetMark(int? correctValue, int? toCheckValue)
         {
             //The student mark
             float mark = 0;
-            #region Not Used in time being
-            /*
-                //If the studnet sloution is not right
-                if (!correctValue.Equals(toCheckValue))
-                    //Check if the right solution is null
-                    if (correctValue is null)
-                        //Get 0.25 out of the mark
-                        mark -= 0.25f;
-                    else
-                        //else it is a wrong answer
-                        mark -= 1.0f;
-                else
-                {
-                    if (correctValue != null)
-                        //If the answer is right add 1
-                        mark += 1.0f;
-                }*/
-            #endregion
-            if (correctValue.Equals(toCheckValue))
-                return ++mark;
+
+            //If the studnet sloution is not right
+            if (correctValue != toCheckValue)
+            {                //Check if the right solution is null
+                if (correctValue is null)
+                    //Get 0.25 out of the mark
+                    mark -= 0.5f;
+            }
+            else
+                if (correctValue != null)
+                //If the answer is right add 1
+                mark += 1.0f;
             return mark;
         }
         /// <summary>
@@ -50,31 +41,26 @@ namespace Tishreen.ParallelPro.Core
         {
             //The student mark
             float mark = 0;
-            #region Not Used for time being
-            /*
-                //If the studnet sloution is not right
-                if (correctValue != toCheckValue)
-                    //Check if the right solution is null
-                    if (correctValue == null)
-                        //Get 0.25 out of the mark
-                        mark -= 0.25f;
-                    else
-                        //else it is a wrong answer
-                        mark -= 1.0f;
-                else
-                {
-                    if (correctValue != null)
-                        //If the answer is right add 1
-                        mark += 1.0f;
-                }
-                */
-            #endregion
+            //To not care about cases
+            correctValue = correctValue?.ToLower();
+            toCheckValue = toCheckValue?.ToLower();
+            //If the studnet sloution is not right
+            if (correctValue != toCheckValue)
+            {  //Check if the right solution is null
+                if (correctValue == null)
+                    //Get 0.25 out of the mark
+                    mark -= 0.5f;
+            }
+            else
+            {
+                if (correctValue != null)
+                    //If the answer is right add 1
+                    mark += 1.0f;
+            }
 
-            if (correctValue == toCheckValue)
-                return ++mark;
             return mark;
         }
-       
+
 
     }
 
@@ -125,18 +111,19 @@ namespace Tishreen.ParallelPro.Core
         {
             //The student mark
             float mark = 0;
-            //Correct each filed
-            mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.Time, studentSolution.Time);
-            mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.Operation, studentSolution.Operation);
-            mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.WaitingOperationForSource01, studentSolution.WaitingOperationForSource01);
-            mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.WaitingOperationForSource02, studentSolution.WaitingOperationForSource02);
-            mark += computerSolution.IsSource01Ready == studentSolution.IsSource01Ready ? 1:0;
-            mark += computerSolution.IsSource02Ready == studentSolution.IsSource02Ready ? 1:0;
-            mark += computerSolution.IsBusy == studentSolution.IsBusy ? 1:0;
-            mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.SourceRegistery01, studentSolution.SourceRegistery01);
-            mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.SourceRegistery02, studentSolution.SourceRegistery02);
-            mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.TargetRegistery, studentSolution.TargetRegistery);
-
+            if (computerSolution.IsBusy)
+            {   //Correct each filed
+                mark += computerSolution.IsBusy == studentSolution.IsBusy ? 1 : 0;
+                mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.Time, studentSolution.Time);
+                mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.Operation, studentSolution.Operation);
+                mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.WaitingOperationForSource01, studentSolution.WaitingOperationForSource01);
+                mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.WaitingOperationForSource02, studentSolution.WaitingOperationForSource02);
+                mark += computerSolution.IsSource01Ready == studentSolution.IsSource01Ready ? 1 : 0;
+                mark += computerSolution.IsSource02Ready == studentSolution.IsSource02Ready ? 1 : 0;
+                mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.SourceRegistery01, studentSolution.SourceRegistery01);
+                mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.SourceRegistery02, studentSolution.SourceRegistery02);
+                mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.TargetRegistery, studentSolution.TargetRegistery);
+            }
             return mark;
         }
     }

@@ -52,6 +52,8 @@
         <Setter Property="Foreground" Value="{StaticResource DarkBlueBrush}"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
 
     <Style TargetType="{x:Type TextBlock}" x:Key="InstructionItemTextBlock" BasedOn="{StaticResource HeaderText}">
@@ -81,6 +83,13 @@
     <Style TargetType="{x:Type Run}" x:Key="SmallNumericText" >
         <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}"/>
         <Setter Property="FontStyle" Value="Italic"/>
-        
+    </Style>
+
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="ExamInformationText" BasedOn="{StaticResource MetroTextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeExtraLarg}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource DarkBlueBrush}"/>
     </Style>
 </ResourceDictionary>
