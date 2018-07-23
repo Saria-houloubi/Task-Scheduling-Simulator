@@ -170,7 +170,7 @@ namespace Tishreen.ParallelPro.Core
             FillRegisterList();
             FunctionClockCycle = functionClockCycle;
             //Create the commands
-            FillFunctionalUnitsCommand = new DelegateCommand(FillFunctionalUnitsCommandMethod,()=> ExamClockCycle >= 0 ).ObservesProperty(()=>ExamClockCycle);
+            FillFunctionalUnitsCommand = new DelegateCommand(FillFunctionalUnitsCommandMethod, () => ExamClockCycle >= 0).ObservesProperty(() => ExamClockCycle);
             ScoreBoardOneCycleCommand = new DelegateCommand(StartScoreBoardOneStep);
             ScoreBoardTillEndCommand = new DelegateCommand(StartScoreBoardTillTheEnd);
             CorrectExamAndMoveToNextCommand = new DelegateCommand(CorrectAndMoveToNextTestCommandMethod);
@@ -259,12 +259,20 @@ namespace Tishreen.ParallelPro.Core
                     ReadIfApproved(instruction, functionalUnits);
                 else if (instruction.WriteBackCycle != null)
                 {
-                    if (CheckIfDone(instructions))
+                    //If the value was just ended up from the past clock cycle
+                    if (instruction.WriteBackCycle + 1 == ClockCycle)
                     {
-                        //Get the cycle back to the right value
-                        ClockCycle--;
-                        CanGoNextCycle = false;
-                        return true;
+                        //The resone to wait a clock cycle for the RAW RAR hazards
+                        //Clear the functional unit from its data to reset it
+                        ClearUnitFunction(functionalUnits.SingleOrDefault(item => item.WorkingInstructionID == instruction.ID), registers);
+                        RecheckIfRegistersAreFree(functionalUnits, registers);
+                        if (CheckIfDone(instructions))
+                        {
+                            //Get the cycle back to the right value
+                            ClockCycle--;
+                            CanGoNextCycle = false;
+                            return true;
+                        }
                     }
                 }
                 else
@@ -404,12 +412,11 @@ namespace Tishreen.ParallelPro.Core
                 instruction.ExecuteCompletedCycle = ClockCycle;
             else if (unit.Time == -1)
             {
+                unit.Time = 0;
                 //Set the write back time
                 instruction.WriteBackCycle = ClockCycle;
-                RecheckIfRegistersAreFree(functionalUnits, registers);
-                //Clear the functional unit from its data to reset it
-                ClearUnitFunction(unit, registers);
             }
+
         }
         /// <summary>
         /// Clears up the unit after the instruction writes back
