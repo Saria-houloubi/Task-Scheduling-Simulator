@@ -39,12 +39,23 @@
         <TextBox Grid.Column="1" Grid.Row="2" metro:TextBoxHelper.Watermark="...2479..." Text="{Binding Number,UpdateSourceTrigger=PropertyChanged}"/>
         <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding ClassesTime}" SelectedItem="{Binding SelectedClassTime}"/>
 
-        <Button Grid.ColumnSpan="2" Grid.Row="4" Tag="Enter Exam" FontSize="{StaticResource FontSizeExtraLarg}"
+        <StackPanel  Orientation="Horizontal" Grid.ColumnSpan="3" Grid.Row="4" HorizontalAlignment="Right">
+            <Button x:Name="Exam" Grid.Column="2" Grid.Row="4" Tag="Enter Exam" 
+                    FontSize="{StaticResource FontSizeExtraLarg}"
                 Margin="10" Background="Red"
                 HorizontalAlignment="Right"
                 Padding="20 0"
                 Style="{StaticResource RegularButton}"
                 Command="{Binding EnterExamCommand}"
                 />
+            <Button Tag="Back to login" 
+                    FontSize="{StaticResource FontSizeExtraLarg}"
+                    Click="BackToLogin_Click" 
+                    Margin="10" 
+                    HorizontalAlignment="Right"
+                    Padding="20 0"
+                    Style="{StaticResource RegularButton}"/>
+        </StackPanel>
+
     </Grid>
 </local:BaseUserControl>

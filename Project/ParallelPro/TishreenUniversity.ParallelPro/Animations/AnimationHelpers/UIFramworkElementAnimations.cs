@@ -156,7 +156,7 @@ namespace TishreenUniversity.ParallelPro
             var storyBorad = new Storyboard();
 
             //Adds a slide in animation
-            storyBorad.AddSlideOutFromBottom(element.Height, secounds);
+            storyBorad.AddSlideOutFromBottom(element.ActualHeight, secounds);
 
             //Start the aniamtion
             storyBorad.Begin(element);
@@ -180,7 +180,7 @@ namespace TishreenUniversity.ParallelPro
             var storyBorad = new Storyboard();
 
             //Adds a slide in animation
-            storyBorad.AddSlideOutFromBottom(element.Height, secounds);
+            storyBorad.AddSlideOutFromBottom(element.ActualHeight, secounds);
 
             //Adds a slide in animation
             storyBorad.AddFadeOut(secounds);
@@ -207,7 +207,7 @@ namespace TishreenUniversity.ParallelPro
             var storyBorad = new Storyboard();
 
             //Adds a slide in animation
-            storyBorad.AddSlideInFromBottom(element.Height , secounds);
+            storyBorad.AddSlideInFromBottom(element.ActualHeight , secounds);
 
             //Adds a slide in animation
             storyBorad.AddFadeIn(secounds);

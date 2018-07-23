@@ -1,0 +1,45 @@
+﻿<local:BaseUserControl x:Class="TishreenUniversity.ParallelPro.Controls.MainWindowEditInsructionsSideMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
+                       xmlns:enums="clr-namespace:ThishreenUniversity.ParallelPro.Enums;assembly=ThishreenUniversity.ParallelPro.Enums"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="500">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <!--Tilte Helpers-->
+            <TextBlock  Grid.Row = "0" Text="Instruction :" Style="{StaticResource WhiteRegularText}"/>
+            <TextBlock   Grid.Row = "1" Text="Target :" Style="{StaticResource WhiteRegularText}" />
+            <TextBlock Grid.Row = "2" Text="Source 1 :" Style="{StaticResource WhiteRegularText}" />
+            <TextBlock Grid.Row = "3" Text="Source 2 :" Style="{StaticResource WhiteRegularText}"/>
+
+         
+            <!--Instruction-->
+            <ComboBox  Grid.Column="1" ItemsSource="{Binding Functions}" SelectedValue="{Binding SelectectedFunctionEditMenu,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedInstruction.Name,UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True,NotifyOnSourceUpdated=True}"/>
+            <!--Target Registery-->
+            <ComboBox Grid.Column="1" Grid.Row="1" SelectedItem="{Binding SelectedInstruction.TargetRegistery}" ItemsSource="{Binding EditTargetRegistries, Mode=TwoWay,NotifyOnSourceUpdated=True}"/>
+            <!--Source 1 Registery-->
+            <ComboBox Grid.Column="1" Grid.Row="2" SelectedItem="{Binding SelectedInstruction.SourceRegistery01}" ItemsSource="{Binding EditSourceRegisteries, Mode=TwoWay}"/>
+            <!--Source 2 Registery-->
+            <ComboBox Grid.Column="1" Grid.Row="3" SelectedItem="{Binding SelectedInstruction.SourceRegistery02}" ItemsSource="{Binding EditSourceRegisteries , Mode=TwoWay}" IsEnabled="{Binding CanChooseSource02OnEdit}"/>
+
+                <!--edit instruction button-->
+            <Button Grid.Column="1" Grid.Row="5" Background="Red" Style="{StaticResource BaseIconButton}"  IsDefault="True" Tag="{StaticResource DownArrow}" Command="{Binding EditInstructionCommand}"/>
+        </Grid>
+    </Grid>
+
+</local:BaseUserControl>

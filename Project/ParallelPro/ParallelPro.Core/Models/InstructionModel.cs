@@ -5,7 +5,7 @@ namespace Tishreen.ParallelPro.Core.Models
     /// A model for all the instruction
     /// Funtion TargetRegistry  Source1 Source2
     /// </summary>
-    public class InstructionModel
+    public class InstructionModel 
     {
         #region Properties
         /// <summary>
@@ -16,6 +16,7 @@ namespace Tishreen.ParallelPro.Core.Models
         /// The function name of the instruction
         /// </summary>
         public string Name { get; set; }
+        
         /// <summary>
         /// The target registry to store the value in
         /// </summary>

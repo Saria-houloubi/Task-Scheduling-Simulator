@@ -12,7 +12,7 @@
              >
 
     <!--Main Content-->
-    <Grid Grid.Row="2">
+    <Grid >
         <Grid.ColumnDefinitions>
             <!--instuctions-->
             <ColumnDefinition Width="*"/>
@@ -21,18 +21,24 @@
             <!--Clock cycle menu-->
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-
+        <Grid.RowDefinitions>
+            <!--The hole data-->
+            <RowDefinition Height="*"/>
+            <!--Edit menu-->
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
 
 
         <!--Instructions-->
-        <controls:InstructionMenuControl  Grid.Column="0" Margin="20 0"/>
+        <controls:InstructionMenuControl  Grid.Column="0" Grid.Row="0" Margin="20 0" />
+        <!--Edit instruction window-->
+        <controls:MainWindowEditInsructionsSideMenu Grid.Column="0" Grid.Row="1" x:Name="EditInstructionSideMenu" SlideInOutBottom="{Binding ShowEditInstructionMenu}"/>
 
-        <Button  HorizontalAlignment="Left" Tag="Open" Grid.Column="1"  Click="ChangeSideMenuState" Style="{StaticResource SideMenuButton}"/>
+        <Button  HorizontalAlignment="Left" Tag="Open" Grid.Column="1"  Grid.RowSpan="2"  Click="ChangeSideMenuState" Style="{StaticResource SideMenuButton}"/>
 
         <!--Clock cycles menu-->
-        <controls:MainWindowFunctionClockCycles Visibility="Collapsed" Grid.Column="2" x:Name="SideClockCycles"/>
-
-
+        <controls:MainWindowFunctionClockCycles Grid.RowSpan="2" Visibility="Collapsed" Grid.Column="2" x:Name="SideClockCycles"/>
+        
     </Grid>
 
 </local:BaseUserControl>

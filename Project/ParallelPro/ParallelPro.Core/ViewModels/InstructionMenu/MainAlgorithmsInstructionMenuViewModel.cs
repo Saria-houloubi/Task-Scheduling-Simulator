@@ -35,6 +35,7 @@ namespace Tishreen.ParallelPro.Core
                 ///Fill the target and source registeries with the right values
                 if (value != null)
                     FillTargetAndSourceRegisteries(value);
+
             }
         }
         /// <summary>
@@ -71,7 +72,10 @@ namespace Tishreen.ParallelPro.Core
         public InstructionModel SelectedInstruction
         {
             get { return _selectedInstruction; }
-            set { SetProperty(ref _selectedInstruction, value); }
+            set
+            {
+                SetProperty(ref _selectedInstruction, value);
+            }
         }
 
         /// <summary>
@@ -132,11 +136,21 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// Holds all the target registries that the user can use
         /// </summary>
-        public ObservableCollection<string> TargetRegistries { get; set; }
+        private ObservableCollection<string> mTargetRegistries;
+        public ObservableCollection<string> TargetRegistries
+        {
+            get { return mTargetRegistries; }
+            set { SetProperty(ref mTargetRegistries, value); }
+        }
         /// <summary>
         /// Holds all the source registries that the user can use
         /// </summary>
-        public ObservableCollection<string> SourceRegisteries { get; set; }
+        private ObservableCollection<string> mSourceRegisteries;
+        public ObservableCollection<string> SourceRegisteries
+        {
+            get { return mSourceRegisteries; }
+            set { SetProperty(ref mSourceRegisteries, value); }
+        }
         /// <summary>
         /// The list of instructions that the user adds
         /// </summary>
@@ -146,18 +160,92 @@ namespace Tishreen.ParallelPro.Core
             get { return _instructions; }
             set { SetProperty(ref _instructions, value); }
         }
+
+
+        #region Edit meun Lists And Collections
+        /// <summary>
+        /// Holds all the function unite that we can do like ADD, SUB ... 
+        /// </summary>
+        private List<string> mEditfunctions;
+        public List<string> EditFunctions
+        {
+            get { return mEditfunctions; }
+            set { SetProperty(ref mEditfunctions, value); }
+        }
+        /// <summary>
+        /// Holds all the target registries that the user can use
+        /// </summary>
+        private ObservableCollection<string> mEditTargetRegistries;
+        public ObservableCollection<string> EditTargetRegistries
+        {
+            get { return mEditTargetRegistries; }
+            set { SetProperty(ref mEditTargetRegistries, value); }
+        }
+        /// <summary>
+        /// Holds all the source registries that the user can use
+        /// </summary>
+        private ObservableCollection<string> mEditSourceRegisteries;
+        public ObservableCollection<string> EditSourceRegisteries
+        {
+            get { return mEditSourceRegisteries; }
+            set { SetProperty(ref mEditSourceRegisteries, value); }
+        }
+        /// <summary>
+        /// The selected function in the edit menu
+        /// </summary>
+        private string mSelectedFunctionEditMenu;
+        public string SelectectedFunctionEditMenu
+        {
+            get { return mSelectedFunctionEditMenu; }
+            set
+            {
+                SetProperty(ref mSelectedFunctionEditMenu, value);
+
+                ///Fill the target and source registeries with the right values
+                if (value != null)
+                {
+                    //Refill the lists
+                    FillTargetAndSourceRegisteries(value, true);
+                }
+            }
+        }
         #endregion
+
+        #endregion
+
+
 
         #region Flags
         /// <summary>
         /// A flag represents if the user can choose another source for the instruction
         /// like in SD/LD only one source
         /// </summary>
-        private bool _canChooseSource02 = true;
+        private bool mCanChooseSource02 = true;
         public bool CanChooseSource02
         {
-            get { return _canChooseSource02; }
-            set { SetProperty(ref _canChooseSource02, value); }
+            get { return mCanChooseSource02; }
+            set { SetProperty(ref mCanChooseSource02, value); }
+        }
+        /// <summary>
+        /// A flag represents if the user can choose another source for the instruction
+        /// like in SD/LD only one source
+        /// the flag is for edit side menu
+        /// </summary>
+        private bool mCanChooseSource02OnEdit = true;
+        public bool CanChooseSource02OnEdit
+        {
+            get { return mCanChooseSource02OnEdit; }
+            set { SetProperty(ref mCanChooseSource02OnEdit, value); }
+        }
+
+        /// <summary>
+        /// A flag to show the edit menu if we are in editing
+        /// </summary>
+        private bool mShowEditInstructionMenu;
+        public bool ShowEditInstructionMenu
+        {
+            get { return mShowEditInstructionMenu; }
+            set { SetProperty(ref mShowEditInstructionMenu, value); }
         }
         #endregion
 
@@ -172,6 +260,10 @@ namespace Tishreen.ParallelPro.Core
         /// The command that delete an instruction
         /// </summary>
         public DelegateCommand DeleteItemCommand { get; private set; }
+        /// <summary>
+        /// The command to edit an istruction
+        /// </summary>
+        public DelegateCommand EditInstructionCommand { get; set; }
         /// <summary>
         /// The command to open the spacific algorithm window
         /// </summary>
@@ -189,16 +281,50 @@ namespace Tishreen.ParallelPro.Core
             //Loops thru the enum values an add them to the functions list
             foreach (var item in Enum.GetValues(typeof(FunctionsTypes)))
                 Functions.Add(item.ToString());
+
+            SelectedFunction = null;
+            SelectedTargetRegistery = null;
+            SelectedSourceRegistery01= null;
+            SelectedSourceRegistery02 = null;
         }
 
         /// <summary>
         /// Fill the target and the source registeries or memory that the user can choose
         /// </summary>
         /// <param name="function">The function that we want to restrict some registery or memory access</param>
-        private void FillTargetAndSourceRegisteries(string function = null)
+        /// <param name="editCollection">If true will update the edit collections</param>
+        private void FillTargetAndSourceRegisteries(string function = null, bool editCollection = false)
         {
-            TargetRegistries.Clear();
-            SourceRegisteries.Clear() ;
+            if (!editCollection)
+            {
+                UpdateListOnFunctionChange(ref mTargetRegistries, ref mSourceRegisteries, ref mCanChooseSource02, function);
+                RaisePropertyChanged(nameof(TargetRegistries));
+                RaisePropertyChanged(nameof(SourceRegisteries));
+                RaisePropertyChanged(nameof(CanChooseSource02));
+            }
+            else
+            {
+                UpdateListOnFunctionChange(ref mEditTargetRegistries, ref mEditSourceRegisteries, ref mCanChooseSource02OnEdit, function);
+                RaisePropertyChanged(nameof(EditTargetRegistries));
+                RaisePropertyChanged(nameof(EditSourceRegisteries));
+                RaisePropertyChanged(nameof(CanChooseSource02OnEdit));
+            }
+        }
+        /// <summary>
+        /// Updates the lists sent to it based on the value of the function that is sent to it
+        /// </summary>
+        /// <param name="targetRegistries"></param>
+        /// <param name="sourceRegistries"></param>
+        /// <param name="canChooseSource02"></param>
+        /// <param name="function"></param>
+        private void UpdateListOnFunctionChange(
+             ref ObservableCollection<string> targetRegistries,
+             ref ObservableCollection<string> sourceRegistries,
+             ref bool canChooseSource02,
+            string function = null)
+        {
+            targetRegistries = new ObservableCollection<string>();
+            sourceRegistries = new ObservableCollection<string>();
 
             var RegisteryAndMemoryList = Enum.GetValues(typeof(RegisteriesAndMemory));
 
@@ -208,32 +334,32 @@ namespace Tishreen.ParallelPro.Core
                 if (function == FunctionsTypes.LD.ToString())
                 {
                     //If it is a registery spot add it to target
-                    if ((int)item < 31) 
-                        TargetRegistries.Add(stringValue);
+                    if ((int)item < 31)
+                        targetRegistries.Add(stringValue);
                     else
-                        SourceRegisteries.Add(stringValue);
+                        sourceRegistries.Add(stringValue);
                 }
                 else if (function == FunctionsTypes.SD.ToString())
                 {
                     //If it is a memory add it to target
                     if ((int)item >= 31)
-                        TargetRegistries.Add(stringValue);
+                        targetRegistries.Add(stringValue);
                     else
-                        SourceRegisteries.Add(stringValue);
-                } 
+                        sourceRegistries.Add(stringValue);
+                }
                 else
                 {
-                    TargetRegistries.Add(stringValue);
+                    targetRegistries.Add(stringValue);
                     //If it is a registery spot add it to target
                     if ((int)item < 31)
-                        SourceRegisteries.Add(stringValue);
+                        sourceRegistries.Add(stringValue);
                 }
             }
             //Disable source02 if the function is either load or store
             if (function == FunctionsTypes.LD.ToString() || function == FunctionsTypes.SD.ToString())
-                CanChooseSource02 = false;
+                canChooseSource02 = false;
             else
-                CanChooseSource02 = true;
+                canChooseSource02 = true;
 
         }
         #endregion
@@ -251,7 +377,7 @@ namespace Tishreen.ParallelPro.Core
             Instructions = new ObservableCollection<InstructionModel>();
             TargetRegistries = new ObservableCollection<string>();
             SourceRegisteries = new ObservableCollection<string>();
-
+            ShowEditInstructionMenu = false;
         }
 
         /// <summary>
@@ -284,7 +410,7 @@ namespace Tishreen.ParallelPro.Core
                     new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.SD,IntegerClockCycles),
                     new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.SUB,FloatingPointAddClockCycles),
                 };
-               IoC.Kernel.Get<IUIManager>().ShowWinodw((ApplicationPages)parameter,new List<object>(Instructions),functionClockCycles);
+                IoC.Kernel.Get<IUIManager>().ShowWinodw((ApplicationPages)parameter, new List<object>(Instructions), functionClockCycles);
 
                 //If exam mode clear the instruction
                 //so student can enter new instruction on next test
@@ -293,8 +419,12 @@ namespace Tishreen.ParallelPro.Core
                     counter = 1;
                     Instructions = new ObservableCollection<InstructionModel>();
                 }
-            },(parameter) => 
-            Instructions.Count > 0 ).ObservesProperty(()=>Instructions);
+            }, (parameter) =>
+             Instructions.Count > 0).ObservesProperty(() => Instructions);
+            EditInstructionCommand = new DelegateCommand(() =>
+            {
+                ShowEditInstructionMenu ^= true;
+            });
         }
         #endregion
 
@@ -345,4 +475,3 @@ namespace Tishreen.ParallelPro.Core
 
     }
 }
-    

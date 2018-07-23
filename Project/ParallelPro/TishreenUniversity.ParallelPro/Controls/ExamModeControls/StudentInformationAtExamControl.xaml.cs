@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ThishreenUniversity.ParallelPro.Enums;
 using Tishreen.ParallelPro.Core;
 
 namespace TishreenUniversity.ParallelPro.Controls
@@ -25,5 +26,17 @@ namespace TishreenUniversity.ParallelPro.Controls
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Gets the user back to login page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BackToLogin_Click(object sender, RoutedEventArgs e)
+        {
+            //Go to the login page
+            IoC.Appliation.CurrentPage = ApplicationPages.LoginPage;
+        }
+
     }
 }

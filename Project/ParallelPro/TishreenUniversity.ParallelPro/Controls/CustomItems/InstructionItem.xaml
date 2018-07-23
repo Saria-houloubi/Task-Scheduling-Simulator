@@ -16,7 +16,8 @@
                     <ContextMenu DataContext="{DynamicResource Data}"   x:Name="Menu">
                         <!--Edit-->
                         <MenuItem 
-                                Foreground="Black" 
+                                Foreground="Black"
+                            Command="{Binding EditInstructionCommand}"
                                   >
                             <MenuItem.Header>
                                 <TextBlock
@@ -30,7 +31,7 @@
                                 <TextBlock
                                    Style="{StaticResource MenuTextBlocks}"
                                     Foreground="Black"
-                                    Text="&#xf044;"
+                                    Text="{StaticResource EditIcon}"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Stretch"
                                     FontFamily="{StaticResource FontAwesome}"/>
@@ -51,7 +52,7 @@
                             <MenuItem.Icon>
                                 <TextBlock
                                    Style="{StaticResource MenuTextBlocks}"
-                                    Text="&#xf014;"
+                                    Text="{StaticResource TrashIcon}"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Stretch"
                                     FontFamily="{StaticResource FontAwesome}"/>
@@ -60,7 +61,7 @@
                     </ContextMenu>
                 </Setter.Value>
             </Setter>
-
+            <Setter Property="Background" Value="Transparent"/>
             <!--Template-->
             <Setter Property="Template">
                 <Setter.Value>
@@ -69,7 +70,7 @@
                                 CornerRadius="5"
                                 Opacity="0.9"
                                 BorderThickness="0 0 0 0.5"
-                                Background="Transparent">
+                                Background="{TemplateBinding Background}">
                             <Border.BorderBrush>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                     <GradientStop Color="Transparent" Offset="0"/>
@@ -77,7 +78,7 @@
                                     <GradientStop Color="Transparent" Offset="1"/>
                                 </LinearGradientBrush>
                             </Border.BorderBrush>
-                            <Border Padding="10">
+                            <Border Padding="10" x:Name="InnerBOrder" Background="{TemplateBinding Background}">
                                 <Grid >
 
                                     <Grid.ColumnDefinitions>
@@ -117,6 +118,7 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
+                            
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>

@@ -34,6 +34,7 @@ namespace TishreenUniversity.ParallelPro.Controls
             InitializeComponent();
             //Slide out the window once it is loaded
             SideClockCycles.Loaded += SideClockCycles_Loaded;
+            EditInstructionSideMenu.Loaded += EditInstructionSideMenu_Loaded;
         }
 
         private async void SideClockCycles_Loaded(object sender, RoutedEventArgs e)
@@ -42,6 +43,13 @@ namespace TishreenUniversity.ParallelPro.Controls
             var sideMenu = (MainWindowFunctionClockCycles)sender;
             //This will run on the main ui thread
             await sideMenu.SlideOutToRightAsync();
+        }
+        private async void EditInstructionSideMenu_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Get the menu
+            var sideMenu = (MainWindowEditInsructionsSideMenu)sender;
+            //This will run on the main ui thread
+            await sideMenu.SlideOutFromBottomAsync();
         }
 
         private async void ChangeSideMenuState(object sender, RoutedEventArgs e)

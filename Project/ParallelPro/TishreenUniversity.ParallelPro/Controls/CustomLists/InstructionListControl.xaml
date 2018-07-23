@@ -14,19 +14,43 @@
             VerticalScrollBarVisibility="Auto">
             <ListView
               Background="Transparent" BorderThickness="0"
-                SelectedItem="{Binding SelectedInstruction}"
+                SelectedItem="{Binding SelectedInstruction,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding Instructions,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                 HorizontalContentAlignment="Stretch">
-               <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <control:InstructionItem />
+                                    <control:InstructionItem   />
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
-                </Style>
+                        <Style.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                <Setter Property="Background" Value="#FFD9F2BF"/>
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                <Setter Property="Background" Value="White"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                    <Condition Property="ItemsControl.AlternationIndex" Value="0"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" Value="LightGreen"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                    <Condition Property="ItemsControl.AlternationIndex"
+                          Value="1"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" Value="LightBlue"/>
+                            </MultiTrigger>
+                        </Style.Triggers>
+
+                    </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>

@@ -8,8 +8,8 @@ namespace ThishreenUniversity.ParallelPro.Enums
 {
     /// <summary>
     /// Holds all the regiteries and memory spots that user can only use in the application
-    /// Value = 0 ===> it is registery
-    /// Value = 1 ===> it is a memory spot
+    /// Value = 0 ===> 30it is registery
+    /// Value = 31 ===>60 it is a memory spot
     /// </summary>
     public enum RegisteriesAndMemory
     {
