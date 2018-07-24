@@ -7,7 +7,7 @@
             xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
              xmlns:Design="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Design;assembly=Tishreen.ParallelPro.Core"
              xmlns:core="clr-namespace:Tishreen.ParallelPro.Core;assembly=Tishreen.ParallelPro.Core"
-              mc:Ignorable="d"
+              mc:Ignorable="d" x:Name="usercontrol" Foreground="White"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
@@ -32,10 +32,10 @@
             </Grid.RowDefinitions>
             
             <!--Tilte Helpers-->
-            <TextBlock Text="Instruction" Style="{StaticResource HeaderText}"/>
-            <TextBlock Text="Target" Style="{StaticResource HeaderText}" Grid.Column="1"/>
-            <TextBlock Text="Source 1" Style="{StaticResource HeaderText}" Grid.Column="2"/>
-            <TextBlock Text="Source 2" Style="{StaticResource HeaderText}" Grid.Column="3"/>
+            <TextBlock Foreground="{Binding ElementName=usercontrol,Path=Foreground}" Text="Instruction" Style="{StaticResource HeaderText}"/>
+            <TextBlock Foreground="{Binding ElementName=usercontrol,Path=Foreground}" Text="Target" Style="{StaticResource HeaderText}" Grid.Column="1"/>
+            <TextBlock Foreground="{Binding ElementName=usercontrol,Path=Foreground}" Text="Source 1" Style="{StaticResource HeaderText}" Grid.Column="2"/>
+            <TextBlock Foreground="{Binding ElementName=usercontrol,Path=Foreground}" Text="Source 2" Style="{StaticResource HeaderText}" Grid.Column="3"/>
             
             <!--Add instruction button-->
             <Button Style="{StaticResource BaseIconButton}" IsDefault="True" Command="{Binding AddInstructionCommand}" Tag="{StaticResource PlusIcon}" Grid.Column="4" Grid.Row="1"/>
@@ -57,7 +57,7 @@
                 CornerRadius="5"
                 BorderThickness="2 0"
                 BorderBrush="{StaticResource DarkBlueBrush}"
-                Background="LightGray">
+                Background="LightGray"> 
 
             <controls:InstructionListControl d:DataContext="{x:Static Design:InstructionListDesign.Instance }"/>
         </Border>

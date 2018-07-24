@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
                        xmlns:enums="clr-namespace:ThishreenUniversity.ParallelPro.Enums;assembly=ThishreenUniversity.ParallelPro.Enums"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" Foreground="White"
+                       x:Name="usercontrol"
              d:DesignHeight="200" d:DesignWidth="500">
     <Grid>
         <Grid>
@@ -22,10 +23,10 @@
             </Grid.RowDefinitions>
 
             <!--Tilte Helpers-->
-            <TextBlock  Grid.Row = "0" Text="Instruction :" Style="{StaticResource WhiteRegularText}"/>
-            <TextBlock   Grid.Row = "1" Text="Target :" Style="{StaticResource WhiteRegularText}" />
-            <TextBlock Grid.Row = "2" Text="Source 1 :" Style="{StaticResource WhiteRegularText}" />
-            <TextBlock Grid.Row = "3" Text="Source 2 :" Style="{StaticResource WhiteRegularText}"/>
+            <TextBlock Foreground="{Binding ElementName=usercontrol,Path=Foreground}"  Grid.Row = "0" Text="Instruction :" Style="{StaticResource WhiteRegularText}"/>
+            <TextBlock Foreground="{Binding ElementName=usercontrol,Path=Foreground}"   Grid.Row = "1" Text="Target :" Style="{StaticResource WhiteRegularText}" />
+            <TextBlock Foreground="{Binding ElementName=usercontrol,Path=Foreground}" Grid.Row = "2" Text="Source 1 :" Style="{StaticResource WhiteRegularText}" />
+            <TextBlock Foreground="{Binding ElementName=usercontrol,Path=Foreground}" Grid.Row = "3" Text="Source 2 :" Style="{StaticResource WhiteRegularText}"/>
 
          
             <!--Instruction-->

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using ThishreenUniversity.ParallelPro.Enums;
 using Tishreen.ParallelPro.Core;
+using Tishreen.ParallelPro.Core.Models;
 using TishreenUniversity.ParallelPro.Windows;
 
 namespace TishreenUniversity.ParallelPro.ViewModels
@@ -31,13 +33,22 @@ namespace TishreenUniversity.ParallelPro.ViewModels
                     wantedWindow = new MainWindow();
                     break;
                 case ApplicationPages.ScoreBoarding:
-                    wantedWindow = new ScoreBoardingWindow(parameter,(List<KeyValuePair<FunctionsTypes,int>>)parameter02);
+                    wantedWindow = new ScoreBoardingWindow(parameter, (List<KeyValuePair<FunctionsTypes, int>>)parameter02);
                     break;
                 case ApplicationPages.ResultWindow:
                     wantedWindow = new ExamResultWindow();
                     //Do not let the user to change windows
                     wantedWindow.ShowDialog();
                     return;
+                case ApplicationPages.LoginPage:
+                    break;
+                case ApplicationPages.AdminSettings:
+                    break;
+                case ApplicationPages.ExamStudentInformation:
+                    break;
+                case ApplicationPages.CodeInformationWindow:
+                    wantedWindow = new CodeCyclesAndFunctionalUnitInformationWindow(parameter[0] as List<object>, parameter[1] as Dictionary<FunctionsTypes, int>, parameter[2] as Dictionary<FunctionalUnitsTypes, int>);
+                    break;
                 default:
                     Debugger.Break();
                     break;

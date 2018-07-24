@@ -22,6 +22,10 @@ namespace Tishreen.ParallelPro.Core
         /// Only created if in exam mode
         /// </summary>
         private ExamResultModel mExamResult;
+        /// <summary>
+        /// The list of instructions that came from the main window
+        /// </summary>
+        private List<object> mInstructions;
         #endregion
 
         #region Properties
@@ -40,7 +44,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The clock cycles for each functional unit
         /// </summary>
-        public List<KeyValuePair<FunctionsTypes, int>> FunctionClockCycle { get; set; }
+        public Dictionary<FunctionsTypes, int> FunctionClockCycle { get; set; }
         /// <summary>
         /// The amount of integer units that can execute functions like Load(LD) Store(SD)
         /// </summary>
@@ -113,6 +117,10 @@ namespace Tishreen.ParallelPro.Core
         /// The command to scoreboard till the end of the algorithm
         /// </summary>
         public DelegateCommand ScoreBoardTillEndCommand { get; private set; }
+        /// <summary>
+        /// The command that opens the information the user enterd
+        /// </summary>
+        public DelegateCommand ShowEnteredInformationCommand { get; set; }
         #endregion
 
         #region Command Metods
@@ -144,6 +152,28 @@ namespace Tishreen.ParallelPro.Core
 
             RaisePropertyChanged(nameof(FunctionalUnits));
         }
+        /// <summary>
+        /// The function that will be executed once the <see cref="ShowEnteredInformationCommand"/> is invocked
+        /// </summary>
+        public void ShowEnteredInformationCommandExecute()
+        {
+            var functionUnitsCount = new Dictionary<FunctionalUnitsTypes, int>
+            {
+                { FunctionalUnitsTypes.Add, NumberOfAddUnits },
+                { FunctionalUnitsTypes.Load, NumberOfLoadUnits },
+                { FunctionalUnitsTypes.Divide, NumberOfDivideUnits },
+                { FunctionalUnitsTypes.Multiply, NumberOfMultiplyUnits }
+            };
+            //The parametes to send
+            var parameters = new List<object>
+            {
+                mInstructions,
+                FunctionClockCycle,
+                functionUnitsCount
+            };
+
+            IoC.UI.ShowWinodw(ApplicationPages.CodeInformationWindow, parameters);
+        }
         #endregion
 
         #region Constructer
@@ -154,6 +184,7 @@ namespace Tishreen.ParallelPro.Core
         /// <param name="functionClockCycle">The clock cycles for each function unit</param>
         public ScoreBoardingWindowViewModel(List<object> instructionList, List<KeyValuePair<FunctionsTypes, int>> functionClockCycle)
         {
+            mInstructions = instructionList;
             //If exam mode save the instructions that the student entered
             if (IoC.Appliation.IsExamMode)
             {
@@ -168,13 +199,15 @@ namespace Tishreen.ParallelPro.Core
             //Call on the start to fill the instruction list
             FillInstructionList(instructionList);
             FillRegisterList();
-            FunctionClockCycle = functionClockCycle;
+            FunctionClockCycle = new Dictionary<FunctionsTypes, int>();
+            functionClockCycle.ForEach(item => FunctionClockCycle.Add(item.Key, item.Value));
             //Create the commands
             FillFunctionalUnitsCommand = new DelegateCommand(FillFunctionalUnitsCommandMethod, () => ExamClockCycle >= 0).ObservesProperty(() => ExamClockCycle);
             ScoreBoardOneCycleCommand = new DelegateCommand(StartScoreBoardOneStep);
             ScoreBoardTillEndCommand = new DelegateCommand(StartScoreBoardTillTheEnd);
             CorrectExamAndMoveToNextCommand = new DelegateCommand(CorrectAndMoveToNextTestCommandMethod);
             CorrectExamAndEndCommand = new DelegateCommand(EndTestsAndShowResultsCommandMethod);
+            ShowEnteredInformationCommand = new DelegateCommand(ShowEnteredInformationCommandExecute);
         }
         /// <summary>
         /// Fills the instruction with status list on the start of the window

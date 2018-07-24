@@ -17,18 +17,20 @@ namespace Tishreen.ParallelPro.Core
         {
             //The student mark
             float mark = 0;
-
             //If the studnet sloution is not right
             if (correctValue != toCheckValue)
-            {                //Check if the right solution is null
+            {
+                //Check if the right solution is null
                 if (correctValue is null)
                     //Get 0.25 out of the mark
                     mark -= 0.5f;
             }
             else
+            {
                 if (correctValue != null)
-                //If the answer is right add 1
-                mark += 1.0f;
+                    //If the answer is right add 1
+                    mark += 1.0f;
+            }
             return mark;
         }
         /// <summary>
@@ -53,7 +55,7 @@ namespace Tishreen.ParallelPro.Core
             }
             else
             {
-                if (correctValue != null)
+                if (!string.IsNullOrEmpty(correctValue))
                     //If the answer is right add 1
                     mark += 1.0f;
             }
@@ -119,10 +121,14 @@ namespace Tishreen.ParallelPro.Core
                 mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.WaitingOperationForSource01, studentSolution.WaitingOperationForSource01);
                 mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.WaitingOperationForSource02, studentSolution.WaitingOperationForSource02);
                 mark += computerSolution.IsSource01Ready == studentSolution.IsSource01Ready ? 1 : 0;
-                mark += computerSolution.IsSource02Ready == studentSolution.IsSource02Ready ? 1 : 0;
                 mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.SourceRegistery01, studentSolution.SourceRegistery01);
-                mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.SourceRegistery02, studentSolution.SourceRegistery02);
                 mark += SharedMethods.CompareFiledsAndGetMark(computerSolution.TargetRegistery, studentSolution.TargetRegistery);
+                var source02Mark = SharedMethods.CompareFiledsAndGetMark(computerSolution.SourceRegistery02, studentSolution.SourceRegistery02);
+                if (source02Mark > 0)
+                {
+                    mark += computerSolution.IsSource02Ready == studentSolution.IsSource02Ready ? 1 : 0;
+                    mark += source02Mark;
+                }
             }
             return mark;
         }

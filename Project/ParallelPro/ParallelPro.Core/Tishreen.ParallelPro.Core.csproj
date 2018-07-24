@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -79,6 +80,7 @@
     <Compile Include="ViewModels\Desgin\InstructionList\List\RegisterResultListDesign.cs" />
     <Compile Include="ViewModels\Desgin\InstructionList\List\InstructionWithStatusListDesign.cs" />
     <Compile Include="ViewModels\Desgin\InstructionList\List\InstructionListDesign.cs" />
+    <Compile Include="ViewModels\EnterdInformation\CodeCyclesAndFunctionalUnitInformationWindowViewModel.cs" />
     <Compile Include="ViewModels\InstructionMenu\MainAlgorithmsInstructionMenuViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ScoreBoardingWindowViewModel.cs" />

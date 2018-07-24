@@ -27,8 +27,10 @@
     <system:String x:Key="Clock">&#xf017;</system:String>
     <system:String x:Key="Check_Circle">&#xf058;</system:String>
     <system:String x:Key="Window_close">&#xf410;</system:String>
-
-
+    <system:String x:Key="Info_Circle">&#xf05a;</system:String>
+    <system:String x:Key="Memory">&#xf538;</system:String>
 
     
+
+
 </ResourceDictionary>

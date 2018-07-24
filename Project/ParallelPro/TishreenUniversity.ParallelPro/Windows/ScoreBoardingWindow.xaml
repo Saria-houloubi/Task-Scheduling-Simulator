@@ -7,9 +7,11 @@
         xmlns:converter="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
         xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
         mc:Ignorable="d" WindowState="Maximized" Tag="AppWindow"
+        xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
         Title="ScoreBoarding">
     <ScrollViewer BorderBrush="Red">
         <Grid >
+            
             <Grid Margin="15 0" >
                 <Grid.RowDefinitions>
                     <!--Clock cycles-->
@@ -30,15 +32,17 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Clock Cycle : " Style="{StaticResource DarkHeader}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     <TextBlock Style="{StaticResource HeaderText}" FontSize="{StaticResource FontSizeExtraLarg}" FontWeight="Bold" Text="{Binding ClockCycle}" Grid.Column="1"  Foreground="Black"/>
-                
+
                     <Grid Grid.Column="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                    
+
                         <Button
                             x:Name="NextCycleButton"
                             Visibility="{Binding Source={x:Static local:ViewModelLocator.ApplicationViewModel},Path=IsExamMode,Converter={converter:BooleanToVisibilityValueConverter},ConverterParameter=True}"
@@ -56,18 +60,31 @@
                             Command="{Binding CorrectExamAndMoveToNextCommand}" 
                             Style="{StaticResource RegularButton}" 
                             Background="Red" />
+                        <Button
+                            Visibility="{Binding ElementName=nextExambutton,Path=Visibility}"
+                            Tag="Delete and go next Test" 
+                            Grid.Column="3"
+                            Click="CheckPasswordForRest_Click"
+                            Style="{StaticResource RegularButton}" 
+                            Background="Red" />
                         <Button 
                             Visibility="{Binding ElementName=nextExambutton,Path=Visibility}"
                             Tag="Finished" 
-                            Grid.Column="3" 
+                            Grid.Column="4" 
                             Command="{Binding CorrectExamAndEndCommand}" 
                             Style="{StaticResource RegularButton}" 
                             Background="Red" />
                         <!--#endregion-->
-                    
+                        <Button 
+                            IsEnabled="{Binding CanGoNextCycle}"
+                            Height="50"
+                            Width="50"
+                            Tag="{StaticResource Info_Circle}" Grid.Column="5" Command="{Binding ShowEnteredInformationCommand}"
+                            Style="{StaticResource BaseIconButton}" Background="Black" />
+
                     </Grid>
-                    
-                    
+
+
                 </Grid>
                 <!--#endregion-->
                 <!--Instruction status-->
@@ -81,6 +98,20 @@
             </Grid>
             <!--Instructions status-->
             <controls:ChooseFunctionalUnitsScoreBoard Visibility="Visible" />
+
+            <!--Hover over menu to enter a password for exit-->
+            <Grid x:Name="CheckForConformationControl" Visibility="Collapsed">
+                <Border Background="{StaticResource  BackgroundDarkBrush}" Opacity="0.95"/>
+                <Border x:Name="PasswordCheck" >
+                    <StackPanel HorizontalAlignment="Center" 
+                        VerticalAlignment="Center">
+                        <PasswordBox Style="{StaticResource RegularPasswordBox}" Width="300" x:Name="TeacherPassword" metro:TextBoxHelper.Watermark="Enter Password"/>
+                        <Button Content="Check and exit" Click="CheckAndExitClick"/>
+                        <Button Content="Back" Margin="0 5" Click="BackButton_Click"/>
+
+                    </StackPanel>
+                </Border>
+            </Grid>
 
         </Grid>
     </ScrollViewer>

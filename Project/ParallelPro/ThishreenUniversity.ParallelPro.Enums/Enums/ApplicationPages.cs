@@ -35,5 +35,9 @@ namespace ThishreenUniversity.ParallelPro.Enums
         /// The result window after an exam
         /// </summary>
         ResultWindow = 5,
+        /// <summary>
+        /// The window which holds the code and the information the user entered
+        /// </summary>
+        CodeInformationWindow=6,
     }
 }

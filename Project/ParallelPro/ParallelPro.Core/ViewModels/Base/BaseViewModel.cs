@@ -14,11 +14,11 @@ namespace Tishreen.ParallelPro.Core
     /// </summary>
     public class BaseViewModel : BindableBase
     {
-        #region Protected Members
+        #region private Members
         /// <summary>
         /// The charecters that we want to trim befor inserting some values to out database
         /// </summary>
-        protected char[] charsToTrim = { ' ', '\t' };
+        private char[] charsToTrim = { ' ', '\t' };
 
         #endregion
 
@@ -33,7 +33,7 @@ namespace Tishreen.ParallelPro.Core
         /// <param name="updatingFlag"> The boolean property flag defining if the command is already running </param>
         /// <param name="action"> The action to run if the command is not already running</param>
         /// <returns></returns>
-        protected async Task RunCommand(Expression<Func<bool>> updatingFlag, Func<Task> action)
+        private async Task RunCommand(Expression<Func<bool>> updatingFlag, Func<Task> action)
         {
             //Check if the flag property is true (if the function is already running)
             //We passed the flag as an expression because we can not pass properties by refrence so we can update it
@@ -66,7 +66,7 @@ namespace Tishreen.ParallelPro.Core
         /// <param name="onTrue">Repersents if the property should be true to pressed defalut to true</param>
         /// <param name="change">A falg if false will not change the property only starts the action</param>
         /// <returns></returns>
-        protected async Task RunCommandTurnOffProperty(Expression<Func<bool>> updatingFlag, Func<Task> action, bool change = true, bool onTrue = true)
+        private async Task RunCommandTurnOffProperty(Expression<Func<bool>> updatingFlag, Func<Task> action, bool change = true, bool onTrue = true)
         {
             //Checks if we do not want to change the proeprties
             if (change)
@@ -102,7 +102,7 @@ namespace Tishreen.ParallelPro.Core
         /// </summary>
         /// <param name="action">The action that we want to run</param>
         /// <returns></returns>
-        protected void OnlyRunCommand(Action action)
+        private void OnlyRunCommand(Action action)
         {
             //Run the passed action
             action();
@@ -123,7 +123,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// Creats a new thread and sets the action to work there
         /// </summary>
-        protected void OnStartThread(ThreadStart action)
+        private void OnStartThread(ThreadStart action)
         {
             //Creating the thread
             Thread thread = new Thread(action);
@@ -136,7 +136,7 @@ namespace Tishreen.ParallelPro.Core
         ///// Displays an exception message to user 
         ///// </summary>
         ///// <param name="exception">The exception that we want to display</param>
-        //protected void RaiseExecptionMessage(Exception exception)
+        //private void RaiseExecptionMessage(Exception exception)
         //{
         //    IoC.UI.ShowExceptionMessage(exception);
         //}
@@ -144,12 +144,12 @@ namespace Tishreen.ParallelPro.Core
         ///// <summary>
         ///// Displays a message to user asking conformation to delete 
         ///// </summary>
-        //protected bool AskConformationToDelete()
+        //private bool AskConformationToDelete()
         //{
         //    return IoC.UI.AskForConformation();
         //}
 
-        //protected virtual void DeleteCommandMethod()
+        //private virtual void DeleteCommandMethod()
         //{ //Ask the user for conformation
         //    var conformation = AskConformationToDelete();
 

@@ -13,18 +13,18 @@ namespace Tishreen.ParallelPro.Core
     /// </summary>
     public class MainAlgorithmsInstructionMenuViewModel : BaseViewModel
     {
-        #region Private Members
+        #region protected Members
         /// <summary>
         /// The couter for the instructions
         /// </summary>
-        private int counter = 1;
+        protected int counter = 1;
         #endregion
 
         #region Properties
         /// <summary>
         /// The selected function that the user wants for the new instruction
         /// </summary>
-        private string _selectedFunction;
+        protected string _selectedFunction;
         public string SelectedFunction
         {
             get { return _selectedFunction; }
@@ -41,7 +41,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// the target registry for the instruction to store the value in
         /// </summary>
-        private string _selectedTargetRegistery;
+        protected string _selectedTargetRegistery;
         public string SelectedTargetRegistery
         {
             get { return _selectedTargetRegistery; }
@@ -50,7 +50,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The first source registry to get the value from
         /// </summary>
-        private string _selectedSourceRegistery01;
+        protected string _selectedSourceRegistery01;
         public string SelectedSourceRegistery01
         {
             get { return _selectedSourceRegistery01; }
@@ -59,7 +59,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The second soruce registry to get the value from
         /// </summary>
-        private string _slectedSourceRegistery02;
+        protected string _slectedSourceRegistery02;
         public string SelectedSourceRegistery02
         {
             get { return _slectedSourceRegistery02; }
@@ -68,7 +68,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The instruction that is seleted for edit or delete
         /// </summary>
-        private InstructionModel _selectedInstruction;
+        protected InstructionModel _selectedInstruction;
         public InstructionModel SelectedInstruction
         {
             get { return _selectedInstruction; }
@@ -83,7 +83,7 @@ namespace Tishreen.ParallelPro.Core
         /// such as SD(Stor) LD(Load)
         /// Default to 1
         /// </summary>
-        private int _integerClockCycles = 1;
+        protected int _integerClockCycles = 1;
         public int IntegerClockCycles
         {
             get { return _integerClockCycles; }
@@ -94,7 +94,7 @@ namespace Tishreen.ParallelPro.Core
         /// such as ADD ,SUBD
         /// Default to 2
         /// </summary>
-        private int _floatingPointAddClockCylces = 2;
+        protected int _floatingPointAddClockCylces = 2;
         public int FloatingPointAddClockCycles
         {
             get { return _floatingPointAddClockCylces; }
@@ -105,7 +105,7 @@ namespace Tishreen.ParallelPro.Core
         /// such as MULTD
         /// Default to 10 
         /// </summary>
-        private int _floatingPointMultiplyClockCycles = 10;
+        protected int _floatingPointMultiplyClockCycles = 10;
         public int FloatinPointMultiplyClockCycles
         {
             get { return _floatingPointMultiplyClockCycles; }
@@ -116,7 +116,7 @@ namespace Tishreen.ParallelPro.Core
         /// such as DIVD
         /// Default to 40 
         /// </summary>
-        private int _floatingPointDivideClockCycles = 10;
+        protected int _floatingPointDivideClockCycles = 10;
         public int FloatinPointDivideClockCycles
         {
             get { return _floatingPointDivideClockCycles; }
@@ -127,7 +127,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// Holds all the function unite that we can do like ADD, SUB ... 
         /// </summary>
-        private List<string> _functions;
+        protected List<string> _functions;
         public List<string> Functions
         {
             get { return _functions; }
@@ -136,7 +136,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// Holds all the target registries that the user can use
         /// </summary>
-        private ObservableCollection<string> mTargetRegistries;
+        protected ObservableCollection<string> mTargetRegistries;
         public ObservableCollection<string> TargetRegistries
         {
             get { return mTargetRegistries; }
@@ -145,7 +145,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// Holds all the source registries that the user can use
         /// </summary>
-        private ObservableCollection<string> mSourceRegisteries;
+        protected ObservableCollection<string> mSourceRegisteries;
         public ObservableCollection<string> SourceRegisteries
         {
             get { return mSourceRegisteries; }
@@ -154,7 +154,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The list of instructions that the user adds
         /// </summary>
-        private ObservableCollection<InstructionModel> _instructions;
+        protected ObservableCollection<InstructionModel> _instructions;
         public ObservableCollection<InstructionModel> Instructions
         {
             get { return _instructions; }
@@ -166,7 +166,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// Holds all the function unite that we can do like ADD, SUB ... 
         /// </summary>
-        private List<string> mEditfunctions;
+        protected List<string> mEditfunctions;
         public List<string> EditFunctions
         {
             get { return mEditfunctions; }
@@ -175,7 +175,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// Holds all the target registries that the user can use
         /// </summary>
-        private ObservableCollection<string> mEditTargetRegistries;
+        protected ObservableCollection<string> mEditTargetRegistries;
         public ObservableCollection<string> EditTargetRegistries
         {
             get { return mEditTargetRegistries; }
@@ -184,7 +184,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// Holds all the source registries that the user can use
         /// </summary>
-        private ObservableCollection<string> mEditSourceRegisteries;
+        protected ObservableCollection<string> mEditSourceRegisteries;
         public ObservableCollection<string> EditSourceRegisteries
         {
             get { return mEditSourceRegisteries; }
@@ -193,7 +193,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The selected function in the edit menu
         /// </summary>
-        private string mSelectedFunctionEditMenu;
+        protected string mSelectedFunctionEditMenu;
         public string SelectectedFunctionEditMenu
         {
             get { return mSelectedFunctionEditMenu; }
@@ -220,7 +220,7 @@ namespace Tishreen.ParallelPro.Core
         /// A flag represents if the user can choose another source for the instruction
         /// like in SD/LD only one source
         /// </summary>
-        private bool mCanChooseSource02 = true;
+        protected bool mCanChooseSource02 = true;
         public bool CanChooseSource02
         {
             get { return mCanChooseSource02; }
@@ -231,7 +231,7 @@ namespace Tishreen.ParallelPro.Core
         /// like in SD/LD only one source
         /// the flag is for edit side menu
         /// </summary>
-        private bool mCanChooseSource02OnEdit = true;
+        protected bool mCanChooseSource02OnEdit = true;
         public bool CanChooseSource02OnEdit
         {
             get { return mCanChooseSource02OnEdit; }
@@ -241,7 +241,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// A flag to show the edit menu if we are in editing
         /// </summary>
-        private bool mShowEditInstructionMenu;
+        protected bool mShowEditInstructionMenu;
         public bool ShowEditInstructionMenu
         {
             get { return mShowEditInstructionMenu; }
@@ -255,11 +255,11 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The command to add an instruction to the <see cref="Instructions"/>
         /// </summary>
-        public DelegateCommand AddInstructionCommand { get; private set; }
+        public DelegateCommand AddInstructionCommand { get; protected set; }
         /// <summary>
         /// The command that delete an instruction
         /// </summary>
-        public DelegateCommand DeleteItemCommand { get; private set; }
+        public DelegateCommand DeleteItemCommand { get; protected set; }
         /// <summary>
         /// The command to edit an istruction
         /// </summary>
@@ -267,14 +267,14 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The command to open the spacific algorithm window
         /// </summary>
-        public DelegateCommand<object> OpenAlgoWindowCommand { get; private set; }
+        public DelegateCommand<object> OpenAlgoWindowCommand { get; protected set; }
         #endregion
 
         #region Fill Functions
         /// <summary>
         /// Fill the functions list with the type of functions that we support
         /// </summary>
-        private void FillFunctionList()
+        protected void FillFunctionList()
         {
             Functions = new List<string>();
 
@@ -293,7 +293,7 @@ namespace Tishreen.ParallelPro.Core
         /// </summary>
         /// <param name="function">The function that we want to restrict some registery or memory access</param>
         /// <param name="editCollection">If true will update the edit collections</param>
-        private void FillTargetAndSourceRegisteries(string function = null, bool editCollection = false)
+        protected void FillTargetAndSourceRegisteries(string function = null, bool editCollection = false)
         {
             if (!editCollection)
             {
@@ -317,7 +317,7 @@ namespace Tishreen.ParallelPro.Core
         /// <param name="sourceRegistries"></param>
         /// <param name="canChooseSource02"></param>
         /// <param name="function"></param>
-        private void UpdateListOnFunctionChange(
+        protected void UpdateListOnFunctionChange(
              ref ObservableCollection<string> targetRegistries,
              ref ObservableCollection<string> sourceRegistries,
              ref bool canChooseSource02,
@@ -368,7 +368,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The method that will be called on the create of the class
         /// </summary>
-        private void OnStart()
+        protected void OnStart()
         {
             //Fill the lists
             FillFunctionList();
@@ -432,7 +432,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// Empties the properties after adding a new instruction
         /// </summary>
-        private void EmptyProperties()
+        protected void EmptyProperties()
         {
             SelectedFunction = null;
             SelectedTargetRegistery = null;
@@ -443,7 +443,7 @@ namespace Tishreen.ParallelPro.Core
         /// ReSets the instruction number when the user deletes an item
         /// </summary>
         /// <param name="instructionNumber">The Id of the instruction that was deleted</param>
-        private void ReOrderAfterDelete(int instructionNumber)
+        protected void ReOrderAfterDelete(int instructionNumber)
         {
             //Empty list holds the instructions that we need to move to hold the order right
             var listToMove = new List<InstructionModel>();

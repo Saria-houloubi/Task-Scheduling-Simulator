@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -121,6 +122,9 @@
     <Compile Include="IValueConverters\BooleanToYesNoStringValueConverter.cs" />
     <Compile Include="IValueConverters\BooleanToBrushValueConverter.cs" />
     <Compile Include="ViewModels\UIManager.cs" />
+    <Compile Include="Windows\CodeCyclesAndFunctionalUnitInformationWindow.xaml.cs">
+      <DependentUpon>CodeCyclesAndFunctionalUnitInformationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ExamResultWindow.xaml.cs">
       <DependentUpon>ExamResultWindow.xaml</DependentUpon>
     </Compile>
@@ -272,6 +276,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Textboxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CodeCyclesAndFunctionalUnitInformationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
