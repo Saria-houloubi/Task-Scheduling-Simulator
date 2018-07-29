@@ -1,4 +1,6 @@
-﻿namespace Tishreen.ParallelPro.Core.Models
+﻿using ThishreenUniversity.ParallelPro.Enums;
+
+namespace Tishreen.ParallelPro.Core.Models
 {
     /// <summary>
     /// A model for all the instruction with there status record
@@ -14,7 +16,7 @@
         /// <summary>
         /// The function name of the instruction
         /// </summary>
-        public string Name { get; set; }
+        public FunctionsTypes Name { get; set; }
         /// <summary>
         /// The target registry to store the value in
         /// </summary>
@@ -99,7 +101,7 @@
         /// <param name="readCycle">The clock cylce that the operation was read on</param>
         /// <param name="executeCycle">The Clock cycle that the operation started executing</param>
         /// <param name="writeBackCycle">The clock cycle that the operation finished executing and is writing the result back</param>
-        public InstructionWithStatusModel(int id, string name, string targetRegistry, string sourceRegistry01, string sourceRegistery02 = null, int? issueCycle = null, int? readCycle = null, int? executeCycle = null, int? writeBackCycle = null)
+        public InstructionWithStatusModel(int id, FunctionsTypes name, string targetRegistry, string sourceRegistry01, string sourceRegistery02 = null, int? issueCycle = null, int? readCycle = null, int? executeCycle = null, int? writeBackCycle = null)
         {
             this.ID = id;
             this.Name = name;

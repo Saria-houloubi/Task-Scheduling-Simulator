@@ -33,7 +33,10 @@ namespace TishreenUniversity.ParallelPro.ViewModels
                     wantedWindow = new MainWindow();
                     break;
                 case ApplicationPages.ScoreBoarding:
-                    wantedWindow = new ScoreBoardingWindow(parameter, (List<KeyValuePair<FunctionsTypes, int>>)parameter02);
+                    wantedWindow = new ScoreBoardingWindow(parameter, (Dictionary<FunctionsTypes, int>)parameter02);
+                    break;
+                case ApplicationPages.Tomasulo:
+                    wantedWindow = new TomasoluWindow(parameter, (List<KeyValuePair<FunctionsTypes, int>>)parameter02);
                     break;
                 case ApplicationPages.ResultWindow:
                     wantedWindow = new ExamResultWindow();

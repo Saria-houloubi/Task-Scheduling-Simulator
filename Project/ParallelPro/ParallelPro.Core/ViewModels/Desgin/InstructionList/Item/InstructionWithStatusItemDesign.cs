@@ -19,7 +19,7 @@ namespace Tishreen.ParallelPro.Core.ViewModels.Design
 
         public InstructionWithStatusItemDesign()
         {
-            this.Name = "ADD";
+            this.Name = ThishreenUniversity.ParallelPro.Enums.FunctionsTypes.ADD;
             this.TargetRegistery = "R8";
             this.SourceRegistery01= "R2";
             this.SourceRegistery02 = "R1";

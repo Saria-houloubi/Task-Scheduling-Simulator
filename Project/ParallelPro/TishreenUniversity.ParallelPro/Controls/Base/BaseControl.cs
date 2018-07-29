@@ -199,8 +199,10 @@ namespace TishreenUniversity.ParallelPro
         {
             //If the user control dose not have any animations just end
             if (AnimateInAnimationType == AnimationTypes.None)
+            {
+                this.Visibility = Visibility.Visible;
                 return;
-
+            }
             switch (AnimateInAnimationType)
             {
                 case AnimationTypes.SlideInFromLeft:

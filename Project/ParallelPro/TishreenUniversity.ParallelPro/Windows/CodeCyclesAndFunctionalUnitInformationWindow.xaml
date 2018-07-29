@@ -21,7 +21,7 @@
             </Grid.ColumnDefinitions>
 
             <!--#region Instructions-->
-            <controls:InstructionMenuControl Foreground="Black"/>
+            <controls:InstructionMenuControl AnimateInAnimationType="None" Foreground="Black"/>
             <!--#endregion-->
 
             <Border Grid.Column="1" Style="{StaticResource StatusControlsBorder}"/>
@@ -33,6 +33,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+                    
                     <!--#region Clock cycles-->
                     <Grid Grid.Column="1" >
                         <Grid.ColumnDefinitions>

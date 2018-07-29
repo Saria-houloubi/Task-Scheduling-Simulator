@@ -1,4 +1,6 @@
 ﻿
+using ThishreenUniversity.ParallelPro.Enums;
+
 namespace Tishreen.ParallelPro.Core.Models
 {
     /// <summary>
@@ -15,8 +17,7 @@ namespace Tishreen.ParallelPro.Core.Models
         /// <summary>
         /// The function name of the instruction
         /// </summary>
-        public string Name { get; set; }
-        
+        public FunctionsTypes Name { get; set; }
         /// <summary>
         /// The target registry to store the value in
         /// </summary>
@@ -46,7 +47,7 @@ namespace Tishreen.ParallelPro.Core.Models
         /// <param name="targetRegistry">The target registry to store the value in</param>
         /// <param name="sourceRegistry01">The first source registry to get the value from</param>
         /// <param name="SourceRegistery02">The second source registry to get the value from</param>
-        public InstructionModel(int id,string name,string targetRegistry,string sourceRegistry01,string SourceRegistery02 = null)
+        public InstructionModel(int id, FunctionsTypes name,string targetRegistry,string sourceRegistry01,string SourceRegistery02 = null)
         {
             this.ID = id;
             this.Name = name;

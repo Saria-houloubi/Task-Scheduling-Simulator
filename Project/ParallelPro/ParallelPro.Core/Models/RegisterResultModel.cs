@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Tishreen.ParallelPro.Core.Models
 {
     /// <summary>
@@ -33,13 +35,34 @@ namespace Tishreen.ParallelPro.Core.Models
             get { return _isBusy; }
             set { SetProperty(ref _isBusy, value); }
         }
+        /// <summary>
+        /// The list of instruction that reserved this regiseter unit
+        /// only the last instruction will be the on to write back
+        /// </summary>
+        private Dictionary<int,bool> mInstructionReservedRegiseter;
+        public Dictionary<int, bool> InstructionReservedRegiseter
+        {
+            get { return mInstructionReservedRegiseter; }
+            set { SetProperty(ref mInstructionReservedRegiseter, value); }
+        }
         #endregion
 
         #region Constructers
         /// <summary>
+        /// Called on the create of the object 
+        /// Creates the list 
+        /// </summary>
+        private void OnCreate()
+        {
+            //Create the list
+            InstructionReservedRegiseter = new Dictionary<int, bool>();
+        }
+        /// <summary>
         /// Default Constructer
         /// </summary>
-        public RegisterResultModel() { }
+        public RegisterResultModel() {
+            OnCreate();
+        }
         
         /// <summary>
         /// Constructer to initialize the properties
@@ -48,6 +71,7 @@ namespace Tishreen.ParallelPro.Core.Models
         /// <param name="operation" >The opreaiton that is working on the register</param>
         public RegisterResultModel(string name,string operation = null)
         {
+            OnCreate();
             this.Name = name;
             this.Operation = operation;
         }

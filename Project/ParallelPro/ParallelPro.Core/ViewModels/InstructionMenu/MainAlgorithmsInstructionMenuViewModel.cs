@@ -24,8 +24,8 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The selected function that the user wants for the new instruction
         /// </summary>
-        protected string _selectedFunction;
-        public string SelectedFunction
+        protected FunctionsTypes _selectedFunction;
+        public FunctionsTypes SelectedFunction
         {
             get { return _selectedFunction; }
             set
@@ -33,7 +33,6 @@ namespace Tishreen.ParallelPro.Core
                 SetProperty(ref _selectedFunction, value);
 
                 ///Fill the target and source registeries with the right values
-                if (value != null)
                     FillTargetAndSourceRegisteries(value);
 
             }
@@ -127,8 +126,8 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// Holds all the function unite that we can do like ADD, SUB ... 
         /// </summary>
-        protected List<string> _functions;
-        public List<string> Functions
+        protected List<FunctionsTypes> _functions;
+        public List<FunctionsTypes> Functions
         {
             get { return _functions; }
             set { SetProperty(ref _functions, value); }
@@ -193,8 +192,8 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The selected function in the edit menu
         /// </summary>
-        protected string mSelectedFunctionEditMenu;
-        public string SelectectedFunctionEditMenu
+        protected FunctionsTypes mSelectedFunctionEditMenu;
+        public FunctionsTypes SelectectedFunctionEditMenu
         {
             get { return mSelectedFunctionEditMenu; }
             set
@@ -276,13 +275,12 @@ namespace Tishreen.ParallelPro.Core
         /// </summary>
         protected void FillFunctionList()
         {
-            Functions = new List<string>();
+            Functions = new List<FunctionsTypes>();
 
             //Loops thru the enum values an add them to the functions list
             foreach (var item in Enum.GetValues(typeof(FunctionsTypes)))
-                Functions.Add(item.ToString());
+                Functions.Add((FunctionsTypes)item);
 
-            SelectedFunction = null;
             SelectedTargetRegistery = null;
             SelectedSourceRegistery01= null;
             SelectedSourceRegistery02 = null;
@@ -293,7 +291,7 @@ namespace Tishreen.ParallelPro.Core
         /// </summary>
         /// <param name="function">The function that we want to restrict some registery or memory access</param>
         /// <param name="editCollection">If true will update the edit collections</param>
-        protected void FillTargetAndSourceRegisteries(string function = null, bool editCollection = false)
+        protected void FillTargetAndSourceRegisteries(FunctionsTypes function , bool editCollection = false)
         {
             if (!editCollection)
             {
@@ -321,7 +319,7 @@ namespace Tishreen.ParallelPro.Core
              ref ObservableCollection<string> targetRegistries,
              ref ObservableCollection<string> sourceRegistries,
              ref bool canChooseSource02,
-            string function = null)
+            FunctionsTypes function)
         {
             targetRegistries = new ObservableCollection<string>();
             sourceRegistries = new ObservableCollection<string>();
@@ -331,7 +329,7 @@ namespace Tishreen.ParallelPro.Core
             foreach (var item in RegisteryAndMemoryList)
             {
                 var stringValue = Enum.GetName(typeof(RegisteriesAndMemory), item);
-                if (function == FunctionsTypes.LD.ToString())
+                if (function == FunctionsTypes.LD)
                 {
                     //If it is a registery spot add it to target
                     if ((int)item < 31)
@@ -339,7 +337,7 @@ namespace Tishreen.ParallelPro.Core
                     else
                         sourceRegistries.Add(stringValue);
                 }
-                else if (function == FunctionsTypes.SD.ToString())
+                else if (function == FunctionsTypes.SD)
                 {
                     //If it is a memory add it to target
                     if ((int)item >= 31)
@@ -356,7 +354,7 @@ namespace Tishreen.ParallelPro.Core
                 }
             }
             //Disable source02 if the function is either load or store
-            if (function == FunctionsTypes.LD.ToString() || function == FunctionsTypes.SD.ToString())
+            if (function == FunctionsTypes.LD || function == FunctionsTypes.SD)
                 canChooseSource02 = false;
             else
                 canChooseSource02 = true;
@@ -392,7 +390,7 @@ namespace Tishreen.ParallelPro.Core
                 Instructions.Add(new InstructionModel(counter++, SelectedFunction, SelectedTargetRegistery, SelectedSourceRegistery01, SelectedSourceRegistery02));
                 RaisePropertyChanged(nameof(Instructions));
                 EmptyProperties();
-            }, () => { return SelectedFunction != null && !string.IsNullOrWhiteSpace(SelectedTargetRegistery) && !string.IsNullOrEmpty(SelectedSourceRegistery01) && (!string.IsNullOrEmpty(SelectedSourceRegistery02) || SelectedFunction == FunctionsTypes.LD.ToString() || SelectedFunction == FunctionsTypes.SD.ToString()); }).ObservesProperty(() => SelectedFunction).ObservesProperty(() => SelectedTargetRegistery).ObservesProperty(() => SelectedSourceRegistery01).ObservesProperty(() => SelectedSourceRegistery02);
+            }, () => { return  !string.IsNullOrWhiteSpace(SelectedTargetRegistery) && !string.IsNullOrEmpty(SelectedSourceRegistery01) && (!string.IsNullOrEmpty(SelectedSourceRegistery02) || SelectedFunction == FunctionsTypes.LD || SelectedFunction == FunctionsTypes.SD); }).ObservesProperty(() => SelectedFunction).ObservesProperty(() => SelectedTargetRegistery).ObservesProperty(() => SelectedSourceRegistery01).ObservesProperty(() => SelectedSourceRegistery02);
             DeleteItemCommand = new DelegateCommand(() =>
             {
                 ReOrderAfterDelete(SelectedInstruction.ID);
@@ -401,14 +399,14 @@ namespace Tishreen.ParallelPro.Core
             OpenAlgoWindowCommand = new DelegateCommand<object>((parameter) =>
             {
                 //Setting the list for the functionlal unit clock cycles
-                var functionClockCycles = new List<KeyValuePair<FunctionsTypes, int>>
+                var functionClockCycles = new Dictionary<FunctionsTypes, int>
                 {
-                    new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.ADD, FloatingPointAddClockCycles),
-                    new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.DIV,FloatinPointDivideClockCycles),
-                    new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.LD,IntegerClockCycles),
-                    new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.MULT,FloatinPointMultiplyClockCycles),
-                    new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.SD,IntegerClockCycles),
-                    new KeyValuePair<FunctionsTypes, int>(FunctionsTypes.SUB,FloatingPointAddClockCycles),
+                    {FunctionsTypes.ADD, FloatingPointAddClockCycles },
+                    {FunctionsTypes.SUB, FloatingPointAddClockCycles },
+                    {FunctionsTypes.DIV,FloatinPointDivideClockCycles },
+                    {FunctionsTypes.LD,IntegerClockCycles },
+                    {FunctionsTypes.SD,IntegerClockCycles },
+                    {FunctionsTypes.MULT,FloatinPointMultiplyClockCycles},
                 };
                 IoC.Kernel.Get<IUIManager>().ShowWinodw((ApplicationPages)parameter, new List<object>(Instructions), functionClockCycles);
 
@@ -434,7 +432,6 @@ namespace Tishreen.ParallelPro.Core
         /// </summary>
         protected void EmptyProperties()
         {
-            SelectedFunction = null;
             SelectedTargetRegistery = null;
             SelectedSourceRegistery01 = null;
             SelectedSourceRegistery02 = null;

@@ -36,12 +36,13 @@ namespace Tishreen.ParallelPro.Core.ViewModels.Design
             //Create and fill the list
             FunctionalUnits = new List<FunctionalUnitWithStatusModel>()
             {
-                new FunctionalUnitWithStatusModel(couter++,"Load",FunctionsTypes.LD),
-                new FunctionalUnitWithStatusModel(couter++,"Mult 1",FunctionsTypes.MULT),
-                new FunctionalUnitWithStatusModel(couter++,"Mult 2",FunctionsTypes.MULT),
-                new FunctionalUnitWithStatusModel(couter++,"Add",FunctionsTypes.ADD),
-                new FunctionalUnitWithStatusModel(couter++,"Divide",FunctionsTypes.DIV),
-            };
+            //    new FunctionalUnitWithStatusModel(couter++,"Load",FunctionsTypes.LD),
+            //    new FunctionalUnitWithStatusModel(couter++,"Mult 1",FunctionsTypes.MULT),
+            //    new FunctionalUnitWithStatusModel(couter++,"Mult 2",FunctionsTypes.MULT),
+            //    new FunctionalUnitWithStatusModel(couter++,"Add",FunctionsTypes.ADD),
+            //    new FunctionalUnitWithStatusModel(couter++,"Divide",FunctionsTypes.DIV),
+            //    new FunctionalUnitWithStatusModel(couter++,"Divide",FunctionsTypes.DIV),
+           };
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using ThishreenUniversity.ParallelPro.Enums;
+﻿using System.Collections.Generic;
+using ThishreenUniversity.ParallelPro.Enums;
 namespace Tishreen.ParallelPro.Core.Models
 {
     /// <summary>
@@ -121,8 +122,8 @@ namespace Tishreen.ParallelPro.Core.Models
         /// <summary>
         /// The type of the functions
         /// </summary>
-        private FunctionsTypes _function;
-        public FunctionsTypes Function
+        private Dictionary<FunctionsTypes, bool>  _function;
+        public Dictionary<FunctionsTypes,bool> Function
         {
             get { return _function; }
             set { SetProperty(ref _function, value); }
@@ -148,7 +149,7 @@ namespace Tishreen.ParallelPro.Core.Models
         /// </summary>
         /// <param name="id"></param>
         /// <param name="name">The name of the Functional unit</param>
-        public FunctionalUnitWithStatusModel(int id, string name,FunctionsTypes functions)
+        public FunctionalUnitWithStatusModel(int id, string name, Dictionary<FunctionsTypes, bool> functions)
         {
             this.ID = id;
             this.Name = name;

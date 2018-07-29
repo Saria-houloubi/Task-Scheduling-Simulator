@@ -35,18 +35,12 @@ namespace Tishreen.ParallelPro.Core.ViewModels.Design
             //Create and fill the list
             Instructions = new List<InstructionModel>()
             {
-                new InstructionModel(couter++,"LD","F2","+34","R3"),
-                new InstructionModel(couter++,"ADD","F2","F1","F0"),
-                new InstructionModel(couter++,"SUB","F4","F1","F0"),
-                new InstructionModel(couter++,"MULT","F9","F8","F0"),
-                new InstructionModel(couter++,"LD","F2","+34","R3"),
-                new InstructionModel(couter++,"ADD","F2","F1","F0"),
-                new InstructionModel(couter++,"SUB","F4","F1","F0"),
-                new InstructionModel(couter++,"MULT","F9","F8","F0"),
-                new InstructionModel(couter++,"LD","F2","+34","R3"),
-                new InstructionModel(couter++,"ADD","F2","F1","F0"),
-                new InstructionModel(couter++,"SUB","F4","F1","F0"),
-                new InstructionModel(couter++,"MULT","F9","F8","F0"),
+                new InstructionModel(couter++,ThishreenUniversity.ParallelPro.Enums.FunctionsTypes.LD,"F2","+34","R3"),
+                new InstructionModel(couter++,ThishreenUniversity.ParallelPro.Enums.FunctionsTypes.LD,"F2","+34","R3"),
+                new InstructionModel(couter++,ThishreenUniversity.ParallelPro.Enums.FunctionsTypes.LD,"F2","+34","R3"),
+                new InstructionModel(couter++,ThishreenUniversity.ParallelPro.Enums.FunctionsTypes.LD,"F2","+34","R3"),
+                new InstructionModel(couter++,ThishreenUniversity.ParallelPro.Enums.FunctionsTypes.LD,"F2","+34","R3"),
+                new InstructionModel(couter++,ThishreenUniversity.ParallelPro.Enums.FunctionsTypes.LD,"F2","+34","R3"),
             };
         }
 

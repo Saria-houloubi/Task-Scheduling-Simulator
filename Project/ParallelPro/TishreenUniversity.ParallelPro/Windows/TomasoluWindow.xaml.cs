@@ -11,14 +11,14 @@ namespace TishreenUniversity.ParallelPro.Windows
     /// <summary>
     /// Interaction logic for ScoreBoardingWindow.xaml
     /// </summary>
-    public partial class ScoreBoardingWindow : Window
+    public partial class TomasoluWindow : Window
     {
-        public ScoreBoardingWindow(List<object> instructionList, Dictionary<FunctionsTypes, int> functionClockCycles)
+        public TomasoluWindow(List<object> instructionList, List<KeyValuePair<FunctionsTypes, int>> functionClockCycles)
         {
             InitializeComponent();
 
             //Bind the window with its logic
-            this.DataContext = new ScoreBoardingWindowViewModel(instructionList, functionClockCycles);
+            this.DataContext = new TomasoluWindowViewModel();
         }
 
         private void NextExambutton_Click(object sender, RoutedEventArgs e)

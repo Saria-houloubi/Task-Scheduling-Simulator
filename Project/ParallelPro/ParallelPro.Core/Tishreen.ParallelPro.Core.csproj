@@ -83,9 +83,10 @@
     <Compile Include="ViewModels\EnterdInformation\CodeCyclesAndFunctionalUnitInformationWindowViewModel.cs" />
     <Compile Include="ViewModels\InstructionMenu\MainAlgorithmsInstructionMenuViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\ScoreBoardingWindowViewModel.cs" />
+    <Compile Include="ViewModels\ScoreBoarding\ScoreBoardingWindowViewModel.cs" />
     <Compile Include="ViewModels\StudentExamInformationViewModel.cs" />
     <Compile Include="ViewModels\StudentExam\StudentExamInformationAndMarksViewModel.cs" />
+    <Compile Include="ViewModels\Tomasolu\TomasoluWindowViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GeneralHelpers\GeneralHelpers.csproj">

@@ -38,6 +38,10 @@ namespace ThishreenUniversity.ParallelPro.Enums
         /// <summary>
         /// The window which holds the code and the information the user entered
         /// </summary>
-        CodeInformationWindow=6,
+        CodeInformationWindow = 6,
+        /// <summary>
+        /// The tomasulo algo window 
+        /// </summary>
+        Tomasulo = 7,
     }
 }
