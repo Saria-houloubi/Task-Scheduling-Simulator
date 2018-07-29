@@ -13,6 +13,13 @@ namespace TishreenUniversity.ParallelPro.Windows
     /// </summary>
     public partial class ScoreBoardingWindow : Window
     {
+        #region Private memebers
+        /// <summary>
+        /// Flag represents if the user can exit out
+        /// </summary>
+        private bool canExit = false;
+        #endregion
+
         public ScoreBoardingWindow(List<object> instructionList, Dictionary<FunctionsTypes, int> functionClockCycles)
         {
             InitializeComponent();
@@ -21,6 +28,21 @@ namespace TishreenUniversity.ParallelPro.Windows
             this.DataContext = new ScoreBoardingWindowViewModel(instructionList, functionClockCycles);
         }
 
+        /// <summary>
+        /// A event to stop the student from cloeasing the window with out the 
+        /// teacher password confirmation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IoC.Appliation.IsExamMode)
+            {
+                //Cancel the exit and show the check password control
+                e.Cancel = true;
+                CheckForConformationControl.Visibility = Visibility.Visible;
+            }
+        }
         private void NextExambutton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

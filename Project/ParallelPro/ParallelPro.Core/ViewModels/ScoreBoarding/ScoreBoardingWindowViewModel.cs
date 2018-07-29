@@ -458,9 +458,12 @@ namespace Tishreen.ParallelPro.Core
                 //Set the write back time
                 if (registerToTarget.InstructionReservedRegiseter.TryGetValue(instruction.ID, out bool value))
                 {
-                    var waitingReadBeforWrite = instructions.Where(item => item.IssueCycle != null && item.IssueCycle < instruction.IssueCycle && (item.ReadCycle == null ||  item.ReadCycle == ClockCycle) &&
+                    var waitingReadBeforWrite = instructions.Where(item => item.IssueCycle != null && item.IssueCycle < instruction.IssueCycle && (item.ReadCycle == null || item.ReadCycle == ClockCycle) &&
                                               (item.SourceRegistery01 == instruction.TargetRegistery || item.SourceRegistery02 == instruction.TargetRegistery)).Any();
-                    if (!waitingReadBeforWrite)
+
+                    var waitingBeforeWriteAfterWrite = instructions.Where(item => item.IssueCycle != null && item.IssueCycle < instruction.IssueCycle &&
+                                                                                 (item.WriteBackCycle == null || item.WriteBackCycle == ClockCycle) && item.TargetRegistery == instruction.TargetRegistery).Any();
+                    if (!waitingReadBeforWrite && !waitingBeforeWriteAfterWrite)
                         instruction.WriteBackCycle = ClockCycle;
                 }
             }

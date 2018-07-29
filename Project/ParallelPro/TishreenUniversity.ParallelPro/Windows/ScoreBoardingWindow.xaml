@@ -8,7 +8,8 @@
         xmlns:controls="clr-namespace:TishreenUniversity.ParallelPro.Controls"
         mc:Ignorable="d" WindowState="Maximized" Tag="AppWindow"
         xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
-        Title="ScoreBoarding">
+        Title="ScoreBoarding"
+        Closing="Window_Closing">
     <ScrollViewer BorderBrush="Red">
         <Grid >
             

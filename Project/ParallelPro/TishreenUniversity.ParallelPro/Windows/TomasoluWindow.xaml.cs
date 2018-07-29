@@ -13,12 +13,35 @@ namespace TishreenUniversity.ParallelPro.Windows
     /// </summary>
     public partial class TomasoluWindow : Window
     {
-        public TomasoluWindow(List<object> instructionList, List<KeyValuePair<FunctionsTypes, int>> functionClockCycles)
+        public TomasoluWindow(List<object> instructionList, Dictionary<FunctionsTypes, int> functionClockCycles)
         {
             InitializeComponent();
 
             //Bind the window with its logic
-            this.DataContext = new TomasoluWindowViewModel();
+            this.DataContext = new TomasoluWindowViewModel(instructionList, functionClockCycles);
+        }
+        #region Private memebers
+        /// <summary>
+        /// Flag represents if the user can exit out
+        /// </summary>
+        private bool canExit = false;
+        #endregion
+
+        /// <summary>
+        /// A event to stop the student from cloeasing the window with out the 
+        /// teacher password confirmation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (IoC.Appliation.IsExamMode)
+            {
+                //Cancel the exit and show the check password control
+                e.Cancel = true;
+                CheckForConformationControl.Visibility = Visibility.Visible;
+
+            }
         }
 
         private void NextExambutton_Click(object sender, RoutedEventArgs e)

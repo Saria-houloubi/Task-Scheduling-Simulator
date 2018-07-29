@@ -21,7 +21,7 @@ namespace TishreenUniversity.ParallelPro.ViewModels
             MessageBox.Show(content);
         }
 
-        public void ShowWinodw(ApplicationPages windowType,List<object> parameter = null,object parameter02 = null)
+        public void ShowWinodw(ApplicationPages windowType, List<object> parameter = null, object parameter02 = null)
         {
 
             //The window that we want to be displayed to the user
@@ -36,7 +36,7 @@ namespace TishreenUniversity.ParallelPro.ViewModels
                     wantedWindow = new ScoreBoardingWindow(parameter, (Dictionary<FunctionsTypes, int>)parameter02);
                     break;
                 case ApplicationPages.Tomasulo:
-                    wantedWindow = new TomasoluWindow(parameter, (List<KeyValuePair<FunctionsTypes, int>>)parameter02);
+                    wantedWindow = new TomasoluWindow(parameter, (Dictionary<FunctionsTypes, int>)parameter02);
                     break;
                 case ApplicationPages.ResultWindow:
                     wantedWindow = new ExamResultWindow();
@@ -56,7 +56,10 @@ namespace TishreenUniversity.ParallelPro.ViewModels
                     Debugger.Break();
                     break;
             }
-            wantedWindow.Show();
+            if (IoC.Appliation.IsExamMode)
+                wantedWindow.ShowDialog();
+            else
+                wantedWindow.Show();
         }
     }
 }
