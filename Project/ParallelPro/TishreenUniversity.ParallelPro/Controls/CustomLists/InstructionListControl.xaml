@@ -22,34 +22,18 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <control:InstructionItem   />
+                                    <control:InstructionItem Background="{TemplateBinding Background}"   />
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
                         <Style.Triggers>
-                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                                <Setter Property="Background" Value="#FFD9F2BF"/>
-                            </Trigger>
-                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-                                <Setter Property="Background" Value="White"/>
-                            </Trigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
-                                    <Condition Property="IsSelected" Value="True"/>
-                                    <Condition Property="ItemsControl.AlternationIndex" Value="0"/>
+                                    <Condition Property="IsSelected" Value="true" />
                                 </MultiTrigger.Conditions>
-                                <Setter Property="Background" Value="LightGreen"/>
-                            </MultiTrigger>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsSelected" Value="True"/>
-                                    <Condition Property="ItemsControl.AlternationIndex"
-                          Value="1"/>
-                                </MultiTrigger.Conditions>
-                                <Setter Property="Background" Value="LightBlue"/>
+                                <Setter Property="Background" Value="White" />
                             </MultiTrigger>
                         </Style.Triggers>
-
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemsPanel>

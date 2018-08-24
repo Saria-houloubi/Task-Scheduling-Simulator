@@ -372,7 +372,76 @@ namespace Tishreen.ParallelPro.Core
             FillFunctionList();
 
             //Create the list
-            Instructions = new ObservableCollection<InstructionModel>();
+            Instructions = new ObservableCollection<InstructionModel> {
+            new InstructionModel{
+                ID =1,
+                Name = FunctionsTypes.LD,
+                TargetRegistery = "F1",
+                SourceRegistery01 = "M1",
+
+            },
+            new InstructionModel{
+                ID =2,
+                Name = FunctionsTypes.ADD,
+                TargetRegistery = "F1",
+                SourceRegistery01 = "F1",
+                SourceRegistery02 = "F5",
+            },
+new InstructionModel{
+    ID =3,
+                Name = FunctionsTypes.LD,
+                TargetRegistery = "F2",
+                SourceRegistery01 = "M2",
+            },
+new InstructionModel{
+
+    ID =4,Name = FunctionsTypes.ADD,
+                TargetRegistery = "F2",
+                SourceRegistery01 = "F2",
+                SourceRegistery02 = "F10",
+            },
+new InstructionModel{
+    ID =5,
+                Name = FunctionsTypes.LD,
+                TargetRegistery = "F3",
+                SourceRegistery01 = "M3",
+            },
+new InstructionModel{
+    ID =6,
+                Name = FunctionsTypes.ADD,
+                TargetRegistery = "F3",
+                SourceRegistery01 = "F3",
+                SourceRegistery02 = "F15",
+            },
+new InstructionModel{
+    ID =7,
+                Name = FunctionsTypes.MULT,
+                TargetRegistery = "F1",
+                SourceRegistery01 = "F1",
+                SourceRegistery02 = "F4",
+            },
+new InstructionModel{
+    ID =8,
+                Name = FunctionsTypes.ADD,
+                TargetRegistery = "F2",
+                SourceRegistery01 = "F1",
+                SourceRegistery02 = "F3",
+            },
+new InstructionModel{
+    ID =9,
+                Name = FunctionsTypes.SUB,
+                TargetRegistery = "F3",
+                SourceRegistery01 = "F3",
+                SourceRegistery02 = "F1",
+            },
+new InstructionModel{
+    ID =10,
+                Name = FunctionsTypes.SD,
+                TargetRegistery = "M1",
+                SourceRegistery01 = "F2",
+            },
+
+            };
             TargetRegistries = new ObservableCollection<string>();
             SourceRegisteries = new ObservableCollection<string>();
             ShowEditInstructionMenu = false;

@@ -26,7 +26,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" HorizontalAlignment="Left"  Style="{StaticResource InstructionItemTextBlock}" Text="{Binding Name}"/>
-                            <TextBlock Grid.Column="1"  Style="{StaticResource InstructionItemTextBlock}" Text="{Binding TargetRegistery}"/>
+                            <TextBlock Grid.Column="1"  Style="{StaticResource InstructionItemTextBlock}" Text="{Binding TargetRegistery,Mode= TwoWay}"/>
                             <TextBlock Grid.Column="2"  Style="{StaticResource InstructionItemTextBlock}" Text="{Binding SourceRegistery01}"/>
                             <TextBlock Grid.Column="3"  Style="{StaticResource InstructionItemTextBlock}" Text="{Binding SourceRegistery02}"/>
                             <!--Separter Borader-->

@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TishreenUniversity.ParallelPro"
              xmlns:Design="clr-namespace:Tishreen.ParallelPro.Core.ViewModels.Design;assembly=Tishreen.ParallelPro.Core"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"  Foreground="Red" x:Name="MainControl" 
              d:DesignHeight="100" d:DesignWidth="300">
-
+   
     <UserControl.Resources>
         <Style x:Key="ContentStyle" TargetType="{x:Type ContentControl}">
             <!--Ability to add the age by one or subtractet by one-->
@@ -61,11 +61,10 @@
                     </ContextMenu>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Background" Value="Transparent"/>
             <!--Template-->
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                    <ControlTemplate TargetType="{x:Type ContentControl}" >
                         <Border x:Name="border" 
                                 CornerRadius="5"
                                 Opacity="0.9"
@@ -80,7 +79,7 @@
                             </Border.BorderBrush>
                             <Border Padding="10" x:Name="InnerBOrder" Background="{TemplateBinding Background}">
                                 <Grid >
-
+                                   
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="20"/>
                                         <ColumnDefinition Width="1*"/>
@@ -101,23 +100,6 @@
                         </Border>
                         <!--Hover Effect-->
                         <ControlTemplate.Triggers>
-                            <EventTrigger RoutedEvent="MouseEnter">
-                                <!-- With WPF animation you should allways begin a storyboard -->
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation To="White" Duration="0:0:0.3" Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-
-                            <EventTrigger RoutedEvent="MouseLeave">
-                                <!-- With WPF animation you should allways begin a storyboard -->
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation To="Transparent" Duration="0:0:0.3" Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
                             
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -126,5 +108,7 @@
         </Style>
     </UserControl.Resources>
 
-    <ContentControl Margin="5" d:DataContext="{x:Static Design:InstructionItemDesign.Instance}" Style="{StaticResource ContentStyle}" />
+    <ContentControl Margin="5" d:DataContext="{x:Static Design:InstructionItemDesign.Instance}" Background="{Binding ElementName=MainControl,Path=Background}" Style="{StaticResource ContentStyle}">
+        
+    </ContentControl>
 </local:BaseUserControl>

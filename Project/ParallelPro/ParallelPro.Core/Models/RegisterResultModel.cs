@@ -9,10 +9,7 @@ namespace Tishreen.ParallelPro.Core.Models
     public class RegisterResultModel : BaseModel
     {
         #region Properties
-        /// <summary>
-        /// The id of the instruction that it is working on it
-        /// </summary>
-        public int WorkingInstructionID { get; set; }
+       
         /// <summary>
         /// The name of the register 
         /// </summary>
@@ -39,8 +36,8 @@ namespace Tishreen.ParallelPro.Core.Models
         /// The list of instruction that reserved this regiseter unit
         /// only the last instruction will be the on to write back
         /// </summary>
-        private Dictionary<int,bool> mInstructionReservedRegiseter;
-        public Dictionary<int, bool> InstructionReservedRegiseter
+        private List<int> mInstructionReservedRegiseter;
+        public List<int> InstructionReservedRegiseter
         {
             get { return mInstructionReservedRegiseter; }
             set { SetProperty(ref mInstructionReservedRegiseter, value); }
@@ -55,7 +52,7 @@ namespace Tishreen.ParallelPro.Core.Models
         private void OnCreate()
         {
             //Create the list
-            InstructionReservedRegiseter = new Dictionary<int, bool>();
+            InstructionReservedRegiseter = new List<int>();
         }
         /// <summary>
         /// Default Constructer

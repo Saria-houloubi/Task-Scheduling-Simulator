@@ -11,6 +11,9 @@
         Title="Tomasolu"
         Closing="Window_Closing">
     <ScrollViewer BorderBrush="Red">
+        <ScrollViewer.InputBindings>
+            <KeyBinding Key="F1" Command="{Binding MoveOneCycleCommand}"/>
+        </ScrollViewer.InputBindings>
         <Grid >
             
             <Grid Margin="15 0" >
@@ -47,10 +50,10 @@
                         <Button
                             x:Name="NextCycleButton"
                             Visibility="{Binding Source={x:Static local:ViewModelLocator.ApplicationViewModel},Path=IsExamMode,Converter={converter:BooleanToVisibilityValueConverter},ConverterParameter=True}"
-                            IsEnabled="{Binding CanGoNextCycle}" Command="{Binding TomasoluOneCycleCommand}" Tag="Next" Grid.Column="0" Style="{StaticResource RegularButton}"/>
+                            IsEnabled="{Binding CanGoNextCycle}" Command="{Binding MoveOneCycleCommand}" Tag="Next" Grid.Column="0" Style="{StaticResource RegularButton}"/>
                         <Button 
                             Visibility="{Binding ElementName=NextCycleButton,Path=Visibility}"
-                            IsEnabled="{Binding CanGoNextCycle}" Tag="To end" Grid.Column="1" Command="{Binding TomasoluTillEndCommand}" Style="{StaticResource RegularButton}" Background="Black" />
+                            IsEnabled="{Binding CanGoNextCycle}" Tag="To end" Grid.Column="1" Command="{Binding MoveTillEndCommand}" Style="{StaticResource RegularButton}" Background="Black" />
                         <!--#region Exam Buttons-->
                         <Button
                             x:Name="nextExambutton"

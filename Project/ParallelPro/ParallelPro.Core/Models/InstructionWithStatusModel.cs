@@ -20,7 +20,12 @@ namespace Tishreen.ParallelPro.Core.Models
         /// <summary>
         /// The target registry to store the value in
         /// </summary>
-        public string TargetRegistery { get; set; }
+        private string _TargetRegistery;
+        public string TargetRegistery
+        {
+            get { return _TargetRegistery; }
+            set { SetProperty(ref _TargetRegistery, value); }
+        }
         /// <summary>
         /// The first source registry or value to get from
         /// </summary>
