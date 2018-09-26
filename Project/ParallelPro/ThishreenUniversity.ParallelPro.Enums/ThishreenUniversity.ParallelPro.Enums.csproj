@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Enums\ApplicationIcons.cs" />
     <Compile Include="Enums\FunctionalUnitsTypes.cs" />
+    <Compile Include="Enums\LoopFunctions.cs" />
     <Compile Include="Enums\UserTypes.cs" />
     <Compile Include="Enums\ApplicationPages.cs" />
     <Compile Include="Instructions\TargetRegisteryAndMemory.cs" />

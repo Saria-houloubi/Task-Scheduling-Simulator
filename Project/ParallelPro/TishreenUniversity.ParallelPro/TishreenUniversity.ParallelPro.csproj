@@ -67,6 +67,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\CustomHoverOverControls\ChooseFunctionalUnitsAndLoop.xaml.cs">
+      <DependentUpon>ChooseFunctionalUnitsAndLoop.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CustomHoverOverControls\ChooseFunctionalUnitsScoreBoard.xaml.cs">
       <DependentUpon>ChooseFunctionalUnitsScoreBoard.xaml</DependentUpon>
     </Compile>
@@ -128,12 +131,19 @@
     <Compile Include="Windows\ExamResultWindow.xaml.cs">
       <DependentUpon>ExamResultWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\LoopUnrollingWindow.xaml.cs">
+      <DependentUpon>LoopUnrollingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\TomasoluWindow.xaml.cs">
       <DependentUpon>TomasoluWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ScoreBoardingWindow.xaml.cs">
       <DependentUpon>ScoreBoardingWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\CustomHoverOverControls\ChooseFunctionalUnitsAndLoop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\CustomHoverOverControls\ChooseFunctionalUnitsScoreBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -290,6 +300,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\LoopUnrollingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -349,6 +363,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\ScoreBoardingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WordDictionary\TextsAndControlsDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

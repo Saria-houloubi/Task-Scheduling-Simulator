@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ThishreenUniversity.ParallelPro.Enums
+﻿namespace ThishreenUniversity.ParallelPro.Enums
 {
     /// <summary>
     /// The funcitons that the user can use in the mips code
     /// </summary>
     public enum FunctionsTypes
     {
-
         
         /// <summary>
         /// Loads a value to a registery
@@ -53,9 +46,5 @@ namespace ThishreenUniversity.ParallelPro.Enums
         /// </summary>
         MULT = 6,
 
-        /// <summary>
-        /// Loops the program to the desierd flag
-        /// </summary>
-        LOOP = 7,
     }
 }

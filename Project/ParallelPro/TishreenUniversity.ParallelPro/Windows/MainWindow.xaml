@@ -9,52 +9,19 @@
         xmlns:converters="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
         mc:Ignorable="d" WindowState="Maximized" 
         Title="النافذة الرئيسية" >
-    <Grid>
+    <Grid Background="Black"> 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <!--Setting the background to a looping video-->
-        <Grid.Background>
-            <VisualBrush>
-                <VisualBrush.Visual>
-                    <Grid>
-                        <MediaElement  Name="background" >
-                            <MediaElement.Triggers>
-                                <EventTrigger RoutedEvent="MediaElement.Loaded">
-                                    <EventTrigger.Actions>
-                                        <BeginStoryboard>
-                                            <Storyboard>
-
-                                                <!-- The MediaTimeline has a RepeatBehavior="Forever" which makes the media play
-                                                over and over indefinitely.-->
-                                                <MediaTimeline  x:Name="mediaItem" Storyboard.TargetName="background"  
-                                                RepeatBehavior="Forever"  />
-
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger.Actions>
-                                </EventTrigger>
-                            </MediaElement.Triggers>
-                        </MediaElement>
-                    </Grid>
-                </VisualBrush.Visual>
-            </VisualBrush>
-        </Grid.Background>
-
         <Border  x:Name="ExamModeTitle"
                  Visibility="{Binding Source={x:Static local:ViewModelLocator.Instance},Path=ApplicationViewModel.IsExamMode,Converter={converters:BooleanToVisibilityValueConverter}}"
                  Grid.Row="0" Background="Red" CornerRadius=" 0 0 5 5" Panel.ZIndex="-2" Margin="0 -2 0 0" BorderThickness="1">
             <TextBlock Text="Exam Mode" Style="{StaticResource WhiteRegularText}" HorizontalAlignment="Center"/>
         </Border>
-        <!--Background blure effect black-->
-        <Border Grid.Row="1"  Margin="0 " Background="{DynamicResource MainBorderBackground}" Opacity="0.75" >
-            <Border.Effect>
-                <BlurEffect Radius="10" KernelType="Gaussian"/>
-            </Border.Effect>
-        </Border>
-
+        
         <local:HostUserControl Grid.Row="1" x:Name="Host" CurrentControl="{Binding Source={x:Static local:ViewModelLocator.Instance},Path= ApplicationViewModel.CurrentPage, Converter={converters:ApplicationPageValueConverter}}"  />
+
 
     </Grid>
 </Window>

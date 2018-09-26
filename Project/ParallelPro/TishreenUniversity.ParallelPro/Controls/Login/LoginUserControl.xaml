@@ -13,25 +13,62 @@
              
              >
     <!--Holds all content-->
-    <Grid Margin="40">
-        <Grid.ColumnDefinitions>
+    <Grid >
+        <Grid.Background>
+            <VisualBrush>
+                <VisualBrush.Visual>
+                    <Grid>
+                        <MediaElement  Name="background" >
+                            <MediaElement.Triggers>
+                                <EventTrigger RoutedEvent="MediaElement.Loaded">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+
+                                                <!-- The MediaTimeline has a RepeatBehavior="Forever" which makes the media play
+                                                over and over indefinitely.-->
+                                                <MediaTimeline  x:Name="mediaItem" Storyboard.TargetName="background"  
+                                                RepeatBehavior="Forever"  />
+
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </MediaElement.Triggers>
+                        </MediaElement>
+                    </Grid>
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Grid.Background>
+
+      
+        <!--Background blure effect black-->
+        <Border Grid.Row="1"  Margin="0 " Background="{DynamicResource MainBorderBackground}" Opacity="0.75" >
+            <Border.Effect>
+                <BlurEffect Radius="10" KernelType="Gaussian"/>
+            </Border.Effect>
+        </Border>
+
+        <Grid Margin="40" >
+            <Grid.ColumnDefinitions>
+                <!--Login information-->
+                <ColumnDefinition/>
+                <!--Tile show case-->
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
             <!--Login information-->
-            <ColumnDefinition/>
-            <!--Tile show case-->
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <!--Login information-->
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 20">
-            <Grid.RowDefinitions>
+
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 20">
+                <Grid.RowDefinitions>
+                    <!--Icon-->
+                    <RowDefinition Height="200"/>
+                    <!--Username and password-->
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+
                 <!--Icon-->
-                <RowDefinition Height="200"/>
-                <!--Username and password-->
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-
-            <!--Icon-->
-            <Path
+                <Path
                 Stretch="Uniform"      
                 Margin="0 20"  
                 HorizontalAlignment="Center" 
@@ -39,65 +76,115 @@
                 Name="Icon" 
                 Tag="{x:Static icons:ApplicationIcons.LoginUserIcon}" Data="{Binding  RelativeSource={RelativeSource Self},Path=Tag,Converter={converters:ApplicationIconValueConverter}}">
 
-                <Path.Triggers>
-                    <EventTrigger RoutedEvent="MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard Storyboard.TargetName="Icon" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)">
-                                <ColorAnimation To="{StaticResource DarkBlue}" Duration="00:00:001"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                    <EventTrigger RoutedEvent="MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard Storyboard.TargetName="Icon" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)">
-                                <ColorAnimation  To="White" Duration="00:00:001"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
+                    <Path.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard Storyboard.TargetName="Icon" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)">
+                                    <ColorAnimation To="{StaticResource DarkBlue}" Duration="00:00:001"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard Storyboard.TargetName="Icon" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)">
+                                    <ColorAnimation  To="White" Duration="00:00:001"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
 
-                </Path.Triggers>
-            </Path>
-            <!--Username and the password-->
-            <StackPanel   Grid.Row="2"  MinWidth="400">
-                <!--The Username for the person-->
-                <TextBox
+                    </Path.Triggers>
+                </Path>
+                <!--Username and the password-->
+                <StackPanel   Grid.Row="2"  MinWidth="400">
+                    <!--The Username for the person-->
+                    <TextBox
                     Visibility="{Binding ElementName=checkbox,Path=IsChecked,Converter={converters:BooleanToVisibilityValueConverter},ConverterParameter=true}"
                     x:Name="Username" Margin="5 20"  
                     metro:TextBoxHelper.Watermark="Username"  
                     Foreground="White"/>
-                <!--The password for him-->
-                <PasswordBox 
+                    <!--The password for him-->
+                    <PasswordBox 
                     x:Name="Password"
                     Visibility="{Binding ElementName=checkbox,Path=IsChecked,Converter={converters:BooleanToVisibilityValueConverter},ConverterParameter=true}"
                     Style="{StaticResource RegularPasswordBox}" 
                     />
-                <Grid Grid.Column="1" HorizontalAlignment="Center" x:Name="studentCheck" Visibility="{Binding ElementName=ExamMode,Path=Visibility,Converter={converters:FlipVisibilityValueConverter}}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Name="checkbox" IsChecked="False"/>
-                    <TextBlock Style="{StaticResource WhiteRegularText}" Text="Student" Grid.Column="2"  VerticalAlignment="Center"/>
-                </Grid>
+                    <Grid Grid.Column="1" HorizontalAlignment="Center" x:Name="studentCheck" Visibility="{Binding ElementName=ExamMode,Path=Visibility,Converter={converters:FlipVisibilityValueConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Name="checkbox" IsChecked="False"/>
+                        <TextBlock Style="{StaticResource WhiteRegularText}" Text="Student" Grid.Column="2"  VerticalAlignment="Center"/>
+                    </Grid>
 
-                <Button 
+                    <Button 
                     Style="{StaticResource MainWindowButtons}" 
                     Tag="Login"
                     Click="Login"/>
-                <Button 
+                    <Button 
                     x:Name="ExamMode"
                     Style="{StaticResource MainWindowButtons}" 
                     Tag="Exam"
                     Visibility="{Binding Source={x:Static local:ViewModelLocator.Instance},Path=ApplicationViewModel.IsExamMode,Converter={converters:BooleanToVisibilityValueConverter}}"
                     Background="Red" Click="ExamMode_Click"
                     />
-            </StackPanel>
-        </Grid>
+                </StackPanel>
+            </Grid>
 
-        <!--Tilte-->
-        <Viewbox Grid.Column="1" Margin="0 20 0 0" VerticalAlignment="Center" Grid.Row="1">
-            <controls:MainTitle/>
-        </Viewbox>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <!--Tilte-->
+                <Viewbox  Margin="0 20 0 0" VerticalAlignment="Center" Grid.Row="0">
+                    <controls:MainTitle/>
+                </Viewbox>
+
+
+                <StackPanel Grid.Row="1"
+                           >
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource WhiteRegularText}"
+                        Text="About Me"/>
+                    <TextBlock 
+                    Grid.Row="1"
+                        TextWrapping="Wrap"
+                        Style="{StaticResource WhiteRegularText}"
+                    Text="{StaticResource Application_Information}"/>
+                    <TextBlock 
+                    Grid.Row="1"
+                        TextWrapping="Wrap"
+                        Style="{StaticResource WhiteRegularText}"
+                    Text="{StaticResource Application_Information_2}"/>
+                    <TextBlock 
+                    Grid.Row="1"
+                        TextWrapping="Wrap"
+                        Style="{StaticResource WhiteRegularText}"
+                    Text="{StaticResource Application_Information_3}"/>
+                   <TextBlock 
+                    Grid.Row="1"
+                        TextWrapping="Wrap"
+                        Style="{StaticResource WhiteRegularText}"
+                    Text="{StaticResource Application_Information_4}"/>
+                    <TextBlock 
+                    Grid.Row="1"
+                        TextWrapping="Wrap"
+                        Style="{StaticResource WhiteRegularText}"
+                    Text="{StaticResource Application_Information_6}"/>
+                    <TextBox 
+                    Grid.Row="1"
+                        TextWrapping="Wrap"
+                        IsReadOnly="True"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource RegularTextBox}"
+                    Text="{StaticResource Application_Information_5}"/>
+
+                </StackPanel>
+            </Grid>
+
+        </Grid>
 
     </Grid>
 

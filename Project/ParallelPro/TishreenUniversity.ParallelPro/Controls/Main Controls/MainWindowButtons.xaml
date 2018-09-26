@@ -11,7 +11,7 @@
 
         <Button Style="{StaticResource MainWindowButtons}" Tag="Scoreboarding" Command="{Binding OpenAlgoWindowCommand}" CommandParameter="{x:Static enums:ApplicationPages.ScoreBoarding}"/>
         <Button  Style="{StaticResource MainWindowButtons}" Tag="Tomasolu" Command="{Binding OpenAlgoWindowCommand}" CommandParameter="{x:Static enums:ApplicationPages.Tomasulo}"/>
-            <Button Style="{StaticResource MainWindowButtons}" Tag="Loop Unrolling" />
+        <Button Style="{StaticResource MainWindowButtons}" Tag="Loop Unrolling" Command="{Binding OpenAlgoWindowCommand}" CommandParameter="{x:Static enums:ApplicationPages.LoopUnrolling}"/>
 
         </StackPanel>
 </local:BaseUserControl>

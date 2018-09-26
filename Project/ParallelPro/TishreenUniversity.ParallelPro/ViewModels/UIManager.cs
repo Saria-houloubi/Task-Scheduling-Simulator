@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Windows;
 using ThishreenUniversity.ParallelPro.Enums;
 using Tishreen.ParallelPro.Core;
-using Tishreen.ParallelPro.Core.Models;
 using TishreenUniversity.ParallelPro.Windows;
 
 namespace TishreenUniversity.ParallelPro.ViewModels
@@ -52,14 +48,21 @@ namespace TishreenUniversity.ParallelPro.ViewModels
                 case ApplicationPages.CodeInformationWindow:
                     wantedWindow = new CodeCyclesAndFunctionalUnitInformationWindow(parameter[0] as List<object>, parameter[1] as Dictionary<FunctionsTypes, int>, parameter[2] as Dictionary<FunctionalUnitsTypes, int>);
                     break;
+                case ApplicationPages.LoopUnrolling:
+                    wantedWindow = new LoopUnrollingWindow();
+                    break;
                 default:
                     Debugger.Break();
                     break;
             }
             if (IoC.Appliation.IsExamMode)
+            {
                 wantedWindow.ShowDialog();
+            }
             else
+            {
                 wantedWindow.Show();
+            }
         }
     }
 }

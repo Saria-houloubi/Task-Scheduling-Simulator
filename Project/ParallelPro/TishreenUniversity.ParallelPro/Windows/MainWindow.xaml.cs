@@ -13,10 +13,7 @@ namespace TishreenUniversity.ParallelPro
         {
             InitializeComponent();
 
-            //Set the video path by Getting current working folder and attach video path to it
-            var backgroundPath = $"{Directory.GetCurrentDirectory()}/Images/BackgroundVideo.wmv";
-            //Set the source of the media item
-            mediaItem.Source = new Uri(backgroundPath);
+          
         }
     }
 }

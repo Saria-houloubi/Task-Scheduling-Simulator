@@ -225,6 +225,7 @@ namespace Tishreen.ParallelPro.Core
             get { return mCanChooseSource02; }
             set { SetProperty(ref mCanChooseSource02, value); }
         }
+
         /// <summary>
         /// A flag represents if the user can choose another source for the instruction
         /// like in SD/LD only one source
@@ -308,6 +309,7 @@ namespace Tishreen.ParallelPro.Core
                 RaisePropertyChanged(nameof(CanChooseSource02OnEdit));
             }
         }
+
         /// <summary>
         /// Updates the lists sent to it based on the value of the function that is sent to it
         /// </summary>
@@ -359,6 +361,7 @@ namespace Tishreen.ParallelPro.Core
             else
                 canChooseSource02 = true;
 
+
         }
         #endregion
 
@@ -372,76 +375,7 @@ namespace Tishreen.ParallelPro.Core
             FillFunctionList();
 
             //Create the list
-            Instructions = new ObservableCollection<InstructionModel> {
-            new InstructionModel{
-                ID =1,
-                Name = FunctionsTypes.LD,
-                TargetRegistery = "F1",
-                SourceRegistery01 = "M1",
-
-            },
-            new InstructionModel{
-                ID =2,
-                Name = FunctionsTypes.ADD,
-                TargetRegistery = "F1",
-                SourceRegistery01 = "F1",
-                SourceRegistery02 = "F5",
-            },
-new InstructionModel{
-    ID =3,
-                Name = FunctionsTypes.LD,
-                TargetRegistery = "F2",
-                SourceRegistery01 = "M2",
-            },
-new InstructionModel{
-
-    ID =4,Name = FunctionsTypes.ADD,
-                TargetRegistery = "F2",
-                SourceRegistery01 = "F2",
-                SourceRegistery02 = "F10",
-            },
-new InstructionModel{
-    ID =5,
-                Name = FunctionsTypes.LD,
-                TargetRegistery = "F3",
-                SourceRegistery01 = "M3",
-            },
-new InstructionModel{
-    ID =6,
-                Name = FunctionsTypes.ADD,
-                TargetRegistery = "F3",
-                SourceRegistery01 = "F3",
-                SourceRegistery02 = "F15",
-            },
-new InstructionModel{
-    ID =7,
-                Name = FunctionsTypes.MULT,
-                TargetRegistery = "F1",
-                SourceRegistery01 = "F1",
-                SourceRegistery02 = "F4",
-            },
-new InstructionModel{
-    ID =8,
-                Name = FunctionsTypes.ADD,
-                TargetRegistery = "F2",
-                SourceRegistery01 = "F1",
-                SourceRegistery02 = "F3",
-            },
-new InstructionModel{
-    ID =9,
-                Name = FunctionsTypes.SUB,
-                TargetRegistery = "F3",
-                SourceRegistery01 = "F3",
-                SourceRegistery02 = "F1",
-            },
-new InstructionModel{
-    ID =10,
-                Name = FunctionsTypes.SD,
-                TargetRegistery = "M1",
-                SourceRegistery01 = "F2",
-            },
-
-            };
+            Instructions = new ObservableCollection<InstructionModel>();
             TargetRegistries = new ObservableCollection<string>();
             SourceRegisteries = new ObservableCollection<string>();
             ShowEditInstructionMenu = false;
@@ -486,8 +420,7 @@ new InstructionModel{
                     counter = 1;
                     Instructions = new ObservableCollection<InstructionModel>();
                 }
-            }, (parameter) =>
-             Instructions.Count > 0).ObservesProperty(() => Instructions);
+            });
             EditInstructionCommand = new DelegateCommand(() =>
             {
                 ShowEditInstructionMenu ^= true;

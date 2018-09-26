@@ -43,5 +43,6 @@ namespace ThishreenUniversity.ParallelPro.Enums
         /// The tomasulo algo window 
         /// </summary>
         Tomasulo = 7,
+        LoopUnrolling= 8,
     }
 }

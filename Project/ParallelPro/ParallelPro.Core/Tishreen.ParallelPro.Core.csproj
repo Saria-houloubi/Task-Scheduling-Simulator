@@ -59,6 +59,7 @@
     <Compile Include="Models\Base\BaseModel.cs" />
     <Compile Include="Models\ExamResultModel.cs" />
     <Compile Include="Models\FunctionalUnitWithStatusModel.cs" />
+    <Compile Include="Models\LoopUnrol\LoopUnrolInstructionModel.cs" />
     <Compile Include="Models\RegisterResultModel.cs" />
     <Compile Include="Models\InstructionWithStatusModel.cs" />
     <Compile Include="Models\InstructionModel.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="ViewModels\EnterdInformation\CodeCyclesAndFunctionalUnitInformationWindowViewModel.cs" />
     <Compile Include="ViewModels\InstructionMenu\MainAlgorithmsInstructionMenuViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\LoopUnrolling\LoopUnrollingWindowViewModel.cs" />
     <Compile Include="ViewModels\ScoreBoarding\ScoreBoardingWindowViewModel.cs" />
     <Compile Include="ViewModels\StudentExamInformationViewModel.cs" />
     <Compile Include="ViewModels\StudentExam\StudentExamInformationAndMarksViewModel.cs" />

@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:TishreenUniversity.ParallelPro.WordDictionary">
+
+    <system:String x:Key="Operation">Operation</system:String>
+    <system:String x:Key="Order">Order</system:String>
+    <system:String x:Key="TargetRegistery">Target Registery</system:String>
+    <system:String x:Key="Source_1_Registery">Soruce 1 Registery</system:String>
+    <system:String x:Key="Source_2_Registery">Soruce 2 Registery</system:String>
+    <system:String x:Key="ImmediateOrDisplacement">Immediate or displacement</system:String>
+    
+    <system:String x:Key="TextBlock_ClockCycles">Clock Cycles :</system:String>
+
+    <system:String x:Key="Control_Execute">Execute</system:String>
+    <system:String x:Key="Control_Add">Add</system:String>
+    <system:String x:Key="Control_Clear">Clear</system:String>
+    <system:String x:Key="Control_Delete">Delete</system:String>
+    <system:String x:Key="Control_UnrollLoop">Unroll loop</system:String>
+    <system:String x:Key="Control_Schedule">Schedule</system:String>
+
+    <system:String x:Key="WaterMark_LoopCounter">Loop Counter</system:String>
+    <system:String x:Key="WaterMark_LoopInstruction">Loop Instruction</system:String>
+    <system:String x:Key="WaterMark_UnrollTimes">Unroll times</system:String>
+    <system:String x:Key="WaterMark_ClockCycles">Clock Cycles</system:String>
+
+
+    <system:String x:Key="Application_Information">I was created by Saria houloubi as a forth year project and was targeted for the paralle processing labs in tishreen university under the autherity of Dr. 
+Samer Sulaiman.</system:String>
+    <system:String x:Key="Application_Information_2">My heart and code are open source for anyone to see and build upon.</system:String>
+    <system:String x:Key="Application_Information_3">Any contribution is welcomed as I am only the first milestone and still much more to go with your help.</system:String>
+    <system:String x:Key="Application_Information_4">For any help, addons or error fix please contact at Email: Houloubis@gmail.com or any social media app.</system:String>
+    <system:String x:Key="Application_Information_5">Source code link :  https://github.com/Saria-houloubi/Task-Scheduling-Simulator</system:String>
+    <system:String x:Key="Application_Information_6">Fork my code read it ,understand it and make it better then submit a merge request :-)</system:String>
+
+</ResourceDictionary>

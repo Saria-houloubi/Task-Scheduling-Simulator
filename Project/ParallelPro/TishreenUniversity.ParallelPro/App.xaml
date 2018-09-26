@@ -18,6 +18,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
 
                 <!--Order is important-->
+                <ResourceDictionary Source="/WordDictionary/TextsAndControlsDictionary.xaml"/>
                 <ResourceDictionary Source="/Styles/Fonts.xaml"/>
                 <ResourceDictionary Source="/Styles/Colores.xaml"/>
                 <ResourceDictionary Source="/Styles/Borders.xaml"/>
