@@ -72,6 +72,7 @@ namespace Tishreen.ParallelPro.Core.Models.LoopUnrol
             get { return mCanChooseSource02; }
             set { SetProperty(ref mCanChooseSource02, value); }
         }
+
         #endregion
 
         #region Constructer
@@ -197,14 +198,16 @@ namespace Tishreen.ParallelPro.Core.Models.LoopUnrol
                 }
             }
             //Disable source02 if the function is either load or store
-            if (function == FunctionsTypes.LD || function == FunctionsTypes.SD)
+            if (function == FunctionsTypes.LD || function == FunctionsTypes.SD || function == FunctionsTypes.ADDi || function == FunctionsTypes.SUBi)
             {
                 canChooseSource02 = false;
             }
             else
             {
+
                 canChooseSource02 = true;
             }
+            RaisePropertyChanged(nameof(CanChooseSource02));
         }
         #endregion
 

@@ -497,8 +497,8 @@ namespace Tishreen.ParallelPro.Core.ViewModels.LoopUnrolling
                 //Spread the loop up
                 UnrollLoopTimes = LoopCounter;
             }
-            int displacment = -4;
-            var displacmentIncrement = 4;
+            var integerIncremnt = 4;
+            var displacmentIncrement = 0;
             int order = 0;
             UnrolledInstructions = new ObservableCollection<LoopUnrolInstructionModel>();
             var leftRegistersForRename = Enum.GetNames(typeof(RegisteriesAndMemory)).Where(item => item.Contains('F')).ToList();
@@ -541,7 +541,6 @@ namespace Tishreen.ParallelPro.Core.ViewModels.LoopUnrolling
 
             for (int i = 0; i < UnrollLoopTimes; i++)
             {
-                displacment += displacmentIncrement;
                 for (int j = InstructionNumToLoopTo - 1; j < Instructions.Count; j++)
                 {
 
@@ -559,7 +558,9 @@ namespace Tishreen.ParallelPro.Core.ViewModels.LoopUnrolling
                     if (newInstruction.Operation == FunctionsTypes.LD.ToString() || newInstruction.Operation == FunctionsTypes.SD.ToString())
                     {
                         //Then we need to move the displacment
-                        newInstruction.ImmediateValueOrDisplacmnet = displacment;
+                        newInstruction.ImmediateValueOrDisplacmnet += displacmentIncrement;
+
+                        displacmentIncrement += integerIncremnt;
                     }
                     UnrolledInstructions.Add(newInstruction);
                 }
@@ -625,7 +626,7 @@ namespace Tishreen.ParallelPro.Core.ViewModels.LoopUnrolling
                         UnrolledInstructions[i].SourceRegistery02 = value2;
                     }
                 }
-                catch (Exception)
+                catch (Exception) 
                 {
                     MessageBox.Show("Please check code and try agian");
                     break;

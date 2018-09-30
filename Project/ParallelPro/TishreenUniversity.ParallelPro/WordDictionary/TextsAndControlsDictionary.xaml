@@ -25,12 +25,15 @@
     <system:String x:Key="WaterMark_ClockCycles">Clock Cycles</system:String>
 
 
-    <system:String x:Key="Application_Information">I was created by Saria houloubi as a forth year project and was targeted for the paralle processing labs in tishreen university under the autherity of Dr. 
-Samer Sulaiman.</system:String>
-    <system:String x:Key="Application_Information_2">My heart and code are open source for anyone to see and build upon.</system:String>
-    <system:String x:Key="Application_Information_3">Any contribution is welcomed as I am only the first milestone and still much more to go with your help.</system:String>
-    <system:String x:Key="Application_Information_4">For any help, addons or error fix please contact at Email: Houloubis@gmail.com or any social media app.</system:String>
-    <system:String x:Key="Application_Information_5">Source code link :  https://github.com/Saria-houloubi/Task-Scheduling-Simulator</system:String>
-    <system:String x:Key="Application_Information_6">Fork my code read it ,understand it and make it better then submit a merge request :-)</system:String>
+    <system:String x:Key="Application_Information">This simulator has been developed by Saria Houloubi as a fourth year 
+                                                   project to model different scheduling algorithms used in the parallel 
+                                                   processing lab at Tishreen University under the supervision of Dr.-Eng. 
+                                                   Samer Sulaiman.
+    </system:String>
+    <system:String x:Key="Application_Information_2">It is an open source tool that is available for anyone to use and continue to develop.</system:String>
+    <system:String x:Key="Application_Information_3">Any contribution is welcomed as I am only in the first milestone and still need much more to keep going with your help.</system:String>
+    <system:String x:Key="Application_Information_4">For any help, add-on, error fixes, please contact me at the E-mail: houloubis@gmail.com or any social media apps.</system:String>
+    <system:String x:Key="Application_Information_5">you can find the source code at: http://github.com/saria-houloubi/Task-Scheduling-Simulator</system:String>
+    <system:String x:Key="Application_Information_6">If possible, please fork my code on GitHub and help to make it better by submitting a merge request.</system:String>
 
 </ResourceDictionary>

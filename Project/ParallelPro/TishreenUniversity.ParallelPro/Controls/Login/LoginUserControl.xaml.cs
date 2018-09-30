@@ -32,10 +32,6 @@ namespace TishreenUniversity.ParallelPro.Controls
             //Set the exam mode status
             IoC.Appliation.IsExamMode = Properties.Settings.Default.IsExamMode;
 
-            //Set the video path by Getting current working folder and attach video path to it
-            var backgroundPath = $"{Directory.GetCurrentDirectory()}/Images/BackgroundVideo.wmv";
-            //Set the source of the media item
-            mediaItem.Source = new Uri(backgroundPath);
         }
 
         private void Login(object sender, RoutedEventArgs e)

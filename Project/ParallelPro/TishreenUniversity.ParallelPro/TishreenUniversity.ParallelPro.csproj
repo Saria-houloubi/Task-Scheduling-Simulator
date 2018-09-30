@@ -124,6 +124,7 @@
     <Compile Include="IValueConverters\BooleanToVisibilityValueConverter.cs" />
     <Compile Include="IValueConverters\BooleanToYesNoStringValueConverter.cs" />
     <Compile Include="IValueConverters\BooleanToBrushValueConverter.cs" />
+    <Compile Include="IValueConverters\FlipTrueFalseValueConverter.cs" />
     <Compile Include="ViewModels\UIManager.cs" />
     <Compile Include="Windows\CodeCyclesAndFunctionalUnitInformationWindow.xaml.cs">
       <DependentUpon>CodeCyclesAndFunctionalUnitInformationWindow.xaml</DependentUpon>
@@ -418,10 +419,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\BackgroundVideo.wmv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Images\Background.jpeg" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

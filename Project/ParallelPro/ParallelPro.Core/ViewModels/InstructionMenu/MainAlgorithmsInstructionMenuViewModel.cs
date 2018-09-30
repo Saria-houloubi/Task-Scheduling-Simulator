@@ -1,10 +1,10 @@
-﻿using Tishreen.ParallelPro.Core.Models;
+﻿using Ninject;
 using Prism.Commands;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ThishreenUniversity.ParallelPro.Enums;
-using Ninject;
+using Tishreen.ParallelPro.Core.Models;
 
 namespace Tishreen.ParallelPro.Core
 {
@@ -33,7 +33,7 @@ namespace Tishreen.ParallelPro.Core
                 SetProperty(ref _selectedFunction, value);
 
                 ///Fill the target and source registeries with the right values
-                    FillTargetAndSourceRegisteries(value);
+                FillTargetAndSourceRegisteries(value);
 
             }
         }
@@ -280,10 +280,17 @@ namespace Tishreen.ParallelPro.Core
 
             //Loops thru the enum values an add them to the functions list
             foreach (var item in Enum.GetValues(typeof(FunctionsTypes)))
-                Functions.Add((FunctionsTypes)item);
+            {
+
+                var func = (FunctionsTypes)item;
+                if ((int)func < 7)
+                {
+                    Functions.Add(func);
+                }
+            }
 
             SelectedTargetRegistery = null;
-            SelectedSourceRegistery01= null;
+            SelectedSourceRegistery01 = null;
             SelectedSourceRegistery02 = null;
         }
 
@@ -292,7 +299,7 @@ namespace Tishreen.ParallelPro.Core
         /// </summary>
         /// <param name="function">The function that we want to restrict some registery or memory access</param>
         /// <param name="editCollection">If true will update the edit collections</param>
-        protected void FillTargetAndSourceRegisteries(FunctionsTypes function , bool editCollection = false)
+        protected void FillTargetAndSourceRegisteries(FunctionsTypes function, bool editCollection = false)
         {
             if (!editCollection)
             {
@@ -335,33 +342,45 @@ namespace Tishreen.ParallelPro.Core
                 {
                     //If it is a registery spot add it to target
                     if ((int)item < 31)
+                    {
                         targetRegistries.Add(stringValue);
+                    }
                     else
+                    {
                         sourceRegistries.Add(stringValue);
+                    }
                 }
                 else if (function == FunctionsTypes.SD)
                 {
                     //If it is a memory add it to target
                     if ((int)item >= 31)
+                    {
                         targetRegistries.Add(stringValue);
+                    }
                     else
+                    {
                         sourceRegistries.Add(stringValue);
+                    }
                 }
                 else
                 {
                     targetRegistries.Add(stringValue);
                     //If it is a registery spot add it to target
                     if ((int)item < 31)
+                    {
                         sourceRegistries.Add(stringValue);
+                    }
                 }
             }
             //Disable source02 if the function is either load or store
             if (function == FunctionsTypes.LD || function == FunctionsTypes.SD)
+            {
                 canChooseSource02 = false;
+            }
             else
+            {
                 canChooseSource02 = true;
-
-
+            }
         }
         #endregion
 
@@ -393,7 +412,7 @@ namespace Tishreen.ParallelPro.Core
                 Instructions.Add(new InstructionModel(counter++, SelectedFunction, SelectedTargetRegistery, SelectedSourceRegistery01, SelectedSourceRegistery02));
                 RaisePropertyChanged(nameof(Instructions));
                 EmptyProperties();
-            }, () => { return  !string.IsNullOrWhiteSpace(SelectedTargetRegistery) && !string.IsNullOrEmpty(SelectedSourceRegistery01) && (!string.IsNullOrEmpty(SelectedSourceRegistery02) || SelectedFunction == FunctionsTypes.LD || SelectedFunction == FunctionsTypes.SD); }).ObservesProperty(() => SelectedFunction).ObservesProperty(() => SelectedTargetRegistery).ObservesProperty(() => SelectedSourceRegistery01).ObservesProperty(() => SelectedSourceRegistery02);
+            }, () => { return !string.IsNullOrWhiteSpace(SelectedTargetRegistery) && !string.IsNullOrEmpty(SelectedSourceRegistery01) && (!string.IsNullOrEmpty(SelectedSourceRegistery02) || SelectedFunction == FunctionsTypes.LD || SelectedFunction == FunctionsTypes.SD); }).ObservesProperty(() => SelectedFunction).ObservesProperty(() => SelectedTargetRegistery).ObservesProperty(() => SelectedSourceRegistery01).ObservesProperty(() => SelectedSourceRegistery02);
             DeleteItemCommand = new DelegateCommand(() =>
             {
                 ReOrderAfterDelete(SelectedInstruction.ID);
@@ -451,8 +470,10 @@ namespace Tishreen.ParallelPro.Core
             {
                 //If the id is greater than the instrions that we are deleteing then...
                 if (item.ID > instructionNumber)
+                {
                     //Add it to the moving list
                     listToMove.Add(item);
+                }
             }
             //Downgrade the counter by one for the deleted item
             counter--;

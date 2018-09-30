@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:TishreenUniversity.ParallelPro.Windows"
         xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
+        xmlns:converters="clr-namespace:TishreenUniversity.ParallelPro.IValueConverters"
         WindowState="Maximized"
         Title="Loop Unrolling" Height="450" Width="2000">
 
@@ -96,7 +97,9 @@
                         <DataGridTemplateColumn Header="{StaticResource Source_2_Registery}">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <ComboBox ItemsSource="{Binding SourceRegisteries}" SelectedItem="{Binding SourceRegistery02,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DefultWhiteStyle}"
+                                    <ComboBox ItemsSource="{Binding SourceRegisteries}" 
+                                              x:Name="Source02"
+                                              SelectedItem="{Binding SourceRegistery02,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DefultWhiteStyle}"
                                               IsEnabled="{Binding CanChooseSource02}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -105,6 +108,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <metro:NumericUpDown HorizontalContentAlignment="Center"
+                                                         IsEnabled="{Binding CanChooseSource02,Converter={converters:FlipTrueFalseValueConverter}}"
                                                          Value="{Binding ImmediateValueOrDisplacmnet,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
                                                          FontSize="{StaticResource FontSizeLarg}"/>
                                 </DataTemplate>

@@ -45,6 +45,16 @@
         /// Multiplys value in f2 and Memmory(30) and stores it in F9
         /// </summary>
         MULT = 6,
-
+        /// <summary>
+        /// Adding an immediate value
+        /// Example: Addi F9 F2 1
+        /// </summary>
+        ADDi = 7,
+        /// <summary>
+        /// Subtracking an immediate value
+        /// Example: Addi F9 F2 1
+        /// </summary>
+        SUBi = 8,
+        
     }
 }
