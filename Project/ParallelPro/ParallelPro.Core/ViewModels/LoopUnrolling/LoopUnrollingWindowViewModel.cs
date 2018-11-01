@@ -601,7 +601,7 @@ namespace Tishreen.ParallelPro.Core.ViewModels.LoopUnrolling
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("Please check code and try agian");
+                        //MessageBox.Show("Please check code and try agian");
                         break;
                     }
                     UnrolledInstructions[i].TargetRegistery = renamedReg;

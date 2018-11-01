@@ -24,7 +24,20 @@ namespace TishreenUniversity.ParallelPro
             currentDomain.UnhandledException += new UnhandledExceptionEventHandler(MyHandler);
 
             //Setup hte Kernel
-            IoC.Setup();
+
+
+            try
+            {
+                IoC.Setup();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.InnerException.Message);
+                MessageBox.Show(ex.InnerException?.InnerException?.Message);
+            }
+
             IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());
 
             //Set the main border background bruhs colore

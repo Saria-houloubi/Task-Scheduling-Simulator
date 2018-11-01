@@ -11,7 +11,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The kernel that will bind all the classes to
         /// </summary>
-        public static IKernel Kernel { get; private set; } = new StandardKernel();
+        public static IKernel Kernel { get; private set; } 
         #endregion
 
         #region Short cuts
@@ -43,6 +43,7 @@ namespace Tishreen.ParallelPro.Core
         /// </summary>
         private static void BindViewModels()
         {
+            Kernel = new StandardKernel();
             Kernel.Bind<ApplicationViewModel>().ToConstant(new ApplicationViewModel());
             Kernel.Bind<StudentExamInformationAndMarksViewModel>().ToConstant(new StudentExamInformationAndMarksViewModel());
         } 
