@@ -173,7 +173,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock  Text="Load / Store  : " Grid.Row="0"/>
+                    <TextBlock  Text="Load  : " Grid.Row="0"/>
                     <TextBlock  Text="Floating point add : " Grid.Row="1"/>
                     <TextBlock  Text="Floating point multiply : " Grid.Row="0" Grid.Column="2"/>
                     <TextBlock  Text="Floating point divide : " Grid.Row="1" Grid.Column="2"/>
@@ -383,6 +383,8 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition />
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <TextBlock
                         Text="{StaticResource TextBlock_ClockCycles}"
@@ -394,6 +396,19 @@
                         IsReadOnly="True"
                         FontSize="{StaticResource FontSizeExtraLarg}"
                         Text="{Binding UnrolledScheduledExecutedCodeClockCycles}"
+                        />
+
+                    <TextBlock
+                        Grid.Column="2"
+                        Text="{StaticResource TextBlock_SpeedUp}"
+                        />
+                    <TextBox
+                        Grid.Column="3"
+                        Margin="5"
+                        Foreground="Black"
+                        IsReadOnly="True"
+                        FontSize="{StaticResource FontSizeExtraLarg}"
+                        Text="{Binding SpeedUp}"
                         />
 
 

@@ -9,8 +9,9 @@
     <system:String x:Key="Source_1_Registery">Soruce 1 Registery</system:String>
     <system:String x:Key="Source_2_Registery">Soruce 2 Registery</system:String>
     <system:String x:Key="ImmediateOrDisplacement">Immediate or displacement</system:String>
-    
+
     <system:String x:Key="TextBlock_ClockCycles">Clock Cycles :</system:String>
+    <system:String x:Key="TextBlock_SpeedUp">Speed up :(Original code clock cycles * unrolled times) / scheduled clock cycles =</system:String>
 
     <system:String x:Key="Control_Execute">Execute</system:String>
     <system:String x:Key="Control_Add">Add</system:String>

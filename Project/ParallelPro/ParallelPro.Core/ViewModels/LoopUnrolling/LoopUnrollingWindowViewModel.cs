@@ -408,8 +408,6 @@ namespace Tishreen.ParallelPro.Core.ViewModels.LoopUnrolling
                 Order = lastOrder + 2,
                 Operation = SelectedBranchOperation.ToString(),
                 SourceRegistery01 = SelectedBranchRegistery01,
-                SourceRegistery02 = LoopCounter.ToString(),
-                ImmediateValueOrDisplacmnet = InstructionNumToLoopTo
             });
 
             ExecutedInstructions.Add(new LoopUnrolInstructionModel
@@ -417,6 +415,10 @@ namespace Tishreen.ParallelPro.Core.ViewModels.LoopUnrolling
                 SourceRegistery01 = stallCycle + 1,
             });
 
+            if (scheduled)
+            {
+                SpeedUp = (double)((ExecutedCodeClockCycles * UnrollLoopTimes * 1.0) / UnrolledScheduledExecutedCodeClockCycles * 1.0); 
+            }
             return ExecutedInstructions;
         }
 
@@ -429,6 +431,7 @@ namespace Tishreen.ParallelPro.Core.ViewModels.LoopUnrolling
         public DelegateCommand ExecuteScheduledCodeCommand { get; set; }
 
         #endregion
+
         #region Command Methods
 
         /// <summary>
@@ -469,6 +472,7 @@ namespace Tishreen.ParallelPro.Core.ViewModels.LoopUnrolling
         }
 
         #endregion
+        
         #region Properties
         /// <summary>
         /// The instruction after execution and unrolling with the stalls
@@ -681,10 +685,21 @@ namespace Tishreen.ParallelPro.Core.ViewModels.LoopUnrolling
             get { return mScheduledExecutedLoopCode; }
             set { SetProperty(ref mScheduledExecutedLoopCode, value); }
         }
+
+        /// <summary>
+        /// The speed up percentage for the last unrolled schualed code
+        /// </summary>
+        private double _speedUp;
+        public double SpeedUp
+        {
+            get { return this._speedUp; }
+            set { SetProperty(ref _speedUp, value); }
+        }
         #endregion
 
 
         #endregion
+
         #region Helpers
         /// <summary>
         /// ReSets the instruction number when the user deletes an item

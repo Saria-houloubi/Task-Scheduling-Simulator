@@ -6,11 +6,11 @@
         /// <summary>
         /// Branch if equal
         /// </summary>
-        beq = 1,
+        //beq = 1,
         /// <summary>
         /// Branch if not equal
         /// </summary>
-        bnq = 2,
+        //bnq = 2,
         /// <summary>
         /// Branch if not equal to zero
         /// </summary>
