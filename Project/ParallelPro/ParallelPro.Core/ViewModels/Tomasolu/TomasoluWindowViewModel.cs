@@ -47,23 +47,14 @@ namespace Tishreen.ParallelPro.Core
             {
                 unit.Time = 0;
                 //Get the register the instruction is working on
-                var register = registers.SingleOrDefault(reg => reg.InstructionReservedRegiseter.Contains(instruction.ID));
-                //if it is not the last instruction that reserved the register
-                if (register.InstructionReservedRegiseter.LastOrDefault() != instruction.ID)
+                var register = registers.SingleOrDefault(reg => reg.InstructionReservedRegiseter.SingleOrDefault(inst => inst.InstructionId == instruction.ID) != null);
+                var instStatusInReg = register.InstructionReservedRegiseter.SingleOrDefault(item => item.InstructionId == instruction.ID);
+                //If its value is false it can not write and has to be register renames
+                if (!instStatusInReg.LastIssued)
                 {
                     //Then rename the target register of the register renameing process
                     //This way will end the WAW hazard
                     instruction.TargetRegistery = "R1";
-                    ////Save the new instructin
-                    //var newInst = instruction;
-                    ////Get the index to remove and insert in
-                    //var index = Instructions.IndexOf(instruction);
-                    ////Remove the item
-                    //Instructions.RemoveAt(index);
-                    ////Add the new item in the old index
-                    //Instructions.Insert(index, newInst);
-                    ////Change the View
-                    //RaisePropertyChanged(nameof(Instructions));
                 }
                 //Always right back the value after the instruction finishs executing
                 instruction.WriteBackCycle = ClockCycle;

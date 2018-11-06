@@ -142,18 +142,31 @@ namespace Tishreen.ParallelPro.Core
 
             //Fill the list with the specificed value that the user sent for each function
             for (int i = 1; i <= NumberOfLoadUnits; i++, conter++)
+            {
                 FunctionalUnits.Add(new FunctionalUnitWithStatusModel(conter, "Load " + i, new Dictionary<FunctionsTypes, bool> { { FunctionsTypes.LD, true }, { FunctionsTypes.SD, true } }));
+            }
+
             for (int i = 1; i <= NumberOfMultiplyUnits; i++, conter++)
+            {
                 FunctionalUnits.Add(new FunctionalUnitWithStatusModel(conter, "Mult " + i, new Dictionary<FunctionsTypes, bool> { { FunctionsTypes.MULT, true } }));
+            }
+
             for (int i = 1; i <= NumberOfAddUnits; i++, conter++)
+            {
                 FunctionalUnits.Add(new FunctionalUnitWithStatusModel(conter, "Add " + i, new Dictionary<FunctionsTypes, bool> { { FunctionsTypes.SUB, true }, { FunctionsTypes.ADD, true } }));
+            }
+
             for (int i = 1; i <= NumberOfDivideUnits; i++, conter++)
+            {
                 FunctionalUnits.Add(new FunctionalUnitWithStatusModel(conter, "Divide " + i, new Dictionary<FunctionsTypes, bool> { { FunctionsTypes.DIV, true } }));
+            }
 
             //If we are in exam mode
             if (IoC.Appliation.IsExamMode)
+            {
                 //Set the computer solution aside for compartion
                 SetExamPropertiesAndStoreSolution();
+            }
 
             RaisePropertyChanged(nameof(FunctionalUnits));
         }
@@ -222,7 +235,9 @@ namespace Tishreen.ParallelPro.Core
             Instructions = new List<InstructionWithStatusModel>();
 
             if (instructionList == null)
+            {
                 return;
+            }
             //Loop throw the list...
             foreach (var item in instructionList)
             {
@@ -246,7 +261,9 @@ namespace Tishreen.ParallelPro.Core
                 var stringValue = Enum.GetName(typeof(RegisteriesAndMemory), item);
                 //If it is a registery spot add it to target
                 if ((int)item < 31)
+                {
                     Registers.Add(new RegisterResultModel(stringValue));
+                }
             }
         }
         #endregion
@@ -257,12 +274,21 @@ namespace Tishreen.ParallelPro.Core
         /// </summary>
         protected void StartScoreBoardTillClockCycle(List<InstructionWithStatusModel> instructions, List<FunctionalUnitWithStatusModel> functionalUnits, List<RegisterResultModel> registers, int toClockCylce)
         {
-            while (!ScoreBoard(instructions, functionalUnits, registers, toClockCylce)) ;
+            while (!ScoreBoard(instructions, functionalUnits, registers, toClockCylce))
+            {
+                ;
+            }
         }
         /// <summary>
         /// ScoreBoard the instruction until it ends
         /// </summary>
-        protected void StartScoreBoardTillTheEnd() { while (!ScoreBoard(Instructions, FunctionalUnits, Registers)) ; }
+        protected void StartScoreBoardTillTheEnd()
+        {
+            while (!ScoreBoard(Instructions, FunctionalUnits, Registers))
+            {
+                ;
+            }
+        }
         /// <summary>
         /// only one clock cycle for the algorithm
         /// </summary>
@@ -274,7 +300,10 @@ namespace Tishreen.ParallelPro.Core
         {
             //If we arreived into the wanted clock cylce end operation
             if (ClockCycle == toClockCycle)
+            {
                 return true;
+            }
+
             ClockCycle++;
 
             var instructionLenght = instructions.Count;
@@ -290,15 +319,17 @@ namespace Tishreen.ParallelPro.Core
                     break;
                 }
                 else if (instruction.ReadCycle == null)
+                {
                     //Check if we can read the instruction
                     ReadIfApproved(instruction, functionalUnits, registers);
+                }
                 else if (instruction.WriteBackCycle != null)
                 {
                     //If the value was just ended up from the past clock cycle
                     if (instruction.WriteBackCycle == ClockCycle - 1)
                     {
-                        //Clear the units after a right back
-                        FreeUpRegisters(registers.SingleOrDefault(item => item.InstructionReservedRegiseter.Contains(instruction.ID)));
+                        //Clear the units after a write back
+                        FreeUpRegisters(registers.SingleOrDefault(item => item.InstructionReservedRegiseter.SingleOrDefault(inst => inst.InstructionId == instruction.ID) != null), instruction.ID);
                         RecheckIfRegistersAreFree(functionalUnits, registers);
                         if (CheckIfDone(instructions))
                         {
@@ -312,8 +343,10 @@ namespace Tishreen.ParallelPro.Core
                     }
                 }
                 else
+                {
                     //Execute the instruction
                     ExecuteInstrution(instruction, Instructions, functionalUnits, registers);
+                }
             }
 
             return false;
@@ -364,9 +397,13 @@ namespace Tishreen.ParallelPro.Core
                         //The target register to write in is free WAW hazard
                         RegisterResultModel registerToTarget;
                         if (instruction.Name == FunctionsTypes.SD)
+                        {
                             registerToTarget = registers.SingleOrDefault(reg => reg.Name == instruction.SourceRegistery01);
+                        }
                         else
+                        {
                             registerToTarget = registers.SingleOrDefault(reg => reg.Name == instruction.TargetRegistery);
+                        }
 
                         instruction.IssueCycle = ClockCycle;
 
@@ -383,16 +420,22 @@ namespace Tishreen.ParallelPro.Core
                         var operationOnSource02 = registers.SingleOrDefault(reg => reg.Name == instruction.SourceRegistery02);
                         //The is null for the load as it loads from memory 
                         if (operationOnSource01 is null || !operationOnSource01.IsBusy)
+                        {
                             unit.IsSource01Ready = true;
+                        }
                         else
                         {
                             unit.IsSource01Ready = false;
                             unit.WaitingOperationForSource01 = operationOnSource01.Operation;
                         }
                         if (operationOnSource02 is null)
+                        {
                             unit.IsSource02Ready = false;
+                        }
                         else if (!operationOnSource02.IsBusy)
+                        {
                             unit.IsSource02Ready = true;
+                        }
                         else
                         {
                             unit.IsSource02Ready = false;
@@ -402,8 +445,17 @@ namespace Tishreen.ParallelPro.Core
                         //Set the register as busy
                         registerToTarget.Operation = unit.Operation == "LD" ? string.Format("F[{0}]", unit.SourceRegistery01) : string.Format("F[{0}]", unit.Name);
                         registerToTarget.IsBusy = true;
+                        if (registerToTarget.InstructionReservedRegiseter.Any())
+                        {
+                            registerToTarget.InstructionReservedRegiseter.LastOrDefault().LastIssued = false;
+                        }
+
                         //Add it to the reserved instructions
-                        registerToTarget.InstructionReservedRegiseter.Add(instruction.ID);
+                        registerToTarget.InstructionReservedRegiseter.Add(new InstructionRegisterReservationModel
+                        {
+                            InstructionId = instruction.ID,
+                            LastIssued = true
+                        });
                         return true;
                     }
                 }
@@ -444,15 +496,17 @@ namespace Tishreen.ParallelPro.Core
             var unit = functionalUnits.SingleOrDefault(item => item.WorkingInstructionID == instruction.ID);
 
             if (--unit.Time == 0)
+            {
                 //Set the clock cycle that is completed executing on
                 instruction.ExecuteCompletedCycle = ClockCycle;
+            }
             else if (unit.Time < 0)
             {
                 unit.Time = 0;
                 //Get the register the instruction is working on
-                var register = registers.SingleOrDefault(reg => reg.InstructionReservedRegiseter.Contains(instruction.ID));
+                var register = registers.SingleOrDefault(reg => reg.InstructionReservedRegiseter.SingleOrDefault(inst => inst.InstructionId == instruction.ID) != null);
                 //If the insruction it self is the one reserving the register
-                if (register.InstructionReservedRegiseter.FirstOrDefault() == instruction.ID)
+                if (register.InstructionReservedRegiseter.FirstOrDefault().InstructionId == instruction.ID)
                 {
                     //Then it can write back on it
                     //Else it has to wait unitl it is freed up from the past instruction
@@ -467,10 +521,12 @@ namespace Tishreen.ParallelPro.Core
         /// Frees up the register for WAR WAW hazerds 
         /// </summary>
         /// <param name="register"></param>
-        protected void FreeUpRegisters(RegisterResultModel register)
+        protected void FreeUpRegisters(RegisterResultModel register, int instructionId)
         {
+            var instruction = register.InstructionReservedRegiseter.SingleOrDefault(item => item.InstructionId == instructionId);
+
             //Remove the instruction that is reserving the register
-            register.InstructionReservedRegiseter.RemoveAt(0);
+            register.InstructionReservedRegiseter.Remove(instruction);
             //If there is any more items
             if (register.InstructionReservedRegiseter.Any())
             {
@@ -516,7 +572,7 @@ namespace Tishreen.ParallelPro.Core
                 {
                     var registery = registers.SingleOrDefault(reg => reg.Name == unit.SourceRegistery01);
                     if (!registery.IsBusy ||
-                        (registery.IsBusy && registery.InstructionReservedRegiseter.FirstOrDefault() == unit.WorkingInstructionID))
+                        (registery.IsBusy && registery.InstructionReservedRegiseter.FirstOrDefault().InstructionId == unit.WorkingInstructionID))
                     {
                         unit.IsSource01Ready = true;
                         unit.WaitingOperationForSource01 = null;
@@ -527,7 +583,7 @@ namespace Tishreen.ParallelPro.Core
                     var registery = registers.SingleOrDefault(reg => reg.Name == unit.SourceRegistery02);
 
                     if (!registery.IsBusy ||
-                        (registery.IsBusy && registery.InstructionReservedRegiseter.FirstOrDefault() == unit.WorkingInstructionID))
+                        (registery.IsBusy && registery.InstructionReservedRegiseter.FirstOrDefault().InstructionId == unit.WorkingInstructionID))
                     {
                         unit.IsSource02Ready = true;
                         unit.WaitingOperationForSource02 = null;
@@ -544,7 +600,9 @@ namespace Tishreen.ParallelPro.Core
             foreach (var instruction in instructions)
             {
                 if (instruction.WriteBackCycle == null)
+                {
                     return false;
+                }
             }
             return true;
         }
@@ -615,20 +673,26 @@ namespace Tishreen.ParallelPro.Core
             int instructionCount = Instructions.Count;
             //loop throw the instructions
             for (int i = 0; i < instructionCount; i++)
+            {
                 studentMark += InstructionsExamResult[i].CompareInstructions(Instructions[i]);
+            }
 
             //Correct functional units
             //Get the number of elements inside the list 
             int functionalUnitsCount = FunctionalUnits.Count;
             //loop throw the functional units
             for (int i = 0; i < functionalUnitsCount; i++)
+            {
                 studentMark += FunctionalUnitsExamResult[i].CompareFunctionUnits(FunctionalUnits[i]);
+            }
             //Correct registers
             //Get the number of elements inside the list 
             int RegisterCount = Registers.Count;
             //loop throw the registers
             for (int i = 0; i < RegisterCount; i++)
+            {
                 studentMark += RegistersExamResults[i].CompareRegisters(Registers[i]);
+            }
 
             //Attach the marks with the exam report 
             mExamResult.StudentMark = studentMark;
@@ -709,7 +773,9 @@ namespace Tishreen.ParallelPro.Core
                         {
                             fullMark++;
                             if (item.WriteBackCycle != null)
+                            {
                                 fullMark++;
+                            }
                         }
                     }
                 }
@@ -727,8 +793,10 @@ namespace Tishreen.ParallelPro.Core
                     fullMark += 6;
                     //If there is a second source 
                     if (item.SourceRegistery02 != null)
+                    {
                         //Add two more marks on is souce avaible and the name of the function hloding the source
                         fullMark += 2;
+                    }
                 }
             }
             #endregion
@@ -738,7 +806,9 @@ namespace Tishreen.ParallelPro.Core
             {
                 //If there is an opeartion in the registery then add a mark on it
                 if (item.Operation != null)
+                {
                     fullMark++;
+                }
             }
             #endregion
 

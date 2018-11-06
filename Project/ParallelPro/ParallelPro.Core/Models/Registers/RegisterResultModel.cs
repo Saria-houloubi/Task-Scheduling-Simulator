@@ -34,10 +34,10 @@ namespace Tishreen.ParallelPro.Core.Models
         }
         /// <summary>
         /// The list of instruction that reserved this regiseter unit
-        /// only the last instruction will be the on to write back
+        /// And if the have the permision to wirte in t
         /// </summary>
-        private List<int> mInstructionReservedRegiseter;
-        public List<int> InstructionReservedRegiseter
+        private List<InstructionRegisterReservationModel> mInstructionReservedRegiseter;
+        public List<InstructionRegisterReservationModel> InstructionReservedRegiseter
         {
             get { return mInstructionReservedRegiseter; }
             set { SetProperty(ref mInstructionReservedRegiseter, value); }
@@ -52,7 +52,7 @@ namespace Tishreen.ParallelPro.Core.Models
         private void OnCreate()
         {
             //Create the list
-            InstructionReservedRegiseter = new List<int>();
+            InstructionReservedRegiseter = new List<InstructionRegisterReservationModel>();
         }
         /// <summary>
         /// Default Constructer

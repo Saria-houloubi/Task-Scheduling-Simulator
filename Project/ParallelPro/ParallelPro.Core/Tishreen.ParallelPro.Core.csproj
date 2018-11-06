@@ -60,7 +60,8 @@
     <Compile Include="Models\ExamResultModel.cs" />
     <Compile Include="Models\FunctionalUnitWithStatusModel.cs" />
     <Compile Include="Models\LoopUnrol\LoopUnrolInstructionModel.cs" />
-    <Compile Include="Models\RegisterResultModel.cs" />
+    <Compile Include="Models\Registers\InstructionRegisterReservationModel.cs" />
+    <Compile Include="Models\Registers\RegisterResultModel.cs" />
     <Compile Include="Models\InstructionWithStatusModel.cs" />
     <Compile Include="Models\InstructionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
