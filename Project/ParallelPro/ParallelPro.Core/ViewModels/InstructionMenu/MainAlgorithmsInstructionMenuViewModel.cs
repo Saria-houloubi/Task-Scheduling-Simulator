@@ -3,6 +3,7 @@ using Prism.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using ThishreenUniversity.ParallelPro.Enums;
 using Tishreen.ParallelPro.Core.Models;
 
@@ -21,6 +22,236 @@ namespace Tishreen.ParallelPro.Core
         #endregion
 
         #region Properties
+        /// <summary>
+        /// If set will try to read the file and set the instructions from it
+        /// </summary>
+        private string _codeTxtFilePath;
+        public string CodeTxtFilePath
+        {
+            get { return this._codeTxtFilePath; }
+            set
+            {
+                SetProperty(ref _codeTxtFilePath, value);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    //Flags to go throw the instructions
+                    bool readFunction = false;
+                    bool readTarget = false;
+                    bool readSoruce1 = false;
+                    bool readSoruce2 = false;
+                    //The parameters for the instruction
+                    string function = "";
+                    string target = "";
+                    string source1 = "";
+                    string source2 = "";
+                    //Flag to know an error happend
+                    bool counterdError = false;
+                    //Message for the error
+                    string errorMessage = "";
+
+                    //read the file 
+                    var fileBytes = File.ReadAllBytes(value);
+                    //Check if the file is empty
+                    if (fileBytes.Length == 0)
+                    {
+                        IoC.UI.ShowMessage("File is Empty!!!");
+                        return;
+                    }
+                    //Create the list
+                    Instructions = new ObservableCollection<InstructionModel>();
+                    counter = 0;
+                    //The instruction that we are reading
+                    var readingInstruction = new InstructionModel
+                    {
+                        ID = ++counter,
+                    };
+                    //Loop throw the words
+                    //matching the with the template
+                    foreach (var charByte in fileBytes)
+                    {
+                        if (!readFunction)
+                        {
+                            if (charByte == ' ')
+                            {
+                                //Keep reading until any character
+                                if (string.IsNullOrEmpty(function))
+                                {
+                                    continue;
+                                }
+
+                                if (Enum.TryParse(function, out FunctionsTypes func))
+                                {
+                                    readingInstruction.Name = func;
+                                    readFunction = true;
+                                }
+                                else
+                                {
+                                    counterdError = true;
+                                    errorMessage = $"Wrong function name ({function})";
+                                    break;
+                                }
+
+                            }
+                            //Get the upper case
+                            var upperCaseChar = Char.ToUpper((char)charByte);
+
+                            function = string.Concat(function, upperCaseChar);
+                        }
+                        else if (!readTarget)
+                        {
+                            if (charByte == ' ')
+                            {
+                                //Keep reading until any character
+                                if (string.IsNullOrEmpty(target))
+                                {
+                                    continue;
+                                }
+
+                                if (Enum.TryParse(target, out RegisteriesAndMemory regOrMem))
+                                {
+                                    if ((readingInstruction.Name == FunctionsTypes.LD && (int)regOrMem > 30)
+                                        || readingInstruction.Name == FunctionsTypes.SD && (int)regOrMem <= 30)
+                                    {
+                                        counterdError = true;
+                                        errorMessage = $"Wrong target for function ({readingInstruction.Name})";
+
+                                    }
+                                    else
+                                    {
+                                        readingInstruction.TargetRegistery = regOrMem.ToString();
+                                        readTarget = true;
+                                    }
+
+                                }
+                                else
+                                {
+                                    counterdError = true;
+                                    errorMessage = $"Wrong register or memory name ({target})";
+                                    break;
+                                }
+
+                            }
+                            //Get the upper case
+                            var upperCaseChar = Char.ToUpper((char)charByte);
+
+                            target = string.Concat(target, upperCaseChar);
+                        }
+                        else if (!readSoruce1)
+                        {
+                            if (charByte == ',' || charByte == '\r' || charByte == '\t' || charByte == ' ')
+                            {
+                                if (Enum.TryParse(source1, out RegisteriesAndMemory regOrMem))
+                                {
+
+                                    if ((readingInstruction.Name == FunctionsTypes.LD && (int)regOrMem <= 30)
+                                        || readingInstruction.Name == FunctionsTypes.SD && (int)regOrMem > 30)
+                                    {
+                                        counterdError = true;
+                                        errorMessage = $"Wrong source for function ({readingInstruction.Name})";
+
+                                    }
+                                    else
+                                    {
+                                        readingInstruction.SourceRegistery01 = regOrMem.ToString();
+                                        readSoruce1 = true;
+                                        if (readingInstruction.Name == FunctionsTypes.LD || readingInstruction.Name == FunctionsTypes.SD)
+                                        {
+                                            Instructions.Add(readingInstruction);
+                                            readingInstruction = new InstructionModel
+                                            {
+                                                ID = ++counter,
+                                            };
+                                            //Flags to go throw the instructions
+                                            readFunction = false;
+                                            readTarget = false;
+                                            readSoruce1 = false;
+                                            readSoruce2 = false;
+                                            //The parameters for the instruction
+                                            function = "";
+                                            target = "";
+                                            source1 = "";
+                                            source2 = "";
+                                            continue;
+                                        }
+                                    }
+
+                                }
+                                else
+                                {
+                                    counterdError = true;
+                                    errorMessage = $"Wrong register or memory name ({source1})";
+                                    break;
+                                }
+
+                            }
+                            //Get the upper case
+                            var upperCaseChar = Char.ToUpper((char)charByte);
+
+                            source1 = string.Concat(source1, upperCaseChar);
+                        }
+                        else if ((readingInstruction.Name != FunctionsTypes.LD || readingInstruction.Name != FunctionsTypes.SD) && !readSoruce2)
+                        {
+                            if (charByte == '\r' || charByte == '\t' || charByte == ' ')
+                            {
+                                //Keep reading until any character
+                                if (string.IsNullOrEmpty(source2))
+                                {
+                                    continue;
+                                }
+
+                                if (Enum.TryParse(source2, out RegisteriesAndMemory regOrMem))
+                                {
+                                    if ((readingInstruction.Name == FunctionsTypes.LD && (int)regOrMem <= 30)
+                                        || readingInstruction.Name == FunctionsTypes.SD && (int)regOrMem > 30)
+                                    {
+                                        counterdError = true;
+                                        errorMessage = $"Wrong source for function ({readingInstruction.Name})";
+                                    }
+                                    else
+                                    {
+                                        readingInstruction.SourceRegistery02 = regOrMem.ToString();
+                                        readSoruce2 = true;
+                                        Instructions.Add(readingInstruction);
+                                        readingInstruction = new InstructionModel
+                                        {
+                                            ID = ++counter,
+                                        };
+                                        //Reset for next read
+                                        readFunction = false;
+                                        readTarget = false;
+                                        readSoruce1 = false;
+                                        readSoruce2 = false;
+                                        function = "";
+                                        target = "";
+                                        source1 = "";
+                                        source2 = "";
+                                    }
+
+                                }
+                                else
+                                {
+                                    counterdError = true;
+                                    errorMessage = $"Wrong register or memory name ({source2})";
+                                    break;
+                                }
+
+                            }
+                            //Get the upper case
+                            var upperCaseChar = Char.ToUpper((char)charByte);
+
+                            source2 = string.Concat(source2, upperCaseChar);
+                        }
+
+                    }
+
+                    if (counterdError)
+                    {
+                        IoC.UI.ShowMessage(errorMessage);
+                        Instructions = new ObservableCollection<InstructionModel>();
+                    }
+                }
+            }
+        }
         /// <summary>
         /// The selected function that the user wants for the new instruction
         /// </summary>

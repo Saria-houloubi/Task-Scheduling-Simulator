@@ -26,6 +26,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -40,6 +41,7 @@
             
             <!--Add instruction button-->
             <Button Style="{StaticResource BaseIconButton}" IsDefault="True" Command="{Binding AddInstructionCommand}" Tag="{StaticResource PlusIcon}" Grid.Column="4" Grid.Row="1"/>
+            <Button Content=".Txt"  Grid.Column="5" Grid.Row="1" Click="ChoseTxtFileButton_Click"/>
 
             <!--Instruction-->
             <ComboBox Grid.Row="1" ItemsSource="{Binding Functions}" SelectedItem="{Binding SelectedFunction}"/>
