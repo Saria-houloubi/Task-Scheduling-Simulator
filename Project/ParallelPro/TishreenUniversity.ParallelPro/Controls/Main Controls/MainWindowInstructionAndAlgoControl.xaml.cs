@@ -25,7 +25,7 @@ namespace TishreenUniversity.ParallelPro.Controls
         #region Helper Flags
         /// A flag represnets if the side function clock cycle is open
         /// </summary>
-        private bool IsSideClockCycleMenuOpen = false;
+        private bool IsSideClockCycleMenuOpen = true;
 
         #endregion
 
@@ -33,7 +33,6 @@ namespace TishreenUniversity.ParallelPro.Controls
         {
             InitializeComponent();
             //Slide out the window once it is loaded
-            SideClockCycles.Loaded += SideClockCycles_Loaded;
             EditInstructionSideMenu.Loaded += EditInstructionSideMenu_Loaded;
         }
 
