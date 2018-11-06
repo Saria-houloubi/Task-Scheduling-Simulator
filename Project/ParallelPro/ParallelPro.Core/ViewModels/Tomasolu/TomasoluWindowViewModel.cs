@@ -18,7 +18,7 @@ namespace Tishreen.ParallelPro.Core
         /// </summary>
         /// <param name="instructionList">The list of instruction that the usere enterted</param>
         /// <param name="functionClockCycle">The clock cycles for each function unit</param>
-        public TomasoluWindowViewModel(List<object> instructionList, Dictionary<FunctionsTypes, int> functionClockCycle) : base(instructionList, functionClockCycle)
+        public TomasoluWindowViewModel(List<object> instructionList, Dictionary<FunctionsTypes, int> functionClockCycle) : base(instructionList, functionClockCycle,"Tomasolu")
         {
             algoName = "Tomasolu";
         }

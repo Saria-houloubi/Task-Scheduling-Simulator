@@ -13,6 +13,7 @@ namespace TishreenUniversity.ParallelPro.Windows
     /// </summary>
     public partial class TomasoluWindow : Window
     {
+        private bool passwordChecked = false;
         public TomasoluWindow(List<object> instructionList, Dictionary<FunctionsTypes, int> functionClockCycles)
         {
             InitializeComponent();
@@ -35,12 +36,11 @@ namespace TishreenUniversity.ParallelPro.Windows
         /// <param name="e"></param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (IoC.Appliation.IsExamMode)
+            if (!passwordChecked && IoC.Appliation.IsExamMode)
             {
                 //Cancel the exit and show the check password control
                 e.Cancel = true;
                 CheckForConformationControl.Visibility = Visibility.Visible;
-
             }
         }
 
@@ -75,10 +75,12 @@ namespace TishreenUniversity.ParallelPro.Windows
             {
                 MessageBox.Show("Correct password all data will be deleted", "Password Checked!", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 //Give permission to exit
+                passwordChecked = true;
                 this.Close();
             }
             else
                 MessageBox.Show("Wrong password plesase try again", "Password invalid!", MessageBoxButton.OK, MessageBoxImage.Error);
+
         }
         /// <summary>
         /// Hides the check password control

@@ -16,7 +16,7 @@ namespace Tishreen.ParallelPro.Core
         /// <summary>
         /// The name of this class algorithm
         /// </summary>
-        protected string algoName = "ScoreBoarding";
+        protected string algoName = "ScoreBoarde";
         /// <summary>
         /// Holds the result for the student at each exam
         /// Only created if in exam mode
@@ -200,7 +200,7 @@ namespace Tishreen.ParallelPro.Core
         /// </summary>
         /// <param name="instructionList">The list of instruction that the usere enterted</param>
         /// <param name="functionClockCycle">The clock cycles for each function unit</param>
-        public ScoreBoardingWindowViewModel(List<object> instructionList, Dictionary<FunctionsTypes, int> functionClockCycle)
+        public ScoreBoardingWindowViewModel(List<object> instructionList, Dictionary<FunctionsTypes, int> functionClockCycle,string algoName = "ScoreBoarde")
         {
             mInstructions = instructionList;
             //If exam mode save the instructions that the student entered
