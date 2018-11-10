@@ -52,7 +52,6 @@ namespace Tishreen.ParallelPro.Core.Models.LoopUnrol
             get { return mSourceRegistery02; }
             set { SetProperty(ref mSourceRegistery02, value); }
         }
-
         /// <summary>
         /// An immediate value to use for add,sub ...
         /// </summary>
@@ -62,6 +61,8 @@ namespace Tishreen.ParallelPro.Core.Models.LoopUnrol
             get { return mImmediateValueOrDisplacmnet; }
             set { SetProperty(ref mImmediateValueOrDisplacmnet, value); }
         }
+
+        public string DisplacmentStringFormat => Operation == FunctionsTypes.LD.ToString() ? $"-{ImmediateValueOrDisplacmnet}({SourceRegistery01})" : Operation == FunctionsTypes.SD.ToString() ? $"-{ImmediateValueOrDisplacmnet}({TargetRegistery})" : $"{ImmediateValueOrDisplacmnet}";
         /// <summary>
         /// A flag represents if the user can choose another source for the instruction
         /// like in SD/LD only one source

@@ -547,7 +547,6 @@ namespace Tishreen.ParallelPro.Core.ViewModels.LoopUnrolling
             {
                 for (int j = InstructionNumToLoopTo - 1; j < Instructions.Count; j++)
                 {
-
                     var newInstruction = new LoopUnrolInstructionModel
                     {
                         Order = ++order,
@@ -564,10 +563,10 @@ namespace Tishreen.ParallelPro.Core.ViewModels.LoopUnrolling
                         //Then we need to move the displacment
                         newInstruction.ImmediateValueOrDisplacmnet += displacmentIncrement;
 
-                        displacmentIncrement += integerIncremnt;
                     }
                     UnrolledInstructions.Add(newInstruction);
                 }
+                displacmentIncrement += integerIncremnt;
             }
 
             //Add left overs
