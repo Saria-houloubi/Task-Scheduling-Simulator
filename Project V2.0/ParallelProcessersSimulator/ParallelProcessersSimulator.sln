@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{F9184863-4735-4E3D-B00B-689A814B3E5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{15F34CA6-3588-45C1-8481-ABAD65BDCC23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParallelProcessersSimulator.MainUI", "ParallelProcessersSimulator.MainUI\ParallelProcessersSimulator.MainUI.csproj", "{40C9477C-24B5-4CFC-9381-5737BCA74396}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40C9477C-24B5-4CFC-9381-5737BCA74396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40C9477C-24B5-4CFC-9381-5737BCA74396}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40C9477C-24B5-4CFC-9381-5737BCA74396}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40C9477C-24B5-4CFC-9381-5737BCA74396}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{40C9477C-24B5-4CFC-9381-5737BCA74396} = {F9184863-4735-4E3D-B00B-689A814B3E5A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5305C0C-7364-4947-BF7A-6863CE421AEC}
+	EndGlobalSection
+EndGlobal
