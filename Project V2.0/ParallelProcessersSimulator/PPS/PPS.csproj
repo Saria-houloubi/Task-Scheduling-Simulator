@@ -129,5 +129,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PPS.UI.Shared\PPS.UI.Shared.csproj">
+      <Project>{9153b098-7061-47f0-a794-d7a73c8b7703}</Project>
+      <Name>PPS.UI.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

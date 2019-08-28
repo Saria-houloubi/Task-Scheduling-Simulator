@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PPS.UI.Shared.Styles"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    
+    
+    
+    <!--#region Titles-->
+    <sys:String x:Key="MainW_Title">Main</sys:String>
+    <!--#endregion-->
+</ResourceDictionary>
