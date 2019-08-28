@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ParallelProcessersSimulator.MainUI.Properties
+namespace PPS.UI.Shared.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace ParallelProcessersSimulator.MainUI.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ParallelProcessersSimulator.MainUI.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PPS.UI.Shared.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

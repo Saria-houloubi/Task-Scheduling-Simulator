@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParallelProcessersSimulator.MainUI.ViewModels
+namespace PPS.ViewModels
 {
     class MainWindowViewModel
     {

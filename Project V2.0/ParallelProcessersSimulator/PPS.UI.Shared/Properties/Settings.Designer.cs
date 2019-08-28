@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ParallelProcessersSimulator.MainUI.Properties
+namespace PPS.UI.Shared.Properties
 {
 
 
