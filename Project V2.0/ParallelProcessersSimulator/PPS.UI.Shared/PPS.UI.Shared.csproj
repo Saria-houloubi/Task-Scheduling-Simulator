@@ -87,6 +87,7 @@
     <Compile Include="Enums\BasicFunctions.cs" />
     <Compile Include="Enums\Memmories.cs" />
     <Compile Include="Enums\Registeries.cs" />
+    <Compile Include="Enums\WindowNames.cs" />
     <Compile Include="Models\BasicInstructionModel.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="Views\Base\BaseWindow.cs" />

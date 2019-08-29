@@ -3,7 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:prism="http://prismlibrary.com/"
+                     prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:sharedUI="clr-namespace:PPS.UI.Shared.Views.Base;assembly=PPS.UI.Shared"
+                     xmlns:enums="clr-namespace:PPS.UI.Shared.Enums;assembly=PPS.UI.Shared"
         mc:Ignorable="d"
         Title="{StaticResource Main_Title}" >
     <Grid>
@@ -49,7 +52,7 @@
             Grid.Column="2">
             <StackPanel
             Style="{StaticResource BasicVertical}">
-                <Button Content="{StaticResource ScoreboardingAndTomasolu_Title}" />
+                <Button Content="{StaticResource ScoreboardingAndTomasolu_Title}" Command="{Binding OpenWindowCommand}" CommandParameter="{x:Static enums:WindowNames.ScoreBoardAndTomasolu}"/>
                 <Button Content="{StaticResource LoopUnrolling_Title}" />
                 <Button Content="{StaticResource Cache_Title}" />
                 <Button Content="{StaticResource VectorProcessing_Title}" />

@@ -130,6 +130,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PPS.UI.ScoreboardAndTomasolu\PPS.UI.ScoreboardAndTomasolu.csproj">
+      <Project>{3A99221D-0075-4BE6-A787-4F48F25BB18E}</Project>
+      <Name>PPS.UI.ScoreboardAndTomasolu</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PPS.UI.Shared\PPS.UI.Shared.csproj">
       <Project>{9153b098-7061-47f0-a794-d7a73c8b7703}</Project>
       <Name>PPS.UI.Shared</Name>

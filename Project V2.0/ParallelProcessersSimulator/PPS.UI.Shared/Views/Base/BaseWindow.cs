@@ -5,7 +5,7 @@ namespace PPS.UI.Shared.Views.Base
     /// <summary>
     /// The base window for cross functions
     /// </summary>
-    public class BaseWindow : MetroWindow
+    public abstract class BaseWindow : MetroWindow
     {
 
         #region Properties

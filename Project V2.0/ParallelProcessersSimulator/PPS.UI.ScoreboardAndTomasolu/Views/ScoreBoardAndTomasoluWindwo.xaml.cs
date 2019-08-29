@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PPS.UI.Shared.Views.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace PPS.UI.ScoreboardAndTomasolu.Views
     /// <summary>
     /// Interaction logic for ScoreBoardAndTomasoluWindwo.xaml
     /// </summary>
-    public partial class ScoreBoardAndTomasoluWindwo : Window
+    public partial class ScoreBoardAndTomasoluWindwo : BaseWindow
     {
         public ScoreBoardAndTomasoluWindwo()
         {

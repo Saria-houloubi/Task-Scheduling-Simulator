@@ -6,7 +6,7 @@ namespace PPS.UI.Shared.ViewModels.Base
     /// <summary>
     /// A base view model for any cross function
     /// </summary>
-    public class BaseViewModel : BindableBase
+    public abstract class BaseViewModel : BindableBase
     {
 
         #region Properties
