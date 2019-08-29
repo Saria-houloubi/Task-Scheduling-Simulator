@@ -10,5 +10,14 @@
         <Setter Property="metro:TextBoxHelper.UseFloatingWatermark" Value="True"/>
         <Setter Property="FontSize" Value="{StaticResource Default_FontSize}"/>
     </Style>
-    
+
+    <Style TargetType="{x:Type TextBox}" x:Key="ReadOnly_TextBox" BasedOn="{StaticResource MetroTextBox}">
+        <Setter Property="Margin" Value="{StaticResource Default_Margin}"/>
+        <Setter Property="BorderThickness" Value="{StaticResource UnderLine_Border}"/>
+        <Setter Property="metro:TextBoxHelper.AutoWatermark" Value="True"/>
+        <Setter Property="metro:TextBoxHelper.UseFloatingWatermark" Value="True"/>
+        <Setter Property="FontSize" Value="{StaticResource Default_FontSize}"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+    </Style>
+
 </ResourceDictionary>

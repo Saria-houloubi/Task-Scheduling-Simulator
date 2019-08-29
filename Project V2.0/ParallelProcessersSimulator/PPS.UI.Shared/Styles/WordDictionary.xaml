@@ -13,10 +13,12 @@
     <sys:String x:Key="Source1_Title">Source 1</sys:String>
     <sys:String x:Key="Source2_Title">Source 2</sys:String>
     <sys:String x:Key="Scoreboarding_Title">Scoreboarding</sys:String>
+    <sys:String x:Key="ScoreboardingAndTomasolu_Title">Scoreboarding and Tomasolu</sys:String>
     <sys:String x:Key="Tomasolu_Title">Tomasolu</sys:String>
     <sys:String x:Key="LoopUnrolling_Title">Loop Unrolling</sys:String>
     <sys:String x:Key="Cache_Title">Cache</sys:String>
     <sys:String x:Key="VectorProcessing_Title">Vector processing</sys:String>
+    <sys:String x:Key="Code_Title">Code</sys:String>
     <!--#endregion-->
 
     <!--#region Discriptions-->
@@ -38,7 +40,10 @@
     <sys:String x:Key="Continue_Control">Continue</sys:String>
     <sys:String x:Key="Open_Control">Open</sys:String>
     <sys:String x:Key="Add_Control">Add</sys:String>
+    <sys:String x:Key="Edit_Control">Edit</sys:String>
+    <sys:String x:Key="Delete_Control">Delete</sys:String>
     <sys:String x:Key="AddTxt_Control">Add .Txt</sys:String>
+    <sys:String x:Key="Clear_Control">Clear</sys:String>
     <!--#endregion-->
     
     <!--#region Textblocks-->

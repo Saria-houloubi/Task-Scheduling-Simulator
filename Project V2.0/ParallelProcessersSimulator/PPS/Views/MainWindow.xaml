@@ -12,50 +12,49 @@
             <RowDefinition />
             <!--Application information-->
             <RowDefinition Height="3*"/>
-            <!--Continue button-->
-            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
         <!--Program name and title-->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <!--Application Name-->
-            <TextBlock Text="{StaticResource ApplicationName_Title}" 
-                       Style="{StaticResource Title_Textblock}"/>
+        
+        <!--Application Name-->
+        <TextBlock Text="{StaticResource ApplicationName_Title}" 
+                   Style="{StaticResource Title_Textblock}"/>
 
-            <Image Grid.Column="2" 
-                   Source="/Images/tishreenLogoSemiTransparent.png"/>
-            <!--Side border-->
-            <Border Style="{StaticResource HorizantelSpliter}"
-                    Grid.Column="1"/>
-            <!--Tishreen university logo-->
-        </Grid>
+        <!--Side border-->
+        <Border Style="{StaticResource HorizantelSpliter}"
+                Grid.RowSpan="2"
+                Grid.Column="1"/>
+        <!--Tishreen university logo-->
+        <Image Grid.Column="2" 
+               Source="/Images/tishreenLogoSemiTransparent.png"/>
 
         <!--Applicationinformation-->
-        <Grid
-            Grid.Row="1">
-            <Border
-                Style="{StaticResource TopBottomSpliter}">
-                <TextBlock
-                Style="{StaticResource Discription_Textblock}"
-                Text="{StaticResource Application_Discription}"
-                />
-            </Border>
-        </Grid>
+        <Border
+            Grid.Row="1"
+            Style="{StaticResource TopBottomSpliter}">
+            <TextBlock
+            Style="{StaticResource Discription_Textblock}"
+            Text="{StaticResource Application_Discription}"
+            />
+        </Border>
 
-        <!--Continue button-->
-        <StackPanel
-            Style="{StaticResource ButtonHorizantal}"
-            Grid.Row="2"
-            >
-            <Button
-               Click="OpenMain_Click"
-                Content="{StaticResource Open_Control}"
-                />
-        </StackPanel>
+        <Border
+            Grid.Row="1"
+            Style="{StaticResource TopBottomSpliter}"
+            Grid.Column="2">
+            <StackPanel
+            Style="{StaticResource BasicVertical}">
+                <Button Content="{StaticResource ScoreboardingAndTomasolu_Title}" />
+                <Button Content="{StaticResource LoopUnrolling_Title}" />
+                <Button Content="{StaticResource Cache_Title}" />
+                <Button Content="{StaticResource VectorProcessing_Title}" />
+            </StackPanel>
+        </Border>
+      
     </Grid>
 </sharedUI:BaseWindow>
