@@ -2,14 +2,23 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:PPS.UI.Shared.Styles"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-    
-    
-    
+
+
+
     <!--#region Titles-->
     <sys:String x:Key="Main_Title">Main</sys:String>
     <sys:String x:Key="ApplicationName_Title">Parallel Processors Simulator</sys:String>
+    <sys:String x:Key="Instruction_Title">Instruction</sys:String>
+    <sys:String x:Key="Target_Title">Target</sys:String>
+    <sys:String x:Key="Source1_Title">Source 1</sys:String>
+    <sys:String x:Key="Source2_Title">Source 2</sys:String>
+    <sys:String x:Key="Scoreboarding_Title">Scoreboarding</sys:String>
+    <sys:String x:Key="Tomasolu_Title">Tomasolu</sys:String>
+    <sys:String x:Key="LoopUnrolling_Title">Loop Unrolling</sys:String>
+    <sys:String x:Key="Cache_Title">Cache</sys:String>
+    <sys:String x:Key="VectorProcessing_Title">Vector processing</sys:String>
     <!--#endregion-->
-    
+
     <!--#region Discriptions-->
     <sys:String x:Key="Application_Discription" xml:space="preserve">
         -This simulator has been developed by Saria Houloubi as a fourth year project to model different scheduling algorithms used in the parallel processing lab at Tishreen University under the supervision of Dr.-Eng. Samer Sulaiman.
@@ -21,10 +30,22 @@
         -you can find the source code at: http://github.com/saria-houloubi/Task-Scheduling-Simulator
         -If possible, please fork my code on GitHub and help to make it better by submitting a merge request.
     </sys:String>
+
+    <sys:String x:Key="CyclesAndItteration_Discription">Number of itteration for each cycle function</sys:String>
     <!--#endregion-->
-    
+
     <!--#region Controls-->
     <sys:String x:Key="Continue_Control">Continue</sys:String>
     <sys:String x:Key="Open_Control">Open</sys:String>
+    <sys:String x:Key="Add_Control">Add</sys:String>
+    <sys:String x:Key="AddTxt_Control">Add .Txt</sys:String>
     <!--#endregion-->
+    
+    <!--#region Textblocks-->
+    <sys:String x:Key="Load_Store_Textblock">Load / Store :</sys:String>
+    <sys:String x:Key="FPAdd_Textblock">Floating point add :</sys:String>
+    <sys:String x:Key="FPMult_Textblock">Floating point multiply :</sys:String>
+    <sys:String x:Key="FPDiv_Textblock">Floating point divide :</sys:String>
+
+    <!--#region -->
 </ResourceDictionary>

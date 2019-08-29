@@ -4,10 +4,179 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PPS.Views"
+                   xmlns:prism="http://prismlibrary.com/"
+                   prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:shared="clr-namespace:PPS.UI.Shared.Views.Base;assembly=PPS.UI.Shared"
         mc:Ignorable="d"
         Title="{StaticResource Main_Title}" >
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <!--Code part-->
+            <ColumnDefinition Width="3*"/>
+            <!--Spliter part-->
+            <ColumnDefinition Width="auto"/>
+            <!--Algprithm / options part-->
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!--Code part-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <!--Choose instruction-->
+                <RowDefinition Height="auto"/>
+                <!--Instructions List-->
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <!--Title-->
+                    <RowDefinition/>
+                    <!--Combobox-->
+                    <RowDefinition/>
+                    <!--Buttons-->
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <!--Title texts-->
+                <TextBlock Style="{StaticResource Title_Textblock}"
+                           Grid.Column="0"
+                           Text="{StaticResource Instruction_Title}"/>
+                <TextBlock Style="{StaticResource Title_Textblock}"
+                           Grid.Column="1"
+                           Text="{StaticResource Target_Title}"/>
+                <TextBlock Style="{StaticResource Title_Textblock}"
+                           Grid.Column="2"
+                           Text="{StaticResource Source1_Title}"/>
+                <TextBlock Style="{StaticResource Title_Textblock}"
+                           Grid.Column="3"
+                           Text="{StaticResource Source2_Title}"/>
+
+                <!--Combobox-->
+                <ComboBox
+                    Grid.Row="1"
+                    Grid.Column="0"/>
+                <ComboBox
+                    Grid.Row="1"
+                    Grid.Column="1"/>
+                <ComboBox
+                    Grid.Row="1"
+                    Grid.Column="2"/>
+                <ComboBox
+                    Grid.Row="1"
+                    Grid.Column="3"/>
+
+                <!--Buttons-->
+                <StackPanel
+                    Grid.ColumnSpan="4"
+                    Grid.Row="2"
+                    Style="{StaticResource ButtonHorizantal}">
+                    <Button
+                        Content="{StaticResource Add_Control}"/>
+                    <Button
+                        Content="{StaticResource AddTxt_Control}"/>
+
+                </StackPanel>
+            </Grid>
+
+            <!--Instructions List-->
+            <Border
+                Style="{StaticResource TopBottomSpliter}"
+                Grid.Row="1">
+                <ScrollViewer>
+                    <ListView>
+
+                    </ListView>
+                </ScrollViewer>
+
+            </Border>
+        </Grid>
+
+        <!--Spliter part-->
+        <Border
+            Grid.Column="1"
+            Style="{StaticResource HorizantelSpliter}"/>
+
+        <!--Algprithm / options part-->
+        <Grid
+            Grid.Column="2">
+            <Grid.RowDefinitions>
+                <!--Option and cycles-->
+                <RowDefinition Height="auto" />
+                <!--Algorithims buttons-->
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--Option and cycles-->
+            <Border
+                Style="{StaticResource TopBottomSpliter}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                    Grid.ColumnSpan="2"
+                    Style="{StaticResource Discription_Textblock}"
+                    Text="{StaticResource CyclesAndItteration_Discription}"/>
+
+                    <TextBlock
+                        Text="{StaticResource Load_Store_Textblock}"
+                        Grid.Row="1"/>
+                    <TextBlock
+                        Text="{StaticResource FPAdd_Textblock}"
+                        Grid.Row="2"/>
+                    <TextBlock
+                        Text="{StaticResource FPMult_Textblock}"
+                        Grid.Row="3"/>
+                    <TextBlock
+                        Text="{StaticResource FPDiv_Textblock}"
+                        Grid.Row="4"/>
+
+                    <TextBox
+                        Grid.Column="1"
+                        Grid.Row="1"/>
+                    <TextBox
+                        Grid.Column="1"
+                        Grid.Row="2"/>
+                    <TextBox
+                        Grid.Column="1"
+                        Grid.Row="3"/>
+                    <TextBox
+                        Grid.Column="1"
+                        Grid.Row="4"/>
+
+
+                </Grid>
+            </Border>
+
+            <!--Algorithims buttons-->
+            <ScrollViewer
+                Grid.Row="1">
+                <StackPanel
+                Style="{StaticResource BasicVertical}">
+                    <Button Content="{StaticResource Scoreboarding_Title}" />
+                    <Button Content="{StaticResource Tomasolu_Title}" />
+                    <Button Content="{StaticResource LoopUnrolling_Title}" />
+                    <Button Content="{StaticResource Cache_Title}" />
+                    <Button Content="{StaticResource VectorProcessing_Title}" />
+                </StackPanel>
+            </ScrollViewer>
+
+        </Grid>
     </Grid>
 </shared:BaseWindow>
