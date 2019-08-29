@@ -5,8 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sharedUI="clr-namespace:PPS.UI.Shared.Views.Base;assembly=PPS.UI.Shared"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="{StaticResource Main_Title}" >
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <!--Application name and title-->
+            <RowDefinition />
+            <!--Application information-->
+            <RowDefinition Height="3*"/>
+            <!--Continue button-->
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <!--Program name and title-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!--Application Name-->
+            <TextBlock Text="{StaticResource ApplicationName_Title}" 
+                       Style="{StaticResource Title_Textblock}"/>
+
+            <Image Grid.Column="2" 
+                   Source="/Images/tishreenLogoSemiTransparent.png"/>
+            <!--Side border-->
+            <Border Style="{StaticResource HorizantelSpliter}"
+                    Grid.Column="1"/>
+            <!--Tishreen university logo-->
+        </Grid>
+
+        <!--Applicationinformation-->
+        <Grid
+            Grid.Row="1">
+            <Border
+                Style="{StaticResource TopBottomSpliter}">
+                <TextBlock
+                Style="{StaticResource Discription_Textblock}"
+                Text="{StaticResource Application_Discription}"
+                />
+            </Border>
+        </Grid>
+
+        <!--Continue button-->
+        <StackPanel
+            Style="{StaticResource ButtonHorizantal}"
+            Grid.Row="2"
+            >
+            <Button
+               Click="OpenMain_Click"
+                Content="{StaticResource Open_Control}"
+                />
+        </StackPanel>
     </Grid>
 </sharedUI:BaseWindow>

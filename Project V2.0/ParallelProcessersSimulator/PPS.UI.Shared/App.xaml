@@ -14,6 +14,13 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
 
+
+                <ResourceDictionary Source="/Styles/ColorSheet.xaml" />
+                <ResourceDictionary Source="/Styles/FontStyles.xaml" />
+                <ResourceDictionary Source="/Styles/MarginStyles.xaml" />
+                <ResourceDictionary Source="/Styles/BorderStyles.xaml" />
+                <ResourceDictionary Source="/Styles/TextblockStyles.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -6,6 +6,25 @@
     
     
     <!--#region Titles-->
-    <sys:String x:Key="MainW_Title">Main</sys:String>
+    <sys:String x:Key="Main_Title">Main</sys:String>
+    <sys:String x:Key="ApplicationName_Title">Parallel Processors Simulator</sys:String>
+    <!--#endregion-->
+    
+    <!--#region Discriptions-->
+    <sys:String x:Key="Application_Discription" xml:space="preserve">
+        -This simulator has been developed by Saria Houloubi as a fourth year project to model different scheduling algorithms used in the parallel processing lab at Tishreen University under the supervision of Dr.-Eng. Samer Sulaiman.
+        
+        -It is an open source tool that is available for anyone to use and continue to develop.
+        -Any contribution is welcomed as I am only in the first milestone and still need much more to keep going with your help.
+        -For any help, add-on, error fixes, please contact me at the E-mail: houloubis@gmail.com or any social media apps.
+        
+        -you can find the source code at: http://github.com/saria-houloubi/Task-Scheduling-Simulator
+        -If possible, please fork my code on GitHub and help to make it better by submitting a merge request.
+    </sys:String>
+    <!--#endregion-->
+    
+    <!--#region Controls-->
+    <sys:String x:Key="Continue_Control">Continue</sys:String>
+    <sys:String x:Key="Open_Control">Open</sys:String>
     <!--#endregion-->
 </ResourceDictionary>

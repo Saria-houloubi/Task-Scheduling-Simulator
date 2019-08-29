@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:PPS.UI.Shared.Styles">
+    
+    <!--Under line border-->
+    <Thickness x:Key="UnderLine_Border">0 0 0 2</Thickness>
+    <Thickness x:Key="Spliter_Border">1 0</Thickness>
+    <Thickness x:Key="TopBottomSpliter_Border">0 2</Thickness>
+    
+    <CornerRadius x:Key="DefaultCornerRadius_Border">2</CornerRadius>
+
+    <sys:Double x:Key="DefaultSpliterWidth_Border">5</sys:Double>
+    
+    <Style TargetType="{x:Type Border}" x:Key="HorizantelSpliter">
+        <Setter Property="BorderThickness" Value="{StaticResource Spliter_Border}"/>
+        <Setter Property="Margin" Value="{StaticResource Default_Margin}"/>
+        <Setter Property="CornerRadius" Value="{StaticResource DefaultCornerRadius_Border}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource DarkBlueBrush}"/>
+    </Style>
+
+
+    <Style TargetType="{x:Type Border}" x:Key="TopBottomSpliter">
+        <Setter Property="BorderThickness" Value="{StaticResource TopBottomSpliter_Border}"/>
+        <Setter Property="Margin" Value="{StaticResource Default_Margin}"/>
+        <Setter Property="CornerRadius" Value="{StaticResource DefaultCornerRadius_Border}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource DarkBlueBrush}"/>
+    </Style>
+
+</ResourceDictionary>

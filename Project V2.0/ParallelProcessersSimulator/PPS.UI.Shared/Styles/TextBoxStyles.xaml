@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:local="clr-namespace:PPS.UI.Shared.Styles">
+
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MetroTextBox}">
+        <Setter Property="Margin" Value="{StaticResource Default_Margin}"/>
+        <Setter Property="BorderThickness" Value="{StaticResource UnderLine_Border}"/>
+        <Setter Property="metro:TextBoxHelper.AutoWatermark" Value="True"/>
+        <Setter Property="metro:TextBoxHelper.UseFloatingWatermark" Value="True"/>
+        <Setter Property="FontSize" Value="{StaticResource Default_FontSize}"/>
+    </Style>
+    
+</ResourceDictionary>

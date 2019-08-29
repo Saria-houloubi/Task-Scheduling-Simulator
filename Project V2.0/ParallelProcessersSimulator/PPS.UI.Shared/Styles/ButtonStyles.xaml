@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:PPS.UI.Shared.Styles">
+
+    
+    <!--Default values-->
+    <sys:Double x:Key="DefaultHeight_Button">45</sys:Double>
+    <sys:Double x:Key="DefaultMinWidth_Button">75</sys:Double>
+    
+    <!--The base style for all the buttons-->
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MetroButton}">
+        <Setter Property="Margin" Value="{StaticResource Default_Margin}"/>
+        <Setter Property="Height" Value="{StaticResource DefaultHeight_Button}"/>
+        <Setter Property="MinWidth" Value="{StaticResource DefaultMinWidth_Button}"/>
+    </Style>
+</ResourceDictionary>

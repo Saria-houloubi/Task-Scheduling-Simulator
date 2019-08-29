@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PPS.UI.Shared.Styles"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    
+    <!--Font Sizes-->
+    <sys:Double x:Key="Small_FontSize">14</sys:Double>
+    <sys:Double x:Key="Default_FontSize">18</sys:Double>
+    <sys:Double x:Key="Larg_FontSize">22</sys:Double>
+    <sys:Double x:Key="XtraLarg_FontSize">26</sys:Double>
+</ResourceDictionary>
