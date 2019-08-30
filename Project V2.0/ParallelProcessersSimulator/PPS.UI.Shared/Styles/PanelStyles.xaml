@@ -6,6 +6,10 @@
         <Setter Property="Margin" Value="{StaticResource Default_Margin}"/>
         <Setter Property="Orientation" Value="Vertical"/>
     </Style>
+    <Style TargetType="{x:Type StackPanel}" x:Key="BasicHorizontal">
+        <Setter Property="Margin" Value="{StaticResource Default_Margin}"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
 
     <Style TargetType="{x:Type StackPanel}" x:Key="ButtonHorizantal">
         <Setter Property="Margin" Value="{StaticResource Default_Margin}"/>

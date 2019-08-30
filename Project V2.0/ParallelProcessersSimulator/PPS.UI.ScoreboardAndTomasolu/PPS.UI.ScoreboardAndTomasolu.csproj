@@ -77,6 +77,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Enums\FunctionalUnits.cs" />
     <Compile Include="ViewModels\ScoreBoardAndTomasoluWindwoViewModel.cs" />
     <Compile Include="Views\ScoreBoardAndTomasoluWindwo.xaml.cs">
       <DependentUpon>ScoreBoardAndTomasoluWindwo.xaml</DependentUpon>

@@ -6,13 +6,16 @@
         xmlns:local="clr-namespace:PPS.UI.ScoreboardAndTomasolu.Views"
         xmlns:shared="clr-namespace:PPS.UI.Shared.Views.Base;assembly=PPS.UI.Shared"
        xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                   xmlns:enums="clr-namespace:PPS.UI.ScoreboardAndTomasolu.Enums"
+                   xmlns:sharedEnums="clr-namespace:PPS.UI.Shared.Enums;assembly=PPS.UI.Shared"
                    xmlns:prism="http://prismlibrary.com/"
                   prism:ViewModelLocator.AutoWireViewModel="True"
                    mc:Ignorable="d"
         Title="{StaticResource ScoreboardingAndTomasolu_Title}" >
     <metro:MetroTabControl>
 
-        <metro:MetroTabItem
+        <!--Code-->
+        <TabItem
             Header="{StaticResource Code_Title}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -146,23 +149,11 @@
                 <Border
             Grid.Column="1"
             Style="{StaticResource HorizantelSpliter}"/>
-
                 <!--options part-->
                 <Border
                 Grid.Column="2"
                 Style="{StaticResource TopBottomSpliter}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
+                    <StackPanel>
 
                         <TextBlock
                     Grid.ColumnSpan="2"
@@ -171,37 +162,178 @@
 
                         <TextBlock
                         Text="{StaticResource Load_Store_Textblock}"
-                        Grid.Row="1"/>
+                        />
+                        <metro:NumericUpDown
+                            Value="{Binding InstructionClockCycleCount[LD]}"/>
+
                         <TextBlock
                         Text="{StaticResource FPAdd_Textblock}"
-                        Grid.Row="2"/>
+                        />
+                        <metro:NumericUpDown
+                            Value="{Binding InstructionClockCycleCount[ADD]}"/>
+
                         <TextBlock
                         Text="{StaticResource FPMult_Textblock}"
-                        Grid.Row="3"/>
+                        />
+                        <metro:NumericUpDown
+                            Value="{Binding InstructionClockCycleCount[MULT]}"/>
+
                         <TextBlock
                         Text="{StaticResource FPDiv_Textblock}"
-                        Grid.Row="4"/>
+                        />
+                        <metro:NumericUpDown
+                            Value="{Binding InstructionClockCycleCount[DIV]}"/>
 
-                        <TextBox
-                        Grid.Column="1"
-                        Grid.Row="1"/>
-                        <TextBox
-                        Grid.Column="1"
-                        Grid.Row="2"/>
-                        <TextBox
-                        Grid.Column="1"
-                        Grid.Row="3"/>
-                        <TextBox
-                        Grid.Column="1"
-                        Grid.Row="4"/>
+                        <TextBlock
+                            Style="{StaticResource Discription_Textblock}"
+                            Text="{StaticResource FunctionalUnit_Discription}"/>
 
+                        <TextBlock
+                        Text="{StaticResource Load_StoreFunctionalUnits_Textblock}"
+                        />
+                        <metro:NumericUpDown
+                            Value="{Binding FunctionalUnitsCount[LOAD]}"/>
+                        <TextBlock
+                        Text="{StaticResource Add_SubFunctionalUnits_Textblock}"
+                        />
+                        <metro:NumericUpDown
+                            Value="{Binding FunctionalUnitsCount[ADD]}"/>
+
+                        <TextBlock
+                        Text="{StaticResource MultiplyFunctionalUnits_Textblock}"
+                        />
+                        <metro:NumericUpDown
+                            Value="{Binding FunctionalUnitsCount[Multiply]}"/>
+
+                        <TextBlock
+                        Text="{StaticResource DivideFunctionalUnits_Textblock}"
+                        />
+                        <metro:NumericUpDown
+                            Value="{Binding FunctionalUnitsCount[DIVIDE]}"/>
+
+                        <Button
+                            Content="{StaticResource Set_Control}"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </TabItem>
+
+        <!--Scoreboard and tomasolu-->
+        <TabItem
+            Header="{StaticResource ScoreboardingAndTomasolu_Title}">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <!--Choose algorithm-->
+                    <RowDefinition Height="auto"/>
+                    <!--Content-->
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--Choose algorithm-->
+                <StackPanel
+                    Style="{StaticResource BasicHorizontal}">
+                    <RadioButton Content="{StaticResource Scoreboarding_Title}" IsChecked="{Binding IsScoreboardActive}"/>
+                    <RadioButton Content="{StaticResource Tomasolu_Title}"/>
+                </StackPanel>
+                <!--Content-->
+                <Grid
+                    Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <!--Clock Cycles-->
+                        <RowDefinition Height="auto"/>
+                        <!--Content-->
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <!--Clock Cycles-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock 
+                            Style="{StaticResource Discription_Textblock}"
+                            Text="{StaticResource ClockCycle_Textblock}" />
+                        <TextBlock 
+                            Grid.Column="1" />
+                        <Button
+                            Content="{StaticResource Next_Control}"
+                            Grid.Column="2"/>
+                        <Button
+                            Content="{StaticResource ToEnd_Control}"
+                            Grid.Column="3"/>
 
                     </Grid>
-                </Border>
+                    <!--Content-->
+                    <ScrollViewer
+                        Grid.Row="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <!--Instruction status Title-->
+                                <RowDefinition Height="auto"/>
+                                <!--Instruction status-->
+                                <RowDefinition Height="auto"/>
+                                <!--Functional unit Titlte-->
+                                <RowDefinition Height="auto"/>
+                                <!--Functional unit status-->
+                                <RowDefinition/>
+                                <!--Register status-->
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <!--Instruction status Title-->
+                            <TextBlock
+                            Style="{StaticResource Discription_Textblock}"
+                            Text="{StaticResource InstructionStatus_Title}"/>
+                            <!--Instruction status-->
+                            <DataGrid
+                            Grid.Row="1"
+                            ItemsSource="{Binding Instructions}"
+                            Style="{StaticResource ReadOnly_DataGrid}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="{StaticResource Instruction_Title}" Width="*" Binding="{Binding Function}"/>
+                                    <DataGridTextColumn Header="{StaticResource Target_Title}" Width="*" Binding="{Binding Target}"/>
+                                    <DataGridTextColumn Header="{StaticResource Source1_Title}" Width="*" Binding="{Binding Source1}"/>
+                                    <DataGridTextColumn Header="{StaticResource Source2_Title}" Width="*" Binding="{Binding Source2}"/>
+                                    <DataGridTextColumn Header="{StaticResource Issue_Title}" Width="*" Binding="{Binding Issue}"/>
+                                    <DataGridTextColumn Header="{StaticResource Read_Title}" Width="*" Binding="{Binding Read}"/>
+                                    <DataGridTextColumn Header="{StaticResource Executed_Title}" Width="*" Binding="{Binding Executed}"/>
+                                    <DataGridTextColumn Header="{StaticResource WriteBack_Title}" Width="*" Binding="{Binding WriteBack}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
 
+                            <!--Instruction status Title-->
+                            <TextBlock
+                            Grid.Row="2"
+                            Style="{StaticResource Discription_Textblock}"
+                            Text="{StaticResource FunctionalUnitStatus_Title}"/>
+                            <!--Instruction status-->
+                            <DataGrid
+                            Grid.Row="3"
+                            ItemsSource="{Binding Instructions}"
+                            Style="{StaticResource ReadOnly_DataGrid}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="{StaticResource Time_Title}" Width="*" Binding="{Binding Function}"/>
+                                    <DataGridTextColumn Header="{StaticResource Name_Title}" Width="*" Binding="{Binding Target}"/>
+                                    <DataGridTextColumn Header="{StaticResource Busy_Title}" Width="*" Binding="{Binding Source1}"/>
+                                    <DataGridTextColumn Header="{StaticResource Operation_Title}" Width="*" Binding="{Binding Source2}"/>
+                                    <DataGridTextColumn Header="{StaticResource DestFi_Title}" Width="*" Binding="{Binding Issue}"/>
+                                    <DataGridTextColumn Header="{StaticResource Src1Fj_Title}" Width="*" Binding="{Binding Read}"/>
+                                    <DataGridTextColumn Header="{StaticResource Src2Fk_Title}" Width="*" Binding="{Binding Read}"/>
+                                    <DataGridTextColumn Header="{StaticResource FUsrc1Qj_Title}" Width="*" Binding="{Binding Executed}"/>
+                                    <DataGridTextColumn Header="{StaticResource FUsrc2Qk_Title}" Width="*" Binding="{Binding Executed}"/>
+                                    <DataGridTextColumn Header="{StaticResource Fj_Rj_Title}" Width="*" Binding="{Binding WriteBack}"/>
+                                    <DataGridTextColumn Header="{StaticResource Fk_Rk_Title}" Width="*" Binding="{Binding WriteBack}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
             </Grid>
-        </metro:MetroTabItem>
+
+        </TabItem>
     </metro:MetroTabControl>
-    
+
 
 </shared:BaseWindow>

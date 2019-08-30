@@ -12,6 +12,10 @@
     <sys:String x:Key="Target_Title">Target</sys:String>
     <sys:String x:Key="Source1_Title">Source 1</sys:String>
     <sys:String x:Key="Source2_Title">Source 2</sys:String>
+    <sys:String x:Key="Issue_Title">Issue</sys:String>
+    <sys:String x:Key="Read_Title">Read</sys:String>
+    <sys:String x:Key="Executed_Title">Executed</sys:String>
+    <sys:String x:Key="WriteBack_Title">Write back</sys:String>
     <sys:String x:Key="Scoreboarding_Title">Scoreboarding</sys:String>
     <sys:String x:Key="ScoreboardingAndTomasolu_Title">Scoreboarding and Tomasolu</sys:String>
     <sys:String x:Key="Tomasolu_Title">Tomasolu</sys:String>
@@ -19,6 +23,19 @@
     <sys:String x:Key="Cache_Title">Cache</sys:String>
     <sys:String x:Key="VectorProcessing_Title">Vector processing</sys:String>
     <sys:String x:Key="Code_Title">Code</sys:String>
+    <sys:String x:Key="InstructionStatus_Title">Instruction status</sys:String>
+    <sys:String x:Key="FunctionalUnitStatus_Title">Functional-unit status</sys:String>
+    <sys:String x:Key="Time_Title">Time</sys:String>
+    <sys:String x:Key="Name_Title">Name</sys:String>
+    <sys:String x:Key="Busy_Title">Busy</sys:String>
+    <sys:String x:Key="Operation_Title">Operation</sys:String>
+    <sys:String x:Key="DestFi_Title">Dest Fi</sys:String>
+    <sys:String x:Key="Src1Fj_Title">Src 1 Fj</sys:String>
+    <sys:String x:Key="Src2Fk_Title">Src 2 Fk</sys:String>
+    <sys:String x:Key="FUsrc1Qj_Title">FUsrc 1 Qj</sys:String>
+    <sys:String x:Key="FUsrc2Qk_Title">FUsrc 2 Qk</sys:String>
+    <sys:String x:Key="Fj_Rj_Title">Fj? Rj</sys:String>
+    <sys:String x:Key="Fk_Rk_Title">Fk? Rk</sys:String>
     <!--#endregion-->
 
     <!--#region Discriptions-->
@@ -34,6 +51,7 @@
     </sys:String>
 
     <sys:String x:Key="CyclesAndItteration_Discription">Number of itteration for each cycle function</sys:String>
+    <sys:String x:Key="FunctionalUnit_Discription">Number of functional units</sys:String>
     <!--#endregion-->
 
     <!--#region Controls-->
@@ -44,6 +62,9 @@
     <sys:String x:Key="Delete_Control">Delete</sys:String>
     <sys:String x:Key="AddTxt_Control">Add .Txt</sys:String>
     <sys:String x:Key="Clear_Control">Clear</sys:String>
+    <sys:String x:Key="Next_Control">Next</sys:String>
+    <sys:String x:Key="ToEnd_Control">To end</sys:String>
+    <sys:String x:Key="Set_Control">Set</sys:String>
     <!--#endregion-->
     
     <!--#region Textblocks-->
@@ -51,6 +72,10 @@
     <sys:String x:Key="FPAdd_Textblock">Floating point add :</sys:String>
     <sys:String x:Key="FPMult_Textblock">Floating point multiply :</sys:String>
     <sys:String x:Key="FPDiv_Textblock">Floating point divide :</sys:String>
-
+    <sys:String x:Key="Load_StoreFunctionalUnits_Textblock">Load/Store Units :</sys:String>
+    <sys:String x:Key="Add_SubFunctionalUnits_Textblock">ADD/SUB Units :</sys:String>
+    <sys:String x:Key="MultiplyFunctionalUnits_Textblock">Multiply Units :</sys:String>
+    <sys:String x:Key="DivideFunctionalUnits_Textblock">Divide Units  :</sys:String>
+    <sys:String x:Key="ClockCycle_Textblock">Clock Cycle :</sys:String>
     <!--#region -->
 </ResourceDictionary>

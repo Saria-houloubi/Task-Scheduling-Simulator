@@ -1,4 +1,5 @@
-﻿using PPS.UI.Shared.Enums;
+﻿using PPS.UI.ScoreboardAndTomasolu.Enums;
+using PPS.UI.Shared.Enums;
 using PPS.UI.Shared.Models;
 using PPS.UI.Shared.ViewModels.Base;
 using Prism.Commands;
@@ -80,7 +81,14 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
             get { return _SelectedInstruction; }
             set { SetProperty(ref _SelectedInstruction, value); }
         }
-
+        /// <summary>
+        /// The count of the functional units 
+        /// </summary>
+        public Dictionary<FunctionalUnits,int> FunctionalUnitsCount{ get; set; }
+        /// <summary>
+        /// The clock cycle count for the basic instruction to execute
+        /// </summary>
+        public Dictionary<BasicFunctions,int> InstructionClockCycleCount{ get; set; }
         #endregion
 
         #region Commands
@@ -201,6 +209,7 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
             ClearInstructionsCommand = new DelegateCommand(ClearInstructionsCommand_Execute, ClearInstructionsCommand_CanExecute);
             EditInstructionCommand = new DelegateCommand(EditInstructionCommand_Execute, EditInstructionCommand_CanExecute).ObservesProperty(() => SelectedInstruction);
             DeleteInstructionCommand = new DelegateCommand(DeleteInstructionCommand_Execute, DeleteInstructionCommand_CanExecute).ObservesProperty(() => SelectedInstruction);
+
             InitializeData();
         }
         /// <summary>
@@ -210,6 +219,23 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
         {
             //Create lists
             Instructions = new ObservableCollection<BasicInstructionModel>();
+            //Create the list and initialize it with the startup data
+            FunctionalUnitsCount = new Dictionary<FunctionalUnits, int>
+            {
+                { FunctionalUnits.Add, 1},
+                { FunctionalUnits.Load, 1},
+                { FunctionalUnits.Divide, 2},
+                { FunctionalUnits.Multiply, 1}
+            };
+            //Create the list and initialize it with the startup data
+            //All the values are just for demo
+            InstructionClockCycleCount = new Dictionary<BasicFunctions, int>
+            {
+                { BasicFunctions.LD, 1},
+                { BasicFunctions.ADD, 2},
+                { BasicFunctions.MULT, 10},
+                { BasicFunctions.DIV, 10}
+            };
 
             try
             {
