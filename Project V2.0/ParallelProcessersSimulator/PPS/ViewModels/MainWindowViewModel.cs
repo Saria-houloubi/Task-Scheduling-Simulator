@@ -1,4 +1,5 @@
-﻿using PPS.UI.LoopUnrolling.Views;
+﻿using PPS.UI.Cache.Views;
+using PPS.UI.LoopUnrolling.Views;
 using PPS.UI.ScoreboardAndTomasolu.Views;
 using PPS.UI.Shared.Enums;
 using PPS.UI.Shared.ViewModels.Base;
@@ -48,7 +49,7 @@ namespace PPS.ViewModels
                         window = new LoopUnrollingWindow();
                         break;
                     case WindowNames.Cache:
-                        Debugger.Break();
+                        window = new CacheWindow();
                         break;
                     case WindowNames.Vector:
                         Debugger.Break();
