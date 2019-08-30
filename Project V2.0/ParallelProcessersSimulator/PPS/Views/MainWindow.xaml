@@ -53,9 +53,9 @@
             <StackPanel
             Style="{StaticResource BasicVertical}">
                 <Button Content="{StaticResource ScoreboardingAndTomasolu_Title}" Command="{Binding OpenWindowCommand}" CommandParameter="{x:Static enums:WindowNames.ScoreBoardAndTomasolu}"/>
-                <Button Content="{StaticResource LoopUnrolling_Title}" />
-                <Button Content="{StaticResource Cache_Title}" />
-                <Button Content="{StaticResource VectorProcessing_Title}" />
+                <Button Content="{StaticResource LoopUnrolling_Title}"  Command="{Binding OpenWindowCommand}" CommandParameter="{x:Static enums:WindowNames.LoopUnrolling}"/>
+                <Button Content="{StaticResource Cache_Title}" Command="{Binding OpenWindowCommand}" CommandParameter="{x:Static enums:WindowNames.Cache}"/>
+                <Button Content="{StaticResource VectorProcessing_Title}" Command="{Binding OpenWindowCommand}" CommandParameter="{x:Static enums:WindowNames.Vector}"/>
             </StackPanel>
         </Border>
       

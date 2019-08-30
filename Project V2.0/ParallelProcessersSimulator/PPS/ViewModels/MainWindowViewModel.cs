@@ -1,7 +1,9 @@
-﻿using PPS.UI.ScoreboardAndTomasolu.Views;
+﻿using PPS.UI.LoopUnrolling.Views;
+using PPS.UI.ScoreboardAndTomasolu.Views;
 using PPS.UI.Shared.Enums;
 using PPS.UI.Shared.ViewModels.Base;
 using Prism.Commands;
+using System.Diagnostics;
 using System.Windows;
 
 namespace PPS.ViewModels
@@ -41,6 +43,15 @@ namespace PPS.ViewModels
                 {
                     case WindowNames.ScoreBoardAndTomasolu:
                         window = new ScoreBoardAndTomasoluWindwo();
+                        break;
+                    case WindowNames.LoopUnrolling:
+                        window = new LoopUnrollingWindow();
+                        break;
+                    case WindowNames.Cache:
+                        Debugger.Break();
+                        break;
+                    case WindowNames.Vector:
+                        Debugger.Break();
                         break;
                     default:
                         break;

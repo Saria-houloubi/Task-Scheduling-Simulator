@@ -37,6 +37,19 @@
     <sys:String x:Key="FUsrc2Qk_Title">FUsrc 2 Qk</sys:String>
     <sys:String x:Key="Fj_Rj_Title">Fj? Rj</sys:String>
     <sys:String x:Key="Fk_Rk_Title">Fk? Rk</sys:String>
+    <sys:String x:Key="Order_Title">Order</sys:String>
+    <sys:String x:Key="ImmediateOrDisplacement_Title">Immediate Or Displacement</sys:String>
+    <sys:String x:Key="LoopCounter_Title">Loop counter</sys:String>
+    <sys:String x:Key="LoopInstruction_Title">Loop instruction</sys:String>
+    <sys:String x:Key="ExecutingOrignalCode_Title">Executing Orignal Code</sys:String>
+    <sys:String x:Key="UnrollTimes_Title">Unroll times</sys:String>
+    <sys:String x:Key="UnroledCode_Title">Unroled Code</sys:String>
+    <sys:String x:Key="UnroledExecutedCode_Title">Unroled Executed Code</sys:String>
+    <sys:String x:Key="UnroledScheduledCode_Title">Unroled Scheduled Code</sys:String>
+
+    
+
+
     <!--#endregion-->
 
     <!--#region Discriptions-->
@@ -66,10 +79,15 @@
     <sys:String x:Key="Next_Control">Next</sys:String>
     <sys:String x:Key="ToEnd_Control">To end</sys:String>
     <sys:String x:Key="Set_Control">Set</sys:String>
+    <sys:String x:Key="Execute_Control">Execute</sys:String>
+    <sys:String x:Key="Unroll_Control">Unroll</sys:String>
+    <sys:String x:Key="Schedule_Control">Schedule</sys:String>
+   
     <!--#endregion-->
     
     <!--#region Textblocks-->
     <sys:String x:Key="Load_Store_Textblock">Load / Store :</sys:String>
+    <sys:String x:Key="Load_Textblock">Load :</sys:String>
     <sys:String x:Key="FPAdd_Textblock">Floating point add :</sys:String>
     <sys:String x:Key="FPMult_Textblock">Floating point multiply :</sys:String>
     <sys:String x:Key="FPDiv_Textblock">Floating point divide :</sys:String>
@@ -78,5 +96,6 @@
     <sys:String x:Key="MultiplyFunctionalUnits_Textblock">Multiply Units :</sys:String>
     <sys:String x:Key="DivideFunctionalUnits_Textblock">Divide Units  :</sys:String>
     <sys:String x:Key="ClockCycle_Textblock">Clock Cycle :</sys:String>
+    <sys:String x:Key="SpeedUp_Textblock">Speed up :</sys:String>
     <!--#region -->
 </ResourceDictionary>

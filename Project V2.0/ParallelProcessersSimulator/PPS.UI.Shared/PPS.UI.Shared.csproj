@@ -93,6 +93,7 @@
     <Compile Include="IValueConverters\BooleanToBrushValueConverter.cs" />
     <Compile Include="IValueConverters\BooleanToVisibilityValueConverter.cs" />
     <Compile Include="IValueConverters\BooleanToYesNoStringValueConverter.cs" />
+    <Compile Include="IValueConverters\FlipTrueFalseValueConverter.cs" />
     <Compile Include="IValueConverters\StringToVisiblityValueConverter.cs" />
     <Compile Include="Models\Base\BaseNotifyModel.cs" />
     <Compile Include="Models\BasicInstructionModel.cs" />

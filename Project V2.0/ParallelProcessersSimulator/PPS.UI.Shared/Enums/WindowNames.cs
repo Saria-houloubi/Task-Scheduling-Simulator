@@ -6,6 +6,9 @@
     public enum WindowNames
     {
         ScoreBoardAndTomasolu = 1,
+        LoopUnrolling = 2,
+        Cache = 3,
+        Vector = 4,
 
     }
 }

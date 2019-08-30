@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.UI.Shared", "PPS.UI.Sha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.UI.ScoreboardAndTomasolu", "PPS.UI.ScoreboardAndTomasolu\PPS.UI.ScoreboardAndTomasolu.csproj", "{3A99221D-0075-4BE6-A787-4F48F25BB18E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPS.UI.LoopUnrolling", "PPS.UI.LoopUnrolling\PPS.UI.LoopUnrolling.csproj", "{5693BF76-3B5C-4677-8136-74323C55216E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{3A99221D-0075-4BE6-A787-4F48F25BB18E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A99221D-0075-4BE6-A787-4F48F25BB18E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A99221D-0075-4BE6-A787-4F48F25BB18E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5693BF76-3B5C-4677-8136-74323C55216E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5693BF76-3B5C-4677-8136-74323C55216E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5693BF76-3B5C-4677-8136-74323C55216E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5693BF76-3B5C-4677-8136-74323C55216E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{40C9477C-24B5-4CFC-9381-5737BCA74396} = {F9184863-4735-4E3D-B00B-689A814B3E5A}
 		{9153B098-7061-47F0-A794-D7A73C8B7703} = {F9184863-4735-4E3D-B00B-689A814B3E5A}
 		{3A99221D-0075-4BE6-A787-4F48F25BB18E} = {F9184863-4735-4E3D-B00B-689A814B3E5A}
+		{5693BF76-3B5C-4677-8136-74323C55216E} = {F9184863-4735-4E3D-B00B-689A814B3E5A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C5305C0C-7364-4947-BF7A-6863CE421AEC}
