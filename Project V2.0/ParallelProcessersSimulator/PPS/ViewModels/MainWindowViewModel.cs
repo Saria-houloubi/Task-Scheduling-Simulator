@@ -3,8 +3,8 @@ using PPS.UI.LoopUnrolling.Views;
 using PPS.UI.ScoreboardAndTomasolu.Views;
 using PPS.UI.Shared.Enums;
 using PPS.UI.Shared.ViewModels.Base;
+using PPS.UI.VectorProcessing.Views;
 using Prism.Commands;
-using System.Diagnostics;
 using System.Windows;
 
 namespace PPS.ViewModels
@@ -52,7 +52,7 @@ namespace PPS.ViewModels
                         window = new CacheWindow();
                         break;
                     case WindowNames.Vector:
-                        Debugger.Break();
+                        window = new VectorProcessingWindow();
                         break;
                     default:
                         break;

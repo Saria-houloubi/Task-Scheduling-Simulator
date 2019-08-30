@@ -46,10 +46,6 @@
     <sys:String x:Key="UnroledCode_Title">Unroled Code</sys:String>
     <sys:String x:Key="UnroledExecutedCode_Title">Unroled Executed Code</sys:String>
     <sys:String x:Key="UnroledScheduledCode_Title">Unroled Scheduled Code</sys:String>
-
-    
-
-
     <!--#endregion-->
 
     <!--#region Discriptions-->

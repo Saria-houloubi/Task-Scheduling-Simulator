@@ -1,0 +1,38 @@
+﻿<Application x:Class="PPS.UI.VectorProcessing.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PPS.UI.VectorProcessing"
+             >
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <!-- Accent and AppTheme setting -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Steel.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+
+
+
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/FontStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/ColorSheet.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/WordDictionary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/MarginStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/BorderStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/TextBoxStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/TextBlockStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/ButtonStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/ComboboxStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/DataGridStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/ListViewStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/ImageStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/ScrollStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/TabControlStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/PanelStyles.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
