@@ -87,7 +87,13 @@
     <Compile Include="Enums\BasicFunctions.cs" />
     <Compile Include="Enums\Memmories.cs" />
     <Compile Include="Enums\Registeries.cs" />
+    <Compile Include="Enums\UnitStatus.cs" />
     <Compile Include="Enums\WindowNames.cs" />
+    <Compile Include="IValueConverters\Base\BaseValueConverters.cs" />
+    <Compile Include="IValueConverters\BooleanToBrushValueConverter.cs" />
+    <Compile Include="IValueConverters\BooleanToVisibilityValueConverter.cs" />
+    <Compile Include="IValueConverters\BooleanToYesNoStringValueConverter.cs" />
+    <Compile Include="IValueConverters\StringToVisiblityValueConverter.cs" />
     <Compile Include="Models\Base\BaseNotifyModel.cs" />
     <Compile Include="Models\BasicInstructionModel.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
@@ -147,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\ImageStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ListViewStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

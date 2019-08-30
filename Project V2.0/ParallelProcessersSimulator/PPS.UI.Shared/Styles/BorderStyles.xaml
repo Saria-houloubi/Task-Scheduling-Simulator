@@ -7,6 +7,7 @@
     <Thickness x:Key="UnderLine_Border">0 0 0 2</Thickness>
     <Thickness x:Key="Spliter_Border">1 0</Thickness>
     <Thickness x:Key="TopBottomSpliter_Border">0 2</Thickness>
+    <Thickness x:Key="AllRound_Border">2</Thickness>
     
     <CornerRadius x:Key="DefaultCornerRadius_Border">2</CornerRadius>
 

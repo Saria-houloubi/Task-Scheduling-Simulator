@@ -1,5 +1,6 @@
 ﻿using PPS.UI.Shared.Enums;
 using PPS.UI.Shared.Models.Base;
+using System;
 
 namespace PPS.UI.Shared.Models
 {
@@ -10,11 +11,15 @@ namespace PPS.UI.Shared.Models
     {
 
         #region Properties
+        /// <summary>
+        /// The unique id of the instruction
+        /// </summary>
+        public Guid Id{ get; set; }
         public BasicFunctions Function { get; set; }
         public string Target { get; set; }
         public string Source1 { get; set; }
         public string Source2 { get; set; }
-
+        public bool LastIssued { get; set; }
         /// <summary>
         /// The clock the instuctions has been issued
         /// </summary>
@@ -65,7 +70,21 @@ namespace PPS.UI.Shared.Models
         /// </summary>
         public BasicInstructionModel()
         {
+            Id = Guid.NewGuid();
+        }
 
+        #endregion
+
+        #region Helpers
+        /// <summary>
+        /// Clears the clock cycles for the instruction
+        /// </summary>
+        public void ClearCycles()
+        {
+            Issue = null;
+            Read = null;
+            Executed = null;
+            WriteBack = null;
         }
         #endregion
     }

@@ -78,6 +78,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\FunctionalUnits.cs" />
+    <Compile Include="Models\FunctionalUnitModel.cs" />
+    <Compile Include="Models\RegistersModel.cs" />
     <Compile Include="ViewModels\ScoreBoardAndTomasoluWindwoViewModel.cs" />
     <Compile Include="Views\ScoreBoardAndTomasoluWindwo.xaml.cs">
       <DependentUpon>ScoreBoardAndTomasoluWindwo.xaml</DependentUpon>
@@ -122,8 +124,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

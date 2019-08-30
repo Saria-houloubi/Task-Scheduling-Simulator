@@ -25,6 +25,7 @@
     <sys:String x:Key="Code_Title">Code</sys:String>
     <sys:String x:Key="InstructionStatus_Title">Instruction status</sys:String>
     <sys:String x:Key="FunctionalUnitStatus_Title">Functional-unit status</sys:String>
+    <sys:String x:Key="RegisteriesStatus_Title">Registeries status</sys:String>
     <sys:String x:Key="Time_Title">Time</sys:String>
     <sys:String x:Key="Name_Title">Name</sys:String>
     <sys:String x:Key="Busy_Title">Busy</sys:String>

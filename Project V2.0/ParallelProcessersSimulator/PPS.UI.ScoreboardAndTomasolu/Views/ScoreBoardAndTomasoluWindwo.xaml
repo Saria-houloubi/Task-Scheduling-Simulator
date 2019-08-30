@@ -10,10 +10,11 @@
                    xmlns:sharedEnums="clr-namespace:PPS.UI.Shared.Enums;assembly=PPS.UI.Shared"
                    xmlns:prism="http://prismlibrary.com/"
                   prism:ViewModelLocator.AutoWireViewModel="True"
+                   xmlns:converters="clr-namespace:PPS.UI.Shared.IValueConverters;assembly=PPS.UI.Shared"
                    mc:Ignorable="d"
         Title="{StaticResource ScoreboardingAndTomasolu_Title}" >
-    <metro:MetroTabControl>
-
+    <metro:MetroTabControl
+        x:Name="TabControl_Part">
         <!--Code-->
         <TabItem
             Header="{StaticResource Code_Title}">
@@ -105,6 +106,7 @@
                         Command="{Binding EditInstructionCommand}"
                         Content="{StaticResource Edit_Control}"/>
                             <Button
+                                Command="{Binding AddCodeFromTxtCommand}"
                         Content="{StaticResource AddTxt_Control}"/>
                             <Button
                         Command="{Binding AddInstructionCommand}"
@@ -140,7 +142,7 @@
                         <!--Extra information-->
                         <TextBox
                         Style="{StaticResource ReadOnly_TextBox}"
-                        Text="{Binding Instructions.Count,Mode=OneWay}"
+                        Text="{Binding EditingInstructions.Count,Mode=OneWay}"
                         Grid.Row="1"/>
                     </Grid>
                 </Grid>
@@ -153,67 +155,71 @@
                 <Border
                 Grid.Column="2"
                 Style="{StaticResource TopBottomSpliter}">
-                    <StackPanel>
+                    <ScrollViewer>
+                        <StackPanel>
 
-                        <TextBlock
+                            <TextBlock
                     Grid.ColumnSpan="2"
                     Style="{StaticResource Discription_Textblock}"
                     Text="{StaticResource CyclesAndItteration_Discription}"/>
 
-                        <TextBlock
+                            <TextBlock
                         Text="{StaticResource Load_Store_Textblock}"
                         />
-                        <metro:NumericUpDown
+                            <metro:NumericUpDown
                             Value="{Binding InstructionClockCycleCount[LD]}"/>
 
-                        <TextBlock
+                            <TextBlock
                         Text="{StaticResource FPAdd_Textblock}"
                         />
-                        <metro:NumericUpDown
+                            <metro:NumericUpDown
                             Value="{Binding InstructionClockCycleCount[ADD]}"/>
 
-                        <TextBlock
+                            <TextBlock
                         Text="{StaticResource FPMult_Textblock}"
                         />
-                        <metro:NumericUpDown
+                            <metro:NumericUpDown
                             Value="{Binding InstructionClockCycleCount[MULT]}"/>
 
-                        <TextBlock
+                            <TextBlock
                         Text="{StaticResource FPDiv_Textblock}"
                         />
-                        <metro:NumericUpDown
+                            <metro:NumericUpDown
                             Value="{Binding InstructionClockCycleCount[DIV]}"/>
 
-                        <TextBlock
+                            <TextBlock
                             Style="{StaticResource Discription_Textblock}"
                             Text="{StaticResource FunctionalUnit_Discription}"/>
 
-                        <TextBlock
+                            <TextBlock
                         Text="{StaticResource Load_StoreFunctionalUnits_Textblock}"
                         />
-                        <metro:NumericUpDown
+                            <metro:NumericUpDown
                             Value="{Binding FunctionalUnitsCount[LOAD]}"/>
-                        <TextBlock
+                            <TextBlock
                         Text="{StaticResource Add_SubFunctionalUnits_Textblock}"
                         />
-                        <metro:NumericUpDown
+                            <metro:NumericUpDown
                             Value="{Binding FunctionalUnitsCount[ADD]}"/>
 
-                        <TextBlock
+                            <TextBlock
                         Text="{StaticResource MultiplyFunctionalUnits_Textblock}"
                         />
-                        <metro:NumericUpDown
+                            <metro:NumericUpDown
                             Value="{Binding FunctionalUnitsCount[Multiply]}"/>
 
-                        <TextBlock
+                            <TextBlock
                         Text="{StaticResource DivideFunctionalUnits_Textblock}"
                         />
-                        <metro:NumericUpDown
+                            <metro:NumericUpDown
                             Value="{Binding FunctionalUnitsCount[DIVIDE]}"/>
 
-                        <Button
+                            <Button
+                                Click="MoveToNextTab_Click"
+                            Command="{Binding SetProcessorOptionsCommand}"
                             Content="{StaticResource Set_Control}"/>
-                    </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
                 </Border>
             </Grid>
         </TabItem>
@@ -232,8 +238,8 @@
                 <!--Choose algorithm-->
                 <StackPanel
                     Style="{StaticResource BasicHorizontal}">
-                    <RadioButton Content="{StaticResource Scoreboarding_Title}" IsChecked="{Binding IsScoreboardActive}"/>
-                    <RadioButton Content="{StaticResource Tomasolu_Title}"/>
+                    <RadioButton Content="{StaticResource Tomasolu_Title}" IsChecked="{Binding IsTomasoluSelected}"/>
+                    <RadioButton Content="{StaticResource Scoreboarding_Title}"/>
                 </StackPanel>
                 <!--Content-->
                 <Grid
@@ -257,11 +263,15 @@
                             Style="{StaticResource Discription_Textblock}"
                             Text="{StaticResource ClockCycle_Textblock}" />
                         <TextBlock 
+                            Style="{StaticResource Title_Textblock}"
+                            Text="{Binding CurrentClockCycle}"
                             Grid.Column="1" />
                         <Button
+                            Command="{Binding MoveOneCycleCommand}"
                             Content="{StaticResource Next_Control}"
                             Grid.Column="2"/>
                         <Button
+                            Command="{Binding MoveTillEndCommand}"
                             Content="{StaticResource ToEnd_Control}"
                             Grid.Column="3"/>
 
@@ -278,9 +288,10 @@
                                 <!--Functional unit Titlte-->
                                 <RowDefinition Height="auto"/>
                                 <!--Functional unit status-->
-                                <RowDefinition/>
+                                <RowDefinition Height="auto"/>
                                 <!--Register status-->
-                                <RowDefinition/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <!--Instruction status Title-->
                             <TextBlock
@@ -311,22 +322,56 @@
                             <!--Instruction status-->
                             <DataGrid
                             Grid.Row="3"
-                            ItemsSource="{Binding Instructions}"
+                            ItemsSource="{Binding FunctionalUnitsList}"
                             Style="{StaticResource ReadOnly_DataGrid}">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="{StaticResource Time_Title}" Width="*" Binding="{Binding Function}"/>
-                                    <DataGridTextColumn Header="{StaticResource Name_Title}" Width="*" Binding="{Binding Target}"/>
-                                    <DataGridTextColumn Header="{StaticResource Busy_Title}" Width="*" Binding="{Binding Source1}"/>
-                                    <DataGridTextColumn Header="{StaticResource Operation_Title}" Width="*" Binding="{Binding Source2}"/>
-                                    <DataGridTextColumn Header="{StaticResource DestFi_Title}" Width="*" Binding="{Binding Issue}"/>
-                                    <DataGridTextColumn Header="{StaticResource Src1Fj_Title}" Width="*" Binding="{Binding Read}"/>
-                                    <DataGridTextColumn Header="{StaticResource Src2Fk_Title}" Width="*" Binding="{Binding Read}"/>
-                                    <DataGridTextColumn Header="{StaticResource FUsrc1Qj_Title}" Width="*" Binding="{Binding Executed}"/>
-                                    <DataGridTextColumn Header="{StaticResource FUsrc2Qk_Title}" Width="*" Binding="{Binding Executed}"/>
-                                    <DataGridTextColumn Header="{StaticResource Fj_Rj_Title}" Width="*" Binding="{Binding WriteBack}"/>
-                                    <DataGridTextColumn Header="{StaticResource Fk_Rk_Title}" Width="*" Binding="{Binding WriteBack}"/>
+                                    <DataGridTextColumn Header="{StaticResource Time_Title}" Width="*" Binding="{Binding Time}"/>
+                                    <DataGridTextColumn Header="{StaticResource Name_Title}" Width="*" Binding="{Binding Name}"/>
+                                    <DataGridTextColumn Header="{StaticResource Busy_Title}" Width="*" Binding="{Binding Status}"/>
+                                    <DataGridTextColumn Header="{StaticResource Operation_Title}" Width="*" Binding="{Binding Operation}"/>
+                                    <DataGridTextColumn Header="{StaticResource DestFi_Title}" Width="*" Binding="{Binding Target}"/>
+                                    <DataGridTextColumn Header="{StaticResource Src1Fj_Title}" Width="*" Binding="{Binding Source1}"/>
+                                    <DataGridTextColumn Header="{StaticResource Src2Fk_Title}" Width="*" Binding="{Binding Source2}" />
+                                    <DataGridTextColumn Header="{StaticResource FUsrc1Qj_Title}" Width="*" Binding="{Binding WaitingOperationForSource01}"/>
+                                    <DataGridTextColumn Header="{StaticResource FUsrc2Qk_Title}" Width="*" Binding="{Binding WaitingOperationForSource02}"/>
+                                    <DataGridTextColumn Header="{StaticResource Fj_Rj_Title}" Width="*" Binding="{Binding IsSource01Ready,Converter={converters:BooleanToYesNoStringValueConverter}}"/>
+                                    <DataGridTextColumn Header="{StaticResource Fk_Rk_Title}" Width="*" Binding="{Binding IsSource02Ready,Converter={converters:BooleanToYesNoStringValueConverter}}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
+
+                            <!--Instruction status Title-->
+                            <TextBlock
+                            Grid.Row="4"
+                            Style="{StaticResource Discription_Textblock}"
+                            Text="{StaticResource RegisteriesStatus_Title}"/>
+                            <!--Instruction status-->
+                            <ListView
+                            Grid.Row="5"
+                            Style="{StaticResource ReadOnly_ListView}"
+                            ItemsSource="{Binding Registers}"
+                            >
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border
+                                            BorderThickness="{StaticResource AllRound_Border}"
+                                            BorderBrush="{Binding IsBusy,Converter={converters:BooleanToBrushValueConverter}}">
+                                            <StackPanel Style="{StaticResource BasicVertical}">
+                                                <TextBlock
+                                                HorizontalAlignment="Center"
+                                                Text="{Binding Name}"/>
+                                                <TextBox
+                                                Style="{StaticResource ReadOnly_TextBox}"
+                                                Text="{Binding Operation}" Grid.Column="1"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </Grid>
                     </ScrollViewer>
                 </Grid>

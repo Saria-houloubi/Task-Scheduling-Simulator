@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:local="clr-namespace:PPS.UI.Shared.Styles">
 
     <!--Default row height-->
@@ -19,6 +20,7 @@
     <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MetroDataGridColumnHeader}">
         <Setter Property="FontSize" Value="{StaticResource Larg_FontSize}"/>
         <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="metro:ButtonHelper.PreserveTextCase" Value="True"/>
     </Style>
     <Style TargetType="{x:Type DataGridCell}">
         <Setter Property="MinHeight" Value="{StaticResource Default_RowHeight}"/>

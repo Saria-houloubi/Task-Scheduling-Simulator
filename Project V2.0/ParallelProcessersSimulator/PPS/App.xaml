@@ -28,6 +28,7 @@
                 <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/ButtonStyles.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/ComboboxStyles.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/DataGridStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/ListViewStyles.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/ImageStyles.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/ScrollStyles.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/PPS.UI.Shared;component/Styles/TabControlStyles.xaml" />
