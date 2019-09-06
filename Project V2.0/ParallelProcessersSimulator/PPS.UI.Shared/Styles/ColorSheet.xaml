@@ -9,4 +9,7 @@
     <Color x:Key="DarkBlue">#00238B</Color>
     <SolidColorBrush x:Key="DarkBlueBrush" Color="{StaticResource DarkBlue}"/>
 
+    <Color x:Key="Blue">#0000FF</Color>
+    <SolidColorBrush x:Key="BlueBrush" Color="{StaticResource Blue}"/>
+
 </ResourceDictionary>

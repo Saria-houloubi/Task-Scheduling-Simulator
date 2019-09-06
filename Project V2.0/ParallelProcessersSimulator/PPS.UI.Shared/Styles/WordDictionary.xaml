@@ -46,6 +46,21 @@
     <sys:String x:Key="UnroledCode_Title">Unroled Code</sys:String>
     <sys:String x:Key="UnroledExecutedCode_Title">Unroled Executed Code</sys:String>
     <sys:String x:Key="UnroledScheduledCode_Title">Unroled Scheduled Code</sys:String>
+    <sys:String x:Key="Cache_Sizes_Title">Cache Sizes</sys:String>
+    <sys:String x:Key="Block_Sizes_Title">Block Sizes</sys:String>
+    <sys:String x:Key="Associativity_Types_Title">Associativity Types</sys:String>
+    <sys:String x:Key="Ram_Sizes_Title">Ram Sizes</sys:String>
+    <sys:String x:Key="Target_Blocks_Title">Target Block</sys:String>
+    <sys:String x:Key="Tag_Bits_Title">Tag</sys:String>
+    <sys:String x:Key="Index_Bits_Title">Index</sys:String>
+    <sys:String x:Key="Offest_Bits_Title">Offset</sys:String>
+    <sys:String x:Key="Hit_Miss_Title">Hit Or Miss</sys:String>
+    <sys:String x:Key="Direct_Mapping_Title">Direct Mapping</sys:String>
+    <sys:String x:Key="Set_Associativity_Title">Set Associativity</sys:String>
+    <sys:String x:Key="Binary_Title">Binary</sys:String>
+    <sys:String x:Key="Hexadecimal_Title">Hexadecimal</sys:String>
+    <sys:String x:Key="Demonstration_Title">Demonstration</sys:String>
+    <sys:String x:Key="Cache_Blocks_Title">Cache Blocks</sys:String>
     <!--#endregion-->
 
     <!--#region Discriptions-->
@@ -78,7 +93,7 @@
     <sys:String x:Key="Execute_Control">Execute</sys:String>
     <sys:String x:Key="Unroll_Control">Unroll</sys:String>
     <sys:String x:Key="Schedule_Control">Schedule</sys:String>
-   
+    <sys:String x:Key="Run_Control">Run</sys:String>
     <!--#endregion-->
     
     <!--#region Textblocks-->
@@ -93,5 +108,6 @@
     <sys:String x:Key="DivideFunctionalUnits_Textblock">Divide Units  :</sys:String>
     <sys:String x:Key="ClockCycle_Textblock">Clock Cycle :</sys:String>
     <sys:String x:Key="SpeedUp_Textblock">Speed up :</sys:String>
+    <sys:String x:Key="RequestedAddress_Textblock">Request Address:</sys:String>
     <!--#region -->
 </ResourceDictionary>

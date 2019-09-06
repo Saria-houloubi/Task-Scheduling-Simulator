@@ -78,6 +78,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Enums\MemorySizes.cs" />
+    <Compile Include="Models\CacheModel.cs" />
+    <Compile Include="Models\PresentationModel.cs" />
+    <Compile Include="Models\ValueConverterModel.cs" />
     <Compile Include="ViewModels\CacheWindowViewModel.cs" />
     <Compile Include="Views\CacheWindow.xaml.cs">
       <DependentUpon>CacheWindow.xaml</DependentUpon>
@@ -122,8 +126,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

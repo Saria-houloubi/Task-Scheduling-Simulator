@@ -8,8 +8,176 @@
                    prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:shared="clr-namespace:PPS.UI.Shared.Views.Base;assembly=PPS.UI.Shared"
         mc:Ignorable="d"
-        Title="{StaticResource Cache_Title}" >
+        xmlns:converters="clr-namespace:PPS.UI.Shared.IValueConverters;assembly=PPS.UI.Shared"                   
+        Title="{StaticResource Cache_Title}">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <!--Title-->
+            <RowDefinition Height="auto" />
+            <!--Combobox-->
+            <RowDefinition Height="auto" />
+            <!--RadioButtons-->
+            <RowDefinition Height="auto" />
+            <!--TextBlock TextBox Button-->
+            <RowDefinition Height="auto" />
+            <!--Grid-->
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <!--Title Texts-->
+        <TextBlock Style="{StaticResource Title_Textblock}" 
+                   Text="{StaticResource Cache_Sizes_Title}" />
+        <TextBlock Style="{StaticResource Title_Textblock}"  
+                   Grid.Column="1"
+                   Text="{StaticResource Block_Sizes_Title}"/>
+        <TextBlock Style="{StaticResource Title_Textblock}" 
+                   Grid.Column="2"
+                   Text="{StaticResource Associativity_Types_Title}"
+                   Grid.ColumnSpan="2"/>
+        <TextBlock Style="{StaticResource Title_Textblock}"
+                   Grid.Column="4"
+                   Text="{StaticResource Ram_Sizes_Title}"/>
+        <!--ComboBox-->
+        <ComboBox  ItemsSource="{Binding CacheSizes}" 
+                   SelectedItem="{Binding SelectedCacheSize}" 
+                   Grid.Row="1"/>
+        <ComboBox  ItemsSource="{Binding BlockSizes}" 
+                   SelectedItem="{Binding SelectedBlockSize}"
+                   Grid.Row="1"
+                   Grid.Column="1" />
+        <ComboBox  ItemsSource="{Binding Associativities}"
+                   SelectedItem="{Binding SelectedAssociativity}"
+                   IsHitTestVisible="{Binding IsDirectMapping,Converter={converters:FlipTrueFalseValueConverter}}"
+                    Grid.Row="1"
+                   Grid.Column="2"                  
+                   Grid.ColumnSpan="2" />
+        <ComboBox   ItemsSource="{Binding RamSizes}"
+                    SelectedItem="{Binding SelectedRamSize}"
+                     Grid.Row="1"
+                    Grid.Column="4" />
+        <!--Binary/Hexa RadioButtons-->
+        <StackPanel Style="{StaticResource BasicHorizontal}"
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2">
+            <RadioButton Content="{StaticResource Binary_Title}" IsChecked="{Binding IsBinary,Mode=TwoWay}"/>
+            <RadioButton Content="{StaticResource Hexadecimal_Title}" IsChecked="{Binding IsBinary,Converter={converters:FlipTrueFalseValueConverter}}"/>
+        </StackPanel>
+        <!--DierctMapping/SetAssociativity RadioButtons-->
+        <StackPanel Style="{StaticResource BasicHorizontal}"
+                     Grid.Row="2" 
+                    Grid.Column="2"
+                   Grid.ColumnSpan="3">
+            <RadioButton Content="{StaticResource Direct_Mapping_Title}" IsChecked="{Binding IsDirectMapping,Mode=TwoWay}"/>
+            <RadioButton Content="{StaticResource Set_Associativity_Title}" IsChecked="{Binding IsDirectMapping,Converter={converters:FlipTrueFalseValueConverter}}"/>
+        </StackPanel>
+        <TextBlock  Text="{StaticResource RequestedAddress_Textblock}"
+                    Grid.Row="3"/>
+        <TextBox    Text="{Binding RequestAddress,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                    IsEnabled="{Binding CanWrite}" 
+                     Grid.Row="3"
+                    Grid.Column="1" />
+        <!--Run Button-->
+        <Button  Command="{Binding AddressCalculatingCommand}"  
+                 Content="{StaticResource Run_Control}"
+                 Grid.Row="3" 
+                 Grid.Column="3"/>
+        <!--the output-->
+        <Grid Grid.Row="4" Grid.ColumnSpan="5" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <!--Title-->
+                <RowDefinition Height="auto" />
+                <!--TextBox-->
+                <RowDefinition Height="auto" />
+                <!--ListView-->
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <!--Title TextBlocks-->
+            <TextBlock Style="{StaticResource Discription_Textblock}"
+                       Text="{StaticResource Target_Blocks_Title}" />
+            <TextBlock Style="{StaticResource Discription_Textblock}"
+                       Text="{StaticResource Hit_Miss_Title}"
+                       Grid.Column="1"/>
+            <TextBlock Style="{StaticResource Discription_Textblock}"                       
+                       Text="{StaticResource Tag_Bits_Title}"                        
+                       Grid.Column="2"/>
+            <TextBlock Style="{StaticResource Discription_Textblock}"
+                       Text="{StaticResource Index_Bits_Title}" 
+                       Grid.Column="3"/>
+            <TextBlock Style="{StaticResource Discription_Textblock}"
+                       Text="{StaticResource Offest_Bits_Title}"
+                       Grid.Column="4"/>
+            <!--result TextBoxes-->
+            <TextBox Text="{Binding IndexInDecimal}"                     
+                        Foreground="{StaticResource BlueBrush}"
+                        Grid.Row="1"/>
+            <TextBox Text="{Binding HitOrMiss}"                     
+                       Foreground="{StaticResource BlueBrush}"                     
+                       Grid.Row="1"
+                       Grid.Column="1"/>
+            <TextBox Text="{Binding Tag}"                     
+                     Foreground="{StaticResource BlueBrush}"
+                       Grid.Row="1"
+                       Grid.Column="2"/>
+            <TextBox Text="{Binding  Index}"                     
+                     Foreground="{StaticResource BlueBrush}"
+                       Grid.Row="1" 
+                       Grid.Column="3"/>
+            <TextBox Text="{Binding Offset}"                     
+                     Foreground="{StaticResource BlueBrush}"
+                       Grid.Row="1"
+                       Grid.Column="4" />
+            <!--Cache Demonstations ListView-->
+            <ListView ItemsSource="{Binding Demonstrations}"
+                      Style="{StaticResource ReadOnly_ListView}"
+                      Visibility="{Binding Path=VisibiltyStatues,Converter={converters:BooleanToVisibilityValueConverter}}"
+                      Grid.Row="2"
+                      Grid.ColumnSpan="2">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="{StaticResource Demonstration_Title}"  DisplayMemberBinding="{Binding TextContent}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <!--Cache Blocks ListView-->
+            <Border Style="{StaticResource TopBottomSpliter}"
+                    Grid.Row="2" 
+                          Grid.Column="3"
+                          Grid.ColumnSpan="2">
+                <ListView  ItemsSource="{Binding CacheBlocksPresented}" Height="424"
+                           Visibility="{Binding Path=VisibiltyStatues,Converter={converters:BooleanToVisibilityValueConverter}}"
+                           >
+                    <ListView.Resources>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsBlockNumberChoosed}"
+                      Value="true">
+                                    <Setter Property="Background"
+                      Value="{StaticResource BlueBrush}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{Binding FirstColumnName}" DisplayMemberBinding="{Binding BlockNumber}"/>
+                            <GridViewColumn Header="{StaticResource Cache_Blocks_Title}" DisplayMemberBinding="{Binding Increment}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Border>
+        </Grid>
     </Grid>
 </shared:BaseWindow>
