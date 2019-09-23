@@ -68,6 +68,7 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
             {
                 SetProperty(ref _SelectedFunction, value);
                 FillTargetAndSoruce();
+                ClearInstructionValues();
             }
         }
         /// <summary>
@@ -80,7 +81,14 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
             get { return _Targets; }
             set { SetProperty(ref _Targets, value); }
         }
-        public string SelectedTarget { get; set; }
+        private string _SelectedTarget;
+
+        public string SelectedTarget
+        {
+            get { return _SelectedTarget; }
+            set { SetProperty(ref _SelectedTarget, value); }
+        }
+
         /// <summary>
         /// The source from where the instruction is going to get the data from
         /// </summary>
@@ -91,8 +99,22 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
             get { return _Sources; }
             set { SetProperty(ref _Sources, value); }
         }
-        public string SelectedSource1 { get; set; }
-        public string SelectedSource2 { get; set; }
+        private string _SelectedSource1;
+
+        public string SelectedSource1
+        {
+            get { return _SelectedSource1; }
+            set { SetProperty(ref _SelectedSource1, value); }
+        }
+
+        private string _SelectedSource2;
+
+        public string SelectedSource2
+        {
+            get { return _SelectedSource2; }
+            set { SetProperty(ref _SelectedSource2, value); }
+        }
+
         /// <summary>
         /// A flag to check if the user can chose the source2
         /// LD and ST disable this opetion
@@ -119,9 +141,17 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
 
         public BasicInstructionModel SelectedInstruction
         {
-            get { return _SelectedInstruction; }
-            set { SetProperty(ref _SelectedInstruction, value); }
+            get
+            {
+                return _SelectedInstruction;
+            }
+            set
+            {
+                SetProperty(ref _SelectedInstruction, value);
+            }
         }
+
+        
         /// <summary>
         /// The count of the functional units 
         /// </summary>
@@ -926,7 +956,7 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
         /// </summary>
         protected virtual void ExecuteInstrution(BasicInstructionModel instruction)
         {
-            if (IsTomasoluSelected)
+            if (!IsTomasoluSelected)
             {
                 //Get the unit that the instruction is working on
                 var unit = FunctionalUnitsList.SingleOrDefault(item => item.WorkingInstructionID == instruction.Id);

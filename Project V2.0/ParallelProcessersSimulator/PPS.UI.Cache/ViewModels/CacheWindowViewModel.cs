@@ -411,8 +411,8 @@ namespace PPS.UI.Cache.ViewModels
                 else
                     CacheBlocksPresented.Add(new PresentationModel(i, BlockRow, false));         
             }
-#endregion
-
+            #endregion
+            
             #region Cache Algorithm Explanations
             Demonstrations.Add(new PresentationModel("the Tag Bits are compared with the corresponding Tag Bits in the Cache Directory."));
             Demonstrations.Add(new PresentationModel("the Index Bits are used to select a particular Set in the Cache."));

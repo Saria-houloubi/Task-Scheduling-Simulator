@@ -12,8 +12,9 @@
     <!--The base style for all the buttons-->
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MetroButton}">
         <Setter Property="Margin" Value="{StaticResource Default_Margin}"/>
-        <Setter Property="Height" Value="{StaticResource DefaultHeight_Button}"/>
+        <Setter Property="MinHeight" Value="{StaticResource DefaultHeight_Button}"/>
         <Setter Property="MinWidth" Value="{StaticResource DefaultMinWidth_Button}"/>
+        
     </Style>
 
     <Style TargetType="{x:Type metro:NumericUpDown}">
