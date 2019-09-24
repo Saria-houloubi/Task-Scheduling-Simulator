@@ -27,6 +27,8 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
             set
             {
                 SetProperty(ref _IsTomasoluSelected, value);
+
+
                 //Reset the values
                 SetProcessorOptionsCommand_Execute();
             }
@@ -126,6 +128,11 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
             get { return _CanChoseSource2; }
             set { SetProperty(ref _CanChoseSource2, value); }
         }
+        /// <summary>
+        /// The inner instruction list for to save them in
+        /// so they can be reused when the algorithm is changed
+        /// </summary>
+        public List<BasicInstructionModel> InnerInstructions { get; private set; }
 
         /// <summary>
         /// The instruction list the user entered
@@ -151,7 +158,7 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
             }
         }
 
-        
+
         /// <summary>
         /// The count of the functional units 
         /// </summary>
@@ -559,12 +566,38 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
         /// </summary>
         public void SetProcessorOptionsCommand_Execute()
         {
-
-            //Create the list
-            foreach (var item in Instructions)
+            //Check if the inner instuction has not been changed
+            if (IsTomasoluSelected)
             {
-                item.ClearCycles();
+                InnerInstructions = new List<BasicInstructionModel>();
+                foreach (var item in Instructions)
+                {
+                    //Making a deep copy of the elements
+                    InnerInstructions.Add(new BasicInstructionModel
+                    {
+                        Function = item.Function,
+                        Id = item.Id,
+                        Source1 = item.Source1,
+                        Source2 = item.Source2,
+                        Target = item.Target,
+                    });
+                }
             }
+
+            Instructions = new ObservableCollection<BasicInstructionModel>();
+            foreach (var item in InnerInstructions)
+            {
+                //Making a deep copy of the elements
+                Instructions.Add(new BasicInstructionModel
+                {
+                    Function = item.Function,
+                    Id = item.Id,
+                    Source1 = item.Source1,
+                    Source2 = item.Source2,
+                    Target = item.Target,
+                });
+            }
+
             FunctionalUnitsList = new ObservableCollection<FunctionalUnitModel>();
             CurrentClockCycle = 0;
             CanGoNextCycle = Instructions.Any();
@@ -899,6 +932,7 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
                         else if (!operationOnSource02.IsBusy)
                         {
                             unit.IsSource02Ready = true;
+                            unit.Source2 = instruction.Source2;
                         }
                         else
                         {

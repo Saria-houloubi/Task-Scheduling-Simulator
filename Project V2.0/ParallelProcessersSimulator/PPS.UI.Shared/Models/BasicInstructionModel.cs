@@ -14,11 +14,32 @@ namespace PPS.UI.Shared.Models
         /// <summary>
         /// The unique id of the instruction
         /// </summary>
-        public Guid Id{ get; set; }
+        public Guid Id { get; set; }
         public BasicFunctions Function { get; set; }
-        public string Target { get; set; }
-        public string Source1 { get; set; }
-        public string Source2 { get; set; }
+        private string _Target;
+
+        public string Target
+        {
+            get { return _Target; }
+            set { SetProperty(ref _Target, value); }
+        }
+
+        private string _Source1;
+
+        public string Source1
+        {
+            get { return _Source1; }
+            set { SetProperty(ref _Source1, value); }
+        }
+
+        private string _Source2;
+
+        public string Source2
+        {
+            get { return _Source2; }
+            set { SetProperty(ref _Source2, value); }
+        }
+
         public bool LastIssued { get; set; }
         /// <summary>
         /// The clock the instuctions has been issued
