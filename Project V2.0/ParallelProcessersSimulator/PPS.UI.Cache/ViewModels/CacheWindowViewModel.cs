@@ -13,14 +13,17 @@ namespace PPS.UI.Cache.ViewModels
     /// </summary>
     public class CacheWindowViewModel : BaseViewModel
     {
+        #region private members
         /// <summary>
         /// an instance of the cache model class
         /// </summary>
-        public CacheModel CacheModel { get; private set; }
+        private CacheModel CacheModel { get;  set; }
         /// <summary>
         /// an instance of the ValueConverter class
         /// </summary>
-        public ValueConverterModel ValueConverterModel { get; private set; }
+        private ValueConverterModel ValueConverterModel { get;  set; }
+        #endregion
+
         #region Properties
         /// <summary>
         /// The selected cache size value from <see cref="CacheSize"/>
@@ -32,7 +35,9 @@ namespace PPS.UI.Cache.ViewModels
             set
             {
                 SetProperty(ref _SelectedCacheSize, value);
-                VisibiltyStatues = false;                
+                VisibiltyStatues = false;
+               
+                if (!string.IsNullOrEmpty(value)) { FillBlockSize(); }
             }
         }
         private List<string> _CacheSizes;
@@ -54,8 +59,8 @@ namespace PPS.UI.Cache.ViewModels
                 VisibiltyStatues = false;                
             }
         }
-        private List<string> _BlockSizes;
-        public List<string> BlockSizes
+        private ObservableCollection<string> _BlockSizes;
+        public ObservableCollection<string> BlockSizes
         {
             get { return _BlockSizes; }
             set { SetProperty(ref _BlockSizes, value); }
@@ -70,7 +75,7 @@ namespace PPS.UI.Cache.ViewModels
             set
             {
                 SetProperty(ref _SelectedAssociativity, value);
-                IndexTagDictionary.Clear();
+                IndexTagOffsetContainer.Clear();
                 VisibiltyStatues = false;                
             }
         }
@@ -91,7 +96,8 @@ namespace PPS.UI.Cache.ViewModels
             {
                 SetProperty(ref _SelectedRamSize, value);
                 VisibiltyStatues = false;
-                IsRamSizeSelected();           
+                IsRamSizeSelected();
+                ValidateInput();
             }
         }
         private List<string> _RamSizes;
@@ -225,11 +231,11 @@ namespace PPS.UI.Cache.ViewModels
         /// a dictionary that holds all the index_tag values to define if the requested address is a hit ,in case the tag and index bits of requested address matche the tag and index bits in the cache.
         /// or if it is a miss, in case the tag and index bits of requested address do not matche the tag and index bits in the cache.
         /// </summary>
-        private Dictionary<string, string> _IndexTagDictionary;
-        public Dictionary<string, string> IndexTagDictionary
+        private Dictionary<string, HashSet<string>> _IndexTagOffsetContainer;
+        public Dictionary<string,HashSet<string>> IndexTagOffsetContainer
         {
-            get { return _IndexTagDictionary; }
-            set { SetProperty(ref _IndexTagDictionary, value); }
+            get { return _IndexTagOffsetContainer; }
+            set { SetProperty(ref _IndexTagOffsetContainer, value); }
         }
         #endregion
 
@@ -239,6 +245,11 @@ namespace PPS.UI.Cache.ViewModels
         {
             get { return _FirstColumnName; }
             set { SetProperty(ref _FirstColumnName, value); }
+        }
+        private int _TotalLength;
+        public int TotalLength {
+            get { return _TotalLength; }
+            set { SetProperty(ref _TotalLength, value); }
         }
         /// <summary>
         /// holds all the valide Blocks in the cache
@@ -250,7 +261,7 @@ namespace PPS.UI.Cache.ViewModels
         /// <summary>
         /// holds the cache algorithm demonstrations
         /// </summary>
-        public ObservableCollection<PresentationModel> Demonstrations { get; set; }
+        public ObservableCollection<string> Demonstrations { get; set; }
         /// <summary>
         ///this property controls the visibility of the stack panel that contains the demonstration of the mathematic rules of cache algorthim 
         /// </summary>
@@ -334,11 +345,10 @@ namespace PPS.UI.Cache.ViewModels
         {
             CacheModel = new CacheModel();
             ValueConverterModel = new ValueConverterModel();
-            IndexTagDictionary = new Dictionary<string, string>();
+            IndexTagOffsetContainer = new Dictionary<string, HashSet<string>>();
             CacheBlocksPresented = new ObservableCollection<PresentationModel>();
-            Demonstrations = new ObservableCollection<PresentationModel>();
-            FillCacheSize();
-            FillBlockSize();
+            Demonstrations = new ObservableCollection<string>();
+            FillCacheSize();           
             FillAssociativityType();
             FillRamSize();           
         }
@@ -361,26 +371,30 @@ namespace PPS.UI.Cache.ViewModels
         /// <summary>
         /// specify if it is a hit or miss
         /// </summary>
+
         public void HitOrMissFunction()
         {
-           string tempTag = Tag.PadLeft(24, '0');
-            foreach (var entry in IndexTagDictionary)
+            // tempObservableCollection = new ObservableCollection<string>();
+            string tempTagOffset = Tag.PadLeft(24, '0');
+            tempTagOffset = string.Concat(tempTagOffset, Offset);
+            foreach (var entry in IndexTagOffsetContainer)
             {
-                if (tempTag == entry.Value && Index == entry.Key)
-
+                if (entry.Key == Index)
                 {
+                    if (entry.Value.Contains(tempTagOffset))
+                    {
+                        HitOrMiss = "Hit";
+                        return;
+                    }
                     BoolHitOrMiss = true;
-                    break;
                 }
             }
-            if (BoolHitOrMiss)
-                HitOrMiss = "Hit";
-            else
-            {
-                HitOrMiss = "Miss";
-                IndexTagDictionary[Index] = tempTag;
-            }
-            BoolHitOrMiss = false;
+            HitOrMiss = "Miss";
+            if (BoolHitOrMiss) { IndexTagOffsetContainer[Index].Add(tempTagOffset);BoolHitOrMiss = false; return; }
+            HashSet<string> hs = new HashSet<string>();
+            hs.Add(tempTagOffset);
+            IndexTagOffsetContainer.Add(Index,hs);
+          
         }
         /// <summary>
         /// this value is used to give the tag,index and offset the correct value then convert the index value to decimal and prepair the values of the listview to be printed
@@ -391,8 +405,8 @@ namespace PPS.UI.Cache.ViewModels
         /// <param name="numberOfIndexBits"></param>
         /// <param name="numberOfTagBits"></param>
         /// <param name="cacheSizeValue"></param>
-        public void BinaryToDecimal_TagIndexOffsetAssignmentnFunction(string address, int numberOfBlocksOrSets,int blockSizeValue,int numberOfIndexBits,int numberOfTagBits,int cacheSizeValue)
-        {            
+        public void BinaryToDecimal_TagIndexOffsetAssignmentnFunction(string address, int numberOfBlocksOrSets, int blockSizeValue, int numberOfIndexBits, int numberOfTagBits, int cacheSizeValue)
+        {
             Tag = address.Substring(address.Length - GetLogValue(blockSizeValue) - numberOfIndexBits - numberOfTagBits, numberOfTagBits);
             Index = address.Substring(address.Length - GetLogValue(blockSizeValue) - numberOfIndexBits, numberOfIndexBits);
             Offset = address.Substring(address.Length - GetLogValue(blockSizeValue), GetLogValue(blockSizeValue));
@@ -405,24 +419,32 @@ namespace PPS.UI.Cache.ViewModels
             #region Cache Blocks Values
             for (int i = 0; i < numberOfBlocksOrSets; i++)
             {
-                string BlockRow = i.ToString() + ", " + (i + numberOfBlocksOrSets).ToString() + ", " + (i + numberOfBlocksOrSets * 2).ToString() + ", " + (i + numberOfBlocksOrSets * 3).ToString() + ", " + (i + numberOfBlocksOrSets * 4).ToString() + ", " + (i + numberOfBlocksOrSets * 5).ToString() + " ," + (i + numberOfBlocksOrSets * 6).ToString()+ ".......";           
+                string BlockRow = i.ToString() + ", " + (i + numberOfBlocksOrSets).ToString() + ", " + (i + numberOfBlocksOrSets * 2).ToString() + ", " + (i + numberOfBlocksOrSets * 3).ToString() + ", " + (i + numberOfBlocksOrSets * 4).ToString() + ", " + (i + numberOfBlocksOrSets * 5).ToString() + " ," + (i + numberOfBlocksOrSets * 6).ToString() + ".......";
                 if (i == IndexInDecimal)
                     CacheBlocksPresented.Add(new PresentationModel(i, BlockRow, true));
                 else
-                    CacheBlocksPresented.Add(new PresentationModel(i, BlockRow, false));         
+                    CacheBlocksPresented.Add(new PresentationModel(i, BlockRow, false));
             }
             #endregion
-            
+
             #region Cache Algorithm Explanations
-            Demonstrations.Add(new PresentationModel("the Tag Bits are compared with the corresponding Tag Bits in the Cache Directory."));
-            Demonstrations.Add(new PresentationModel("the Index Bits are used to select a particular Set in the Cache."));
-            Demonstrations.Add(new PresentationModel("the Offest Bits are used to select a particular byte in the accessed block."));
-            Demonstrations.Add(new PresentationModel("Memory Size= " + SelectedRamSize + " =2 to the power of " + TotalNumberOfBits));
-            Demonstrations.Add(new PresentationModel("Cache Size= " + SelectedCacheSize + " =2 to the power of " + GetLogValue(cacheSizeValue)));
-            Demonstrations.Add(new PresentationModel("Block Size= " + SelectedBlockSize + " =2 to the power of " + GetLogValue(blockSizeValue)));
-            Demonstrations.Add(new PresentationModel("Number of bits in Tag = Total bits - Index bits - Offset bits= " + TotalNumberOfBits + "- " + GetLogValue(numberOfBlocksOrSets) + "- " + GetLogValue(blockSizeValue) + "= " + numberOfTagBits));
-            if (IsDirectMapping) Demonstrations.Add(new PresentationModel("Number of blocks in cache=" + SelectedCacheSize + "/" + SelectedBlockSize + " = (2 to the power of" + GetLogValue(cacheSizeValue) + ")/(2 to the power of " + GetLogValue(blockSizeValue) + ")= " + numberOfIndexBits));
-            else Demonstrations.Add(new PresentationModel("Number of sets in cache = Number of blocks/associativity type = (" + GetLogValue(numberOfBlocksOrSets) + ")/(" + SelectedAssociativity + ")= " + numberOfBlocksOrSets));
+            Demonstrations.Add("the Tag Bits are compared with the corresponding Tag Bits in the Cache Directory.");
+            Demonstrations.Add("the Index Bits are used to select a particular Set in the Cache.");
+            Demonstrations.Add("the Offest Bits are used to select a particular byte in the accessed block.");
+            Demonstrations.Add("Memory Size= " + SelectedRamSize + " =2 to the power of " + TotalNumberOfBits);
+            Demonstrations.Add("Cache Size= " + SelectedCacheSize + " =2 to the power of " + GetLogValue(cacheSizeValue));
+            Demonstrations.Add("Block Size= " + SelectedBlockSize + " =2 to the power of " + GetLogValue(blockSizeValue));
+            Demonstrations.Add("Number of bits in Tag = Total bits - Index bits - Offset bits= " + TotalNumberOfBits + "- " + GetLogValue(numberOfBlocksOrSets) + "- " + GetLogValue(blockSizeValue) + "= " + numberOfTagBits);
+            if (IsDirectMapping)
+            {
+                Demonstrations.Add("Number of blocks in cache=" + SelectedCacheSize + "/" + SelectedBlockSize + " = (2 to the power of" + GetLogValue(cacheSizeValue) + ")/(2 to the power of " + GetLogValue(blockSizeValue) + ")= ");
+                Demonstrations.Add(Math.Pow(2, numberOfIndexBits) + ".");
+            }
+            else
+            {
+                Demonstrations.Add("Number of sets in cache = Number of blocks/associativity type = (" + cacheSizeValue / blockSizeValue + ")/(" + SelectedAssociativity + ")= ");
+                Demonstrations.Add(numberOfBlocksOrSets + ".");
+            }
             #endregion
         }
         #endregion
@@ -443,9 +465,14 @@ namespace PPS.UI.Cache.ViewModels
         /// </summary>
         private void FillBlockSize()
         {
-            BlockSizes = new List<string>();
+            BlockSizes = new ObservableCollection<string>();
+            int halfOfCacheSize = (int.Parse(RegexFunction(SelectedCacheSize, true)) * ValueConverterModel.ConvertMemorySizeTypeToByte(RegexFunction(SelectedCacheSize, false)))/ 2;
             foreach (var item in CacheModel.BlockSizes)
-                BlockSizes.Add(ValueConverterModel.ConvertToString(item));
+            {
+                if (item <=halfOfCacheSize) BlockSizes.Add(ValueConverterModel.ConvertToString(item));
+                else break;
+        }
+        
         }
         /// <summary>
         /// a function to fill all the values of the associativity type that will be demonstraited so the user can choose an associativity type
@@ -475,7 +502,7 @@ namespace PPS.UI.Cache.ViewModels
         {
             CanWrite = true;
             RamSizeToInt = int.Parse(RegexFunction(SelectedRamSize, true)) * ValueConverterModel.ConvertMemorySizeTypeToByte(RegexFunction(SelectedRamSize, false));
-            TotalNumberOfBits = GetLogValue(RamSizeToInt);
+            TotalNumberOfBits = GetLogValue(RamSizeToInt);       
         }
 
         /// <summary>
@@ -506,21 +533,23 @@ namespace PPS.UI.Cache.ViewModels
         /// <returns></returns>
         private string HexadecimalToBinary(string address)
         {
-            string tempAddress = "";
-            address = address.ToLower();
+            string tempAddress = "";                                      
             if (!string.IsNullOrEmpty(address))
             {
+                address = address.ToLower();
                 for (int i = address.Length - 1; i >= 0; i--)
                 {
                     tempAddress += ValueConverterModel.GetHexadecimalValue(address[i].ToString());
-                }
+                }              
                 address = "";
-                int subStringEnding = tempAddress.Length;
+                int subStringEnding = tempAddress.Length;         
                 while (subStringEnding >= 4)
                 {
                     address += tempAddress.Substring(subStringEnding - 4, 4);
                     subStringEnding -= 4;
                 }
+              
+            
                 return address;
             }
             else
@@ -534,13 +563,12 @@ namespace PPS.UI.Cache.ViewModels
         private string BinaryToHexadecimal(string address)
         {
             string tempAddress = "";
-            if (address.Length % 4 != 0)
-            {
-                int closestFourMultiple = 4 * (address.Length / 4 + 1);
-                address = address.PadLeft(closestFourMultiple, '0');
-            }            
             if (!string.IsNullOrEmpty(address))
-            {
+            {  if (address.Length % 4 != 0)
+                {
+                    int closestFourMultiple = 4 * (address.Length / 4 + 1);
+                    address = address.PadLeft(closestFourMultiple, '0');
+                }
                 int subStringBegining = 0;
                 string subStringHolder;
                 while (subStringBegining < address.Length)
@@ -561,11 +589,12 @@ namespace PPS.UI.Cache.ViewModels
             if (!string.IsNullOrEmpty(RequestAddress))
             {               
                 int len = RequestAddress.Length;
-                int lengthDifference = len - TotalNumberOfBits;
+                int lengthDifference = len - TotalNumberOfBits;                
                 if (IsBinary)
                 {  //check if the binary requested address does not contain hexcadecimal or any other characters in it
                     if (!string.IsNullOrEmpty(RequestAddress))
                     {
+                        TotalLength = TotalNumberOfBits;
                         for (int i = 0; i < len; i++)
                         {
                             if (RequestAddress[i] > '1' || RequestAddress[i] < '0')
@@ -576,10 +605,11 @@ namespace PPS.UI.Cache.ViewModels
                         }
                     }
                     //check the size of the requested address in the binary form
-                    if (RequestAddress.Length > TotalNumberOfBits)
+                   if (RequestAddress.Length > TotalNumberOfBits)
                     {
-                        RequestAddress = RequestAddress.Remove(len - lengthDifference, lengthDifference);
-                    }
+                        //RequestAddress = RequestAddress.Remove(len - lengthDifference, lengthDifference);
+                        RequestAddress = RequestAddress.Remove(0, lengthDifference);
+                    }                    
                 }
                 else
                 {
@@ -587,22 +617,20 @@ namespace PPS.UI.Cache.ViewModels
                     {
                         for (int i = 0; i < len; i++)
                         {
-                            if (RequestAddress[i] >= '0' && RequestAddress[i] <= '9') continue;
-                            if (RequestAddress[i] >= 'a' && RequestAddress[i] <= 'f') continue;
-                            if (RequestAddress[i] >= 'A' && RequestAddress[i] <= 'F') continue;
+                            if (RequestAddress[i] >= '0' && RequestAddress[i] <= '9'|| RequestAddress[i] >= 'a' && RequestAddress[i] <= 'f' || RequestAddress[i] >= 'A' && RequestAddress[i] <= 'F') continue;    
                             RequestAddress = RequestAddress.Remove(i, 1);
                             len = RequestAddress.Length;
                         }
                     }
                     int extraBits = TotalNumberOfBits % 4;
                     if (extraBits > 0) extraBits = 1;
-                    if (RequestAddress.Length > (TotalNumberOfBits / 4 + extraBits))
+                    TotalLength = TotalNumberOfBits / 4 + extraBits;
+                    if (RequestAddress.Length > (TotalNumberOfBits   / 4 + extraBits))
                     {
                         lengthDifference = len - (TotalNumberOfBits / 4 + extraBits);
-                        RequestAddress = RequestAddress.Remove(len - lengthDifference, lengthDifference);
+                        RequestAddress = RequestAddress.Remove(0, lengthDifference);
                     }
-                }
-
+                }               
             }
         }
         #endregion

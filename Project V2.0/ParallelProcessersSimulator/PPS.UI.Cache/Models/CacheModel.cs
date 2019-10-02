@@ -85,6 +85,9 @@ namespace PPS.UI.Cache.Models
             BlockSizes.Add(16);
             BlockSizes.Add(32);
             BlockSizes.Add(64);
+            BlockSizes.Add(256);
+            BlockSizes.Add(512);
+
         }
         /// <summary>
         /// a function to fill all the associativity types that will be be used in the cacheViewModel class
@@ -104,6 +107,8 @@ namespace PPS.UI.Cache.Models
         {
             RamSizes = new List<int>();
             RamSizes.Add(65536);//64 Kbyte
+            RamSizes.Add(262144);//256 Kbyte
+            RamSizes.Add(524288);//512 Kbyte
             RamSizes.Add(1048576);// 1 Mbyte           
             RamSizes.Add(16777216);// 16 Mbyte                       
         }

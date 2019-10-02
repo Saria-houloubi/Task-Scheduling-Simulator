@@ -8,6 +8,7 @@
         xmlns:sharedUI="clr-namespace:PPS.UI.Shared.Views.Base;assembly=PPS.UI.Shared"
                      xmlns:enums="clr-namespace:PPS.UI.Shared.Enums;assembly=PPS.UI.Shared"
         mc:Ignorable="d"
+                     Background="{StaticResource BackgroundWhiteLightBrush}"
         Title="{StaticResource Main_Title}" >
     <Grid>
         <Grid.RowDefinitions>
@@ -22,11 +23,12 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <!--Program name and title-->
-        
-        <!--Application Name-->
-        <TextBlock Text="{StaticResource ApplicationName_Title}" 
-                   Style="{StaticResource Title_Textblock}"/>
+        <!--Program timeline-->
+        <Image
+            Source="/Images/Timeline.jpg"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            />
 
         <!--Side border-->
         <Border Style="{StaticResource HorizantelSpliter}"
@@ -35,16 +37,7 @@
         <!--Tishreen university logo-->
         <Image Grid.Column="2" 
                Source="/Images/tishreenLogoSemiTransparent.png"/>
-
-        <!--Applicationinformation-->
-        <Border
-            Grid.Row="1"
-            Style="{StaticResource TopBottomSpliter}">
-            <TextBlock
-            Style="{StaticResource Discription_Textblock}"
-            Text="{StaticResource Application_Discription}"
-            />
-        </Border>
+      
 
         <Border
             Grid.Row="1"
@@ -61,3 +54,4 @@
       
     </Grid>
 </sharedUI:BaseWindow>
+ 
