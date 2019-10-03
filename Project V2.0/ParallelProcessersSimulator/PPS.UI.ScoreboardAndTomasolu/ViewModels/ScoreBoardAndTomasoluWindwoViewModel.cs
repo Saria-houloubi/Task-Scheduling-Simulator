@@ -132,7 +132,14 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
         /// The inner instruction list for to save them in
         /// so they can be reused when the algorithm is changed
         /// </summary>
-        public List<BasicInstructionModel> InnerInstructions { get; private set; }
+        private ObservableCollection<BasicInstructionModel> _InnerInstructions;
+
+        public ObservableCollection<BasicInstructionModel> InnerInstructions
+        {
+            get { return _InnerInstructions; }
+            set { SetProperty(ref _InnerInstructions, value); }
+        }
+
 
         /// <summary>
         /// The instruction list the user entered
@@ -566,29 +573,11 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
         /// </summary>
         public void SetProcessorOptionsCommand_Execute()
         {
-            //Check if the inner instuction has not been changed
-            if (IsTomasoluSelected)
-            {
-                InnerInstructions = new List<BasicInstructionModel>();
-                foreach (var item in Instructions)
-                {
-                    //Making a deep copy of the elements
-                    InnerInstructions.Add(new BasicInstructionModel
-                    {
-                        Function = item.Function,
-                        Id = item.Id,
-                        Source1 = item.Source1,
-                        Source2 = item.Source2,
-                        Target = item.Target,
-                    });
-                }
-            }
-
-            Instructions = new ObservableCollection<BasicInstructionModel>();
-            foreach (var item in InnerInstructions)
+            InnerInstructions = new ObservableCollection<BasicInstructionModel>();
+            foreach (var item in Instructions)
             {
                 //Making a deep copy of the elements
-                Instructions.Add(new BasicInstructionModel
+                InnerInstructions.Add(new BasicInstructionModel
                 {
                     Function = item.Function,
                     Id = item.Id,
@@ -600,6 +589,7 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
 
             FunctionalUnitsList = new ObservableCollection<FunctionalUnitModel>();
             CurrentClockCycle = 0;
+            TomasoluRegisterCounter = 0;
             CanGoNextCycle = Instructions.Any();
             InstructionClockCycleCount[BasicFunctions.SD] = InstructionClockCycleCount[BasicFunctions.LD];
             InstructionClockCycleCount[BasicFunctions.SUB] = InstructionClockCycleCount[BasicFunctions.ADD];
@@ -799,9 +789,9 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
 
             CurrentClockCycle++;
 
-            for (int i = 0; i < Instructions.Count; i++)
+            for (int i = 0; i < InnerInstructions.Count; i++)
             {
-                var instruction = Instructions[i];
+                var instruction = InnerInstructions[i];
                 if (instruction.Issue == null)
                 {
                     //Issue the instruction if all hazerds are gone
@@ -941,7 +931,10 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
                         }
 
                         //Set the register as busy
-                        registerToTarget.Operation = unit.Operation == BasicFunctions.LD ? string.Format("F[{0}]", unit.Source1) : string.Format("F[{0}]", unit.Name);
+                        if (instruction.Function != BasicFunctions.SD)
+                        {
+                            registerToTarget.Operation = unit.Operation == BasicFunctions.LD ? string.Format("F[{0}]", unit.Source1) : string.Format("F[{0}]", unit.Name);
+                        }
                         registerToTarget.IsBusy = true;
                         if (registerToTarget.InstructionReservedRegiseter.Any())
                         {
@@ -953,7 +946,6 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
                             Id = instruction.Id,
                             LastIssued = true
                         });
-
                         return true;
                     }
                 }
@@ -1129,7 +1121,7 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
         /// <returns></returns>
         protected bool CheckIfDone()
         {
-            foreach (var instruction in Instructions)
+            foreach (var instruction in InnerInstructions)
             {
                 if (instruction.WriteBack == null)
                 {

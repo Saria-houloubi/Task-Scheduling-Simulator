@@ -300,7 +300,7 @@
                             <!--Instruction status-->
                             <DataGrid
                             Grid.Row="1"
-                            ItemsSource="{Binding Instructions}"
+                            ItemsSource="{Binding InnerInstructions}"
                             Style="{StaticResource ReadOnly_DataGrid}">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="{StaticResource Instruction_Title}" Width="*" Binding="{Binding Function}"/>
