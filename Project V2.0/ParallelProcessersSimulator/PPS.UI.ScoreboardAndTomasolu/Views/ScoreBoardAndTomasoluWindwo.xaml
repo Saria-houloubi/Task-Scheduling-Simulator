@@ -142,7 +142,7 @@
                         <!--Extra information-->
                         <TextBox
                         Style="{StaticResource ReadOnly_TextBox}"
-                        Text="{Binding EditingInstructions.Count,Mode=OneWay}"
+                        Text="{Binding Instructions.Count,Mode=OneWay}"
                         Grid.Row="1"/>
                     </Grid>
                 </Grid>

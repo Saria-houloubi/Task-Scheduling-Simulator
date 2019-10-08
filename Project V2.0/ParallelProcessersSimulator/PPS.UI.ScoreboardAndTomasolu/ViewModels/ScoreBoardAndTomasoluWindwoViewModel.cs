@@ -810,8 +810,11 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
                     //If the value was just ended up from the past clock cycle
                     if (instruction.WriteBack == CurrentClockCycle - 1)
                     {
-                        //Clear the units after a write back
-                        FreeUpRegisters(Registers.SingleOrDefault(item => item.InstructionReservedRegiseter.SingleOrDefault(inst => inst.Id == instruction.Id) != null), instruction.Id);
+                        if (instruction.Function != BasicFunctions.SD)
+                        {
+                            //Clear the units after a write back
+                            FreeUpRegisters(Registers.SingleOrDefault(item => item.InstructionReservedRegiseter.SingleOrDefault(inst => inst.Id == instruction.Id) != null), instruction.Id);
+                        }
                         RecheckIfRegistersAreFree();
                         if (CheckIfDone())
                         {
@@ -934,18 +937,18 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
                         if (instruction.Function != BasicFunctions.SD)
                         {
                             registerToTarget.Operation = unit.Operation == BasicFunctions.LD ? string.Format("F[{0}]", unit.Source1) : string.Format("F[{0}]", unit.Name);
+                            registerToTarget.IsBusy = true;
+                            if (registerToTarget.InstructionReservedRegiseter.Any())
+                            {
+                                registerToTarget.InstructionReservedRegiseter.LastOrDefault().LastIssued = false;
+                            }
+                            //Add it to the reserved instructions
+                            registerToTarget.InstructionReservedRegiseter.Add(new BasicInstructionModel
+                            {
+                                Id = instruction.Id,
+                                LastIssued = true
+                            });
                         }
-                        registerToTarget.IsBusy = true;
-                        if (registerToTarget.InstructionReservedRegiseter.Any())
-                        {
-                            registerToTarget.InstructionReservedRegiseter.LastOrDefault().LastIssued = false;
-                        }
-                        //Add it to the reserved instructions
-                        registerToTarget.InstructionReservedRegiseter.Add(new BasicInstructionModel
-                        {
-                            Id = instruction.Id,
-                            LastIssued = true
-                        });
                         return true;
                     }
                 }
@@ -1021,15 +1024,20 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
                 else if (unit.Time < 0)
                 {
                     unit.Time = 0;
-                    //Get the register the instruction is working on
-                    var register = Registers.SingleOrDefault(reg => reg.InstructionReservedRegiseter.SingleOrDefault(inst => inst.Id == instruction.Id) != null);
-                    var instStatusInReg = register.InstructionReservedRegiseter.SingleOrDefault(item => item.Id == instruction.Id);
-                    //If its value is false it can not write and has to be register renames
-                    if (!instStatusInReg.LastIssued)
+                    if (instruction.Function != BasicFunctions.SD)
                     {
-                        //Then rename the target register of the register renameing process
-                        //This way will end the WAW hazard
-                        instruction.Target = $"R{++TomasoluRegisterCounter}";
+                        //Get the register the instruction is working on
+                        var register = Registers.SingleOrDefault(reg => reg.InstructionReservedRegiseter.SingleOrDefault(inst => inst.Id == instruction.Id) != null);
+
+                        var instStatusInReg = register.InstructionReservedRegiseter.SingleOrDefault(item => item.Id == instruction.Id);
+                        //If its value is false it can not write and has to be register renames
+                        if (!instStatusInReg.LastIssued)
+                        {
+                            //Then rename the target register of the register renameing process
+                            //This way will end the WAW hazard
+                            instruction.Target = $"R{++TomasoluRegisterCounter}";
+                        }
+
                     }
                     //Always right back the value after the instruction finishs executing
                     instruction.WriteBack = CurrentClockCycle;
@@ -1051,15 +1059,23 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
             //If there is any more items
             if (register.InstructionReservedRegiseter.Any())
             {
-                //then assign the working insruction as the first one
-                register.IsBusy = true;
+                //If it was the last instruction issued and the selected alogorithm is tomasulo then all
+                //  the other instruction targeting this register will be register renamed
+                if (IsTomasoluSelected && instruction.LastIssued)
+                {
+                    register.IsBusy = false;
+                }
+                else
+                {
+                    //then assign the working insruction as the first one
+                    register.IsBusy = true;
+                }
             }
             else
             {
                 //Free up the registery
                 register.IsBusy = false;
             }
-
         }
         /// <summary>
         /// Clears up the unit after the instruction writes back
@@ -1067,6 +1083,8 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
         /// <param name="unit"></param>
         protected void ClearUnitFunction(FunctionalUnitModel unit)
         {
+            var operationName = unit.Operation == BasicFunctions.LD ? string.Format("F[{0}]", unit.Source1) : string.Format("F[{0}]", unit.Name);
+
             unit.JustFreedUp = true;
             unit.Time = null;
             unit.Status = UnitStatus.Free;
@@ -1081,6 +1099,23 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
             unit.WaitingOperationForSource02 = null;
             unit.IsSource01Ready = false;
             unit.IsSource02Ready = false;
+
+            foreach (var item in FunctionalUnitsList)
+            {
+                if(item.WaitingOperationForSource01 == operationName)
+                {
+                    item.Source1 = item._Source1Local;
+                    item.IsSource01Ready = true;
+                    item.WaitingOperationForSource01 = null;
+                }
+
+                if(item.WaitingOperationForSource02 == operationName)
+                {
+                    item.Source2 = item._Source2Local;
+                    item.IsSource02Ready = true;
+                    item.WaitingOperationForSource02 = null;
+                }
+            }
         }
         /// <summary>
         /// Checks if the register are free so we can start reading 
@@ -1090,8 +1125,10 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
         {
             foreach (var unit in FunctionalUnitsList)
             {
+                var operation = unit.Operation == BasicFunctions.LD ? string.Format("F[{0}]", unit.Source1) : string.Format("F[{0}]", unit.Name);
                 if (unit._Source1Local != null && unit.IsSource01Ready == false)
                 {
+                    //Get the units that are waiting for this to end
                     var registery = Registers.SingleOrDefault(reg => reg.Name == unit._Source1Local);
                     if (!registery.IsBusy ||
                         (registery.IsBusy && registery.InstructionReservedRegiseter.FirstOrDefault().Id == unit.WorkingInstructionID))
@@ -1132,6 +1169,7 @@ namespace PPS.UI.ScoreboardAndTomasolu.ViewModels
         }
 
         #endregion
+
         #region Helpers
         /// <summary>
         /// Fills the function list with the data
