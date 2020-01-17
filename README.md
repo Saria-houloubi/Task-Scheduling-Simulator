@@ -3,7 +3,7 @@ For my 4th year in university :books: I wanted to build something for my own.
 
 I worked under the supervision of Dr. Eng. Samer Suliman, We worked on a simulator for different algorithms on how a processor executes assembly instructions such as Scoreboarding and Tomsula. The simulator also shows how loops are being executed and unrolled and how the cache memory works.
 
-**More features are being added to the simulator.
+**More features are being added to the simulator.**
 
 # Project layout
 There are two solutions here, and old **legacy** and the one that is being used in production **(currently in Tishreen University, Syria)**.
