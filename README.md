@@ -19,7 +19,7 @@ but due to the hole code mess they couldn't :dizzy_face:.
 So I had to redo the hole porject and actualy build it in a good clean code which can be maintained much better, in which lead to developing V2.0 which you can find it [here](https://github.com/Saria-houloubi/Task-Scheduling-Simulator/tree/master/Project%20V2.0/ParallelProcessersSimulator).
 
 # Tutorials
-A friend of mine wanted to help in his own way by recording some tutorial videos :video:. Which I uploaded them to my (Youtube channel)[http://www.youtube.com/c/TestTeam].
+A friend of mine wanted to help in his own way by recording some tutorial videos :video:. Which I uploaded them to my [Youtube channel](http://www.youtube.com/c/TestTeam).
 
 The videos go through the old version but it has the same concept:
   1. [Tomasulo Algorithm](https://www.youtube.com/watch?v=jaOw6v9MziM&list=PLfqLqfbPhVTOsQFGtRS8XmVZOLb4c6za3)
@@ -33,6 +33,5 @@ you can get the program from [here](https://sariahouloubi.com/download/TaskSched
 
 # Note
 For the time now I am only fixing any bugs that show in it and not activily developing in it.
-
-
+<br/><br/>
 Made with :heart:
